@@ -1,0 +1,457 @@
+<!---------- template 1------------>
+
+<!-- social icon section (contact details)-->
+@if(template_type == 'layout1') {
+
+<section class="social-icon light-card" [ngStyle]="{
+                                                            'color': card1textcolour
+                                                       
+                                                          }">
+	<div class="icon-div" *ngFor="let datas of data?.data">
+
+		<div class="row">
+			<div class="col d-flex justify-content-center" *ngIf="datas.mobile_no && isValid(datas.mobile_no)">
+				<a target="_blank" [href]="'tel:' +datas.mobile_no"><img alt="social icon images"
+						 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/call.png'" /></a>
+			</div>
+			<div class="col d-flex justify-content-center" *ngIf="datas.email_id && isValid(datas.email_id)">
+				<a target="_blank" [href]="'mailto:' + datas.email_id"><img alt="social icon images"
+						 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/mail.png'" /></a>
+			</div>
+			<div class="col d-flex justify-content-center" *ngIf="datas.wp_number && datas.wp_number_flag && isValid(datas.wp_number)">
+				<a target="_blank" [href]="'https://wa.me/' + datas.wp_number"><img alt="social icon images"
+						 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/whatsapp.png'" /></a>
+			</div>
+
+			<div class="col d-flex justify-content-center" *ngIf="datas.user_address && isValid(datas.user_address)">
+				<a target="_blank" (click)="open()" data-bs-toggle="collapse" data-bs-target="#location-address"
+					aria-expanded="false" aria-controls="collapseOne" class="collapsed" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}">
+					<img  [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/location.png'" alt="social icon images" /></a>
+			</div>
+
+		</div>
+		<div id="location-address" class="panel-collapse collapse location-address" role="tabpanel"
+			*ngIf="isValid(datas.user_address)" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+			<div class="panel-body">
+				<p [ngStyle]="{
+                                                            'color': card1textcolour
+                                                          }">{{datas.user_address}}</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+}
+<!---------- template 2------------>
+
+<!-- social icon section (contact details)-->
+
+@else if(template_type == 'layout2') {
+
+<section class="social-icon">
+	<div class="icon-div" *ngFor="let datas of data?.data">
+		<div class="row">
+			<div class="col d-flex justify-content-center i-div" *ngIf="datas.mobile_no">
+				<a target="_blank" [href]="'tel:' +datas.mobile_no"><img
+						 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/telephone.png'" alt="social icon images" /></a>
+			</div>
+			<div class="col d-flex justify-content-center i-div" *ngIf="datas.email_id">
+				<a target="_blank" [href]="'mailto:' + datas.email_id"><img
+						 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/mail.png'" alt="social icon images" /></a>
+			</div>
+			<div target="_blank" class="col d-flex justify-content-center i-div" *ngIf="datas.wp_number && datas.wp_number_flag">
+				<a target="_blank" [href]="'https://wa.me/' + datas.wp_number"><img alt="social icon images"
+						 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp.png'" /></a>
+			</div>
+			<div class="col d-flex justify-content-center i-div"
+				*ngIf="datas.user_address && isValid(datas.user_address)">
+				<a target="_blank" (click)="open()" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}" 
+				data-bs-toggle="collapse" data-bs-target="#location-address1"
+					aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+					<img  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/location.png'" alt="social icon images" /></a>
+			</div>
+		</div>
+		<div id="location-address1" class="panel-collapse collapse location-address" role="tabpanel"
+			aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+			<div class="panel-body">
+				<p [ngStyle]="{'color': card1textcolour}">{{datas.user_address}}</p>
+			</div>
+		</div>
+	</div>
+</section>
+}
+
+<!---------- template 3------------>
+
+
+@else if(template_type == 'layout3') {
+
+<section class="social-icon">
+	<div *ngFor="let datas of data?.data">
+
+
+		<div class="icon-div">
+
+			<a target="_blank" [href]="'tel:' +datas.mobile_no" *ngIf="datas.mobile_no"><img
+					 [src]="globalObject.assetsUrl + '/templates_pcard/template_three/phone.png'" alt="social icon images" /></a>
+
+			<a target="_blank" [href]="'mailto:' + datas.email_id" *ngIf="datas.email_id"><img
+					 [src]="globalObject.assetsUrl + '/templates_pcard/template_three/envelope.png'" alt="social icon images" /></a>
+
+			<a target="_blank" [href]="'https://wa.me/' + datas.wp_number" *ngIf="datas.wp_number && datas.wp_number_flag">
+				<img  [src]="globalObject.assetsUrl + '/templates_pcard/template_three/whatsapp-tthree.png'" alt="social icon images" /></a>
+
+			<a target="_blank" (click)="open()" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}" data-bs-toggle="collapse"
+				*ngIf="datas.user_address && isValid(datas.user_address)" data-bs-target="#location-address2"
+				aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+				<img  [src]="globalObject.assetsUrl + '/templates_pcard/template_three/location.png'" alt="social icon images" /></a>
+		</div>
+
+		<div id="location-address2" class="panel-collapse collapse location-address" role="tabpanel"
+			aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+			<div class="panel-body">
+				<p>{{datas.user_address}}</p>
+			</div>
+		</div>
+	</div>
+</section>
+}
+
+
+<!---------- template 4------------>
+
+
+@else if(template_type == 'layout4') {
+
+<section class="social-contact  2" [ngStyle]="social_contact ?social_contact : ''">
+	<ng-container *ngFor="let datas of data?.data">
+		<div class="links" [ngStyle]="social_contact_links ?social_contact_links : ''"
+			*ngIf="datas.mobile_no && isValid(datas.mobile_no)">
+
+
+
+			<a *ngIf="datas?.mobile_no" [href]="'tel:' + datas.mobile_no" [ngStyle]="social_contact_a 
+    ? social_contact_a 
+    : {'background-color': card2bgcolour, 'color': card2textcolour}">
+				<i class="fa-solid fa-phone"></i></a>
+
+
+
+			<span [ngStyle]="social_contact_span ?social_contact_span : ''">{{datas.mobile_no}}</span>
+		</div>
+		<div class="links" [ngStyle]="social_contact_links ?social_contact_links : ''"
+			*ngIf="datas.email_id && isValid(datas.email_id)">
+			<a target="_blank" [href]="'mailto:' + datas.email_id"
+				[ngStyle]="social_contact_a ?social_contact_a : {'background-color': card2bgcolour,'color': card2textcolour }">
+				<i class="fa-solid fa-envelope"></i></a>
+			<span [ngStyle]="social_contact_span ?social_contact_span : ''">
+				{{datas.email_id}}</span>
+		</div>
+		<div class="links" [ngStyle]="social_contact_links ?social_contact_links : ''"
+			*ngIf="datas.wp_number && datas.wp_number_flag && isValid(datas.wp_number)">
+			<a target="_blank" [href]="'https://wa.me/' + datas.wp_number"
+				[ngStyle]="social_contact_a ?social_contact_a : {'background-color': card2bgcolour,'color': card2textcolour }">
+				<i class="fa-brands fa-whatsapp"></i></a>
+			<span [ngStyle]="social_contact_span ?social_contact_span : ''">{{datas.wp_number}}</span>
+		</div>
+		<div class="links" [ngStyle]="social_contact_links ?social_contact_links : ''"
+			*ngIf="datas.user_address && isValid(datas.user_address)">
+			<a target="_blank" (click)="open()" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}"
+				[ngStyle]="social_contact_a ?social_contact_a : {'background-color': card2bgcolour,'color': card2textcolour }">
+				<i class="fa-solid fa-location-dot"></i>
+			</a><span [ngStyle]="social_contact_span ?social_contact_span : ''">{{datas.user_address}}</span>
+		</div>
+	</ng-container>
+
+</section>
+
+
+}
+
+
+
+<!---------- template 5------------>
+
+
+@else if(template_type == 'layout5') {
+
+
+<section class="social-contact 1" [ngStyle]="social_contact  ?social_contact : {'background-color': card1bgcolour}">
+	<ng-container *ngFor="let datas of data?.data">
+		<div class="links" *ngIf="datas.mobile_no"
+			[ngStyle]="social_contact_links ?social_contact_links : {'background-color': card2bgcolour,'color': card2textcolour }">
+			<a target="_blank" [href]="'tel:' +datas.mobile_no" 
+				[ngStyle]="social_contact_a ?social_contact_a : {'color': card2textcolour}"><i
+					class="fa-solid fa-phone"></i></a> <span
+				[ngStyle]="social_contact_span ?social_contact_span : ''">{{datas.mobile_no}}</span>
+		</div>
+		<div *ngIf="datas.email_id" class="links"
+			[ngStyle]="social_contact_links ?social_contact_links : {'background-color': card2bgcolour,'color': card2textcolour }">
+			<a target="_blank" [href]="'mailto:' + datas.email_id"
+				[ngStyle]="social_contact_a ?social_contact_a : {'color': card2textcolour}"><i
+					class="fa-solid fa-envelope"></i></a> <span
+				[ngStyle]="social_contact_span ?social_contact_span : ''">
+				{{datas.email_id}}</span>
+		</div>
+		<div *ngIf="datas.wp_number && datas.wp_number_flag" class="links"
+			[ngStyle]="social_contact_links ?social_contact_links : {'background-color': card2bgcolour,'color': card2textcolour }">
+			<a target="_blank" [href]="'https://wa.me/' + datas.wp_number"
+				[ngStyle]="social_contact_a ?social_contact_a : {'color': card2textcolour}"><i
+					class="fa-brands fa-whatsapp"></i></a>
+			<span [ngStyle]="social_contact_span ?social_contact_span : ''">{{datas.wp_number}}</span>
+		</div>
+		<div class="links" *ngIf="datas.user_address && isValid(datas.user_address)"
+			[ngStyle]="social_contact_links ?social_contact_links : {'background-color': card2bgcolour,'color': card2textcolour }">
+			<a target="_blank" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}" (click)="open()" 
+				[ngStyle]="social_contact_a ?social_contact_a : {'color': card2textcolour}"><i
+					class="fa-solid fa-location-dot"></i>
+			</a><span
+				[ngStyle]="social_contact_span ?social_contact_span : social_contact_span ?social_contact_span : ''">{{datas.user_address}}</span>
+		</div>
+	</ng-container>
+</section>
+}
+
+<!---------- template 6------------>
+
+
+@else if(template_type == 'layout6') {
+
+<section class="social-contact 3">
+	
+	<ng-container *ngFor="let datas of data?.data">
+		<div class="links" [ngStyle]="social_contact_links ?social_contact_links :{'color': card2textcolour }"
+			*ngIf="datas.mobile_no">
+			<a target="_blank" [href]="'tel:' +datas.mobile_no"
+				[ngStyle]="social_contact_a ?social_contact_a :{'color': card1bgcolour}"><i class="fa-solid fa-phone"
+					[ngStyle]="social_contact_i ?social_contact_i :''"></i></a> <span
+				[ngStyle]="social_contact_span ?social_contact_span : {'color': card2textcolour }">{{datas.mobile_no}}</span>
+		</div>
+		<div class="links" [ngStyle]="social_contact_links ?social_contact_links :{'color': card2textcolour }"
+			*ngIf="datas.email_id">
+			<a target="_blank" [href]="'mailto:' + datas.email_id"
+				[ngStyle]="social_contact_a ?social_contact_a :{'color': card1bgcolour}"><i
+					[ngStyle]="social_contact_i ?social_contact_i :''" class="fa-solid fa-envelope"></i></a> <span
+				[ngStyle]="social_contact_span ?social_contact_span : {'color': card2textcolour }">
+				{{datas.email_id}}</span>
+		</div>
+		<div class="links" [ngStyle]="social_contact_links ?social_contact_links :{'color': card2textcolour }"
+			*ngIf="datas.wp_number && datas.wp_number_flag">
+			<a target="_blank" [href]="'https://wa.me/' + datas.wp_number"
+				[ngStyle]="social_contact_a ?social_contact_a :{'color': card1bgcolour}"><i
+					[ngStyle]="social_contact_i ?social_contact_i :''" class="fa-brands fa-whatsapp"></i></a>
+			<span
+				[ngStyle]="social_contact_span ?social_contact_span : {'color': card2textcolour }">{{datas.wp_number}}</span>
+		</div>
+		<div class="links" [ngStyle]="social_contact_links ?social_contact_links :{'color': card2textcolour }"
+			*ngIf="datas.user_address && isValid(datas.user_address)">
+			<a target="_blank" [href]="datas.google_map_url" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}" (click)="open()"
+				[ngStyle]="social_contact_a ?social_contact_a :{'color': card1bgcolour}"><i
+					[ngStyle]="social_contact_i ?social_contact_i :''" class="fa-solid fa-location-dot"></i> </a><span
+				[ngStyle]="social_contact_span ?social_contact_span : {'color': card2textcolour }">{{datas.user_address}}</span>
+		</div>
+	</ng-container>
+
+</section>
+}
+
+<!---------- template 7------------>
+
+
+@else if(template_type == 'layout7') {
+
+ <ng-container *ngFor="let datas of data?.data; let i = index">
+<div class="social-contact-div"  >
+
+	
+    <!-- CALL -->
+    <a target="_blank" 
+			*ngIf="datas.mobile_no"
+        [href]="'tel:' + datas.mobile_no"
+       [ngStyle]="getHoverStyle(i, 'call')"
+       (mouseenter)="setHover(i, 'call')"
+       (mouseleave)="clearHover()">
+	<i class="fa-solid fa-phone" aria-hidden="true"></i>
+    </a>
+
+    <!-- EMAIL -->
+    <a target="_blank" *ngIf="datas.email_id"
+       [href]="'mailto:' + datas.email_id"
+       [ngStyle]="getHoverStyle(i, 'email')"
+       (mouseenter)="setHover(i, 'email')"
+       (mouseleave)="clearHover()">
+	<i class="fa-solid fa-envelope" aria-hidden="true"></i>
+    </a>
+
+    <!-- WHATSAPP -->
+    <a target="_blank" *ngIf="datas.wp_number && datas.wp_number_flag"
+       [href]="'https://wa.me/' + datas.wp_number"
+       [ngStyle]="getHoverStyle(i, 'whatsapp')"
+       (mouseenter)="setHover(i, 'whatsapp')"
+       (mouseleave)="clearHover()">
+	<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    </a>
+
+    <!-- LOCATION -->
+    <a target="_blank" *ngIf="datas.user_address && isValid(datas.user_address)"
+       [href]="datas.google_map_url"
+       [ngStyle]="getHoverStyle(i, 'location')"
+       (mouseenter)="setHover(i, 'location')"
+       (mouseleave)="clearHover()"
+	   data-bs-toggle="collapse"
+	   data-bs-target="#location-address3"
+	   aria-expanded="false" aria-controls="collapseOne" class="collapsed"
+	   (click)="open()"
+	   [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}"
+	   >
+	<i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+    </a>
+
+</div>
+
+	<div id="location-address3" class="panel-collapse collapse location-address" role="tabpanel"
+			aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+			<div class="panel-body">
+				<p [ngStyle]="{'color': screenWidth > 767 ? 'color-mix(in srgb, ' + bodybgcolour + ' 67%, ' + bodytextcolour + ' 33%)' : 'color-mix(in srgb, ' + bodybgcolour + ' 33%, ' + bodytextcolour + ' 58%)'
+			}">{{datas.user_address}}</p>
+			</div>
+		</div>
+  </ng-container>
+}
+
+
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+   
+
+	   <ng-container *ngFor="let datas of data?.data; let i = index">
+<div class="location_btn"  >
+
+	
+    <!-- CALL -->
+    <a target="_blank" 
+			*ngIf="datas.mobile_no"
+        [href]="'tel:' + datas.mobile_no"
+		 [ngStyle]="getHoverStyleTemplateWeb2(i, 'call')"
+       (mouseenter)="setHover(i, 'call')"
+       (mouseleave)="clearHover()"
+      >
+     <i class="fa-solid fa-phone-volume"></i>
+    </a>
+
+    <!-- EMAIL -->
+    <a target="_blank" *ngIf="datas.email_id"
+       [href]="'mailto:' + datas.email_id"
+	    [ngStyle]="getHoverStyleTemplateWeb2(i, 'email')"
+       (mouseenter)="setHover(i, 'email')"
+       (mouseleave)="clearHover()"
+       >
+  <i class="fa-solid fa-envelope"></i>
+    </a>
+
+    <!-- WHATSAPP -->
+    <a target="_blank" *ngIf="datas.wp_number"
+       [href]="'https://wa.me/' + datas.wp_number"
+	    [ngStyle]="getHoverStyleTemplateWeb2(i, 'whatsapp')"
+       (mouseenter)="setHover(i, 'whatsapp')"
+       (mouseleave)="clearHover()"
+     >
+     <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- LOCATION -->
+    <a target="_blank" *ngIf="datas.user_address && isValid(datas.user_address)"
+       [href]="datas.google_map_url"
+       [ngStyle]="getHoverStyleTemplateWeb2(i, 'location')"
+       (mouseenter)="setHover(i, 'location')"
+       (mouseleave)="clearHover()"
+	   data-bs-toggle="collapse"
+	   data-bs-target="#location-address4"
+	   aria-expanded="false" aria-controls="collapseOne" class="collapsed"
+	   (click)="open()"
+	   [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}"
+	   >
+     <i class="fa-solid fa-location-dot"></i>
+    </a>
+
+</div>
+
+	<div id="location-address4" class="panel-collapse collapse location-address" role="tabpanel"
+			aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+			<div class="panel-body">
+				<p [ngStyle]="{'color':  card2textcolour }">{{datas.user_address}}</p>
+			</div>
+		</div>
+  </ng-container>
+
+ }
+ 
+
+ <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+
+
+			   <ng-container *ngFor="let datas of data?.data; let i = index">
+<div class="social-contact-div"  >
+
+	
+    <!-- CALL -->
+    <a target="_blank" 
+			*ngIf="datas.mobile_no"
+        [href]="'tel:' + datas.mobile_no"
+		 [ngStyle]="getHoverStyleTemplateWeb2(i, 'call')"
+       (mouseenter)="setHover(i, 'call')"
+       (mouseleave)="clearHover()"
+      >
+     <i class="fa-solid fa-phone-volume"></i>
+    </a>
+
+    <!-- EMAIL -->
+    <a target="_blank" *ngIf="datas.email_id"
+       [href]="'mailto:' + datas.email_id"
+	    [ngStyle]="getHoverStyleTemplateWeb2(i, 'email')"
+       (mouseenter)="setHover(i, 'email')"
+       (mouseleave)="clearHover()"
+       >
+  <i class="fa-solid fa-envelope"></i>
+    </a>
+
+    <!-- WHATSAPP -->
+    <a target="_blank" *ngIf="datas.wp_number"
+       [href]="'https://wa.me/' + datas.wp_number"
+	    [ngStyle]="getHoverStyleTemplateWeb2(i, 'whatsapp')"
+       (mouseenter)="setHover(i, 'whatsapp')"
+       (mouseleave)="clearHover()"
+     >
+     <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- LOCATION -->
+    <a target="_blank" *ngIf="datas.user_address && isValid(datas.user_address)"
+       [href]="datas.google_map_url"
+       [ngStyle]="getHoverStyleTemplateWeb2(i, 'location')"
+       (mouseenter)="setHover(i, 'location')"
+       (mouseleave)="clearHover()"
+	   data-bs-toggle="collapse"
+	   data-bs-target="#location-address5"
+	   aria-expanded="false" aria-controls="collapseOne" class="collapsed"
+	   (click)="open()"
+	   [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}"
+	   >
+     <i class="fa-solid fa-location-dot"></i>
+    </a>
+
+</div>
+
+	<div id="location-address5" class="panel-collapse collapse location-address" role="tabpanel"
+			aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+			<div class="panel-body">
+				<p [ngStyle]="{'color': screenWidth > 767 ? card1textcolour : bodytextcolour}">{{datas.user_address}}</p>
+			</div>
+		</div>
+  </ng-container>
+
+    }
+

@@ -1,0 +1,3600 @@
+<!---------- template 1------------>
+
+<!-- baner top img section -->
+<!-- {{template_type}} -->
+@if(template_type == 'layout1') {
+<!-- console.log("Template Type:", template_type); -->
+<section class="top-img-div" *ngIf="profile_back_image">
+  <!-- <img class="top-img" [src]="'data:image/png;base64,'+profile_back_image" alt="profile background image"> -->
+  <img class="top-img" [src]="globalObject.getImageSrc(profile_back_image)" alt="profile background image">
+
+</section>
+
+<!-- profile card with profile img section -->
+<div class="profile-outer-div " *ngFor="let datas of data?.data"
+  [ngStyle]="profile_back_image ? {} : {'margin-top': '135px'}">
+
+  <section class="profile-image-div" *ngIf="data?.flag > 0 && datas?.image; else noImage">
+    <img class="profile-img" [src]="globalObject.getImageSrc(datas?.image)" alt="profile image">
+
+  </section>
+
+
+  <ng-template #noImage>
+    <section class="profile-image-div">
+      <img class="profile-img" src="assets/Image.webp" alt="default profile image">
+    </section>
+  </ng-template>
+
+
+  <section class="profile-card  dark-card" [ngStyle]="{'color': card2textcolour,'background': card2bgcolour}">
+    <div>
+      <h2 class="user-name" [ngStyle]="{'color': card2textcolour}">{{datas.first_name}} {{datas.last_name}}
+      </h2>
+      <h2 [ngStyle]="{'color': card1textcolour}">{{datas.designation}}
+      </h2>
+      <p [ngStyle]="{'color': card2textcolour}"> {{datas.company_name}}
+      </p>
+      <div class="profile-btn-div">
+        <button type="button" class="light-bg-btn" (click)="onFileSelected($event)">
+          <i class="fa-regular fa-bookmark" aria-hidden="true"></i>
+          Save Contact
+        </button>
+        <button type="button" class="light-bg-btn" (click)="share('Profile')">
+          <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
+          Share Profile
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+}
+
+
+<!---------- template 2------------>
+
+@else if(template_type == 'layout2') {
+
+<div class="w-100" *ngFor="let datas of data?.data">
+  <!-- profile bg img section -->
+  <section class="top-img-div">
+    <img class="top-img" [src]="globalObject.getImageSrc(profile_back_image)" alt="profile image">
+
+  </section>
+
+
+
+
+  <!-- profile card with profile img section -->
+  <div class="profile-outer-div ">
+    <section class="profile-image-div" *ngIf="data?.flag > 0 && datas?.image; else noImage">
+      <img class="profile-img" alt="profile image" [src]="globalObject.getImageSrc(datas?.image)">
+    </section>
+
+
+    <ng-template #noImage>
+      <section class="profile-image-div">
+        <img class="profile-img" src="assets/Image.webp" alt="default profile image">
+      </section>
+    </ng-template>
+
+    <section class="profile-card ">
+      <div>
+        <h2 [ngStyle]="{'color': card1textcolour}">{{datas.first_name}} {{datas.last_name}}</h2>
+        <p class="designation" [ngStyle]="{'color': card1textcolour }">{{datas.designation}}</p>
+        <p [ngStyle]="{'color': card1textcolour }"> {{datas.company_name}}</p>
+        <div class="profile-btn-div">
+          <button class="light-bg-btn" [ngStyle]="{
+      color: hoveredIndex === 1 ?  card2textcolour : card1textcolour,
+      background: hoveredIndex === 1 ? card2bgcolour : 'white'
+    }" (mouseenter)="hoveredIndex = 1 " (mouseleave)="hoveredIndex = -1" 
+            (click)="onFileSelected($event)"><i class="fa-regular fa-bookmark"
+   [ngStyle]="{
+        color: hoveredIndex === 1 ?  card2textcolour : card1textcolour,
+        '--color': hoveredIndex === 1 ?  card2textcolour : card1textcolour,
+    }"   ></i></button>
+          <button class="light-bg-btn" (click)="share('Profile')" [ngStyle]="{
+      color: hoveredIndex === 2 ?  card2textcolour : card1textcolour,
+      background: hoveredIndex === 2 ? card2bgcolour : 'white'
+    }" (mouseenter)="hoveredIndex = 2 " (mouseleave)="hoveredIndex = -1"  ><i class="fa-solid fa-share-nodes"
+              [ngStyle]="{
+        color: hoveredIndex === 2 ?  card2textcolour : card1textcolour,
+        '--color': hoveredIndex === 2 ?  card2textcolour : card1textcolour,
+    }" ></i></button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+}
+
+<!---------- template 3------------>
+@else if(template_type == 'layout3') {
+
+<div class="w-100 light-card" [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                            'background': card1bgcolour
+                                                          }">
+  <div class="profile-btn-div">
+    <button class="light-bg-btn"  (click)="onFileSelected($event)"   [ngStyle]="{
+      color: hoveredIndex === 1 ?  card2textcolour : card1textcolour,
+      background: hoveredIndex === 1 ? card2bgcolour : 'white'
+    }" (mouseenter)="hoveredIndex = 1 " (mouseleave)="hoveredIndex = -1" ><i class="fa-regular fa-bookmark"  [ngStyle]="{
+        color: hoveredIndex === 1 ?  card2textcolour : card1textcolour,
+        '--color': hoveredIndex === 1 ?  card2textcolour : card1textcolour,
+    }"  ></i></button>
+    <button class="light-bg-btn" (click)="share('Profile')"  [ngStyle]="{
+      color: hoveredIndex === 2 ?  card2textcolour : card1textcolour,
+      background: hoveredIndex === 2 ? card2bgcolour : 'white'
+    }" (mouseenter)="hoveredIndex = 2 " (mouseleave)="hoveredIndex = -1" ><i class="fa-solid fa-share-nodes"  [ngStyle]="{
+        color: hoveredIndex === 2 ?  card2textcolour : card1textcolour,
+        '--color': hoveredIndex === 2 ?  card2textcolour : card1textcolour,
+    }" ></i></button>
+  </div>
+
+
+  <div class="profile-outer-div ">
+    <ng-container *ngFor="let datas of data?.data">
+      <section class="profile-image-div" *ngIf="data?.flag > 0 && datas?.image; else noImage">
+        <img alt="profile image" class="profile-img" [src]="globalObject.getImageSrc(datas?.image)">
+      </section>
+
+
+
+
+
+      <ng-template #noImage>
+        <section class="profile-image-div">
+          <img class="profile-img" src="assets/Image.webp" alt="default profile image">
+        </section>
+      </ng-template>
+
+
+
+
+
+
+
+
+      <section class="profile-card ">
+        <div class="profile-data">
+          <h2 [ngStyle]="{'color': card1textcolour }">{{datas.first_name}} {{datas.last_name}}</h2>
+          <p class="designation" [ngStyle]="{'color': card1textcolour }">{{datas.designation}}</p>
+          <p [ngStyle]="{'color': card1textcolour }"> {{datas.company_name}}</p>
+        </div>
+
+        <!-- Social contact -->
+ <!-- <ng-container *ngIf="social?.flag > 0">
+        <section class="social-icon" *ngFor="let datas of social.data">
+          <div class="icon-div">
+
+            <a [href]="'tel:' +datas.mobile_no" *ngIf="datas.mobile_no"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_three/phone.png'"
+                alt="phone image" /></a>
+
+            <a [href]="'mailto:' + datas.email_id" *ngIf="datas.email_id"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_three/envelope.png'"
+                alt="mail image" /></a>
+
+            <a [href]="'https://wa.me/' + datas.wp_number" *ngIf="datas.wp_number"><img
+                 [src]="globalObject.assetsUrl + '/templates_pcard/template_three/whatsapp-tthree.png'" alt="whatsapp image" /></a>
+
+            <a   *ngIf="datas.user_address && isValid(datas.user_address)" target="_blank" (click)="open()" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}"data-bs-toggle="collapse" data-bs-target="#location-address2" aria-expanded="false"
+              aria-controls="collapseOne" class="collapsed"><img
+                 [src]="globalObject.assetsUrl + '/templates_pcard/template_three/location.png'" alt="location image" /></a>
+          </div>
+
+          <div id="location-address2" class="panel-collapse collapse location-address" role="tabpanel"
+            aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+            <div class="panel-body">
+              <p>{{datas.user_address}}</p>
+            </div>
+          </div>
+        </section>
+</ng-container> -->
+
+
+ <app-social-contact [template_type]="template_type"  [data2]="data2" [data]="contact_details"></app-social-contact>
+
+      </section>
+    </ng-container>
+  </div>
+</div>
+}
+
+
+
+<!---------- template 4------------>
+@else if(template_type == 'layout4') {
+
+<div class="profile-section">
+
+  <ng-container *ngFor="let datas of data?.data">
+    <div class="profile-bg-img-div"
+      [ngStyle]="profile_bg_img_div ?profile_bg_img_div : {'background-image': 'linear-gradient(45deg, #000000ba, #00000080), url('+ globalObject.getImageSrc(profile_back_image) +')'}">
+
+      <div class="profile-photo-div" *ngIf="data?.flag > 0 && datas?.image; else noImage">
+        <img alt="profile image" [src]="globalObject.getImageSrc(datas?.image)">
+      </div>
+
+
+
+      <ng-template #noImage>
+        <section class="profile-photo-div">
+          <img class="profile-img" src="assets/Image.webp" alt="default profile image">
+        </section>
+      </ng-template>
+
+
+
+
+
+
+
+      <h2 *ngIf="card_style!='style2'" [ngStyle]="profile_h1_h4_p ?profile_h1_h4_p : {'color': card1textcolour }">{{
+        datas.first_name }} {{ datas.last_name }}</h2>
+      <!-- for t2 -->
+      <h2 *ngIf="card_style=='style2'" [ngStyle]="profile_h1_p ?profile_h1_p : {'color': card1textcolour }">{{
+        datas.first_name }} {{ datas.last_name }}</h2>
+
+      <app-social-links [template_type]="template_type" [data]="social_data"></app-social-links>
+      <h4 *ngIf="card_style!='style2'" [ngStyle]="profile_h1_h4_p ?profile_h1_h4_p : {'color': card2bgcolour}">{{
+        datas.designation }}</h4>
+      <p *ngIf="card_style!='style2'" [ngStyle]="profile_h1_h4_p ?profile_h1_h4_p : {'color': card1textcolour }">{{
+        datas.company_name }}</p>
+
+      <!-- for t2 -->
+      <h4 *ngIf="card_style=='style2'" [ngStyle]="profile_h4 ?profile_h4 : {'color': card2bgcolour}">{{
+        datas.designation }}</h4>
+      <p *ngIf="card_style=='style2'" [ngStyle]="profile_h1_p ?profile_h1_p : {'color': card1textcolour }">{{
+        datas.company_name }}</p>
+    </div>
+  </ng-container>
+
+
+
+  <app-social-contact [social_contact_a]="social_contact_a" [social_contact_span]="social_contact_span"
+    [social_contact]="social_contact" [social_contact_links]="social_contact_links" [template_type]="template_type"
+    [data]="contact_details" [data2]="data2"></app-social-contact>
+  @if( whatsapp_enquiry?.flag > 0) {
+  <app-whatsapp-settings [template_type]="template_type" [data_1]="data_1" [template_url]="template_url"
+    [profileImage]="profileImage" [pcard_url_template]="pcard_url_template" [data]="whatsapp"
+    [whatsapp_enquiry]="whatsapp_enquiry"></app-whatsapp-settings>
+  }
+  <div class="share-profile-btn-div"
+    [ngStyle]="share_profile_btn_div ?share_profile_btn_div : {'background-color': card2bgcolour}">
+    <button type="button" (click)="onFileSelected($event)"
+      [ngStyle]="
+    hoveredIndex === 1
+      ? (share_profile_button_hover || {
+          'background-color': card1textcolour,
+          'color': card1bgcolour
+        })
+      : (share_profile_button || {
+          'background-color': card1bgcolour,
+          'color': card1textcolour
+        })
+  "
+  (mouseenter)="hoveredIndex = 1"
+  (mouseleave)="hoveredIndex = -1"
+    ><i
+        class="fa-solid fa-download"></i> Save to Contact</button>
+    <button type="button"
+      [ngStyle]="
+    hoveredIndex === 2
+      ? (share_profile_button_hover || {
+          'background-color': card1textcolour,
+          'color': card1bgcolour
+        })
+      : (share_profile_button || {
+          'background-color': card1bgcolour,
+          'color': card1textcolour
+        })
+  "
+  (mouseenter)="hoveredIndex = 2"
+  (mouseleave)="hoveredIndex = -1"
+      (click)="share('Profile')"><i class="fa-solid fa-share-nodes"></i> Share</button>
+  </div>
+</div>
+
+}
+
+
+
+<!---------- template 5------------>
+@else if(template_type == 'layout5') {
+
+<div class="profile-section" [ngStyle]="profile_section_bg ?profile_section_bg : {'background-color': card1bgcolour}">
+  <ng-container *ngFor="let datas of data?.data">
+    <div class="profile-bg-img-div"
+      [ngStyle]="profile_bg_img_div ?profile_bg_img_div : {'background-image': 'url('+ globalObject.getImageSrc(profile_back_image) +')','background-color': card1bgcolour}">
+
+      <div class="profile-photo-div" *ngIf="data?.flag > 0 && datas?.image; else noImage">
+        <img alt="profile image" [src]="globalObject.getImageSrc(datas?.image)">
+      </div>
+
+
+
+
+
+      <ng-template #noImage>
+        <section class="profile-photo-div">
+          <img class="profile-img" src="assets/Image.webp" alt="default profile image">
+        </section>
+      </ng-template>
+
+
+
+
+      <h2 [ngStyle]="profile_h1_h4_p ?profile_h1_h4_p : {'color': card1textcolour }">{{ datas.first_name }} {{
+        datas.last_name }}</h2>
+      <app-social-links [template_type]="template_type" [social_links_a]="social_links_a"
+        [data]="social_data"></app-social-links>
+      <h4 [ngStyle]="profile_h1_h4_p ?profile_h1_h4_p : {'color': card1textcolour }">{{ datas.designation }}</h4>
+      <p [ngStyle]="profile_h1_h4_p ?profile_h1_h4_p : {'color': card1textcolour }">{{ datas.company_name }}</p>
+    </div>
+  </ng-container>
+  <app-social-contact [template_type]="template_type" [social_contact]='social_contact'
+    [social_contact_a]='social_contact_a' [social_contact_span]="social_contact_span"
+    [social_contact_links]="social_contact_links" [social_contact_a]='social_contact_a'
+    [social_contact_span]="social_contact_span" [social_contact_links]="social_contact_links" [data2]="data2"
+    [data]="contact_details"></app-social-contact>
+  @if( whatsapp_enquiry?.flag > 0) {
+  <app-whatsapp-settings [template_type]="template_type" [pcard_url_template]="pcard_url_template"
+    [profileImage]="profileImage" [template_url]="template_url" [data_1]="data_1?.whatsapp_enquiry" [data]="whatsapp"
+    [whatsapp_enquiry]="whatsapp_enquiry"></app-whatsapp-settings>
+  }
+  <div class="share-profile-btn-div" [ngStyle]="share_profile_button_div ?share_profile_button_div : ''">
+    <button type="button" *ngIf="card_style!='style31' && card_style!='style32'" (click)="onFileSelected($event)"
+
+       [ngStyle]="
+    hoveredIndex === 1
+      ? (share_profile_button_hover || {
+              'background-color': card2bgcolour,
+          'color': card2textcolour
+        })
+      : (share_profile_button || {
+          'background-color': card1bgcolour,
+          'color': card1textcolour
+        })
+  "
+  (mouseenter)="hoveredIndex = 1"
+  (mouseleave)="hoveredIndex = -1"
+  ><i
+        class="fa-solid fa-download"></i>Save to Contact</button>
+    <button type="button" *ngIf="card_style!='style31' && card_style!='style32'"
+   
+           [ngStyle]="
+    hoveredIndex === 2
+      ? (share_profile_button_hover || {
+          'background-color': card2bgcolour,
+          'color': card2textcolour
+        })
+      : (share_profile_button || {
+          'background-color': card1bgcolour,
+          'color': card1textcolour
+        })
+  "
+  (mouseenter)="hoveredIndex = 2"
+  (mouseleave)="hoveredIndex = -1"
+
+      (click)="share('Profile')"><i class="fa-solid fa-share-nodes"></i> Share</button>
+
+  
+
+
+    <!--FOR TEMPLATE 31 and 32 -->
+
+    <button type="button" *ngIf="card_style=='style31' || card_style=='style32'" (click)="onFileSelected($event)"
+           [ngStyle]="
+    hoveredIndex === 1
+      ? (share_profile_button_hover || {
+            'background-color': card2bgcolour,
+          'color': card2textcolour
+        })
+      : (share_profile_button_1 || {
+          'background-color': card1bgcolour,
+          'color': card1textcolour
+        })
+  "
+  (mouseenter)="hoveredIndex = 1"
+  (mouseleave)="hoveredIndex = -1"
+><i
+        class="fa-solid fa-download"></i>Save to Contact</button>
+
+    <button type="button" *ngIf="card_style=='style31' || card_style=='style32'"
+     [ngStyle]="
+    hoveredIndex === 2
+      ? (share_profile_button_hover || {
+             'background-color': card2bgcolour,
+          'color': card2textcolour
+        })
+      : (share_profile_button_2 || {
+          'background-color': card1bgcolour,
+          'color': card1textcolour
+        })
+  "
+  (mouseenter)="hoveredIndex = 2"
+  (mouseleave)="hoveredIndex = -1"
+
+      (click)="share('Profile')"><i class="fa-solid fa-share-nodes"></i> Share</button>
+  </div>
+</div>
+}
+
+<!---------- template 6------------>
+@else if(template_type == 'layout6') {
+
+<div class="profile-section">
+  <ng-container *ngFor="let datas of data?.data">
+    <div class="profile-bg-img-div">
+
+      <div class="profile-photo-div" *ngIf="data?.flag > 0 && datas?.image; else noImage">
+        <img alt="profile image" [src]="globalObject.getImageSrc(datas?.image)">
+      </div>
+
+      <ng-template #noImage>
+        <section class="profile-photo-div">
+          <img class="profile-img" src="assets/Image.webp" alt="default profile image">
+        </section>
+      </ng-template>
+
+
+
+
+      <h2 *ngIf="card_style!='style13'" [ngStyle]="profile_h1_h4_p ?profile_h1_h4_p :{'color': card1bgcolour}">{{
+        datas.first_name }} {{ datas.last_name }}</h2>
+      <h2 *ngIf="card_style=='style13'" [ngStyle]="profile_h1_p ?profile_h1_p :{'color': card1bgcolour}">{{
+        datas.first_name }} {{ datas.last_name }}</h2>
+      <app-social-links [template_type]="template_type" [data2]="data2" [data]="social_data"></app-social-links>
+      <h4 *ngIf="card_style!='style13'" [ngStyle]="profile_h1_h4_p ?profile_h1_h4_p :{'color': card1bgcolour}">{{
+        datas.designation }}</h4>
+      <h4 *ngIf="card_style=='style13'" [ngStyle]="profile_h4 ?profile_h4 :{'color': card1bgcolour}">{{
+        datas.designation }}</h4>
+      <p *ngIf="card_style=='style13'" [ngStyle]="profile_h1_p ?profile_h1_p :{'color': card1bgcolour}">{{
+        datas.company_name }}</p>
+      <p *ngIf="card_style!='style13'" [ngStyle]="profile_h1_h4_p ?profile_h1_h4_p :{'color': card1bgcolour}">{{
+        datas.company_name }}</p>
+
+
+
+    </div>
+  </ng-container>
+  <app-social-contact [template_type]="template_type" [social_contact_a]='social_contact_a'
+    [social_contact_i]="social_contact_i" [social_contact_span]="social_contact_span"
+    [social_contact_links]="social_contact_links" [data2]="data2" [data]="contact_details"></app-social-contact>
+
+
+  @if( whatsapp_enquiry?.flag > 0) {
+  <app-whatsapp-settings [template_type]="template_type" [pcard_url_template]="pcard_url_template"
+    [template_url]="template_url" [profileImage]="profileImage" [data_1]="data_1" [data]="whatsapp"
+    [whatsapp_enquiry]="whatsapp_enquiry"></app-whatsapp-settings>
+  }
+  <div class="share-profile-btn-div" [ngStyle]="share_profile_button_div ?share_profile_button_div : ''">
+    <button type="button"
+      *ngIf="card_style!='style11' && card_style!='style12' && card_style!='style16' && card_style!='style17'"
+      (click)="onFileSelected($event)"
+      
+       [ngStyle]="
+    hoveredIndex === 1
+      ? (share_profile_button_hover || {
+              'background-color': card2bgcolour,
+          'color': card2textcolour,
+          'border': `1px solid ${card2textcolour}`
+        })
+      : (share_profile_button || {
+          'background-color': card1bgcolour,
+          'color': card1textcolour,
+               'border': `1px solid ${card1bgcolour}`
+        })
+  "
+  (mouseenter)="hoveredIndex = 1"
+  (mouseleave)="hoveredIndex = -1"
+  ><i
+        class="fa-solid fa-download"></i>Save to Contact</button>
+    <button type="button"
+      *ngIf="card_style!='style11' && card_style!='style12' && card_style!='style16' && card_style!='style17'"
+  
+       [ngStyle]="
+    hoveredIndex === 2
+      ? (share_profile_button_hover || {
+          'background-color': card2bgcolour,
+          'color': card2textcolour,
+            'border': `1px solid ${card2textcolour}`
+        })
+      : (share_profile_button || {
+          'background-color': card1bgcolour,
+          'color': card1textcolour,
+               'border': `1px solid ${card1bgcolour}`
+        })
+  "
+  (mouseenter)="hoveredIndex = 2"
+  (mouseleave)="hoveredIndex = -1"
+
+      (click)="share('Profile')"><i class="fa-solid fa-share-nodes"></i> Share</button>
+
+    <!-- -----for  template 11 and 12 , 16--- -->
+    <button type="button"
+      *ngIf="card_style=='style11' || card_style=='style12' || card_style=='style16' || card_style=='style17'"
+
+       [ngStyle]="
+    hoveredIndex === 1
+      ? (share_profile_button_hover || {
+          'background-color': card2bgcolour,
+          'color': card2textcolour,
+            'border': `1px solid ${card2textcolour}`
+        })
+      : (share_profile_button_1 || {
+          'background-color': card1bgcolour,
+          'color': card1textcolour,
+               'border': `1px solid ${card1bgcolour}`
+        })
+  "
+  (mouseenter)="hoveredIndex = 1"
+  (mouseleave)="hoveredIndex = -1"
+      (click)="onFileSelected($event)">
+      <i class="fa-solid fa-download"></i>Save to Contact</button>
+
+    <button type="button"
+      *ngIf="card_style=='style11' || card_style=='style12' || card_style=='style16' || card_style=='style17'"
+    
+         [ngStyle]="
+    hoveredIndex === 2
+      ? (share_profile_button_hover || {
+          'background-color': card2bgcolour,
+          'color': card2textcolour,
+            'border': `1px solid ${card2textcolour}`
+        })
+      : (share_profile_button_2 || {
+          'background-color': card1bgcolour,
+          'color': card1textcolour,
+               'border': `1px solid ${card1bgcolour}`
+        })
+  "
+  (mouseenter)="hoveredIndex = 2"
+  (mouseleave)="hoveredIndex = -1"
+      (click)="share('Profile')"><i class="fa-solid fa-share-nodes"></i> Share</button>
+
+
+  </div>
+</div>
+}
+
+
+<!------------template 7 (new website templates ) ---------->
+@else if(template_type == 'layout7') {
+<div class="profile-section">
+
+
+ <ng-container *ngFor="let d of data?.data">
+
+
+   <nav class="top-header navbar navbar-expand-lg"  [class.scrolled]="isScrolled" [ngStyle]="{'background': bodybgcolour}">
+     <div class="container-fluid p-0 flex-column h-100">
+
+
+       <!-- TOP HEADER ROW -->
+       <div class="d-flex justify-content-between align-items-center w-100 top-nav">
+
+
+
+
+         <!-- -----------------if business logo ------- -->
+         <div class="business-logo" *ngIf="user_template.data[0]?.business_logo_image; else noLogo">
+           <img [src]="user_template.data[0].business_logo_image" alt="business logo">
+           <!-- <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/google.png'" alt="business logo"> -->
+         </div>
+
+
+
+
+         <!-- -----------------if business name ------- -->
+         <ng-template #noLogo>
+
+
+           <span *ngIf="user_template.data[0]?.business_name; else fallbackName" class="business-name"
+             [ngStyle]="{'color': bodytextcolour}">
+             {{ user_template.data[0].business_name }}
+           </span>
+
+
+           <ng-template #fallbackName>
+             <span *ngIf="d?.company_name" class="business-name" [ngStyle]="{'color': bodytextcolour}">
+               {{ d.company_name }}
+             </span>
+           </ng-template>
+         </ng-template>
+
+
+
+
+
+
+
+
+
+
+         <!-- DESKTOP RIGHT SECTION -->
+         <div class="header-right ">
+
+
+           <ng-container *ngIf="datas?.flag > 0">
+
+
+
+
+             <div class="con-mail-div" *ngFor="let c_data of datas?.data">
+               <a class="contact-mail-span" [href]="'tel:' + c_data.mobile_no"
+                [ngStyle]="
+    hoveredIndex === 20
+      ?  {
+              
+          'color': card1bgcolour
+        
+        }
+      : {
+          color: bodytextcolour
+        }
+  "
+  (mouseenter)="hoveredIndex = 20"
+  (mouseleave)="hoveredIndex = -1"
+   *ngIf="c_data.mobile_no">
+                 <i class="fa-solid fa-phone"></i>
+                 <span>{{c_data.mobile_no}}</span>
+               </a>
+               <a class="contact-mail-span" [href]="'mailto:' + c_data.email_id"  [ngStyle]="
+    hoveredIndex === 21
+      ?  {
+              
+          'color': card1bgcolour
+        
+        }
+      : {
+          color: bodytextcolour
+        }
+  "
+  (mouseenter)="hoveredIndex = 21"
+  (mouseleave)="hoveredIndex = -1"  *ngIf="c_data.email_id">
+                 <i class="fa-solid fa-envelope"></i>
+                 <span class="email">{{c_data.email_id}}</span>
+               </a>
+
+
+             </div>
+
+
+
+
+           </ng-container>
+
+
+           <!-- <app-social-links [template_type]="template_type"></app-social-links> -->
+
+
+           <app-social-links [template_type]="template_type" [data]="social_data"></app-social-links>
+
+
+           <a (click)="addGoogleReview()" class="google-btn" *ngIf="google_review?.flag > 0"
+            
+           [ngStyle]="isHover ? { background: card1textcolour, color: card1bgcolour, border: '1px solid ' + card1bgcolour } : { color: card1textcolour, background: card1bgcolour, border: '1px solid ' + card1bgcolour }"
+                                (mouseenter)="isHover = true" (mouseleave)="isHover = false">
+             <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/google.png'">
+             <span>{{google_review?.title}}</span>
+           </a>
+
+
+
+
+
+
+
+
+
+
+         </div>
+
+
+         <!-- MOBILE TOGGLER -->
+         <button class="navbar-toggler mobile-only"
+ type="button"
+ aria-controls="navItems"
+ [attr.aria-expanded]="isMenuOpen"
+ [ngStyle]="{
+   'color': card1textcolour,
+   'background': card1bgcolour
+ }"
+ (click)="toggleMenu()"
+ aria-label="Toggle navigation">
+           <i class="fa-solid fa-bars"></i>
+         </button>
+
+
+       </div>
+
+
+       <!-- COLLAPSED MENU -->
+       <div class="collapse navbar-collapse w-100" id="navItems" [ngStyle]="{'background':  card1bgcolour}">
+
+
+         <!-- NAV LINKS -->
+         <ul #navMenu class="navbar-nav nav-menu w-100 justify-content-center"
+           [ngStyle]="{'background':  card1bgcolour}">
+
+
+           <li #navItem class="nav-item" data-nav-key="home" data-nav-order="0"
+           data-nav-role="home">
+
+             <a class="nav-link" [ngStyle]="{
+                                        color: card1textcolour,
+                               'border-bottom': hoveredIndex === 0 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 0" (mouseleave)="hoveredIndex = -1"
+               (click)="scrollToSection('Home')">
+               Home
+             </a>
+           </li>
+           <li #navItem class="nav-item" data-nav-key="company-info" data-nav-order="1"
+             *ngIf="company_info?.flag > 0 && (!isDesktopNav || !isMoved('company-info'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 1 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 1" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}"
+               (click)="scrollToSection('company-info')">{{company_info?.title}}</a></li>
+           <li #navItem class="nav-item" data-nav-key="other-link" data-nav-order="2"
+             *ngIf="other_link?.flag > 0 && (!isDesktopNav || !isMoved('other-link'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom':  hoveredIndex === 2 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 2" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}"
+               (click)="scrollToSection('other-link')">{{other_link?.title}}</a></li>
+           <li #navItem class="nav-item" data-nav-key="products" data-nav-order="3"
+             *ngIf="product_list?.flag > 0 && (!isDesktopNav || !isMoved('products'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 3 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 3" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}"
+               (click)="scrollToSection('products')">{{product_list?.title}}</a></li>
+           <li #navItem class="nav-item" data-nav-key="services" data-nav-order="4"
+             *ngIf="services?.flag > 0 && (!isDesktopNav || !isMoved('services'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 4 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 4" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}" (click)="scrollToSection('services')">{{services?.title}}</a>
+           </li>
+           <ng-container *ngIf="hasPaymentData(payment)" >
+           <li #navItem class="nav-item" data-nav-key="payment-details" data-nav-order="5"
+             *ngIf="payment?.flag > 0 && (!isDesktopNav || !isMoved('payment-details'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 5 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 5" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}"
+               (click)="scrollToSection('Payment_Details')">{{payment?.title}}</a></li>
+               </ng-container>
+               
+           <li #navItem class="nav-item" data-nav-key="about-me" data-nav-order="6"
+             *ngIf="about_me?.flag > 0 && (!isDesktopNav || !isMoved('about-me'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 6 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 6" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}" (click)="scrollToSection('about-me')">{{about_me?.title}}</a>
+           </li>
+           <li #navItem class="nav-item" data-nav-key="education" data-nav-order="7"
+             *ngIf="education?.flag > 0 && (!isDesktopNav || !isMoved('education'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 7 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 7" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}" (click)="scrollToSection('education')">{{education?.title}}</a>
+           </li>
+           <li #navItem class="nav-item" data-nav-key="skills" data-nav-order="8"
+             *ngIf="skills?.flag > 0 && (!isDesktopNav || !isMoved('skills'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 8 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 8" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}" (click)="scrollToSection('skills')">{{skills?.title}}</a>
+           </li>
+           <li #navItem class="nav-item" data-nav-key="experience" data-nav-order="9"
+             *ngIf="experience?.flag > 0 && (!isDesktopNav || !isMoved('experience'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 9 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 9" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}"
+               (click)="scrollToSection('experience')">{{experience?.title}}</a>
+           </li>
+           <li #navItem class="nav-item" data-nav-key="photo-gallery" data-nav-order="10"
+             *ngIf="photo_gallery?.flag > 0 && (!isDesktopNav || !isMoved('photo-gallery'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 10 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 10" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}"
+               (click)="scrollToSection('photo-gallery')">{{photo_gallery?.title}}</a>
+           </li>
+           <li #navItem class="nav-item" data-nav-key="video-gallery" data-nav-order="11"
+             *ngIf="video_gallery?.flag > 0 && (!isDesktopNav || !isMoved('video-gallery'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 11 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 11" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}"
+               (click)="scrollToSection('video-gallery')">{{video_gallery?.title}} </a>
+           </li>
+           <li #navItem class="nav-item" data-nav-key="other-business" data-nav-order="12"
+             *ngIf="other_business?.flag > 0 && (!isDesktopNav || !isMoved('other-business'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 12 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 12" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}"
+               (click)="scrollToSection('other-business')">{{other_business?.title}}</a>
+           </li>
+           <li #navItem class="nav-item" data-nav-key="latest-update" data-nav-order="13"
+             *ngIf="latest_update?.flag > 0 && (!isDesktopNav || !isMoved('latest-update'))"><a [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 13 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 13" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}"
+               (click)="scrollToSection('latest-update')">{{latest_update?.title}}</a>
+           </li>
+
+
+           <!-- Desktop-only overflow menu (appears only when needed) -->
+           <li class="nav-item dropdown nav-more" *ngIf="isDesktopNav && showMoreDropdown">
+             <a class="nav-link dropdown-toggle"  (click)="togglePages($event)"
+               [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': '2px solid transparent'
+                          }">More</a>
+             <ul class="dropdown-menu" [class.show]="isPagesOpen" [ngStyle]="{'background':  card1bgcolour}">
+         
+               <li *ngIf="company_info?.flag > 0 && isMoved('company-info')">
+                 <a class="dropdown-item"   (click)="$event.preventDefault(); scrollToSection('company-info')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 2 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 2 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 2" (mouseleave)="hoveredIndexDropdown = -1">{{company_info?.title}}</a>
+               </li>
+               <li *ngIf="other_link?.flag > 0 && isMoved('other-link')">
+                 <a class="dropdown-item"   (click)="$event.preventDefault(); scrollToSection('other-link')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 3 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 3 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 3" (mouseleave)="hoveredIndexDropdown = -1">{{other_link?.title}}</a>
+               </li>
+               <li *ngIf="product_list?.flag > 0 && isMoved('products')">
+                 <a class="dropdown-item"  (click)="$event.preventDefault(); scrollToSection('products')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 4 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 4 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 4" (mouseleave)="hoveredIndexDropdown = -1">{{product_list?.title}}</a>
+               </li>
+               <li *ngIf="services?.flag > 0 && isMoved('services')">
+                 <a class="dropdown-item"   (click)="$event.preventDefault(); scrollToSection('services')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 5 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 5 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 5" (mouseleave)="hoveredIndexDropdown = -1">{{services?.title}}</a>
+               </li>
+                 <ng-container *ngIf="hasPaymentData(payment)" >
+               <li *ngIf="payment?.flag > 0 && isMoved('payment-details')">
+                 <a class="dropdown-item"  
+                   (click)="$event.preventDefault(); scrollToSection('Payment_Details')" [ngStyle]="{
+ color: hoveredIndexDropdown === 6 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 6 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 6" (mouseleave)="hoveredIndexDropdown = -1">{{payment?.title}}</a>
+               </li>
+               </ng-container>
+               <li *ngIf="about_me?.flag > 0 && isMoved('about-me')">
+                 <a class="dropdown-item"   (click)="$event.preventDefault(); scrollToSection('about-me')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 7 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 7 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 7" (mouseleave)="hoveredIndexDropdown = -1">{{about_me?.title}}</a>
+               </li>
+               <li *ngIf="education?.flag > 0 && isMoved('education')">
+                 <a class="dropdown-item"  (click)="$event.preventDefault(); scrollToSection('education')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 8 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 8 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 8" (mouseleave)="hoveredIndexDropdown = -1">{{education?.title}}</a>
+               </li>
+               <li *ngIf="skills?.flag > 0 && isMoved('skills')">
+                 <a class="dropdown-item"   (click)="$event.preventDefault(); scrollToSection('skills')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 9 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 9 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 9" (mouseleave)="hoveredIndexDropdown = -1">{{skills?.title}}</a>
+               </li>
+               <li *ngIf="experience?.flag > 0 && isMoved('experience')">
+                 <a class="dropdown-item"   (click)="$event.preventDefault(); scrollToSection('experience')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 10 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 10 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 10" (mouseleave)="hoveredIndexDropdown = -1">{{experience?.title}}</a>
+               </li>
+               <li *ngIf="photo_gallery?.flag > 0 && isMoved('photo-gallery')">
+                 <a class="dropdown-item"  (click)="$event.preventDefault(); scrollToSection('photo-gallery')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 11 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 11 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 11" (mouseleave)="hoveredIndexDropdown = -1">{{photo_gallery?.title}}</a>
+               </li>
+               <li *ngIf="video_gallery?.flag > 0 && isMoved('video-gallery')">
+                 <a class="dropdown-item"   (click)="$event.preventDefault(); scrollToSection('video-gallery')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 12 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 12 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 12" (mouseleave)="hoveredIndexDropdown = -1">{{video_gallery?.title}}</a>
+               </li>
+               <li *ngIf="other_business?.flag > 0 && isMoved('other-business')">
+                 <a class="dropdown-item"   (click)="$event.preventDefault(); scrollToSection('other-business')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 13 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 13 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 13" (mouseleave)="hoveredIndexDropdown = -1">{{other_business?.title}}</a>
+               </li>
+               <li *ngIf="latest_update?.flag > 0 && isMoved('latest-update')">
+                 <a class="dropdown-item"   (click)="$event.preventDefault(); scrollToSection('latest-update')"
+                   [ngStyle]="{
+ color: hoveredIndexDropdown === 14 ? card1bgcolour : card1textcolour,
+ background: hoveredIndexDropdown === 14 ? card1textcolour : 'transparent'
+}" (mouseenter)="hoveredIndexDropdown = 14" (mouseleave)="hoveredIndexDropdown = -1">{{latest_update?.title}}</a>
+               </li>
+             </ul>
+           </li>
+
+
+           <li #navItem class="nav-item" data-nav-key="contact-us" data-nav-order="14" data-nav-role="contact"><a
+               [ngStyle]="{
+                            color: card1textcolour,
+                            'border-bottom': hoveredIndex === 14 ? '2px solid ' + card1textcolour
+        : '2px solid transparent'
+                          }" (mouseenter)="hoveredIndex = 14" (mouseleave)="hoveredIndex = -1" class="nav-link"
+               [ngStyle]="{'color':  card1textcolour}"
+               (click)="scrollToSection('contact-us')">{{contact_details?.title}}</a>
+           </li>
+         </ul>
+
+
+         <!-- hidden width probe for the "More" button (desktop overflow calc) -->
+         <span #moreMeasure class="nav-link dropdown-toggle nav-more-measure">More</span>
+
+
+
+
+         <!-- MOBILE-ONLY SECTION INSIDE COLLAPSE -->
+
+
+         <div class="mobile-only mobile-extra text-center">
+           <ng-container *ngIf="datas?.flag > 0">
+             <div class="con-mail-div" *ngFor="let c_data of datas?.data">
+               <hr />
+               <a class="contact-mail-span" [href]="'tel:' + c_data.mobile_no" [ngStyle]="{'color':  card1textcolour}" *ngIf="c_data.mobile_no">
+                 <i class="fa-solid fa-phone"></i>
+                 <span>{{c_data.mobile_no}}</span>
+               </a>
+               <a class="contact-mail-span" [href]="'mailto:' + c_data.email_id" [ngStyle]="{'color':  card1textcolour}" *ngIf="c_data.email_id">
+                 <i class="fa-solid fa-envelope"></i>
+                 <span class="email">{{c_data.email_id}}</span>
+               </a>
+             </div>
+           </ng-container>
+
+
+           <app-social-links [template_type]="template_type"  [data]="social_data"></app-social-links>
+
+
+         
+         </div>
+
+
+
+
+       </div>
+
+
+     </div>
+   </nav>
+
+
+
+
+
+
+
+
+   <div class="banner-div"  [class.scrolled]="isScrolled">
+     <!------- banner section ----->
+
+
+     <!-- ================= USER CAROUSEL ================= -->
+     <div id="profile-banner-carousel-div" class="carousel slide" *ngIf="
+      user_template?.data?.[0]?.profile_banner_images_list?.length > 1 &&
+      user_template?.data?.[0]?.profile_banner_images_list?.[1] &&
+      !user_template.data[0].profile_banner_images_list[1].includes('/null') &&
+      !user_template.data[0].profile_banner_images_list[1].endsWith('/image/')
+    " data-bs-ride="carousel">
+
+
+       <div class="carousel-indicators">
+         <ng-container *ngFor="let img of user_template.data[0]?.profile_banner_images_list; let i = index">
+           <button *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')" type="button"
+             data-bs-target="#profile-banner-carousel-div" [attr.data-bs-slide-to]="i" [class.active]="i === 0">
+           </button>
+         </ng-container>
+       </div>
+
+
+       <div class="carousel-inner">
+         <ng-container *ngFor="let img of user_template.data[0]?.profile_banner_images_list; let i = index">
+           <div class="carousel-item" *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')"
+             [class.active]="i === 0">
+             <img class="d-block w-100" [src]="img">
+           </div>
+         </ng-container>
+       </div>
+
+
+       <!-- Controls -->
+       <button class="carousel-control-prev" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="prev">
+         <span class="carousel-control-prev-icon"
+           [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 67%, transparent)'}">
+           <i class="fa-solid fa-caret-left"></i>
+         </span>
+       </button>
+
+
+       <button class="carousel-control-next" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="next">
+         <span class="carousel-control-next-icon"
+           [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 67%, transparent)'}">
+           <i class="fa-solid fa-caret-right"></i>
+         </span>
+       </button>
+     </div>
+
+
+
+
+     <!-- ================= USER SINGLE ================= -->
+     <img *ngIf="
+   user_template?.data?.[0]?.profile_banner_images_list?.length === 1 &&
+   user_template?.data?.[0]?.profile_banner_images_list?.[0] &&
+   !user_template.data[0].profile_banner_images_list[0].includes('/null') &&
+   !user_template.data[0].profile_banner_images_list[0].endsWith('/image/')
+ " [src]="user_template.data[0].profile_banner_images_list[0]" class="single-profile-bg-image" />
+
+
+
+
+     <!-- ================= ADMIN CAROUSEL ================= -->
+     <div id="profile-banner-carousel-div" class="carousel slide" *ngIf="
+      (
+        !user_template?.data?.[0]?.profile_banner_images_list?.length ||
+        !user_template?.data?.[0]?.profile_banner_images_list?.[0] ||
+        user_template.data[0].profile_banner_images_list[0].includes('/null') ||
+        user_template.data[0].profile_banner_images_list[0].endsWith('/image/')
+      )
+      &&
+      profile_banner_images?.length > 1 &&
+      profile_banner_images?.[1] &&
+      !profile_banner_images[1].includes('/null') &&
+      !profile_banner_images[1].endsWith('/image/')
+    " data-bs-ride="carousel">
+
+
+       <div class="carousel-indicators">
+         <ng-container *ngFor="let img of profile_banner_images; let i = index">
+           <button *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')" type="button"
+             data-bs-target="#profile-banner-carousel-div" [attr.data-bs-slide-to]="i" [class.active]="i === 0">
+           </button>
+         </ng-container>
+       </div>
+
+
+       <div class="carousel-inner">
+         <ng-container *ngFor="let img of profile_banner_images; let i = index">
+           <div class="carousel-item" *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')"
+             [class.active]="i === 0">
+             <img class="d-block w-100" [src]="img">
+           </div>
+         </ng-container>
+       </div>
+
+
+       <!-- Controls -->
+       <button class="carousel-control-prev" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="prev">
+         <span class="carousel-control-prev-icon"
+           [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 67%, transparent)'}">
+           <i class="fa-solid fa-caret-left"></i>
+         </span>
+       </button>
+
+
+       <button class="carousel-control-next" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="next">
+         <span class="carousel-control-next-icon"
+           [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 67%, transparent)'}">
+           <i class="fa-solid fa-caret-right"></i>
+         </span>
+       </button>
+     </div>
+
+
+
+
+     <!-- ================= ADMIN SINGLE ================= -->
+     <img *ngIf="
+   (
+     !user_template?.data?.[0]?.profile_banner_images_list?.length ||
+     !user_template?.data?.[0]?.profile_banner_images_list?.[0] ||
+     user_template.data[0].profile_banner_images_list[0].includes('/null') ||
+     user_template.data[0].profile_banner_images_list[0].endsWith('/image/')
+   )
+   &&
+   profile_banner_images?.length === 1 &&
+   profile_banner_images?.[0] &&
+   !profile_banner_images[0].includes('/null') &&
+   !profile_banner_images[0].endsWith('/image/')
+ " [src]="profile_banner_images[0]" class="single-profile-bg-image" />
+
+
+
+
+     <!------ profile data div ----->
+      @if(isBrowser){
+     <div class="profile-data-div"
+       [ngStyle]="{background: screenWidth > 767 ?  'color-mix(in srgb, ' + card2bgcolour + ' 81%, transparent)' : bodybgcolour }">
+       <div class="inner-profile-div">
+         <div class="profile-img" *ngIf="data?.flag > 0 && d?.image; else noImage"
+           [ngStyle]="{'background': card1textcolour}">
+           <img [src]="globalObject.getImageSrc(d?.image)" alt="profile image">
+         </div>
+
+         <ng-template #noImage>
+           <div class="profile-img" [ngStyle]="{'background': card1textcolour}">
+             <img src="assets/Image.webp" alt="default profile image">
+           </div>
+         </ng-template>
+
+         <h2 [ngStyle]="{'color': card1bgcolour}"> {{d.first_name }} {{ d.last_name }}</h2>
+         <p [ngStyle]="{'color': screenWidth > 767 ? card1textcolour : bodytextcolour}" class="designation">{{d.designation }}</p>
+         <p [ngStyle]="{'color': screenWidth > 767 ? 'color-mix(in srgb, ' + bodybgcolour + ' 67%, ' + bodytextcolour + ' 33%)' : 'color-mix(in srgb, ' + bodybgcolour + ' 33%, ' + bodytextcolour + ' 58%)'}">
+           {{d.company_name }}</p>
+
+         <!------ profile btns  ( for mobile view only ) ---->
+         <div class="profile-btns-div">
+           <button class="profile-btn" type="button" (click)="share('Profile7')"
+               [ngStyle]="
+    hoveredIndex === 1
+      ?  {
+              
+
+            'background':  card1textcolour,'color':  card1bgcolour,
+           'border': `1px solid ${card1bgcolour}`
+        }
+      : {
+    'background-color': card1bgcolour,
+          'color': card1textcolour,
+          'border': `1px solid ${card1textcolour }`
+        }
+  "
+  (mouseenter)="hoveredIndex = 1"
+  (mouseleave)="hoveredIndex = -1"
+             >
+             <i class="fa-solid fa-share-nodes" aria-hidden="true"></i> Share Profile
+           </button>
+           <button class="profile-btn" type="button" (click)="onFileSelected($event)"
+             [ngStyle]="
+    hoveredIndex === 2
+      ?  {
+                   'background':  card1textcolour,'color':  card1bgcolour,
+           'border': `1px solid ${card1bgcolour}`
+        }
+      : {
+           'background-color': card1bgcolour,
+          'color': card1textcolour,
+          'border': `1px solid ${card1textcolour}`
+           
+        }
+  "
+  (mouseenter)="hoveredIndex = 2"
+  (mouseleave)="hoveredIndex = -1">
+             <i class="fa-regular fa-bookmark" aria-hidden="true"></i> Save Contact
+           </button>
+         </div>
+
+
+         <!------ social contact section ------>
+
+         <app-social-contact [template_type]="template_type" [data2]="data2" [data]="datas" [user_template]="user_template"></app-social-contact>
+
+       </div>
+     </div>
+    }
+
+
+   </div>
+ </ng-container>
+</div>
+
+
+
+
+
+}
+
+
+
+<!-- ----template 8 (new website template 2 ) -->
+@else if (template_type == "layout8") {
+
+  <ng-container *ngFor="let d of data?.data">
+  <!------ navbar ------>
+  <nav class="navbar navbar-expand-lg custom-navbar"  [class.scrolled]="isScrolled"     [ngStyle]="{ background: bodybgcolour }">
+    <div class="container-fluid">
+      <!-- Left: Brand -->
+    
+
+        <!-- -----------------if business logo ------- -->
+            <div
+              class="business-logo"
+              *ngIf="user_template.data[0]?.business_logo_image; else noLogo1"
+            >
+              <img
+                [src]="user_template.data[0].business_logo_image"
+                alt="business logo"
+              />
+            
+            </div>
+
+            <!-- -----------------if business name ------- -->
+            <ng-template #noLogo1>
+               <div class="navbar-brand d-flex align-items-center gap-2"    *ngIf="user_template.data[0]?.business_name; else fallbackName1"  [ngStyle]="{ color: bodytextcolour }">
+        <span> {{ user_template.data[0].business_name }}</span>
+      </div>
+
+              <ng-template #fallbackName1>
+                <div class="navbar-brand d-flex align-items-center gap-2"   *ngIf="d?.company_name" [ngStyle]="{ color: bodytextcolour }">
+        <span> {{ d.company_name }}</span>
+      </div>
+              </ng-template>
+            </ng-template>
+
+
+       
+
+      <!-- Mobile toggle -->
+      <button
+        class="navbar-toggler border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+         [ngStyle]="{
+                color: card2textcolour,
+                'background-color':
+                  'color-mix(in srgb, ' + card2bgcolour + ' 31%, ' + card2textcolour + ' 18%)',
+              }"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <!-- Center: Links + Right: Google button -->
+      <div class="collapse navbar-collapse navbarNavAltMarkup" id="navbarNavAltMarkup">
+      
+
+                    <!-- Center menu -->
+  <ul
+              #navMenu
+              class="navbar-nav nav-menu justify-content-center"
+             
+            >
+                 
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="home"
+                data-nav-order="0"
+                 data-nav-role="home"
+              >
+                <a
+                  class="nav-link"
+                  [ngStyle]="{
+                   
+                    'color':
+                      hoveredIndex === 0
+                        ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 0"
+                  (mouseleave)="hoveredIndex = -1"
+                  (click)="scrollToSection('Home')"
+                >
+                  Home
+                </a>
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="company-info"
+                data-nav-order="1"
+                *ngIf="
+                  company_info?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('company-info'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+                   
+                   color:
+                      hoveredIndex === 1
+                        ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 1"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                
+                  (click)="scrollToSection('company-info')"
+                  >{{ company_info?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="other-link"
+                data-nav-order="2"
+                *ngIf="
+                  other_link?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('other-link'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+            
+                    color:
+                      hoveredIndex === 2
+                         ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 2"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('other-link')"
+                  >{{ other_link?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="products"
+                data-nav-order="3"
+                *ngIf="
+                  product_list?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('products'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+            
+                color:
+                      hoveredIndex === 3
+                        ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 3"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('products')"
+                  >{{ product_list?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="services"
+                data-nav-order="4"
+                *ngIf="
+                  services?.flag > 0 && (!isDesktopNav || !isMoved('services'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+                  
+                    color:
+                      hoveredIndex === 4
+                        ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 4"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('services')"
+                  >{{ services?.title }}</a
+                >
+              </li>
+                <ng-container *ngIf="hasPaymentData(payment)" >
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="payment-details"
+                data-nav-order="5"
+                *ngIf="
+                  payment?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('payment-details'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+      
+                  color:
+                      hoveredIndex === 5
+                       ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 5"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                  
+                  (click)="scrollToSection('Payment_Details')"
+                  >{{ payment?.title }}</a
+                >
+              </li>
+              </ng-container>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="about-me"
+                data-nav-order="6"
+                *ngIf="
+                  about_me?.flag > 0 && (!isDesktopNav || !isMoved('about-me'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+                 
+                   color:
+                      hoveredIndex === 6
+                        ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 6"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('about-me')"
+                  >{{ about_me?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="education"
+                data-nav-order="7"
+                *ngIf="
+                  education?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('education'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+             
+                   color:
+                      hoveredIndex === 7
+                       ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 7"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('education')"
+                  >{{ education?.title }}</a
+                >
+              </li>
+               <li
+                #navItem
+                class="nav-item"
+                data-nav-key="experience"
+                data-nav-order="8"
+                *ngIf="
+                  experience?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('experience'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+                
+                   color:
+                      hoveredIndex === 8
+                      ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 8"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                
+                  (click)="scrollToSection('experience')"
+                  >{{ experience?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="skills"
+                data-nav-order="9"
+                *ngIf="
+                  skills?.flag > 0 && (!isDesktopNav || !isMoved('skills'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+            
+                    color:
+                      hoveredIndex === 9
+                         ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 9"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+               
+                  (click)="scrollToSection('skills')"
+                  >{{ skills?.title }}</a
+                >
+              </li>
+             
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="photo-gallery"
+                data-nav-order="10"
+                *ngIf="
+                  photo_gallery?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('photo-gallery'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+               
+                   color:
+                      hoveredIndex === 10
+                       ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 10"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('photo-gallery')"
+                  >{{ photo_gallery?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="video-gallery"
+                data-nav-order="11"
+                *ngIf="
+                  video_gallery?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('video-gallery'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+            
+                    color:
+                      hoveredIndex === 11
+                         ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 11"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('video-gallery')"
+                  >{{ video_gallery?.title }}
+                </a>
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="other-business"
+                data-nav-order="12"
+                *ngIf="
+                  other_business?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('other-business'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+              
+                    color:
+                      hoveredIndex === 12
+                        ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 12"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('other-business')"
+                  >{{ other_business?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="latest-update"
+                data-nav-order="13"
+                *ngIf="
+                  latest_update?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('latest-update'))
+                "
+              >
+                <a
+                  [ngStyle]="{
+                 
+                    'color':
+                      hoveredIndex === 13
+                        ? card1bgcolour
+                        : bodytextcolour ,
+                  }"
+                  (mouseenter)="hoveredIndex = 13"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('latest-update')"
+                  >{{ latest_update?.title }}</a
+                >
+              </li>
+
+              <!-- Desktop-only overflow menu (appears only when needed) -->
+              <li
+                class="nav-item dropdown nav-more"
+                *ngIf="isDesktopNav && showMoreDropdown"
+              >
+                <a
+                  class="nav-link dropdown-toggle"
+                   
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  [ngStyle]="{
+                    color: bodytextcolour,
+                   
+                  }"
+                  >More</a
+                >
+                <ul
+                  class="dropdown-menu"
+                  [ngStyle]="{ background: bodybgcolour }"
+                >
+              
+                  <li *ngIf="company_info?.flag > 0 && isMoved('company-info')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('company-info')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 2
+                          ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 2
+                            ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 2"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ company_info?.title }}</a
+                    >
+                  </li>
+                  <li *ngIf="other_link?.flag > 0 && isMoved('other-link')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('other-link')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 3
+                           ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 3
+                           ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 3"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ other_link?.title }}</a
+                    >
+                  </li>
+                  <li *ngIf="product_list?.flag > 0 && isMoved('products')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('products')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 4
+                           ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 4
+                           ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 4"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ product_list?.title }}</a
+                    >
+                  </li>
+                  <li *ngIf="services?.flag > 0 && isMoved('services')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('services')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 5
+                          ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 5
+                           ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 5"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ services?.title }}</a
+                    >
+                  </li>
+                    <ng-container *ngIf="hasPaymentData(payment)" >
+                  <li *ngIf="payment?.flag > 0 && isMoved('payment-details')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault();
+                        scrollToSection('Payment_Details')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 6
+                            ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 6
+                            ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 6"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ payment?.title }}</a
+                    >
+                  </li>
+                  </ng-container>
+                  <li *ngIf="about_me?.flag > 0 && isMoved('about-me')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('about-me')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 7
+                         ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 7
+                           ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 7"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ about_me?.title }}</a
+                    >
+                  </li>
+                  <li *ngIf="education?.flag > 0 && isMoved('education')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('education')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 8
+                            ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 8
+                           ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 8"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ education?.title }}</a
+                    >
+                  </li>
+                 
+                  <li *ngIf="experience?.flag > 0 && isMoved('experience')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('experience')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 9
+                              ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 9
+                            ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 9"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ experience?.title }}</a
+                    >
+                  </li>
+                   <li *ngIf="skills?.flag > 0 && isMoved('skills')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('skills')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 10
+                            ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 10
+                            ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 10"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ skills?.title }}</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="photo_gallery?.flag > 0 && isMoved('photo-gallery')"
+                  >
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault();
+                        scrollToSection('photo-gallery')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 11
+                              ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 11
+                          ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 11"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ photo_gallery?.title }}</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="video_gallery?.flag > 0 && isMoved('video-gallery')"
+                  >
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault();
+                        scrollToSection('video-gallery')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 12
+                             ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 12
+                           ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 12"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ video_gallery?.title }}</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      other_business?.flag > 0 && isMoved('other-business')
+                    "
+                  >
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault();
+                        scrollToSection('other-business')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 13
+                             ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 13
+                           ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 13"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ other_business?.title }}</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="latest_update?.flag > 0 && isMoved('latest-update')"
+                  >
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault();
+                        scrollToSection('latest-update')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 14
+                           ? card1textcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 14
+                          ? card1bgcolour 
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 14"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ latest_update?.title }}</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="contact-us"
+                data-nav-order="14"
+                data-nav-role="contact"
+              >
+                <a
+                  [ngStyle]="{
+                
+                   color:
+                      hoveredIndex === 14
+                         ? card1bgcolour
+                        : bodytextcolour,
+                  }"
+                  (mouseenter)="hoveredIndex = 14"
+                  (mouseleave)="hoveredIndex = -1"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('contact-us')"
+                  >{{ contact_details?.title }}</a
+                >
+              </li>
+            </ul>
+    
+
+<!-- hidden width calculator -->
+<span
+  #moreMeasure
+  class="nav-link dropdown-toggle nav-more-measure"
+>
+  More
+</span>
+
+
+        <!-- Right Google button -->
+        <a  (click)="addGoogleReview()" target="_blank" 
+                   [ngStyle]="isHover ? { background: card1textcolour, color: card1bgcolour, border: '1px solid ' + card1bgcolour } : { color: card1textcolour, background: card1bgcolour, border: '1px solid ' + card1bgcolour }"
+                                (mouseenter)="isHover = true" (mouseleave)="isHover = false"
+                *ngIf="google_review?.flag > 0" class="google-btn ms-lg-3">
+          <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_8/google.png'" alt="image" [ngStyle]="{ background: card1textcolour }" />
+          <span>{{google_review?.title}}</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+<div id="Home" >
+ <section class="hero " >
+  <!-- ================= USER CAROUSEL ================= -->
+        <div 
+          id="profile-banner-carousel-div"  [class.scrolled]="isScrolled"
+          class="carousel slide"
+          *ngIf="
+            user_template?.data?.[0]?.profile_banner_images_list?.length > 1 &&
+            user_template?.data?.[0]?.profile_banner_images_list?.[1] &&
+            !user_template.data[0].profile_banner_images_list[1].includes(
+              '/null'
+            ) &&
+            !user_template.data[0].profile_banner_images_list[1].endsWith(
+              '/image/'
+            )
+          "
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <ng-container
+              *ngFor="
+                let img of user_template.data[0]?.profile_banner_images_list;
+                let i = index
+              "
+            >
+              <button
+                *ngIf="
+                  img && !img.includes('/null') && !img.endsWith('/image/')
+                "
+                type="button"
+                data-bs-target="#profile-banner-carousel-div"
+                [attr.data-bs-slide-to]="i"
+                [class.active]="i === 0"
+              ></button>
+            </ng-container>
+          </div>
+
+          <div class="carousel-inner">
+            <ng-container
+              *ngFor="
+                let img of user_template.data[0]?.profile_banner_images_list;
+                let i = index
+              "
+            >
+              <div
+                class="carousel-item"
+                *ngIf="
+                  img && !img.includes('/null') && !img.endsWith('/image/')
+                "
+                [class.active]="i === 0"
+              >
+                <img class="d-block w-100" [src]="img" />
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- Controls -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#profile-banner-carousel-div"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon"
+              [ngStyle]="{
+                'background-color':
+                  'color-mix(in srgb, ' + bodytextcolour + ' 67%, transparent)',
+              }"
+            >
+              <i class="fa-solid fa-caret-left"></i>
+            </span>
+          </button>
+
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#profile-banner-carousel-div"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon"
+              [ngStyle]="{
+                'background-color':
+                  'color-mix(in srgb, ' + bodytextcolour + ' 67%, transparent)',
+              }"
+            >
+              <i class="fa-solid fa-caret-right"></i>
+            </span>
+          </button>
+        </div>
+
+        <!-- ================= USER SINGLE ================= -->
+        <img
+          *ngIf="
+            user_template?.data?.[0]?.profile_banner_images_list?.length ===
+              1 &&
+            user_template?.data?.[0]?.profile_banner_images_list?.[0] &&
+            !user_template.data[0].profile_banner_images_list[0].includes(
+              '/null'
+            ) &&
+            !user_template.data[0].profile_banner_images_list[0].endsWith(
+              '/image/'
+            )
+          "
+          [src]="user_template.data[0].profile_banner_images_list[0]"
+          class="single-profile-bg-image"
+        />
+
+        <!-- ================= ADMIN CAROUSEL ================= -->
+        <div
+          id="profile-banner-carousel-div"
+          class="carousel slide"
+          *ngIf="
+            (!user_template?.data?.[0]?.profile_banner_images_list?.length ||
+              !user_template?.data?.[0]?.profile_banner_images_list?.[0] ||
+              user_template.data[0].profile_banner_images_list[0].includes(
+                '/null'
+              ) ||
+              user_template.data[0].profile_banner_images_list[0].endsWith(
+                '/image/'
+              )) &&
+            profile_banner_images?.length > 1 &&
+            profile_banner_images?.[1] &&
+            !profile_banner_images[1].includes('/null') &&
+            !profile_banner_images[1].endsWith('/image/')
+          "
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <ng-container
+              *ngFor="let img of profile_banner_images; let i = index"
+            >
+              <button
+                *ngIf="
+                  img && !img.includes('/null') && !img.endsWith('/image/')
+                "
+                type="button"
+                data-bs-target="#profile-banner-carousel-div"
+                [attr.data-bs-slide-to]="i"
+                [class.active]="i === 0"
+              ></button>
+            </ng-container>
+          </div>
+
+          <div class="carousel-inner">
+            <ng-container
+              *ngFor="let img of profile_banner_images; let i = index"
+            >
+              <div
+                class="carousel-item"
+                *ngIf="
+                  img && !img.includes('/null') && !img.endsWith('/image/')
+                "
+                [class.active]="i === 0"
+              >
+                <img class="d-block w-100" [src]="img" />
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- Controls -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#profile-banner-carousel-div"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon"
+              [ngStyle]="{
+                'background-color':
+                  'color-mix(in srgb, ' + bodytextcolour + ' 67%, transparent)',
+              }"
+            >
+              <i class="fa-solid fa-caret-left"></i>
+            </span>
+          </button>
+
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#profile-banner-carousel-div"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon"
+              [ngStyle]="{
+                'background-color':
+                  'color-mix(in srgb, ' + bodytextcolour + ' 67%, transparent)',
+              }"
+            >
+              <i class="fa-solid fa-caret-right"></i>
+            </span>
+          </button>
+        </div>
+
+        <!-- ================= ADMIN SINGLE ================= -->
+        <img
+          *ngIf="
+            (!user_template?.data?.[0]?.profile_banner_images_list?.length ||
+              !user_template?.data?.[0]?.profile_banner_images_list?.[0] ||
+              user_template.data[0].profile_banner_images_list[0].includes(
+                '/null'
+              ) ||
+              user_template.data[0].profile_banner_images_list[0].endsWith(
+                '/image/'
+              )) &&
+            profile_banner_images?.length === 1 &&
+            profile_banner_images?.[0] &&
+            !profile_banner_images[0].includes('/null') &&
+            !profile_banner_images[0].endsWith('/image/')
+          "
+          [src]="profile_banner_images[0]"
+          class="single-profile-bg-image"
+        />
+   
+   
+       
+  </section>
+
+  <!-- this is for mobile view -->
+  <section class="profile_sec_mob desktop_d_none"  [ngStyle]="{
+  'background-image': `
+    linear-gradient(
+      color-mix(in srgb, ${card2bgcolour} 60%, transparent),
+      color-mix(in srgb, ${card2bgcolour} 60%, transparent)
+    ),
+    url('${globalObject.assetsUrl}/templates_pcard/template_8/bg-mobile1.png')
+  `
+}">
+    <div class="profile_details">
+      <div class="profile_img" [ngStyle]="{
+                  border: '4px solid ' + card2textcolour,
+                }"  *ngIf="data?.flag > 0 && d?.image; else noImage1">
+         <img
+                [src]="globalObject.getImageSrc(d?.image)"
+                alt="profile image"class="img-fluid"
+              />
+      </div>
+
+       
+            <ng-template #noImage1>
+              <div
+                class="profile_img"
+               
+              >
+                <img
+                  src="assets/Image.webp"
+                  alt="default profile image"
+                />
+              </div>
+            </ng-template>
+
+      <div class="profile_info" [ngStyle]="{ color: card2textcolour }">
+        <h5 class="m-0"> {{ d.first_name }} {{ d.last_name }}</h5>
+        <p class="m-0 designation">  {{ d.designation }}</p>
+        <p> {{ d.company_name }}</p>
+      </div>
+      <div class="share_btn">
+        <a  (click)="share('Profile7')"
+           [ngStyle]="
+    hoveredIndex === 1
+      ?  {
+              'background-color': card1bgcolour,
+          'color': card1textcolour
+        
+        }
+      : {
+          background: `color-mix(in srgb, ${card2textcolour} 20%, transparent)`,  color: card2textcolour
+        }
+  "
+  (mouseenter)="hoveredIndex = 1"
+  (mouseleave)="hoveredIndex = -1"
+
+          ><i class="fa-solid fa-share-nodes"></i> <span>Share profile</span></a
+        >
+        <a (click)="onFileSelected($event)"  [ngStyle]="
+    hoveredIndex === 2
+      ?  {
+              'background-color': card1bgcolour,
+          'color': card1textcolour
+        
+        }
+      : {
+          background: `color-mix(in srgb, ${card2textcolour} 20%, transparent)`,  color: card2textcolour
+        }
+  "
+  (mouseenter)="hoveredIndex = 2"
+  (mouseleave)="hoveredIndex = -1"
+          ><i class="fa-regular fa-bookmark"></i> <span>Save Contact</span></a
+        >
+      </div>
+     
+
+       <app-social-contact [template_type]="template_type"  [data2]="data2" [user_template]="user_template"
+              [data]="datas" 
+                    ></app-social-contact> 
+     
+
+
+ <app-social-links [data]="social_data" [template_type]="template_type" 
+                    ></app-social-links> 
+
+    </div>
+  </section></div>
+  </ng-container>
+}
+
+<!------------template 9 (new website template 3 ) ---------->
+@else if (template_type == "layout9") {
+<ng-container *ngFor="let d of data?.data">
+  <!------ navbar ------>
+  <nav class="navbar navbar-expand-lg custom-navbar" [class.scrolled]="isScrolled"  [ngStyle]="{ background: card1bgcolour }">
+    <div class="container-fluid">
+      <!-- Left: Brand -->
+
+       <!-- -----------------if business logo ------- -->
+            <div
+              class="business-logo"
+              *ngIf="user_template.data[0]?.business_logo_image; else noLogo2"
+            >
+              <img
+                [src]="user_template.data[0].business_logo_image"
+                alt="business logo"
+              />
+            
+            </div>
+
+             <!-- -----------------if business name ------- -->
+            <ng-template #noLogo2>
+               <div class="navbar-brand d-flex align-items-center gap-2"    *ngIf="user_template.data[0]?.business_name; else fallbackName2"  [ngStyle]="{ color: card1textcolour }">
+        <span> {{ user_template.data[0].business_name }}</span>
+      </div>
+
+              <ng-template #fallbackName2>
+                <div class="navbar-brand d-flex align-items-center gap-2"   *ngIf="d?.company_name" [ngStyle]="{ color: card1textcolour }">
+        <span> {{ d.company_name }}</span>
+      </div>
+              </ng-template>
+            </ng-template>
+
+
+
+
+      <!-- Mobile toggle -->
+      <button  [ngStyle]="{ color: card1textcolour, background:`color-mix(in srgb, ${card1textcolour} 10%, transparent)`}"
+        class="navbar-toggler border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup1"
+        aria-controls="navbarNavAltMarkup1"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <!-- Center: Links + Right: Google button -->
+      <div class="collapse navbar-collapse navbarNavAltMarkup" id="navbarNavAltMarkup1">
+       
+
+                            <!-- Center menu -->
+  <ul
+              #navMenu
+              class="navbar-nav nav-menu justify-content-center"
+             
+            >
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="home"
+                data-nav-order="0"
+                 data-nav-role="home"
+
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 0 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 0" (mouseleave)="hoveredIndex = -1"
+
+              >
+                <a
+                  class="nav-link"
+                  [ngStyle]="{color: card1textcolour}"
+                 
+                  (click)="scrollToSection('Home')"
+                >
+                  Home
+                </a>
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="company-info"
+                data-nav-order="1"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 1 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 1" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  company_info?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('company-info'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                
+                  (click)="scrollToSection('company-info')"
+                  >{{ company_info?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="other-link"
+                data-nav-order="2"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 2 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 2" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  other_link?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('other-link'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('other-link')"
+                  >{{ other_link?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="products"
+                data-nav-order="3"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 3 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 3" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  product_list?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('products'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('products')"
+                  >{{ product_list?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="services"
+                data-nav-order="4"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 4 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 4" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  services?.flag > 0 && (!isDesktopNav || !isMoved('services'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('services')"
+                  >{{ services?.title }}</a
+                >
+              </li>
+                <ng-container *ngIf="hasPaymentData(payment)" >
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="payment-details"
+                data-nav-order="5"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 5 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 5" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  payment?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('payment-details'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                  
+                  (click)="scrollToSection('Payment_Details')"
+                  >{{ payment?.title }}</a
+                >
+              </li>
+              </ng-container>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="about-me"
+                data-nav-order="6"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 6 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 6" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  about_me?.flag > 0 && (!isDesktopNav || !isMoved('about-me'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('about-me')"
+                  >{{ about_me?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="education"
+                data-nav-order="7"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 7 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 7" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  education?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('education'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('education')"
+                  >{{ education?.title }}</a
+                >
+              </li>
+               <li
+                #navItem
+                class="nav-item"
+                data-nav-key="experience"
+                data-nav-order="8"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 8 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 8" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  experience?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('experience'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                
+                  (click)="scrollToSection('experience')"
+                  >{{ experience?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="skills"
+                data-nav-order="9"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 9 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 9" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  skills?.flag > 0 && (!isDesktopNav || !isMoved('skills'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+               
+                  (click)="scrollToSection('skills')"
+                  >{{ skills?.title }}</a
+                >
+              </li>
+             
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="photo-gallery"
+                data-nav-order="10"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 10 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 10" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  photo_gallery?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('photo-gallery'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('photo-gallery')"
+                  >{{ photo_gallery?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="video-gallery"
+                data-nav-order="11"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 11 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 11" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  video_gallery?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('video-gallery'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('video-gallery')"
+                  >{{ video_gallery?.title }}
+                </a>
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="other-business"
+                data-nav-order="12"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 12 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 12" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  other_business?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('other-business'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('other-business')"
+                  >{{ other_business?.title }}</a
+                >
+              </li>
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="latest-update"
+                data-nav-order="13"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 13 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 13" (mouseleave)="hoveredIndex = -1"
+                *ngIf="
+                  latest_update?.flag > 0 &&
+                  (!isDesktopNav || !isMoved('latest-update'))
+                "
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('latest-update')"
+                  >{{ latest_update?.title }}</a
+                >
+              </li>
+
+              <!-- Desktop-only overflow menu (appears only when needed) -->
+              <li
+                class="nav-item dropdown nav-more"
+                *ngIf="isDesktopNav && showMoreDropdown"
+              >
+                <a
+                  class="nav-link dropdown-toggle"
+                   
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  [ngStyle]="{
+                    color: card1textcolour,
+                  }"
+                  >More</a
+                >
+                <ul
+                  class="dropdown-menu"
+                  [ngStyle]="{ background: bodybgcolour , color:bodytextcolour}"
+                >
+                
+                  <li *ngIf="company_info?.flag > 0 && isMoved('company-info')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('company-info')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 2
+                          ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 2
+                            ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 2"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ company_info?.title }}</a
+                    >
+                  </li>
+                  <li *ngIf="other_link?.flag > 0 && isMoved('other-link')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('other-link')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 3
+                           ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 3
+                           ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 3"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ other_link?.title }}</a
+                    >
+                  </li>
+                  <li *ngIf="product_list?.flag > 0 && isMoved('products')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('products')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 4
+                           ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 4
+                           ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 4"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ product_list?.title }}</a
+                    >
+                  </li>
+                  <li *ngIf="services?.flag > 0 && isMoved('services')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('services')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 5
+                          ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 5
+                           ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 5"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ services?.title }}</a
+                    >
+                  </li>
+                    <ng-container *ngIf="hasPaymentData(payment)" >
+                  <li *ngIf="payment?.flag > 0 && isMoved('payment-details')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault();
+                        scrollToSection('Payment_Details')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 6
+                            ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 6
+                            ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 6"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ payment?.title }}</a
+                    >
+                  </li>
+                </ng-container>
+                  <li *ngIf="about_me?.flag > 0 && isMoved('about-me')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('about-me')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 7
+                         ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 7
+                           ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 7"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ about_me?.title }}</a
+                    >
+                  </li>
+                  <li *ngIf="education?.flag > 0 && isMoved('education')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('education')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 8
+                            ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 8
+                           ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 8"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ education?.title }}</a
+                    >
+                  </li>
+                 
+                  <li *ngIf="experience?.flag > 0 && isMoved('experience')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('experience')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 9
+                              ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 9
+                            ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 9"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ experience?.title }}</a
+                    >
+                  </li>
+                   <li *ngIf="skills?.flag > 0 && isMoved('skills')">
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault(); scrollToSection('skills')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 10
+                            ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 10
+                            ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 10"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ skills?.title }}</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="photo_gallery?.flag > 0 && isMoved('photo-gallery')"
+                  >
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault();
+                        scrollToSection('photo-gallery')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 11
+                              ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 11
+                          ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 11"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ photo_gallery?.title }}</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="video_gallery?.flag > 0 && isMoved('video-gallery')"
+                  >
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault();
+                        scrollToSection('video-gallery')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 12
+                             ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 12
+                           ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 12"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ video_gallery?.title }}</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      other_business?.flag > 0 && isMoved('other-business')
+                    "
+                  >
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault();
+                        scrollToSection('other-business')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 13
+                             ?  card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 13
+                           ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 13"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ other_business?.title }}</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="latest_update?.flag > 0 && isMoved('latest-update')"
+                  >
+                    <a
+                      class="dropdown-item"
+                       
+                      (click)="
+                        $event.preventDefault();
+                        scrollToSection('latest-update')
+                      "
+                      [ngStyle]="{
+                        color:
+                          hoveredIndexDropdown === 14
+                           ? card1bgcolour
+                            : bodytextcolour ,
+                        background:
+                          hoveredIndexDropdown === 14
+                          ?  'transparent'
+                            : bodybgcolour,
+                      }"
+                      (mouseenter)="hoveredIndexDropdown = 14"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+                      >{{ latest_update?.title }}</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li
+                #navItem
+                class="nav-item"
+                data-nav-key="contact-us"
+                data-nav-order="14"
+                 [ngStyle]="{
+                               'border-bottom': hoveredIndex === 14 ? '1px solid ' + card1textcolour
+        : '1px solid transparent'
+                                      }" (mouseenter)="hoveredIndex = 14" (mouseleave)="hoveredIndex = -1"
+                data-nav-role="contact"
+              >
+                <a
+                  [ngStyle]="{color: card1textcolour}"
+                  class="nav-link"
+                 
+                  (click)="scrollToSection('contact-us')"
+                  >{{ contact_details?.title }}</a
+                >
+              </li>
+            </ul>
+
+<!-- hidden width calculator -->
+<span
+  #moreMeasure
+  class="nav-link dropdown-toggle nav-more-measure"
+>
+  More
+</span>
+
+
+        <!-- Right Google button -->
+        <a   target="_blank" class="google-btn ms-lg-3" (click)="addGoogleReview()"
+        [ngStyle]="isHover ? { background: bodytextcolour, color: bodybgcolour } : { color: bodytextcolour  ,  background: bodybgcolour  }"
+                                (mouseenter)="isHover = true" (mouseleave)="isHover = false"
+                *ngIf="google_review?.flag > 0">
+          <img
+            [src]="globalObject.assetsUrl + '/templates_pcard/template_9/google.png'"
+            alt="Google"
+          />
+          <span>{{google_review?.title}}</span>
+        </a>
+
+
+        
+
+      </div>
+    </div>
+  </nav>
+
+  <section class="profile-section" id="Home">
+ <section
+  class="hero"
+  [ngStyle]="{
+
+
+    'justify-content':
+      (whatsapp_enquiry?.flag > 0 || qr_code?.flag > 0)
+        ? 'flex-start'
+        : 'center'
+  }">
+
+  <!-- ================= images ================= -->
+
+  <div class="hero-bg "   *ngIf="
+    (
+      !profile_banner_video_user ||
+      profile_banner_video_user.includes('/null')
+    ) &&
+    (
+      !profile_banner_video_admin ||
+      profile_banner_video_admin.includes('/null')
+    )
+  " >
+
+    <!-- ================= USER CAROUSEL ================= -->
+
+    <div
+      id="user-profile-banner-carousel"
+      class="carousel slide h-100 ride-carousel"
+      *ngIf="
+        user_template?.data?.[0]?.profile_banner_images_list?.length > 1 &&
+        user_template?.data?.[0]?.profile_banner_images_list?.[1] &&
+        !user_template.data[0].profile_banner_images_list[1].includes('/null') &&
+        !user_template.data[0].profile_banner_images_list[1].endsWith('/image/')
+      "
+      data-bs-ride="carousel"
+    >
+
+      <div class="carousel-indicators">
+
+        <ng-container
+          *ngFor="
+            let img of user_template.data[0].profile_banner_images_list;
+            let i = index
+          "
+        >
+
+          <button
+            *ngIf="
+              img &&
+              !img.includes('/null') &&
+              !img.endsWith('/image/')
+            "
+            type="button"
+            data-bs-target="#user-profile-banner-carousel"
+            [attr.data-bs-slide-to]="i"
+            [class.active]="i === 0"
+          ></button>
+
+        </ng-container>
+
+      </div>
+
+      <div class="carousel-inner ">
+
+        <ng-container
+          *ngFor="
+            let img of user_template.data[0].profile_banner_images_list;
+            let i = index
+          "
+        >
+
+          <div
+            class="carousel-item "
+            *ngIf="
+              img &&
+              !img.includes('/null') &&
+              !img.endsWith('/image/')
+            "
+            [class.active]="i === 0"
+          >
+
+            <img
+              [src]="img"
+              class="d-block"
+            />
+
+          </div>
+
+        </ng-container>
+
+      </div>
+
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#user-profile-banner-carousel"
+        data-bs-slide="prev"
+      >
+
+        <span
+          class="carousel-control-prev-icon"
+          [ngStyle]="{
+            'background-color':
+              'color-mix(in srgb,' +
+              bodytextcolour +
+              ' 67%, transparent)'
+          }"
+        >
+          <i class="fa-solid fa-caret-left"></i>
+        </span>
+
+      </button>
+
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#user-profile-banner-carousel"
+        data-bs-slide="next"
+      >
+
+        <span
+          class="carousel-control-next-icon"
+          [ngStyle]="{
+            'background-color':
+              'color-mix(in srgb,' +
+              bodytextcolour +
+              ' 67%, transparent)'
+          }"
+        >
+          <i class="fa-solid fa-caret-right"></i>
+        </span>
+
+      </button>
+
+    </div>
+
+    <!-- ================= USER SINGLE ================= -->
+
+    <img
+      *ngIf="
+        user_template?.data?.[0]?.profile_banner_images_list?.length === 1 &&
+        user_template?.data?.[0]?.profile_banner_images_list?.[0] &&
+        !user_template.data[0].profile_banner_images_list[0].includes('/null') &&
+        !user_template.data[0].profile_banner_images_list[0].endsWith('/image/')
+      "
+      [src]="user_template.data[0].profile_banner_images_list[0]"
+      class="single-profile-bg-image"
+    />
+
+    <!-- ================= ADMIN CAROUSEL ================= -->
+
+    <div
+      id="admin-profile-banner-carousel"
+      class="carousel slide h-100 ride-carousel" 
+      *ngIf="
+        (
+          !user_template?.data?.[0]?.profile_banner_images_list?.length ||
+          !user_template?.data?.[0]?.profile_banner_images_list?.[0] ||
+          user_template.data[0].profile_banner_images_list[0].includes('/null') ||
+          user_template.data[0].profile_banner_images_list[0].endsWith('/image/')
+        ) &&
+        profile_banner_images?.length > 1 &&
+        profile_banner_images?.[1] &&
+        !profile_banner_images[1].includes('/null') &&
+        !profile_banner_images[1].endsWith('/image/')
+      "
+      data-bs-ride="carousel"
+    >
+
+      <div class="carousel-indicators">
+
+        <ng-container
+          *ngFor="let img of profile_banner_images; let i=index"
+        >
+
+          <button
+            *ngIf="
+              img &&
+              !img.includes('/null') &&
+              !img.endsWith('/image/')
+            "
+            type="button"
+            data-bs-target="#admin-profile-banner-carousel"
+            [attr.data-bs-slide-to]="i"
+            [class.active]="i===0"
+          ></button>
+
+        </ng-container>
+
+      </div>
+
+      <div class="carousel-inner ">
+
+        <ng-container
+          *ngFor="let img of profile_banner_images; let i=index"
+        >
+
+          <div
+            class="carousel-item "
+            *ngIf="
+              img &&
+              !img.includes('/null') &&
+              !img.endsWith('/image/')
+            "
+            [class.active]="i===0"
+          >
+
+            <img
+              [src]="img"
+              class="d-block "
+            />
+
+          </div>
+
+        </ng-container>
+
+      </div>
+
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#admin-profile-banner-carousel"
+        data-bs-slide="prev"
+      >
+
+        <span
+          class="carousel-control-prev-icon"
+          [ngStyle]="{
+            'background-color':
+              'color-mix(in srgb,' +
+              bodytextcolour +
+              ' 67%, transparent)'
+          }"
+        >
+          <i class="fa-solid fa-caret-left"></i>
+        </span>
+
+      </button>
+
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#admin-profile-banner-carousel"
+        data-bs-slide="next"
+      >
+
+        <span
+          class="carousel-control-next-icon"
+          [ngStyle]="{
+            'background-color':
+              'color-mix(in srgb,' +
+              bodytextcolour +
+              ' 67%, transparent)'
+          }"
+        >
+          <i class="fa-solid fa-caret-right"></i>
+        </span>
+
+      </button>
+
+    </div>
+
+    <!-- ================= ADMIN SINGLE ================= -->
+
+    <img
+      *ngIf="
+        (
+          !user_template?.data?.[0]?.profile_banner_images_list?.length ||
+          !user_template?.data?.[0]?.profile_banner_images_list?.[0] ||
+          user_template.data[0].profile_banner_images_list[0].includes('/null') ||
+          user_template.data[0].profile_banner_images_list[0].endsWith('/image/')
+        ) &&
+        profile_banner_images?.length === 1 &&
+        profile_banner_images?.[0] &&
+        !profile_banner_images[0].includes('/null') &&
+        !profile_banner_images[0].endsWith('/image/')
+      "
+      [src]="profile_banner_images[0]"
+      class="single-profile-bg-image"
+    />
+
+  </div>
+
+
+
+  <!-- User Video -->
+<video
+  *ngIf="
+    profile_banner_video_user &&
+    !profile_banner_video_user.includes('/null') &&
+    !profile_banner_video_user.toLowerCase().endsWith('.gif')
+  "
+ 
+  #heroVideo
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+
+
+  class="hero-video">
+   <source [src]="profile_banner_video_user" >
+</video>
+
+<!-- User GIF -->
+<img  
+  *ngIf="
+    profile_banner_video_user &&
+    !profile_banner_video_user.includes('/null') &&
+    profile_banner_video_user.toLowerCase().endsWith('.gif')
+  "
+  [src]="profile_banner_video_user"
+  class="hero-video"
+/>
+
+ <!-- Admin Video -->
+<video
+  *ngIf="
+    (
+      !profile_banner_video_user ||
+      profile_banner_video_user.includes('/null')
+    ) &&
+    profile_banner_video_admin &&
+    !profile_banner_video_admin.includes('/null') &&
+    !profile_banner_video_admin.toLowerCase().endsWith('.gif')
+  "
+  
+ #heroVideo
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+
+
+  class="hero-video">
+   <source [src]="profile_banner_video_admin" >
+</video>
+
+<!-- Admin GIF -->
+<img 
+  *ngIf="
+    (
+      !profile_banner_video_user ||
+      profile_banner_video_user.includes('/null')
+    ) &&
+    profile_banner_video_admin &&
+    !profile_banner_video_admin.includes('/null') &&
+    profile_banner_video_admin.toLowerCase().endsWith('.gif')
+  "
+  [src]="profile_banner_video_admin"
+  class="hero-video"
+/>
+
+  <!-- ================= OVERLAY ================= -->
+
+  <div class="hero-overlay"></div>
+@if(isBrowser){
+
+
+         <div class="profile-data-div"   [ngStyle]="{
+  
+  background: screenWidth > 767 ?  'none' : bodybgcolour
+  }">
+
+         <div class="profile-img-div"   [ngStyle]="{ border: '5px solid' + card1textcolour , background: card1textcolour}"  *ngIf="data?.flag > 0 && d?.image; else noImage2">
+         <img
+                [src]="globalObject.getImageSrc(d?.image)"
+                alt="profile image"class="img-fluid"
+              />
+      </div>
+
+       
+            <ng-template #noImage2>
+              <div
+                class="profile-img-div"  [ngStyle]="{ border: '5px solid' + card1textcolour , background: card1textcolour}"
+               
+              >
+                <img
+                  src="assets/Image.webp"
+                  alt="default profile image"
+                />
+              </div>
+            </ng-template>
+
+
+       
+
+        <div class="profile-info" [ngStyle]="{ color:  screenWidth > 767 ?  card1textcolour : bodytextcolour }">
+          <h1> {{ d.first_name }} {{ d.last_name }}</h1>
+          <p class="designation"> {{ d.designation }}</p>
+          <p>{{ d.company_name }}</p>
+        </div>
+
+         <div class="share_btn">
+        <a  (click)="share('Profile7')" 
+         [ngStyle]="
+    hoveredIndex === 99
+      ?  {
+              'background-color': screenWidth > 767 ? card1bgcolour : card1textcolour ,
+          'color': screenWidth > 767 ? card1textcolour : card1bgcolour ,
+           'border':screenWidth > 767 ? 'none' : `1px solid ${card1bgcolour}`
+        
+        }
+      : {
+          background: screenWidth > 767 ?  `color-mix(in srgb, ${card2textcolour} 20%, transparent)` : card1bgcolour ,
+            color: screenWidth > 767 ? card2textcolour : card1textcolour ,
+             'border': screenWidth > 767 ?  'none' : `1px solid ${card1bgcolour}` 
+        }
+  "
+  (mouseenter)="hoveredIndex = 99"
+  (mouseleave)="hoveredIndex = -1"
+
+          ><i class="fa-solid fa-share-nodes"></i> <span>Share profile</span></a
+        >
+        <a (click)="onFileSelected($event)"  [ngStyle]="
+    hoveredIndex === 999
+      ?  {
+              'background-color': screenWidth > 767 ? card1bgcolour : card1textcolour ,
+          'color': screenWidth > 767 ? card1textcolour : card1bgcolour ,
+           'border':screenWidth > 767 ? 'none' : `1px solid ${card1bgcolour}`
+        
+        }
+      : {
+          background: screenWidth > 767 ?  `color-mix(in srgb, ${card2textcolour} 20%, transparent)` : card1bgcolour ,
+            color: screenWidth > 767 ? card2textcolour : card1textcolour ,
+             'border': screenWidth > 767 ?  'none' : `1px solid ${card1bgcolour}` 
+        }
+  "
+  (mouseenter)="hoveredIndex = 999"
+  (mouseleave)="hoveredIndex = -1"
+          ><i class="fa-regular fa-bookmark"></i> <span>Save Contact</span></a
+        >
+      </div>
+    
+       
+ <app-social-contact [template_type]="template_type"  [data2]="data2" [user_template]="user_template"
+              [data]="datas" 
+                    ></app-social-contact> 
+       
+
+         <app-social-links [template_type]="template_type"  [data]="social_data" [data2]="data2" [user_template]="user_template"
+                    ></app-social-links> 
+
+
+                     <!------ whatsapp and scan QR section  ------>
+                   
+    @if (  whatsapp_enquiry?.flag > 0 || qr_code?.flag > 0) {
+      <app-whatsapp-settings class="w-100"  [ngStyle]="{
+  
+    'display':
+      (screenWidth > 991)
+        ? 'block'
+        : 'none'
+  }"
+        [template_type]="template_type"
+        [pcard_url_template]="pcard_url_template"
+        [data2]="data2"
+        [user_template]="user_template"
+        [template_url]="template_url"
+        [profileImage]="profileImage"
+        [whatsapp_enquiry]="whatsapp_enquiry"
+        [qr_code]="qr_code"
+         [company_info]="google_review" 
+        [whatsapp_enquiry]="whatsapp_enquiry"
+      ></app-whatsapp-settings>
+    }
+  
+
+      </div>
+   
+    }
+        </section>
+
+    <!------ whatsapp and scan QR section  ------>
+    @if(isBrowser){
+    @if (  whatsapp_enquiry?.flag > 0 || qr_code?.flag > 0) {
+
+      <app-whatsapp-settings  [ngStyle]="{
+  
+    'display':
+      (screenWidth <= 991)
+        ? 'block'
+        : 'none'
+  }"
+        [template_type]="template_type"
+        [pcard_url_template]="pcard_url_template"
+        [data2]="data2"
+        [template_url]="template_url"
+        [profileImage]="profileImage"
+        [whatsapp_enquiry]="whatsapp_enquiry"
+        [qr_code]="qr_code"
+        [user_template]="user_template"
+         [company_info]="google_review" 
+        [whatsapp_enquiry]="whatsapp_enquiry"
+      ></app-whatsapp-settings>
+    }
+  }
+  </section>
+</ng-container>
+}
+

@@ -1,0 +1,701 @@
+<!---------- template 1------------>
+
+<!-- social icon section (social media link) -->
+<!-- {{template_type}} -->
+@if(template_type == 'layout1') {
+<section class="social-icon light-card" [ngStyle]="{
+                                                            'color': card1textcolour
+                                                    
+                                                          }">
+
+	<div class="icon-div">
+		<div class="row">
+
+			<ng-container *ngFor="let datas of data.data">
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='facebook'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/facebook.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='instagram'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/instagram.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='youtube'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/youtube.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='twitter'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/twitter.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='linkedin'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/linkedin.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='globe'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/Globe.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='indiamart'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/fa-indiamart.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='justdial'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/fa-justdial.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='pinterest'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/fa-pinterest.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='whatsapp'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/whatsapp.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='googlemybusiness'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/googlebusiness.png'" /></a>
+				</div>
+			</ng-container>
+
+
+		</div>
+	</div>
+</section>
+}
+
+<!---------- template 2------------>
+
+<!-- social icon section (social media link) -->
+
+@else if(template_type == 'layout2') {
+
+<section class="social-icon ">
+	<div class="icon-div">
+		<div class="row">
+			<ng-container *ngFor="let datas of data.data">
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='facebook'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/facebook-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='instagram'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/instagram-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='youtube'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/youtube-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='twitter'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/twitter-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='linkedin'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/linkedin.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='globe'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/globe-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='indiamart'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/indiamart-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='justdial'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/Justdail.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='pinterest'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/pinterest-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='whatsapp'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='googlemybusiness'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/googlemy-ttwo.png'" /></a>
+				</div>
+			</ng-container>
+		</div>
+	</div>
+</section>
+
+}
+<!---------- template 3------------>
+
+@else if(template_type == 'layout3') {
+<!-- social icon section (social media link) -->
+<section class="social-icon ">
+	<div class="icon-div">
+		<div class="row">
+			<ng-container *ngFor="let datas of data.data">
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='facebook'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/facebook-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='instagram'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/instagram-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='youtube'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/youtube-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='twitter'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/twitter-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='linkedin'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/linkedin.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='globe'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/globe-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='indiamart'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/indiamart-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='justdial'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/Justdail.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='pinterest'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/pinterest-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='whatsapp'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp-ttwo.png'" /></a>
+				</div>
+				<div class="col-3 d-flex justify-content-center i-div" *ngIf="datas.social_portal=='googlemybusiness'">
+					<a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+							 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/googlemy-ttwo.png'" /></a>
+				</div>
+			</ng-container>
+		</div>
+	</div>
+</section>
+}
+
+<!---------- template 4------------>
+
+@else if(template_type == 'layout4') {
+
+<section class="social-icon">
+	<ng-container *ngFor="let datas of data.data">
+		<a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='facebook'"
+			class="i-div facebook">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div linkedin"
+			*ngIf="datas.social_portal=='linkedin'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div pinterest"
+			*ngIf="datas.social_portal=='pinterest'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div instagram"
+			*ngIf="datas.social_portal=='instagram'">
+		</a>
+		<a target="_blank" class="i-div twitter" [href]="datas.product_images_url"
+			*ngIf="datas.social_portal=='twitter'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div youtube"
+			*ngIf="datas.social_portal=='youtube'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div whatsapp"
+			*ngIf="datas.social_portal=='whatsapp'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div globe" *ngIf="datas.social_portal=='globe'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div indiamart"
+			*ngIf="datas.social_portal=='indiamart'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div justdail"
+			*ngIf="datas.social_portal=='justdial'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div googlemy"
+			*ngIf="datas.social_portal=='googlemybusiness'">
+		</a>
+	</ng-container>
+</section>
+}
+
+
+<!---------- template 5------------>
+
+@else if(template_type == 'layout5') {
+
+<section class="social-icon">
+	<ng-container *ngFor="let datas of data.data">
+		<a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='facebook'"
+			[ngStyle]="social_links_a?social_links_a:''" class="i-div facebook">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div linkedin"
+			*ngIf="datas.social_portal=='linkedin'" [ngStyle]="social_links_a?social_links_a:''">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div pinterest"
+			*ngIf="datas.social_portal=='pinterest'" [ngStyle]="social_links_a?social_links_a:''">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div instagram"
+			*ngIf="datas.social_portal=='instagram'" [ngStyle]="social_links_a?social_links_a:''">
+		</a>
+		<a target="_blank" class="i-div twitter" [href]="datas.product_images_url"
+			*ngIf="datas.social_portal=='twitter'" [ngStyle]="social_links_a?social_links_a:''">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div youtube"
+			*ngIf="datas.social_portal=='youtube'" [ngStyle]="social_links_a?social_links_a:''">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div whatsapp"
+			*ngIf="datas.social_portal=='whatsapp'" [ngStyle]="social_links_a?social_links_a:''">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div globe" *ngIf="datas.social_portal=='globe'"
+			[ngStyle]="social_links_a?social_links_a:''">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div indiamart"
+			*ngIf="datas.social_portal=='indiamart'" [ngStyle]="social_links_a?social_links_a:''">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div justdail"
+			*ngIf="datas.social_portal=='justdial'" [ngStyle]="social_links_a?social_links_a:''">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div googlemy"
+			*ngIf="datas.social_portal=='googlemybusiness'" [ngStyle]="social_links_a?social_links_a:''">
+		</a>
+	</ng-container>
+</section>
+}
+
+
+<!---------- template 6------------>
+
+@else if(template_type == 'layout6') {
+
+<section class="social-icon">
+	<ng-container *ngFor="let datas of data.data">
+		<a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='facebook'"
+			class="i-div facebook">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div linkedin"
+			*ngIf="datas.social_portal=='linkedin'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div pinterest"
+			*ngIf="datas.social_portal=='pinterest'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div instagram"
+			*ngIf="datas.social_portal=='instagram'">
+		</a>
+		<a target="_blank" class="i-div twitter" [href]="datas.product_images_url"
+			*ngIf="datas.social_portal=='twitter'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div youtube"
+			*ngIf="datas.social_portal=='youtube'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div whatsapp"
+			*ngIf="datas.social_portal=='whatsapp'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div globe" *ngIf="datas.social_portal=='globe'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div indiamart"
+			*ngIf="datas.social_portal=='indiamart'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div justdail"
+			*ngIf="datas.social_portal=='justdial'">
+		</a>
+		<a target="_blank" [href]="datas.product_images_url" class="i-div googlemy"
+			*ngIf="datas.social_portal=='googlemybusiness'">
+		</a>
+	</ng-container>
+</section>
+}
+
+
+<!---------- template 7------------>
+
+@else if(template_type == 'layout7') {
+
+
+
+<div class="social-links-div">
+	<ng-container *ngFor="let ss of data?.data">
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='linkedin'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/linkedin.png'"  alt="linkedin"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='facebook'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/facebook-tseven.png'" alt="facebook"></a>
+       <a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='instagram'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/insta.png'" alt="instagram"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='pinterest'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/pinterest-tseven.png'" alt="pinterest"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='twitter'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/twitter-tseven.png'" alt="twitter"></a>
+        <a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='whatsapp'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/whatsapp-tseven.png'" alt="whatsapp"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='youtube'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/youtube-tseven.png'" alt="youtube"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='indiamart'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/mart.png'" alt="indiamart"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='justdial'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/justdial.png'" alt="justdial"></a>
+        <a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='googlemybusiness'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/gbusiness.png'" alt="googlemybusiness"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='globe'"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/website.png'"  alt="globe"></a>
+</ng-container>
+	</div>
+
+<!-- ------ for mobile view (white color ) ----- -->
+
+<div class="social-links-div mobile-social-links">
+	
+	<ng-container *ngFor="let ss of data?.data">
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='linkedin'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/link.png'" alt="linkedin"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='facebook'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/face.png'" alt="facebook"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='instagram'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/insta.png'" alt="instagram"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='pinterest'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/pint.png'" alt="pinterest"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='twitter'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/twit.png'" alt="twitter"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='whatsapp'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/whats.png'" alt="whatsapp"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='youtube'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/youtube.png'" alt="youtube"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='indiamart'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/mart.png'" alt="indiamart"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='justdial'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/jd.png'" alt="justdial"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='googlemybusiness'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/gbusiness.png'" alt="googlemybusiness"></a>
+		<a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='globe'"><img
+				 [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/social-links-white/globe.png'" alt="globe"></a>
+	</ng-container>
+</div>
+
+
+
+
+
+}
+
+
+
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+     <div class="social_m_links">
+			<ng-container *ngFor="let ss of data?.data">
+        <a  target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='linkedin'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/linkedin 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank"  [href]="ss.product_images_url" *ngIf="ss.social_portal=='facebook'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/facebook-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank"  [href]="ss.product_images_url" *ngIf="ss.social_portal=='instagram'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/instagram-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank"  [href]="ss.product_images_url" *ngIf="ss.social_portal=='pinterest'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/pinterest-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank"  [href]="ss.product_images_url" *ngIf="ss.social_portal=='globe'" class="social_link">
+          <img
+            class="globe"
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/globe-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a  target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='indiamart'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/indiamart-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='twitter'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/twitter-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a  target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='whatsapp'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/whatsapp-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a  target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='justdial'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/Justdail 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='googlemybusiness'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/googlemy-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='youtube'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/youtube-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+	</ng-container>
+      </div>
+ }
+
+
+  <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+ <section class="social-icon-div">
+	<!-- <ng-container *ngFor="let ss of data?.data">
+		
+          <a target="_blank" 
+	[ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 1
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 1"
+                      (mouseleave)="hoveredIndexDropdown = -1"
+					  
+					  [href]="ss.product_images_url" *ngIf="ss.social_portal=='linkedin'"  >
+            <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_9/linkedin.png'"
+              alt="social-icon-image"
+            />
+          </a>
+          <a target="_blank"  [ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 2
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 2"
+                      (mouseleave)="hoveredIndexDropdown = -1" [href]="ss.product_images_url" *ngIf="ss.social_portal=='facebook'">
+            <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_9/facebook.png'"
+              alt="social-icon-image"
+            />
+          </a>
+          <a target="_blank"  [ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 3
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 3"
+                      (mouseleave)="hoveredIndexDropdown = -1" [href]="ss.product_images_url" *ngIf="ss.social_portal=='instagram'">
+            <img
+            [src]="globalObject.assetsUrl + '/templates_pcard/template_9/insta.png'"
+              alt="social-icon-image"
+            />
+          </a>
+          <a target="_blank" [ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 4
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 4"
+                      (mouseleave)="hoveredIndexDropdown = -1"[href]="ss.product_images_url" *ngIf="ss.social_portal=='pinterest'">
+            <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_9/pinterest.png'"
+              alt="social-icon-image"
+            />
+          </a>
+          <a  target="_blank" [ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 5
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 5"
+                      (mouseleave)="hoveredIndexDropdown = -1" [href]="ss.product_images_url" *ngIf="ss.social_portal=='globe'">
+            <img
+              class="globe"
+              [src]="globalObject.assetsUrl + '/templates_pcard/template_9/globe.png'"
+              alt="social-icon-image"
+            />
+          </a>
+          <a target="_blank" [ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 6
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 6"
+                      (mouseleave)="hoveredIndexDropdown = -1" [href]="ss.product_images_url" *ngIf="ss.social_portal=='indiamart'">
+            <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_9/indiamart.png'"
+              alt="social-icon-image"
+            />
+          </a>
+          <a target="_blank" [ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 7
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 7"
+                      (mouseleave)="hoveredIndexDropdown = -1" [href]="ss.product_images_url" *ngIf="ss.social_portal=='twitter'" >
+            <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_9/twitter.png'"
+              alt="social-icon-image"
+            />
+          </a>
+          <a target="_blank" [ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 8
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 8"
+                      (mouseleave)="hoveredIndexDropdown = -1" [href]="ss.product_images_url" *ngIf="ss.social_portal=='whatsapp'">
+            <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_9/whatsapp.png'"
+              alt="social-icon-image"
+            />
+          </a>
+          <a target="_blank" [ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 9
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 9"
+                      (mouseleave)="hoveredIndexDropdown = -1" [href]="ss.product_images_url" *ngIf="ss.social_portal=='justdial'">
+            <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_9/justdial.png;"
+              alt="social-icon-image"
+            />
+          </a>
+          <a target="_blank" [ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 10
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 10"
+                      (mouseleave)="hoveredIndexDropdown = -1" [href]="ss.product_images_url" *ngIf="ss.social_portal=='googlemybusiness'">
+            <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_9/googlemybusiness.png'"
+              alt="social-icon-image"
+            />
+          </a>
+          <a target="_blank" [ngStyle]="{
+  color: card2textcolour,
+  border: '1px solid ' + card2textcolour,
+  background:
+    hoveredIndexDropdown === 11
+      ? card1bgcolour
+      : 'color-mix(in srgb, ' + card2textcolour + ' 10%, transparent)'
+}"
+                      (mouseenter)="hoveredIndexDropdown = 11"
+                      (mouseleave)="hoveredIndexDropdown = -1"[href]="ss.product_images_url" *ngIf="ss.social_portal=='youtube'">
+            <img
+              [src]="globalObject.assetsUrl + '/templates_pcard/template_9/youtube.png'"
+              alt="social-icon-image"
+            />
+          </a>
+		</ng-container> -->
+
+				<ng-container *ngFor="let ss of data?.data">
+        <a  target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='linkedin'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/linkedin 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank"  [href]="ss.product_images_url" *ngIf="ss.social_portal=='facebook'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/facebook-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank"  [href]="ss.product_images_url" *ngIf="ss.social_portal=='instagram'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/instagram-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank"  [href]="ss.product_images_url" *ngIf="ss.social_portal=='pinterest'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/pinterest-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank"  [href]="ss.product_images_url" *ngIf="ss.social_portal=='globe'" class="social_link">
+          <img
+            class="globe"
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/globe-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a  target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='indiamart'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/indiamart-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='twitter'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/twitter-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a  target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='whatsapp'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/whatsapp-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a  target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='justdial'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/Justdail 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='googlemybusiness'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/googlemy-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+        <a target="_blank" [href]="ss.product_images_url" *ngIf="ss.social_portal=='youtube'" class="social_link">
+          <img
+             [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/youtube-tfour 1.png'"
+            alt="social-icon-image"
+          />
+        </a>
+	</ng-container>
+        </section>
+    }
+ 
+

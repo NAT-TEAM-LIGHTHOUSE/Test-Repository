@@ -1,0 +1,127 @@
+<div class="website_main" id="community-page">
+  <div class="container-fluid pageLayout bg-grey">
+    <div class="pageVerBorder">
+      <img src="/assets/website-images/community/line-61.svg" alt="Pcard community">
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-12  tab-col">
+
+        <div class="pageHorBorder">
+          <img src="/assets/website-images/community/line-60.svg" alt="Pcard community">
+        </div>
+
+        <div class="tab">
+          <h1>Categories</h1>
+
+          <button class="tablinks active" id="defaultOpen"(click)="openCity($event, 'tabcom1')">
+            Power Talks
+          </button>
+
+          <button class="tablinks" (click)="openCity($event, 'tabcom2')">
+            Power Stories
+          </button>
+
+          <button class="tablinks" (click)="openCity($event, 'tabcom4')">
+            Social initiatives
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-9 col-md-8 col-12 ">
+        <div class="tab-div com-div">
+
+          <!-- TAB 1 -->
+          <div id="tabcom1" class="tabcontent"  style="display:block;">
+            <h2>Those who inspire us their life. their stories.</h2>
+
+            <div class="row ourcomvideo">
+              <div class="col-lg-10  col-12 floatNone">
+                <div class="comvideo-inner-div">
+                  <img src="/assets/website-images/community/power2.webp" class="img-fluid" width="415" height="233" alt="Pcard community">
+                  <h5>Coming Soon.</h5>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-12">
+                <div class="comvideo-inner-div">
+                  <img src="/assets/website-images/community/power2.webp" class="img-fluid" width="397" height="223" alt="Pcard community">
+                </div>
+              </div>
+              <div class="col-lg-4 col-12">
+                <div class="comvideo-inner-div">
+                  <img src="/assets/website-images/community/power2.webp" class="img-fluid" width="397" height="223" alt="Pcard community">
+                </div>
+              </div>
+              <div class="col-lg-4 col-12">
+                <div class="comvideo-inner-div">
+                  <img src="/assets/website-images/community/power2.webp" class="img-fluid" width="397" height="223" alt="Pcard community">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2 -->
+          <div id="tabcom2" class="tabcontent" style="display:none;">
+            <h2>
+              Knowledge, they say, is more <span>powerful</span> than any other
+              <span>Creation by Humans</span>
+            </h2>
+
+            <h5>
+              Pcard shaves the knowledge from around the world. just another way, we want the world to become one
+              through sharing of knowledge and contacts, ofcourse !
+            </h5>
+
+            <div class="row row-gap-3  pt50 pb30">
+              <div class="col-lg-1"></div>
+              <ng-container *ngFor="let blog of blogs; let i = index">
+                  <a *ngIf="blog.slug && blog.slug !== 'null' && blog.slug !== '404' && !blog.slug.toLowerCase().includes('categories')" class="col-lg-2 col-6"
+                [routerLink]="['/blogs', blog.slug]"
+                
+                [style.display]="i === 0 ? 'none' : ''">
+                <!-- {{blog.slug}} -->
+                <div class="knowleg-box">
+                  <img [src]="blog.image" alt="{{ blog.title }}">
+                  <p></p>
+                </div>
+              </a>
+              </ng-container>
+            
+
+              <div class="col-lg-1"></div>
+            </div>
+          </div>
+
+          <!-- TAB 3 -->
+          <div id="tabcom4" class="tabcontent" style="display:none;">
+            <h2>Social Initiative</h2>
+
+            <div class="row mt50">
+              <div class="col-lg-5 col-xs-12">
+                <img src="/assets/website-images/community/boxes-Pcards-e1703495811390.png" alt="Pcard community">
+              </div>
+
+              <div class="col-lg-6 col-xs-12 mt20">
+                <h5>Pcards Cares and Loves to share!</h5>
+
+                <p>
+                  Society is where our heart is. When you become part of the Pcards community, you contribute and help
+                  Create a better world for our future generation.
+                </p>
+
+                <div class="profile-btn">
+                  <button class="btn btn-social" (click)="navigateToLogin()">
+                    Join the Community
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

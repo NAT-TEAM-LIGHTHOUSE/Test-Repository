@@ -1,0 +1,309 @@
+#main-div {
+    position: fixed;
+    right: 4%;
+    bottom: 20px;
+    z-index: 9999;
+}
+
+#main-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    color: var(--white);
+    cursor: pointer;
+    background-color: #00AEEF;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+    border-radius: 50%;
+
+}
+
+#main-button~button {
+    visibility: hidden;
+    font-weight: 600;
+    height: 50px;
+    padding: 0 20px;
+    color: #fff;
+    background: linear-gradient(90deg, #00a1f5, #0064f3);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+    border: 0;
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: .2s all linear;
+    -webkit-transition: .2s all linear;
+    -moz-transition: .2s all linear;
+    -ms-transition: .2s all linear;
+    -o-transition: .2s all linear;
+    border-radius: 5px;
+}
+
+
+#main-button~a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    opacity: 0;
+    text-decoration: none;
+    color: #fff;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: .2s all linear;
+    -webkit-transition: .2s all linear;
+    -moz-transition: .2s all linear;
+    -ms-transition: .2s all linear;
+    -o-transition: .2s all linear;
+}
+
+#main-button~.wpforms-color {
+    background-color: #00AEEF;
+    color: var(--white);
+}
+
+#main-button~.comments-color {
+    background-color: #00AEEF;
+    color: var(--white);
+}
+
+
+#main-button.open~a {
+    opacity: 1;
+    transition: .4s all cubic-bezier(0, 0.01, 0, 1.27);
+    -webkit-transition: .4s all cubic-bezier(0, 0.01, 0, 1.27);
+    -moz-transition: .4s all cubic-bezier(0, 0.01, 0, 1.27);
+    -ms-transition: .4s all cubic-bezier(0, 0.01, 0, 1.27);
+    -o-transition: .4s all cubic-bezier(0, 0.01, 0, 1.27);
+}
+
+#main-button.open~a:nth-of-type(2) {
+    bottom: 60px;
+}
+
+#main-button.open~a:nth-of-type(1) {
+    bottom: 120px;
+}
+
+
+
+.wave {
+    animation-name: wave;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes wave {
+    0% {
+        box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0.5);
+    }
+
+    100% {
+        box-shadow: 0 0 0px 10px rgba(255, 255, 255, 0);
+    }
+
+}
+
+.open {
+    animation-iteration-count: 1;
+}
+
+.offcanvas {
+   width: 500px;
+
+    .offcanvas-header {
+        border-bottom: 1px solid #d9d9d9;
+        align-items: baseline;
+        padding: 20px 30px;
+
+        .btn-close {
+            font-size: 15px;
+            background: rgb(0, 174, 239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            position: absolute;
+            top: 24px;
+            right: 24px;
+        }
+    }
+
+    .offcanvas-body {
+        padding: 14px 30px;
+
+        .form-floating>.form-control {
+            height: 52px;
+            min-height: 52px;
+            background: rgb(0 0 0 / 5%);
+            color: #000;
+            font-size: 16px;
+            font-weight: 500;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        }
+
+        .form-floating>.form-control:not(:placeholder-shown)~label::after,
+        .form-floating>.form-control:focus~label::after {
+            background-color: transparent;
+        }
+
+        .form-control:focus {
+            background: #fff !important;
+        }
+      .form-control::placeholder {
+            color: transparent !important;
+        }
+
+        textarea {
+            height: 104px !important;
+            padding: 25px 13px 0 !important;
+        }
+
+        .form-floating>label {
+        font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    font-weight: 500;
+    opacity: 0.6;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        }
+
+        button {
+              height: 52px;
+    color: #fff;
+    width: 100%;
+    font-weight: 600;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: rgba(0, 174, 239, 1);
+        }
+    }
+
+    &.offcanvas-bottom {
+        right: 0;
+        left: inherit;
+        height: var(--bs-offcanvas-height);
+        max-height: 100%;
+        border-top: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color);
+        height: 100%;
+    }
+
+    .form_title {
+        h5 {
+            font-size: 24px !important;
+    color: #000000 !important;
+    text-align: center;
+    margin-bottom: 6px !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        letter-spacing: .6px;
+
+        }
+
+        p {
+            font-size: 15px;
+            color: rgba(0, 0, 0, 1) !important;
+            margin-bottom: 0 !important;    
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+            text-align: center;
+        }
+
+
+    }
+
+
+
+
+
+}
+
+
+
+@media only screen and (max-width: 530px) 
+{
+.offcanvas {
+  
+
+    .offcanvas-header {
+           padding: 20px 18px;
+    line-height: normal;
+
+        .btn-close {
+
+            right: 21px;
+        }
+    }
+
+    .offcanvas-body {
+       
+    padding: 14px 18px;
+        
+
+        .form-floating>.form-control:not(:placeholder-shown)~label::after,
+        .form-floating>.form-control:focus~label::after {
+            background-color: transparent;
+        }
+
+        .form-control:focus {
+            background: #fff !important;
+        }
+
+        textarea {
+            height: 104px !important;
+            padding: 25px 13px 0 !important;
+        }
+
+     
+
+        button {
+            height: 52px;
+            color: #fff;
+            width: 100%;
+        }
+    }
+
+    &.offcanvas-bottom {
+        right: 0;
+        left: inherit;
+        height: var(--bs-offcanvas-height);
+        max-height: 100%;
+        border-top: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color);
+        height: 100%;
+    }
+
+    .form_title {
+        h5 {
+            font-size: 18px !important;
+        line-height: 18px;
+        }
+
+      
+
+
+    }
+
+
+
+
+
+}
+}

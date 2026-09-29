@@ -1,0 +1,2623 @@
+<div class="ion-page" id="main-content">
+    <main class="template-content">
+        <div>
+            <!-- use classes according to condition (template-1-outer-div , template-2-outer-div, template-3-outer-div) -->
+            <div class="body-div template-{{  template_type=='layout1'? 1 : template_type=='layout2'? 2 :  template_type=='layout3'? 3 : template_type=='layout4'? 4 : template_type=='layout5'? 5 : 6  }}-outer-div"
+                [ngStyle]="{'background-color': bodybgcolour }"
+                *ngIf="template_type !== 'layout7' && template_type !== 'layout8' && template_type !== 'layout9'">
+                <div class="container h-100 ">
+
+                    <div class="row h-100 m-0">
+                        <!-- template div 1-->
+
+                        @if(template_type == 'layout1') {
+                        <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8 col-sm-11 col-12 float-none template-div bg-img "
+                            [ngStyle]="{ 'background': card1bgcolour }" id="Home">
+
+                            <div class="profile-padd-image-div w-100"
+                                [ngStyle]="{'background-image': 'url(' + templatebgimg + ')'}">
+
+
+                                @if( temp_details_data) {
+                                <app-profile [template_type]="template_type" id="Home"
+                                    (dataEvent)="receiveData1($event)" [data]="temp_details_data?.profile_images"
+                                    [datas]="temp_details_data?.contact_details"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [pcard_url_template]="temp_details_data?.pcard_url_template"
+                                    [contact_details]="temp_details_data?.contact_details"
+                                    style="display: flex; flex-direction: column;justify-content: center; align-items: center;gap: 25px;"></app-profile>
+                                }
+
+
+                                <div style="display: flex; width: 100%; flex-direction: column;gap: 10px;">
+                                    @if( temp_details_data?.social_data?.flag > 0) {
+                                    <app-social-links [template_type]="template_type"
+                                        [data2]="temp_details_data?.template_layout_style"
+                                        [data]="temp_details_data?.social_data"
+                                        style="display: flex;justify-content: center;"></app-social-links>
+                                    }
+
+                                    @if( temp_details_data?.contact_details?.flag > 0) {
+                                    <app-social-contact [template_type]="template_type"
+                                        [data2]="temp_details_data?.template_layout_style"
+                                        [data]="temp_details_data?.contact_details"
+                                        style="display: flex;justify-content: center;"></app-social-contact>
+                                    }
+                                </div>
+
+                                @if( temp_details_data?.whatsapp_enquiry?.flag > 0) {
+                                <app-whatsapp-settings [data]="temp_details_data?.whatsapp"
+                                    [template_type]="template_type"
+                                    [whatsapp_enquiry]="temp_details_data?.whatsapp_enquiry"
+                                    [template_url]="temp_details_data?.template_layout_style"
+                                    [data_1]="temp_details_data?.whatsapp_enquiry"
+                                    [pcard_url_template]="temp_details_data?.pcard_url_template"
+                                    [data2]="temp_details_data?.template_layout_style"></app-whatsapp-settings>
+                                }
+
+                                @if( temp_details_data?.qr_code?.flag > 0) {
+                                <app-qrcode [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.qr_code" id="scan_qr"
+                                    style="display: flex;flex-direction: column;align-items: center;"></app-qrcode>
+                                }
+
+
+                            </div>
+
+                            <div class="w-100 remaining-pad-div" [ngStyle]="{ 'background': card1bgcolour }">
+
+
+                                @if( temp_details_data?.google_review?.flag > 0) {
+                                <section class="w-100 review-section" id="review-us"
+                                    *ngIf="temp_details_data?.google_review.data?.length  > 0">
+                                    <div class="card-headings-div">
+                                        <h3 class="card-headings" [ngStyle]="{'color': card1textcolour}">
+                                            {{temp_details_data?.google_review?.title}}
+                                        </h3>
+                                        <p class="heading-border"
+                                            [ngStyle]="card1textcolour ? {'border':'1px solid ' + card1textcolour} : {}">
+                                        </p>
+                                    </div>
+                                    <div class="google-review w-100 d-flex justify-content-center">
+                                        <a class="review-btn"
+                                            style="cursor: pointer; pointer-events: auto; position: relative; z-index: 10;"
+                                            (click)="addGoogleReview(temp_details_data?.company_info?.data?.[0]?.user_code || userCode); $event.stopPropagation()">
+                                            <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/google-review-ai-logo.png'"
+                                                alt="google-review-logo">
+                                            <span>Add Google Review</span>
+                                        </a>
+                                    </div>
+                                </section>
+                                }
+
+
+                                @if( temp_details_data?.company_info?.flag > 0) {
+
+                                <app-company-info id="company-info" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.company_info"></app-company-info>
+                                }
+
+                                @if( temp_details_data?.other_link?.flag > 0) {
+                                <app-other-links [template_type]="template_type" id="other-link"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.other_link"
+                                    style="display: flex;justify-content: center; align-items: center;"></app-other-links>
+                                }
+                                @if( temp_details_data?.product_list?.flag > 0) {
+                                <app-products id="IT_Products" [template_type]="template_type"
+                                    (dataEvent)="receiveData($event)" [whatup]="temp_details_data?.contact_details"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.product_list"></app-products>
+                                }
+                                @if( temp_details_data?.services?.flag > 0) {
+                                <app-services [template_type]="template_type" (dataEvent)="receiveData($event)"
+                                    [whatup]="temp_details_data?.contact_details"
+                                    [data2]="temp_details_data?.template_layout_style" id="Our_Services"
+                                    id="Our_Services" [data]="temp_details_data?.services"></app-services>
+                                }
+                                @if( temp_details_data?.payment?.flag > 0) {
+                                <app-payment id="Payment_Details" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.payment"></app-payment>
+                                }
+                                @if( temp_details_data?.about_me?.flag > 0) {
+                                <app-about-us id="About_Me" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.about_me"></app-about-us>
+                                }
+                                @if( temp_details_data?.education?.flag > 0) {
+                                <app-education id="Education" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.education"></app-education>
+                                }
+                                @if( temp_details_data?.skills?.flag > 0) {
+                                <app-skills id="Skills" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.skills"></app-skills>
+                                }
+                                @if( temp_details_data?.experience?.flag > 0) {
+                                <app-experience id="Work_Experience" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.experience"></app-experience>
+                                }
+
+                                @if( temp_details_data?.photo_gallery?.flag > 0) {
+                                <app-gallary id="Gallery" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.photo_gallery"></app-gallary>
+                                }
+                                @if( temp_details_data?.video_gallery?.flag > 0) {
+                                <app-video id="Videos" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.video_gallery"></app-video>
+                                }
+
+                                @if( temp_details_data?.latest_update?.flag > 0) {
+                                <app-latest-update id="latest_update" [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.latest_update" (dataEvent)="receiveData($event)"
+                                    [template_type]="template_type"></app-latest-update>
+                                }
+
+                                @if( temp_details_data?.other_business?.flag > 0) {
+                                <app-other-businesses id="Other_Business" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.other_business"></app-other-businesses>
+                                }
+                                @if( temp_details_data?.contact_details?.data?.length ) {
+                                <app-contact-us id="Contact_Us" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [conatct_us_data]="temp_details_data?.contact_us_enquiry"
+                                    [data]="temp_details_data?.contact_details"></app-contact-us>
+                                }
+
+                            </div>
+                        </div>
+                        }
+
+
+                        @else if(template_type == 'layout2') {
+                        <!-- template div 2-->
+                        <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8 col-sm-11 col-12 float-none template-div bg-img bg-color"
+                            id="Home" [ngStyle]="{'background': card1bgcolour }">
+
+                            @if( temp_details_data) {
+                            <app-profile [template_type]="template_type" id="Home" (dataEvent)="receiveData1($event)"
+                                [contact_details]="temp_details_data?.contact_details"
+                                [pcard_url_template]="temp_details_data?.pcard_url_template"
+                                [data]="temp_details_data?.profile_images" [datas]="temp_details_data?.contact_details"
+                                [data2]="temp_details_data?.template_layout_style"></app-profile>
+                            }
+
+                            <div class="with-padding">
+                                <div class="w-100 d-flex flex-column gap-3">
+                                    @if( temp_details_data?.social_data?.flag > 0) {
+                                    <app-social-links [template_type]="template_type"
+                                        [data2]="temp_details_data?.template_layout_style"
+                                        [data]="temp_details_data?.social_data"></app-social-links>
+                                    }
+                                    @if( temp_details_data?.contact_details?.flag > 0) {
+                                    <app-social-contact [template_type]="template_type"
+                                        [data2]="temp_details_data?.template_layout_style"
+                                        [data]="temp_details_data?.contact_details"></app-social-contact>
+                                    }
+                                </div>
+                                @if( temp_details_data?.whatsapp_enquiry?.flag > 0) {
+                                <app-whatsapp-settings [data]="temp_details_data?.whatsapp"
+                                    [template_type]="template_type" [data_1]="temp_details_data?.whatsapp_enquiry"
+                                    [template_url]="temp_details_data?.template_layout_style"
+                                    [whatsapp_enquiry]="temp_details_data?.whatsapp_enquiry"
+                                    [pcard_url_template]="temp_details_data?.pcard_url_template"
+                                    [data2]="temp_details_data?.template_layout_style"></app-whatsapp-settings>
+                                }
+
+
+                                @if( temp_details_data?.qr_code?.flag > 0) {
+                                <app-qrcode [template_type]="template_type" id="scan_qr"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.qr_code"></app-qrcode>
+                                }
+
+                                @if( temp_details_data?.google_review?.flag > 0) {
+                                <section class="w-100" id="review-us"
+                                    *ngIf="temp_details_data?.google_review.data?.length  > 0">
+                                    <h2 class="card-headings"
+                                        [ngStyle]="{'color': card2textcolour,'background': card2bgcolour}">
+                                        {{temp_details_data?.google_review?.title}}
+                                    </h2>
+                                    <div class="google-review w-100 d-flex justify-content-center">
+                                        <a class="review-btn"
+                                            style="cursor: pointer; pointer-events: auto; position: relative; z-index: 10;"
+                                            (click)="addGoogleReview(temp_details_data?.company_info?.data?.[0]?.user_code || userCode); $event.stopPropagation()">
+                                            <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/google-review-ai-logo.png'"
+                                                alt="google-review-logo">
+                                            <span>Add Google Review</span>
+                                        </a>
+                                    </div>
+                                </section>
+                                }
+
+                                @if( temp_details_data?.company_info?.flag > 0) {
+                                <app-company-info id="company-info" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.company_info"></app-company-info>
+                                }
+
+                                @if( temp_details_data?.other_link?.flag > 0) {
+                                <app-other-links [template_type]="template_type" id="other-link"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.other_link"></app-other-links>
+                                }
+
+                                @if( temp_details_data?.product_list?.flag > 0) {
+                                <app-products id="IT_Products" [template_type]="template_type"
+                                    [whatup]="temp_details_data?.contact_details" (dataEvent)="receiveData($event)"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.product_list"></app-products>
+                                }
+                                @if( temp_details_data?.services?.flag > 0) {
+                                <app-services [template_type]="template_type" (dataEvent)="receiveData($event)"
+                                    [whatup]="temp_details_data?.contact_details"
+                                    [data2]="temp_details_data?.template_layout_style" id="Our_Services"
+                                    id="Our_Services" [data]="temp_details_data?.services"></app-services>
+                                }
+                                @if( temp_details_data?.payment?.flag > 0) {
+                                <app-payment id="Payment_Details" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.payment"></app-payment>
+                                }
+                                @if( temp_details_data?.about_me?.flag > 0) {
+                                <app-about-us id="About_Me" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.about_me"></app-about-us>
+                                }
+                                @if( temp_details_data?.education?.flag > 0) {
+                                <app-education id="Education" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.education"></app-education>
+                                }
+                                @if( temp_details_data?.skills?.flag > 0) {
+                                <app-skills id="Skills" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.skills"></app-skills>
+                                }
+                                @if( temp_details_data?.experience?.flag > 0) {
+                                <app-experience id="Work_Experience" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.experience"></app-experience>
+                                }
+
+
+
+                                @if( temp_details_data?.photo_gallery?.flag > 0) {
+                                <app-gallary id="Gallery" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.photo_gallery"></app-gallary>
+                                }
+                                @if( temp_details_data?.video_gallery?.flag > 0) {
+                                <app-video id="Videos" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.video_gallery"></app-video>
+                                }
+                                @if( temp_details_data?.latest_update?.flag > 0) {
+                                <app-latest-update id="latest_update" [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.latest_update" (dataEvent)="receiveData($event)"
+                                    [template_type]="template_type"></app-latest-update>
+                                }
+
+                                @if( temp_details_data?.other_business?.flag > 0) {
+                                <app-other-businesses id="Other_Business" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.other_business"></app-other-businesses>
+                                }
+
+                                @if( temp_details_data?.contact_details?.data?.length ) {
+                                <app-contact-us id="Contact_Us" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [conatct_us_data]="temp_details_data?.contact_us_enquiry"
+                                    [data]="temp_details_data?.contact_details"></app-contact-us>
+                                }
+
+                            </div>
+                        </div>
+                        }
+
+
+                        @else if(template_type == 'layout3') {
+
+                        <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8 col-sm-11 col-12 float-none template-div"
+                            id="Home">
+
+
+                            @if( temp_details_data) {
+
+                            <app-profile [template_type]="template_type" id="Home" (dataEvent)="receiveData1($event)"
+                                [datas]="temp_details_data?.contact_details"
+                                [social]="temp_details_data?.contact_details" [data]="temp_details_data?.profile_images"
+                                [pcard_url_template]="temp_details_data?.pcard_url_template"
+                                [contact_details]="temp_details_data?.contact_details"
+                                [data2]="temp_details_data?.template_layout_style"></app-profile>
+                            }
+
+                            <div class="with-padding dark-card"
+                                [ngStyle]="{'color': card2textcolour,'background': card2bgcolour}">
+                                <div class="w-100 d-flex flex-column gap-3">
+
+                                    @if( temp_details_data?.social_data?.flag > 0) {
+                                    <app-social-links [template_type]="template_type"
+                                        [data2]="temp_details_data?.template_layout_style"
+                                        [data]="temp_details_data?.social_data"></app-social-links>
+                                    }
+
+                                </div>
+                                @if( temp_details_data?.whatsapp_enquiry?.flag > 0) {
+                                <app-whatsapp-settings [data]="temp_details_data?.whatsapp"
+                                    [template_type]="template_type"
+                                    [whatsapp_enquiry]="temp_details_data?.whatsapp_enquiry"
+                                    [data_1]="temp_details_data?.whatsapp_enquiry"
+                                    [template_url]="temp_details_data?.template_layout_style"
+                                    [pcard_url_template]="temp_details_data?.pcard_url_template"
+                                    [data2]="temp_details_data?.template_layout_style"></app-whatsapp-settings>
+                                }
+
+
+                                @if( temp_details_data?.qr_code?.flag > 0) {
+                                <app-qrcode
+                                    style=" display: flex;justify-content: center;flex-direction: column;gap: 15px;"
+                                    id="scan_qr" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.qr_code"></app-qrcode>
+                                }
+
+                                @if( temp_details_data?.google_review?.flag > 0) {
+                                <section class="w-100" id="review-us"
+                                    *ngIf="temp_details_data?.google_review.data?.length  > 0">
+                                    <h2 class="card-headings"
+                                        [ngStyle]="card2textcolour ? {'color': card2textcolour, 'border-bottom':'2px solid ' + card2textcolour} : {}">
+                                        {{temp_details_data?.google_review?.title}}</h2>
+                                    <div class="google-review w-100 d-flex justify-content-center">
+
+                                        <a class="review-btn"
+                                            style="cursor: pointer; pointer-events: auto; position: relative; z-index: 10;"
+                                            (click)="addGoogleReview(temp_details_data?.company_info?.data?.[0]?.user_code || userCode); $event.stopPropagation()">
+                                            <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/google-review-ai-logo.png'"
+                                                alt="google-review-logo">
+                                            <span>Add Google Review</span>
+                                        </a>
+                                    </div>
+                                </section>
+                                }
+
+
+                                @if( temp_details_data?.company_info?.flag > 0) {
+                                <app-company-info id="company-info" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.company_info"></app-company-info>
+                                }
+
+                                @if( temp_details_data?.other_link?.flag > 0) {
+                                <app-other-links [template_type]="template_type" id="other-link"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.other_link"></app-other-links>
+                                }
+
+                                @if( temp_details_data?.product_list?.flag > 0) {
+                                <app-products id="IT_Products" [template_type]="template_type"
+                                    [whatup]="temp_details_data?.contact_details" (dataEvent)="receiveData($event)"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.product_list"></app-products>
+                                }
+                                @if( temp_details_data?.services?.flag > 0) {
+                                <app-services [template_type]="template_type" (dataEvent)="receiveData($event)"
+                                    [whatup]="temp_details_data?.contact_details"
+                                    [data2]="temp_details_data?.template_layout_style" id="Our_Services"
+                                    id="Our_Services" [data]="temp_details_data?.services"></app-services>
+                                }
+                                @if( temp_details_data?.payment?.flag > 0) {
+                                <app-payment id="Payment_Details" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.payment"></app-payment>
+                                }
+                                @if( temp_details_data?.about_me?.flag > 0) {
+                                <app-about-us id="About_Me" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.about_me"></app-about-us>
+                                }
+                                @if( temp_details_data?.education?.flag > 0) {
+                                <app-education id="Education" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.education"></app-education>
+                                }
+                                @if( temp_details_data?.skills?.flag > 0) {
+                                <app-skills id="Skills" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.skills"></app-skills>
+                                }
+                                @if( temp_details_data?.experience?.flag > 0) {
+                                <app-experience id="Work_Experience" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.experience"></app-experience>
+                                }
+
+
+
+                                @if( temp_details_data?.photo_gallery?.flag > 0) {
+                                <app-gallary id="Gallery" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.photo_gallery"></app-gallary>
+                                }
+                                @if( temp_details_data?.video_gallery?.flag > 0) {
+                                <app-video id="Videos" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.video_gallery"></app-video>
+                                }
+
+                                @if( temp_details_data?.latest_update?.flag > 0) {
+                                <app-latest-update id="latest_update" [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.latest_update" (dataEvent)="receiveData($event)"
+                                    [template_type]="template_type"></app-latest-update>
+                                }
+
+                                @if( temp_details_data?.other_business?.flag > 0) {
+                                <app-other-businesses id="Other_Business" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [data]="temp_details_data?.other_business"></app-other-businesses>
+                                }
+
+                                @if( temp_details_data?.contact_details?.data?.length ) {
+                                <app-contact-us id="Contact_Us" [template_type]="template_type"
+                                    [data2]="temp_details_data?.template_layout_style"
+                                    [conatct_us_data]="temp_details_data?.contact_us_enquiry"
+                                    [data]="temp_details_data?.contact_details"></app-contact-us>
+                                }
+                            </div>
+                        </div>
+                        }
+
+
+                        @else if(template_type == 'layout4') {
+                        <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8 col-sm-11 col-12 float-none template-div {{styleArr[card_style]?.temp_div_class}}"
+                            id="Home" [ngStyle]="styleArr[card_style]?.temp_div_style">
+
+                            @if( temp_details_data) {
+                            <app-profile [template_type]="template_type" id="Home" (dataEvent)="receiveData1($event)"
+                                [data]="temp_details_data?.profile_images"
+                                [social_data]="temp_details_data?.social_data"
+                                [contact_details]="temp_details_data?.contact_details"
+                                [data_1]="temp_details_data?.whatsapp_enquiry"
+                                [whatsapp_enquiry]="temp_details_data?.whatsapp_enquiry"
+                                [datas]="temp_details_data?.contact_details"
+                                [pcard_url_template]="temp_details_data?.pcard_url_template"
+                                [share_profile_button]="styleArr[card_style]?.share_profile_button"
+                                [share_profile_button_hover]="styleArr[card_style]?.share_profile_button_hover"
+                                [share_profile_btn_div]="styleArr[card_style]?.share_profile_btn_div"
+                                [profile_bg_img_div]="styleArr[card_style]?.profile_bg_img_div"
+                                [social_contact_links]="styleArr[card_style]?.social_contact_links"
+                                [social_contact_a]="styleArr[card_style]?.social_contact_a"
+                                [template_url]="temp_details_data?.template_layout_style"
+                                [social_contact]="styleArr[card_style]?.social_contact"
+                                [social_contact_span]="styleArr[card_style]?.social_contact_span"
+                                [profile_h1_h4_p]="styleArr[card_style]?.profile_h1_h4_p"
+                                [profile_h4]="styleArr[card_style]?.profile_h4" [card_style]="card_style"
+                                [profile_h1_p]="styleArr[card_style]?.profile_h1_p"
+                                [whatsapp]="temp_details_data?.whatsapp"
+                                [data2]="temp_details_data?.template_layout_style" id="Home"></app-profile>
+                            }
+
+
+
+                            @if( temp_details_data?.qr_code?.flag > 0) {
+                            <app-qrcode [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style" id="scan_qr"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg" [styletype]="card_style"
+                                [data]="temp_details_data?.qr_code"></app-qrcode>
+                            }
+
+
+                            @if( temp_details_data?.google_review?.flag > 0) {
+                            <section id="review-us" *ngIf="temp_details_data?.google_review.data?.length  > 0">
+                                <h3 class="card-headings" *ngIf="card_style != 'style4'"
+                                    [ngStyle]="styleArr[card_style]?.card_heading_bg ? styleArr[card_style]?.card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+                                    {{temp_details_data?.google_review?.title}}</h3>
+
+                                <div class="card-headings-div" *ngIf="card_style == 'style4'">
+                                    <h3 class="card-headings"
+                                        [ngStyle]="styleArr[card_style]?.card_heading_bg ? styleArr[card_style]?.card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+
+                                        {{temp_details_data?.google_review?.title}}</h3>
+                                </div>
+
+
+                                <div class="google-review w-100 d-flex justify-content-center"
+                                    [ngStyle]="{'background-color': card2bgcolour}">
+                                    <a class="review-btn"
+                                        style="cursor: pointer; pointer-events: auto; position: relative; z-index: 10;"
+                                        (click)="addGoogleReview(temp_details_data?.company_info?.data?.[0]?.user_code || userCode); $event.stopPropagation()">
+                                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/google-review-ai-logo.png'"
+                                            alt="google-review-logo">
+                                        <span>Add Google Review</span>
+                                    </a>
+                                </div>
+                            </section>
+                            }
+
+
+
+                            @if( temp_details_data?.company_info?.flag > 0) {
+                            <app-company-info [template_type]="template_type" id="company-info"
+                                [data2]="temp_details_data?.template_layout_style" [styletype]="card_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.company_info"></app-company-info>
+                            }
+
+                            @if( temp_details_data?.other_link?.flag > 0) {
+                            <app-other-links [template_type]="template_type" id="other-link"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg" [styletype]="card_style"
+                                [other_links_span]="styleArr[card_style]?.other_links_span"
+                                [other_links_a]="styleArr[card_style]?.other_links_a"
+                                [data]="temp_details_data?.other_link"
+                                [other_links_icon]="styleArr[card_style]?.other_links_icon"
+                                [other_links_icon_hover]="styleArr[card_style]?.other_links_icon_hover"
+                                [other_links_span_hover]="styleArr[card_style]?.other_links_span_hover">
+                            </app-other-links>
+                            }
+
+                            @if( temp_details_data?.product_list?.flag > 0) {
+                            <app-products id="IT_Products" [template_type]="template_type"
+                                (dataEvent)="receiveData($event)" [data2]="temp_details_data?.template_layout_style"
+                                [styletype]="card_style" [whatup]="temp_details_data?.contact_details"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.product_list"></app-products>
+                            }
+
+
+                            @if( temp_details_data?.services?.flag > 0) {
+                            <app-services [template_type]="template_type" (dataEvent)="receiveData($event)"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg" [styletype]="card_style"
+                                [whatup]="temp_details_data?.contact_details"
+                                [data2]="temp_details_data?.template_layout_style" id="Our_Services" id="Our_Services"
+                                [data]="temp_details_data?.services"></app-services>
+                            }
+
+                            @if( temp_details_data?.payment?.flag > 0) {
+                            <app-payment id="Payment_Details" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style" [styletype]="card_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.payment"></app-payment>
+                            }
+
+                            @if( temp_details_data?.about_me?.flag > 0) {
+                            <app-about-us id="About_Me" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style" [styletype]="card_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.about_me"></app-about-us>
+                            }
+
+                            @if( temp_details_data?.education?.flag > 0) {
+                            <app-education id="Education" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style" [styletype]="card_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.education"></app-education>
+                            }
+
+                            @if( temp_details_data?.skills?.flag > 0) {
+                            <app-skills id="Skills" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style" [styletype]="card_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.skills"></app-skills>
+                            }
+
+
+                            @if( temp_details_data?.experience?.flag > 0) {
+                            <app-experience id="Work_Experience" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style" [styletype]="card_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.experience"></app-experience>
+
+                            }
+
+                            @if( temp_details_data?.photo_gallery?.flag > 0) {
+                            <app-gallary id="Gallery" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style" [styletype]="card_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.photo_gallery"></app-gallary>
+                            }
+
+
+                            @if( temp_details_data?.video_gallery?.flag > 0) {
+                            <app-video id="Videos" [template_type]="template_type" [styletype]="card_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [data]="temp_details_data?.video_gallery"></app-video>
+                            }
+
+
+                            @if( temp_details_data?.latest_update?.flag > 0) {
+                            <app-latest-update id="latest_update" [data2]="temp_details_data?.template_layout_style"
+                                [data]="temp_details_data?.latest_update" [styletype]="card_style"
+                                (dataEvent)="receiveData($event)"
+                                [latest_update_quotes]="styleArr[card_style]?.latest_update_quotes"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [other_business_h2]="styleArr[card_style]?.other_business_h2"
+                                [link_btn_latest_other_business_hover]="styleArr[card_style]?.link_btn_latest_other_business_hover"
+                                [template_type]="template_type"></app-latest-update>
+                            }
+
+                            @if( temp_details_data?.other_business?.flag > 0) {
+                            <app-other-businesses id="Other_Business" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg" [styletype]="card_style"
+                                [other_business_h2]="styleArr[card_style]?.other_business_h2"
+                                [other_business_visit_btn]="styleArr[card_style]?.other_business_visit_btn"
+                                [link_btn_latest_other_business_hover]="styleArr[card_style]?.link_btn_latest_other_business_hover"
+                                [data]="temp_details_data?.other_business"></app-other-businesses>
+                            }
+
+
+                            @if( temp_details_data?.contact_details?.data?.length ) {
+                            <app-contact-us id="Contact_Us" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style" [styletype]="card_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [conatct_us_data]="temp_details_data?.contact_us_enquiry"
+                                [contact_btn_hover]="styleArr[card_style]?.contact_btn_hover"
+                                [contact_visit_btn]="styleArr[card_style]?.contact_visit_btn"
+                                [data]="temp_details_data?.contact_details"></app-contact-us>
+                            }
+
+                        </div>
+                        }
+
+
+                        @else if(template_type == 'layout5') {
+                        <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8 col-sm-11 col-12 float-none template-div {{styleArr[card_style]?.temp_div_class}}"
+                            id="Home" [ngStyle]="styleArr[card_style]?.temp_div_style">
+
+                            @if( temp_details_data) {
+                            <app-profile [template_type]="template_type" id="Home" (dataEvent)="receiveData1($event)"
+                                [social_contact]="styleArr[card_style]?.social_contact" [card_style]="card_style"
+                                [datas]="temp_details_data?.contact_details"
+                                [template_url]="temp_details_data?.template_layout_style"
+                                [whatsapp_enquiry]="temp_details_data?.whatsapp_enquiry"
+                                [data_1]="temp_details_data?.whatsapp_enquiry" [card_style]="card_style"
+                                [social_contact_span]="styleArr[card_style]?.social_contact_span"
+                                [pcard_url_template]="temp_details_data?.pcard_url_template"
+                                [social_contact_a]="styleArr[card_style]?.social_contact_a"
+                                [social_links_a]="styleArr[card_style]?.social_links_a"
+                                [profile_section_bg]="styleArr[card_style]?.profile_section_bg"
+                                [share_profile_button_1]="styleArr[card_style]?.share_profile_button_1"
+                                [share_profile_button_2]="styleArr[card_style]?.share_profile_button_2"
+                                [social_contact_links]="styleArr[card_style]?.social_contact_links"
+                                [share_profile_button_hover]="styleArr[card_style]?.share_profile_button_hover"
+                                [profile_bg_img_div]="styleArr[card_style]?.profile_bg_img_div"
+                                [share_profile_button]="styleArr[card_style]?.share_profile_button"
+                                [share_profile_button_div]="styleArr[card_style]?.share_profile_button_div"
+                                [data]="temp_details_data?.profile_images"
+                                [social_data]="temp_details_data?.social_data"
+                                [contact_details]="temp_details_data?.contact_details"
+                                [whatsapp]="temp_details_data?.whatsapp_enquiry"
+                                [data2]="temp_details_data?.template_layout_style" id="Home"></app-profile>
+                            }
+
+
+
+                            @if( temp_details_data?.qr_code?.flag > 0) {
+                            <app-qrcode [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg" id="scan_qr"
+                                [qr_code_card_data]="styleArr[card_style]?.qr_code_card_data"
+                                [data]="temp_details_data?.qr_code"></app-qrcode>
+                            }
+
+
+
+                            @if( temp_details_data?.google_review?.flag > 0) {
+                            <section class="google-review-div" id="review-us"
+                                *ngIf="temp_details_data?.google_review.data?.length  > 0">
+                                <h3 class="card-headings"
+                                    [ngStyle]="styleArr[card_style]?.card_heading_bg ? styleArr[card_style]?.card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+                                    {{temp_details_data?.google_review?.title}}</h3>
+                                <div class="google-review w-100 d-flex justify-content-center"
+                                    [ngStyle]="styleArr[card_style]?.google_review ? styleArr[card_style]?.google_review :{'background-color': card2bgcolour}">
+                                    <a class="review-btn"
+                                        style="cursor: pointer; pointer-events: auto; position: relative; z-index: 10;"
+                                        (click)="addGoogleReview(temp_details_data?.company_info?.data?.[0]?.user_code || userCode); $event.stopPropagation()">
+                                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/google-review-ai-logo.png'"
+                                            alt="google-review-logo">
+                                        <span>Add Google Review</span>
+                                    </a>
+                                </div>
+                            </section>
+                            }
+
+                            @if( temp_details_data?.company_info?.flag > 0) {
+                            <app-company-info id="company-info" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [about_company_sub_heading]="styleArr[card_style]?.about_company_sub_heading"
+                                [about_company_data]="styleArr[card_style]?.about_company_data"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.company_info"></app-company-info>
+                            }
+
+                            @if( temp_details_data?.other_link?.flag > 0) {
+                            <app-other-links [template_type]="template_type" id="other-link"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [otherlinks_btns_div]="styleArr[card_style]?.otherlinks_btns_div"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [other_links_icon]="styleArr[card_style]?.other_links_icon"
+                                [other_links_span]="styleArr[card_style]?.other_links_span"
+                                [other_links_icon_hover]="styleArr[card_style]?.other_links_icon_hover"
+                                [other_links_span_hover]="styleArr[card_style]?.other_links_span_hover"
+                                [data]="temp_details_data?.other_link"></app-other-links>
+                            }
+
+
+                            @if( temp_details_data?.product_list?.flag > 0) {
+                            <app-products id="IT_Products" [template_type]="template_type"
+                                (dataEvent)="receiveData($event)" [data2]="temp_details_data?.template_layout_style"
+                                [whatup]="temp_details_data?.contact_details"
+                                [products_outer_div]="styleArr[card_style]?.products_outer_div"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.product_list"></app-products>
+                            }
+
+                            @if( temp_details_data?.services?.flag > 0) {
+                            <app-services [template_type]="template_type" (dataEvent)="receiveData($event)"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [whatup]="temp_details_data?.contact_details"
+                                [services_outer_div]="styleArr[card_style]?.services_outer_div"
+                                [data2]="temp_details_data?.template_layout_style" id="Our_Services" id="Our_Services"
+                                [data]="temp_details_data?.services"></app-services>
+                            }
+
+
+                            @if( temp_details_data?.payment?.flag > 0) {
+                            <app-payment id="Payment_Details" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [payment_data_div]="styleArr[card_style]?.payment_data_div"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.payment"></app-payment>
+                            }
+
+                            @if( temp_details_data?.about_me?.flag > 0) {
+                            <app-about-us id="About_Me" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [about_us_p]="styleArr[card_style]?.about_us_p"
+                                [about_us_card_divs]="styleArr[card_style]?.about_us_card_divs"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.about_me"></app-about-us>
+                            }
+
+                            @if( temp_details_data?.education?.flag > 0) {
+                            <app-education id="Education" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.education"></app-education>
+                            }
+
+
+                            @if( temp_details_data?.skills?.flag > 0) {
+                            <app-skills id="Skills" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.skills"></app-skills>
+                            }
+                            @if( temp_details_data?.experience?.flag > 0) {
+                            <app-experience id="Work_Experience" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.experience"></app-experience>
+
+                            }
+
+                            @if( temp_details_data?.photo_gallery?.flag > 0) {
+                            <app-gallary id="Gallery" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [gallary_div]="styleArr[card_style]?.gallary_div"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.photo_gallery"></app-gallary>
+                            }
+
+                            @if( temp_details_data?.video_gallery?.flag > 0) {
+                            <app-video id="Videos" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [videos_outer_div]="styleArr[card_style]?.videos_outer_div"
+                                [data]="temp_details_data?.video_gallery"></app-video>
+                            }
+
+                            @if( temp_details_data?.latest_update?.flag > 0) {
+                            <app-latest-update id="latest_update" [data2]="temp_details_data?.template_layout_style"
+                                [data]="temp_details_data?.latest_update" (dataEvent)="receiveData($event)"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [latest_update_card_divs]="styleArr[card_style]?.latest_update_card_divs"
+                                [latest_update_quotes]="styleArr[card_style]?.latest_update_quotes"
+                                [other_business_h2]="styleArr[card_style]?.other_business_h2"
+                                [link_btn_latest_other_business_hover]="styleArr[card_style]?.link_btn_latest_other_business_hover"
+                                [template_type]="template_type"></app-latest-update>
+                            }
+
+                            @if( temp_details_data?.other_business?.flag > 0) {
+                            <app-other-businesses id="Other_Business" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [other_business_h2]="styleArr[card_style]?.other_business_h2"
+                                [other_business_visit_btn]="styleArr[card_style]?.other_business_visit_btn"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [otherbusiness_card_divs]="styleArr[card_style]?.otherbusiness_card_divs"
+                                [link_btn_latest_other_business_hover]="styleArr[card_style]?.link_btn_latest_other_business_hover"
+                                [data]="temp_details_data?.other_business"></app-other-businesses>
+                            }
+
+
+                            @if( temp_details_data?.contact_details?.data?.length) {
+                            <app-contact-us id="Contact_Us" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [contact_us]="styleArr[card_style]?.contact_us"
+                                [conatct_us_data]="temp_details_data?.contact_us_enquiry"
+                                [contact_visit_btn]="styleArr[card_style]?.contact_visit_btn"
+                                [contact_btn_hover]="styleArr[card_style]?.contact_btn_hover"
+                                [about_company_data]="styleArr[card_style]?.about_company_data"
+                                [data]="temp_details_data?.contact_details"></app-contact-us>
+                            }
+
+                        </div>
+                        }
+
+
+                        @else if(template_type == 'layout6') {
+                        <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8 col-sm-11 col-12 float-none template-div {{styleArr[card_style]?.temp_div_class}}"
+                            id="Home"
+                            [ngStyle]="styleArr[card_style]?.temp_div_style? styleArr[card_style].temp_div_style: {'background-color': card2bgcolour}">
+
+                            <div class="w-100 template-div-image"
+                                [ngStyle]="styleArr[card_style]?.temp_div_style_image? styleArr[card_style].temp_div_style_image: {'background-image': 'url(' + globalObject.getImageSrc(profile_back_image) + ')'}">
+
+                                @if( temp_details_data ) {
+                                <app-profile [template_type]="template_type" id="Home"
+                                    (dataEvent)="receiveData1($event)" [data]="temp_details_data?.profile_images"
+                                    [social_data]="temp_details_data?.social_data"
+                                    [template_url]="temp_details_data?.template_layout_style"
+                                    [contact_details]="temp_details_data?.contact_details"
+                                    [pcard_url_template]="temp_details_data?.pcard_url_template"
+                                    [datas]="temp_details_data?.contact_details"
+                                    [data_1]="temp_details_data?.whatsapp_enquiry"
+                                    [whatsapp_enquiry]="temp_details_data?.whatsapp_enquiry"
+                                    [profile_h1_p]="styleArr[card_style]?.profile_h1_p"
+                                    [profile_photo_div]="styleArr[card_style]?.profile_photo_div"
+                                    [profile_h4]="styleArr[card_style]?.profile_h4"
+                                    [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                    [profile_h1_h4_p]="styleArr[card_style]?.profile_h1_h4_p"
+                                    [social_contact_links]="styleArr[card_style]?.social_contact_links"
+                                    [social_contact_span]="styleArr[card_style]?.social_contact_span"
+                                    [social_contact_a]="styleArr[card_style]?.social_contact_a"
+                                    [share_profile_button_1_hover]="styleArr[card_style]?.share_profile_button_1_hover"
+                                    [share_profile_button_1_nohover]="styleArr[card_style]?.share_profile_button_1_nohover"
+                                    [social_contact_i]="styleArr[card_style]?.social_contact_i"
+                                    [card_style]="card_style"
+                                    [share_profile_button_1]="styleArr[card_style]?.share_profile_button_1"
+                                    [share_profile_button_2]="styleArr[card_style]?.share_profile_button_2"
+                                    [share_profile_button]="styleArr[card_style]?.share_profile_button"
+                                    [share_profile_button_div]="styleArr[card_style]?.share_profile_button_div"
+                                    [whatsapp]="temp_details_data?.whatsapp"
+                                    [share_profile_button_hover]="styleArr[card_style]?.share_profile_button_hover"
+                                    [data2]="temp_details_data?.template_layout_style" id="Home"></app-profile>
+                                }
+
+
+
+
+                            </div>
+
+
+
+                            @if( temp_details_data?.qr_code?.flag > 0) {
+                            <app-qrcode [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style" id="scan_qr"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.qr_code"></app-qrcode>
+
+                            }
+
+                            @if( temp_details_data?.google_review?.flag > 0) {
+                            <section id="review-us" *ngIf="temp_details_data?.google_review.data?.length  > 0">
+                                <h3 class="card-headings"
+                                    [ngStyle]="styleArr[card_style]?.card_heading_bg ? styleArr[card_style]?.card_heading_bg : {'color': card1bgcolour}">
+                                    {{temp_details_data?.google_review?.title}}</h3>
+                                <div class="google-review w-100 d-flex justify-content-center">
+                                    <a class="review-btn"
+                                        (click)="addGoogleReview(temp_details_data?.company_info.data[0].user_code)"><img
+                                            [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/google-review-ai-logo.png'"
+                                            alt="google-review-logo"><span>Add
+                                            Google Review</span></a>
+                                </div>
+                            </section>
+                            }
+
+
+                            @if( temp_details_data?.company_info?.flag > 0) {
+                            <app-company-info id="company-info" [template_type]="template_type"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [about_company_sub_heading]="styleArr[card_style]?.about_company_sub_heading"
+                                [about_company_data]="styleArr[card_style]?.about_company_data"
+                                [data]="temp_details_data?.company_info"></app-company-info>
+
+                            }
+
+                            @if( temp_details_data?.other_link?.flag > 0) {
+                            <app-other-links [template_type]="template_type" id="other-link"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [other_links_a]="styleArr[card_style]?.other_links_a"
+                                [other_links_icon]="styleArr[card_style]?.other_links_icon"
+                                [other_links_span]="styleArr[card_style]?.other_links_span"
+                                [other_links_icon_hover]="styleArr[card_style]?.other_links_icon_hover"
+                                [other_links_span_hover]="styleArr[card_style]?.other_links_span_hover"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [data]="temp_details_data?.other_link"></app-other-links>
+
+                            }
+
+
+                            @if( temp_details_data?.product_list?.flag > 0) {
+                            <app-products id="IT_Products" [template_type]="template_type"
+                                (dataEvent)="receiveData($event)" [data2]="temp_details_data?.template_layout_style"
+                                [whatup]="temp_details_data?.contact_details"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.product_list"></app-products>
+                            }
+
+                            @if( temp_details_data?.services?.flag > 0) {
+                            <app-services [template_type]="template_type" (dataEvent)="receiveData($event)"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [whatup]="temp_details_data?.contact_details"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data2]="temp_details_data?.template_layout_style" id="Our_Services" id="Our_Services"
+                                [data]="temp_details_data?.services"></app-services>
+                            }
+
+                            @if( temp_details_data?.payment?.flag > 0) {
+                            <app-payment id="Payment_Details" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [payment_data_div]="styleArr[card_style]?.payment_data_div"
+                                [data]="temp_details_data?.payment"></app-payment>
+                            }
+
+                            @if( temp_details_data?.about_me?.flag > 0) {
+                            <app-about-us id="About_Me" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [about_us_p]="styleArr[card_style]?.about_us_p"
+                                [data]="temp_details_data?.about_me"></app-about-us>
+
+                            }
+
+                            @if( temp_details_data?.education?.flag > 0) {
+                            <app-education id="Education" [template_type]="template_type"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [data]="temp_details_data?.education"></app-education>
+
+                            }
+
+
+                            @if( temp_details_data?.skills?.flag > 0) {
+                            <app-skills id="Skills" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.skills"></app-skills>
+                            }
+
+                            @if( temp_details_data?.experience?.flag > 0) {
+                            <app-experience id="Work_Experience" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.experience"></app-experience>
+
+                            }
+
+                            @if( temp_details_data?.photo_gallery?.flag > 0) {
+                            <app-gallary id="Gallery" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.photo_gallery"></app-gallary>
+
+                            }
+
+                            @if( temp_details_data?.video_gallery?.flag > 0) {
+                            <app-video id="Videos" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [data]="temp_details_data?.video_gallery"></app-video>
+
+                            }
+
+
+                            @if( temp_details_data?.latest_update?.flag > 0) {
+                            <app-latest-update id="latest_update" [data2]="temp_details_data?.template_layout_style"
+                                [data]="temp_details_data?.latest_update" (dataEvent)="receiveData($event)"
+                                [latest_update_quotes]="styleArr[card_style]?.latest_update_quotes"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [link_btn_latest_other_business_hover]="styleArr[card_style]?.link_btn_latest_other_business_hover"
+                                [template_type]="template_type"></app-latest-update>
+                            }
+
+
+                            @if( temp_details_data?.other_business?.flag > 0) {
+                            <app-other-businesses id="Other_Business" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [other_business_h2]="styleArr[card_style]?.other_business_h2"
+                                [other_business_visit_btn]="styleArr[card_style]?.other_business_visit_btn"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [link_btn_latest_other_business_hover]="styleArr[card_style]?.link_btn_latest_other_business_hover"
+                                [data]="temp_details_data?.other_business"></app-other-businesses>
+
+                            }
+
+
+                            @if( temp_details_data?.contact_details?.data?.length ) {
+                            <app-contact-us id="Contact_Us" [template_type]="template_type"
+                                [data2]="temp_details_data?.template_layout_style"
+                                [contact_visit_btn]="styleArr[card_style]?.contact_visit_btn"
+                                [card_heading_bg]="temp_details_data?.card_heading_bg"
+                                [card_heading_bg]="styleArr[card_style]?.card_heading_bg"
+                                [contact_visit_btn]="styleArr[card_style]?.contact_visit_btn"
+                                [about_company_data]="styleArr[card_style]?.about_company_data"
+                                [conatct_us_data]="temp_details_data?.contact_us_enquiry"
+                                [contact_btn_hover]="styleArr[card_style]?.contact_btn_hover"
+                                [payment_data_div]="styleArr[card_style]?.payment_data_div"
+                                [data]="temp_details_data?.contact_details"></app-contact-us>
+                            }
+
+                        </div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- popup for product-card -->
+            <div class="angular-modal-backdrop" *ngIf="showProductModal" >
+                <div class="angular-modal-dialog login_section ionic_common_modal  pop-height" (click)="onModalClick($event)">
+
+
+                    <div class="angular-modal-content">
+                        <div class="wrapper login_form">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between"
+                                    [ngStyle]="styleArr[card_style]?.popup_card_header?styleArr[card_style]?.popup_card_header:{'color': card2textcolour, 'background': card2bgcolour }">
+                                    <h2 class="mb-0" [ngStyle]="{'color': card2textcolour}">Product Description </h2>
+                                    <i class="fa-solid fa-xmark close-btn" (click)="closeProductModal()"
+                                        [ngStyle]="{'color': card2textcolour , '--color': card2textcolour}"></i>
+                                </div>
+                                <div class="card-body product-card-body">
+                                    <div class="d-flex flex-column gap-3">
+
+
+
+                                        <div class="d-flex justify-content-center gap-3" [ngClass]="{
+       'single-img-wrapper': childMessage?.product_image1 && childMessage.product_image1 !== 'null'
+                            && (!childMessage?.product_image2 || childMessage.product_image2 === 'null')
+     }">
+
+                                            <!-- Image 1 -->
+                                            <div class="img-product" [ngClass]="{
+          'single-img': childMessage?.product_image1 && childMessage.product_image1 !== 'null'
+                        && (!childMessage?.product_image2 || childMessage.product_image2 === 'null')
+        }" *ngIf="childMessage?.product_image1 && childMessage.product_image1 !== 'null'">
+
+                                                <img [src]="globalObject.getImageSrc(childMessage?.product_image1)"
+                                                    alt="product_image">
+                                            </div>
+
+                                            <!-- Image 2 -->
+                                            <div class="img-product"
+                                                *ngIf="childMessage?.product_image2 && childMessage.product_image2 !== 'null'">
+
+                                                <img [src]="globalObject.getImageSrc(childMessage?.product_image2)"
+                                                    alt="product_image">
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- <div class="product-details">
+                                        <h3>{{childMessage?.product_name}}</h3>
+                                        <p>{{childMessage?.short_desc}}</p>
+                                        <h4>Price: <span class="price-color">
+                                                <span class="cut-price">₹{{childMessage?.regular_price}}</span>
+                                                <span
+                                                    *ngIf="childMessage?.selling_price">₹</span>{{childMessage?.selling_price}}</span>
+                                        </h4>
+                                    </div> -->
+                                        <div class="product-details">
+                                            <h3>{{childMessage?.product_name}}</h3>
+                                            <div [innerHTML]="childMessage?.desc_html"
+                                                class="template-popup-description-table"></div>
+                                            <h4
+                                                *ngIf="childMessage?.regular_price > 0 || childMessage?.selling_price > 0">
+                                                Price:
+
+                                                <!-- Case: selling price > 0 -->
+                                                <span class="price-color"
+                                                    *ngIf="childMessage?.selling_price > 0; else showRegular">
+
+                                                    <span class="cut-price" *ngIf="childMessage?.regular_price > 0">
+                                                        {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                        globalObject.getLocallData("cur_symbol_sign") : '₹' }}{{
+                                                        childMessage?.regular_price }}
+                                                    </span>
+                                                    {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }}{{
+                                                    childMessage?.selling_price }}
+
+                                                </span>
+
+                                                <!-- Case: selling = 0 -->
+                                                <ng-template #showRegular>
+
+                                                    <!-- regular > 0 & selling = 0 -->
+                                                    <span class="price-color"
+                                                        *ngIf="childMessage?.regular_price > 0 && childMessage.selling_price && childMessage?.selling_price == 0">
+                                                        <span class="cut-price">
+                                                            {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                            globalObject.getLocallData("cur_symbol_sign") : '₹' }}{{
+                                                            childMessage?.regular_price }}
+                                                        </span>
+                                                        {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                        globalObject.getLocallData("cur_symbol_sign") : '₹' }}0
+                                                    </span>
+
+                                                </ng-template>
+
+                                                <!-- Case: regular > 0 & selling !=0  -->
+                                                <span class="price-color"
+                                                    *ngIf="childMessage.regular_price > 0 && (childMessage.selling_price === 'null' || childMessage.selling_price === null || childMessage.selling_price === undefined || childMessage.selling_price === '')">
+                                                    {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                    childMessage.regular_price }}
+                                                </span>
+                                            </h4>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer product-details">
+                                    <a class="dark-btn" target="_blank" type="button" [ngStyle]="
+    hoveredIndex === 1
+      ? {
+          'color': card2bgcolour,
+          'background': card2textcolour,
+          'border': `2px solid ${card2bgcolour}`
+        }
+      : (
+          styleArr[card_style]?.popup_enquiry_btns
+            ? styleArr[card_style]?.popup_enquiry_btns
+            : {
+                'color': card2textcolour,
+                'background': card2bgcolour,
+                'border': `2px solid ${card2bgcolour}`
+              }
+        )
+  " (mouseenter)="hoveredIndex = 1" (mouseleave)="hoveredIndex = -1"
+                                        [href]="getWhatsappLink_product(childMessage.wp_number, childMessage.product_name)">
+                                        Enquiry
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </ng-template> -->
+
+                        <div class="template-content-inner ion-padding">
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- popup for profile share button  -->
+            <div class="angular-modal-backdrop" *ngIf="showShareModal" >
+                <div class="angular-modal-dialog login_section ionic_common_modal  pop-height" (click)="onModalClick($event)">
+
+
+                    <div class="angular-modal-content">
+                        <div class="wrapper login_form">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between"
+                                    [ngStyle]="styleArr[card_style]?.popup_card_header?styleArr[card_style]?.popup_card_header:{'color': card2textcolour, 'background': card2bgcolour }">
+                                    <h2 class="mb-0" [ngStyle]="{
+                                                            'color': card2textcolour}">Share profile of
+                                        {{temp_details_data.profile_images.data[0].first_name}}
+                                        {{temp_details_data.profile_images.data[0].last_name}} </h2>
+
+                                    <i class="fa-solid fa-xmark close-btn" (click)="closeShareModal()"
+                                        [ngStyle]="{
+                                                            'color': card2textcolour , '--color': card2textcolour}"></i>
+                                </div>
+
+                                <div class="card-body profile-share-body">
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-4 col-6  ">
+                                            <a (click)="openWhatsApp($event)" target="_blank">
+                                                <div class="outer-share-div ">
+                                                    <div class="share-icon">
+                                                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp-ttwo.png'"
+                                                            alt="pcards">
+                                                    </div>
+                                                    <h3>Whatsapp</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3  col-sm-4 col-6">
+                                            <a target="_blank" (click)="openSMS($event)">
+                                                <div class="outer-share-div ">
+                                                    <div class="share-icon">
+                                                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/text-messages.png'"
+                                                            alt="pcards">
+                                                    </div>
+                                                    <h3>Text Message</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-6">
+                                            <a target="_blank" (click)="openTelegram($event)">
+                                                <div class="outer-share-div ">
+                                                    <div class="share-icon">
+                                                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/telegram.png'"
+                                                            alt="pcards">
+                                                    </div>
+                                                    <h3>Telegram</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-6">
+                                            <a href="" target="_blank" (click)="openLinkedIn($event)">
+                                                <div class="outer-share-div">
+                                                    <div class="share-icon">
+                                                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/linkedin.png'"
+                                                            alt="pcards">
+                                                    </div>
+                                                    <h3>Linkedin</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+
+                </div>
+            </div>
+
+
+
+
+            <!-- popup for service-card   -->
+            <div class="angular-modal-backdrop" *ngIf="showServiceModal">
+                <div class="angular-modal-dialog login_section ionic_common_modal  pop-height" (click)="onModalClick($event)">
+
+                    <div class="angular-modal-content">
+                        <div class="wrapper login_form">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between"
+                                    [ngStyle]="styleArr[card_style]?.popup_card_header?styleArr[card_style]?.popup_card_header:{'color': card2textcolour, 'background': card2bgcolour }">
+                                    <h2 class="mb-0" [ngStyle]="{
+                                                            'color': card2textcolour}">Service Description </h2>
+                                    <i  class="fa-solid fa-xmark close-btn" (click)="closeProductModal1()"
+                                        [ngStyle]="{
+                                                            'color': card2textcolour , '--color': card2textcolour}"></i>
+                                </div>
+                                <div class="card-body service-card-body">
+                                    <div class="d-flex flex-column gap-3">
+                                        <div class="d-flex justify-content-center gap-3" [ngClass]="{
+                                    'single-img-wrapper': childMessage?.service_image1 && childMessage.service_image1 !== 'null'
+                              && (!childMessage?.service_image2 || childMessage.service_image2 === 'null')
+                                    }">
+
+                                            <!-- Service Image 1 -->
+                                            <div class="img-product" [ngClass]="{
+            'single-img': childMessage?.service_image1 && childMessage.service_image1 !== 'null'
+                          && (!childMessage?.service_image2 || childMessage.service_image2 === 'null')
+         }" *ngIf="childMessage?.service_image1 && childMessage.service_image1 !== 'null'">
+
+                                                <img [src]="globalObject.getImageSrc(childMessage?.service_image1)"
+                                                    alt="service_image">
+                                            </div>
+
+                                            <!-- Service Image 2 -->
+                                            <div class="img-product"
+                                                *ngIf="childMessage?.service_image2 && childMessage.service_image2 !== 'null'">
+
+                                                <img [src]="globalObject.getImageSrc(childMessage?.service_image2)"
+                                                    alt="service_image">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="service-details">
+                                            <h3 *ngIf="childMessage?.service_name">{{childMessage?.service_name}}</h3>
+                                            <p *ngIf="childMessage?.service_desc"
+                                                class="template-popup-description-table"
+                                                [innerHTML]="decodeHtml(childMessage?.service_desc)"></p>
+                                            <h4 *ngIf="childMessage?.service_price 
+           && childMessage?.service_price !== 'null' 
+           && childMessage?.service_price != 0">
+                                                Price:
+                                                <span class="price-color">
+                                                    {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }}{{
+                                                    childMessage?.service_price }}
+                                                </span>
+                                            </h4>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <a class="dark-btn" target="_blank" type="button" [ngStyle]="
+    hoveredIndex === 1
+      ? {
+          'color': card2bgcolour,
+          'background': card2textcolour,
+          'border': `2px solid ${card2bgcolour}`
+        }
+      : (
+          styleArr[card_style]?.popup_enquiry_btns
+            ? styleArr[card_style]?.popup_enquiry_btns
+            : {
+                'color': card2textcolour,
+                'background': card2bgcolour,
+                'border': `2px solid ${card2bgcolour}`
+              }
+        )
+  " (mouseenter)="hoveredIndex = 1" (mouseleave)="hoveredIndex = -1"
+                                        [href]="getWhatsappLink_services(childMessage.wp_number, childMessage.service_name)">
+                                        Enquiry
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+            <!----------------- popup for latest update -------------->
+            <div class="angular-modal-backdrop" *ngIf="showLatestModal" >
+
+
+                
+                               
+                <div class="angular-modal-dialog login_section ionic_common_modal  pop-height" (click)="onModalClick($event)">
+
+
+                    <div class="angular-modal-content">
+                        <div class="wrapper login_form">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between"
+                                    [ngStyle]="styleArr[card_style]?.popup_card_header?styleArr[card_style]?.popup_card_header:{'color': card2textcolour, 'background': card2bgcolour }">
+                                    <h2 class="mb-0" [ngStyle]="{
+                                                            'color': card2textcolour}">
+                                        Blog</h2>
+
+                                    <i  class="fa-solid fa-xmark close-btn" (click)="closelatestModal()"
+                                        [ngStyle]="{
+                                                            'color': card2textcolour , '--color': card2textcolour}"></i>
+                                </div>
+                                <div class="card-body latest-update-body">
+
+                                    <div class="latest-update-div">
+                                        <div class="image-div" *ngIf="modal_latest_update?.latest_update_image">
+                                            <img [src]="globalObject.getImageSrc(modal_latest_update?.latest_update_image)"
+                                                alt="blog image">
+                                        </div>
+
+                                        <h3>{{modal_latest_update?.title}}</h3>
+                                        <p>{{modal_latest_update?.description}}</p>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <a [href]="modal_latest_update?.latest_update_link" target="_blank" class="link-btn"
+                                        [ngStyle]="
+    hoveredIndex === 1
+      ? {
+          'color': card2bgcolour,
+          'background': card2textcolour,
+          'border': `2px solid ${card2bgcolour}`
+        }
+      : (
+          styleArr[card_style]?.popup_enquiry_btns
+            ? styleArr[card_style]?.popup_enquiry_btns
+            : {
+                'color': card2textcolour,
+                'background': card2bgcolour,
+                'border': `2px solid ${card2bgcolour}`
+              }
+        )
+  " (mouseenter)="hoveredIndex = 1" (mouseleave)="hoveredIndex = -1">{{modal_latest_update?.latest_update_button_title}}</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="template-content-inner ion-padding">
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="angular-modal-backdrop" *ngIf="showHelpModal" >
+                <div class="angular-modal-dialog ionic_common_modal  pop-height" (click)="onModalClick($event)">
+
+                    <div class="angular-modal-content">
+                        <div class="wrapper login_form">
+                            <img src="assets/gallery/video-document.jpg" alt="video doucment image">
+                            <div class="d-flex justify-content-end mt-3">
+                                <button type="button" class="ghost_btn" (click)="closeHelpModal()">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <!------------ new website template 1 ---------->
+
+            <!--------- template 7 ------->
+
+            @if(template_type == 'layout7') {
+            <div class="template-new-1-outer-div" (scroll)="onScroll($event)" [ngStyle]="{'background': bodybgcolour}">
+
+                @if(temp_details_data) {
+
+
+                <app-profile id="Home" [template_type]="template_type" (dataEvent)="openpopup($event)"
+                    [pcard_url_template]="temp_details_data?.pcard_url_template"
+                    [social_data]="temp_details_data?.social_data" [company_info]="temp_details_data?.company_info"
+                    [data]="temp_details_data?.profile_images" [data2]="temp_details_data?.template_layout_style"
+                    [company_info]="temp_details_data?.company_info" [other_link]="temp_details_data?.other_link"
+                    [product_list]="temp_details_data?.product_list" [services]="temp_details_data?.services"
+                    [about_me]="temp_details_data?.about_me" [payment]="temp_details_data?.payment"
+                    [user_template]="temp_details_data?.user_template_layout_style"
+                    [education]="temp_details_data?.education" [skills]="temp_details_data?.skills"
+                    [experience]="temp_details_data?.experience" [latest_update]="temp_details_data?.latest_update"
+                    [other_business]="temp_details_data?.other_business"
+                    [contact_details]="temp_details_data?.contact_details"
+                    [google_review]="temp_details_data?.google_review"
+                    [photo_gallery]="temp_details_data?.photo_gallery"
+                    [video_gallery]="temp_details_data?.video_gallery" [datas]="temp_details_data?.contact_details"
+                    [isScrolled]="isScrolled"></app-profile>
+                }
+
+
+
+                @if( temp_details_data?.company_info?.flag > 0 || temp_details_data?.qr_code?.flag > 0 ||
+                temp_details_data?.whatsapp_enquiry?.flag > 0) {
+                <app-company-info [template_type]="template_type" [data]="temp_details_data?.company_info"
+                    (dataEvent)="openpopup($event)" [pcard_url_template]="temp_details_data?.pcard_url_template"
+                    [user_template]="temp_details_data?.user_template_layout_style"
+                    [google_review]="temp_details_data?.google_review"  
+                    [template_url]="temp_details_data?.template_layout_style" [template_type]="template_type"
+                    [qr_code]="temp_details_data?.qr_code" [data2]="temp_details_data?.template_layout_style"
+                    [whatsapp_enquiry]="temp_details_data?.whatsapp_enquiry"></app-company-info>
+
+
+
+
+                }
+                @if( temp_details_data?.other_link?.flag > 0) {
+                <app-other-links [template_type]="template_type" id="other-link" (dataEvent)="openpopup($event)"
+                    [data2]="temp_details_data?.template_layout_style"
+                      [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.other_link"></app-other-links>
+                }
+
+
+                @if( temp_details_data?.product_list?.flag > 0) {
+                <app-products [template_type]="template_type" (dataEvent)="receiveData7($event)" id="products"
+                    [data2]="temp_details_data?.template_layout_style" (dataEvent)="openpopup($event)"
+                    [whatup]="temp_details_data?.contact_details"
+                      [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.product_list"></app-products>
+                }
+                @if( temp_details_data?.services?.flag > 0) {
+                <app-services [template_type]="template_type" (dataEvent)="receiveData6($event)"
+                    [whatup]="temp_details_data?.contact_details" id="services" (dataEvent)="openpopup($event)"
+                    [data2]="temp_details_data?.template_layout_style"
+                      [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.services"></app-services>
+                }
+                @if( temp_details_data?.payment?.flag > 0) {
+                <app-payment id="Payment_Details" [template_type]="template_type" id="Payment_Details"
+                    [data2]="temp_details_data?.template_layout_style"
+                      [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.payment"></app-payment>
+                }
+
+                @if( temp_details_data?.about_me?.flag > 0) {
+                <app-about-us id="About_Me" [template_type]="template_type" id="about-me"
+                    (dataEvent)="openpopup($event)" [user_template]="temp_details_data?.user_template_layout_style"
+                    [data2]="temp_details_data?.template_layout_style"
+                      [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.about_me"></app-about-us>
+                }
+
+                @if( temp_details_data?.education?.flag > 0 || temp_details_data?.skills?.flag > 0 ||
+                temp_details_data?.experience?.flag > 0) {
+                <app-education [template_type]="template_type" (dataEvent)="openpopup($event)"
+                    [passid]="passid"
+                      [user_template]="temp_details_data?.user_template_layout_style"
+                    [data2]="temp_details_data?.template_layout_style" [skills]="temp_details_data?.skills"
+                    [experience]="temp_details_data?.experience" [data]="temp_details_data?.education"></app-education>
+
+                }
+
+                @if( temp_details_data?.photo_gallery?.flag > 0 || temp_details_data?.video_gallery?.flag > 0) {
+                <app-gallary [template_type]="template_type" [data2]="temp_details_data?.template_layout_style"
+                    (dataEvent)="openpopup($event)" [data]="temp_details_data?.photo_gallery"
+                    [video]="temp_details_data?.video_gallery" [user_template]="temp_details_data?.user_template_layout_style"></app-gallary>
+
+
+                }
+
+
+                @if( temp_details_data?.other_business?.flag > 0) {
+                <app-other-businesses id="Other_Business" [template_type]="template_type"
+                    [data2]="temp_details_data?.template_layout_style" id="other-business"
+                      [user_template]="temp_details_data?.user_template_layout_style"
+                    (dataEvent)="openpopup($event)" [data]="temp_details_data?.other_business"></app-other-businesses>
+                }
+
+                @if( temp_details_data?.latest_update?.flag > 0) {
+                <app-latest-update [template_type]="template_type" id="latest-update" (dataEvent)="openpopup($event)"
+                    (modalState)="handleModalState($event)" [data2]="temp_details_data?.template_layout_style"
+                      [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.latest_update" (dataEvent)=" receiveData($event)"></app-latest-update>
+
+
+
+
+                }
+                @if( temp_details_data?.contact_details?.data?.length) {
+                <app-contact-us [template_type]="template_type" [social_data]="temp_details_data?.social_data"
+                    [data2]="temp_details_data?.template_layout_style" [datas]="temp_details_data?.profile_images"
+                    [data]="temp_details_data?.contact_details" (dataEvent)="openpopup($event)" id="contact-us"
+                      [user_template]="temp_details_data?.user_template_layout_style"
+                    [conatct_us_data]="temp_details_data?.contact_us_enquiry"></app-contact-us>
+                }
+
+
+
+
+            </div>
+            }
+
+
+            <!------------ new website template 2---------->
+
+            <!--------- template 8 ------->
+
+            @if(template_type == 'layout8') {
+            <div class="template-new-2-outer-div" (scroll)="onScroll($event)" [ngStyle]="{ background: bodybgcolour }">
+
+                @if(temp_details_data) {
+                <app-profile [template_type]="template_type" (dataEvent)="openpopup($event)"
+                    [pcard_url_template]="temp_details_data?.pcard_url_template"
+                    [social_data]="temp_details_data?.social_data" [company_info]="temp_details_data?.company_info"
+                    [data]="temp_details_data?.profile_images" [data2]="temp_details_data?.template_layout_style"
+                    [company_info]="temp_details_data?.company_info" [other_link]="temp_details_data?.other_link"
+                    [product_list]="temp_details_data?.product_list" [services]="temp_details_data?.services"
+                    [about_me]="temp_details_data?.about_me" [payment]="temp_details_data?.payment"
+                    [user_template]="temp_details_data?.user_template_layout_style"
+                    [education]="temp_details_data?.education" [skills]="temp_details_data?.skills"
+                    [experience]="temp_details_data?.experience" [latest_update]="temp_details_data?.latest_update"
+                    [other_business]="temp_details_data?.other_business"
+                    [contact_details]="temp_details_data?.contact_details"
+                    [google_review]="temp_details_data?.google_review"
+                    [photo_gallery]="temp_details_data?.photo_gallery"
+                    [video_gallery]="temp_details_data?.video_gallery" [datas]="temp_details_data?.contact_details"
+                    [isScrolled]="isScrolled"></app-profile>
+
+                }
+
+
+                @if( temp_details_data?.whatsapp_enquiry?.flag > 0 || temp_details_data?.qr_code?.flag > 0) {
+                <app-whatsapp-settings [data]="temp_details_data?.whatsapp" [template_type]="template_type"
+                    [whatsapp_enquiry]="temp_details_data?.whatsapp_enquiry"
+                    [template_url]="temp_details_data?.template_layout_style"
+                    [data_1]="temp_details_data?.whatsapp_enquiry" [company_info]="temp_details_data?.google_review"
+                    [qr_code]="temp_details_data?.qr_code" [pcard_url_template]="temp_details_data?.pcard_url_template"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data2]="temp_details_data?.template_layout_style"></app-whatsapp-settings>
+                }
+
+                @if( temp_details_data?.company_info?.flag > 0) {
+                <app-company-info [template_type]="template_type" [data]="temp_details_data?.company_info"
+                    (dataEvent)="openpopup($event)" [pcard_url_template]="temp_details_data?.pcard_url_template"
+                    [user_template]="temp_details_data?.user_template_layout_style"
+                    [template_url]="temp_details_data?.template_layout_style" [template_type]="template_type"
+                    [data2]="temp_details_data?.template_layout_style"></app-company-info>
+                }
+
+
+                @if( temp_details_data?.other_link?.flag > 0) {
+                <app-other-links [template_type]="template_type" id="other-link" (dataEvent)="openpopup($event)"
+                    [data2]="temp_details_data?.template_layout_style"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.other_link"></app-other-links>
+                }
+
+
+                @if( temp_details_data?.product_list?.flag > 0) {
+                <app-products [template_type]="template_type" (dataEvent)="receiveData7($event)" id="products"
+                    [data2]="temp_details_data?.template_layout_style" (dataEvent)="openpopup($event)"
+                    [whatup]="temp_details_data?.contact_details"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.product_list"></app-products>
+                }
+                @if( temp_details_data?.services?.flag > 0) {
+                <app-services [template_type]="template_type" (dataEvent)="receiveData6($event)"
+                    [whatup]="temp_details_data?.contact_details" id="services" (dataEvent)="openpopup($event)"
+                    [data2]="temp_details_data?.template_layout_style"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.services"></app-services>
+                }
+                @if( temp_details_data?.payment?.flag > 0) {
+                <app-payment id="Payment_Details" [template_type]="template_type" id="Payment_Details"
+                    [data2]="temp_details_data?.template_layout_style"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.payment"></app-payment>
+                }
+
+                @if( temp_details_data?.about_me?.flag > 0) {
+                <app-about-us id="About_Me" [template_type]="template_type" id="about-me"
+                    (dataEvent)="openpopup($event)" [user_template]="temp_details_data?.user_template_layout_style"
+                    [data2]="temp_details_data?.template_layout_style"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.about_me"></app-about-us>
+                }
+
+                @if( temp_details_data?.education?.flag > 0 || temp_details_data?.skills?.flag > 0 ||
+                temp_details_data?.experience?.flag > 0) {
+                <app-education [template_type]="template_type" (dataEvent)="openpopup($event)"
+                    [data2]="temp_details_data?.template_layout_style" [skills]="temp_details_data?.skills"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [experience]="temp_details_data?.experience" [data]="temp_details_data?.education"></app-education>
+
+                }
+
+                @if( temp_details_data?.photo_gallery?.flag > 0 || temp_details_data?.video_gallery?.flag > 0) {
+                <app-gallary [template_type]="template_type" [data2]="temp_details_data?.template_layout_style"
+                    (dataEvent)="openpopup($event)" [data]="temp_details_data?.photo_gallery"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [video]="temp_details_data?.video_gallery"></app-gallary>
+
+
+                }
+
+
+                @if( temp_details_data?.other_business?.flag > 0) {
+                <app-other-businesses id="Other_Business" [template_type]="template_type"
+                    [data2]="temp_details_data?.template_layout_style" id="other-business"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    (dataEvent)="openpopup($event)" [data]="temp_details_data?.other_business"></app-other-businesses>
+                }
+
+                @if( temp_details_data?.latest_update?.flag > 0) {
+                <app-latest-update [template_type]="template_type" id="latest-update" (dataEvent)="openpopup($event)"
+                    (modalState)="handleModalState($event)" [data2]="temp_details_data?.template_layout_style"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.latest_update" (dataEvent)=" receiveData($event)"></app-latest-update>
+
+
+
+
+                }
+                @if( temp_details_data?.contact_details?.data?.length) {
+                <app-contact-us [template_type]="template_type" [social_data]="temp_details_data?.social_data"
+                    [data2]="temp_details_data?.template_layout_style" [datas]="temp_details_data?.profile_images"
+                    [data]="temp_details_data?.contact_details" (dataEvent)="openpopup($event)" id="contact-us"
+                    [conatct_us_data]="temp_details_data?.contact_us_enquiry"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [pcard_url_template]="temp_details_data?.pcard_url_template"
+                    [profile_data]="temp_details_data?.profile_images"></app-contact-us>
+                }
+
+
+
+
+
+            </div>
+
+            }
+
+
+
+            <!------------ new website template 3---------->
+
+            <!--------- template 9 ------->
+
+            @if(template_type == 'layout9') {
+            <div class="template-new-3-outer-div" (scroll)="onScroll($event)" [ngStyle]="{ background: bodybgcolour }">
+
+
+                @if(temp_details_data || temp_details_data?.qr_code?.flag > 0 ||
+                temp_details_data?.whatsapp_enquiry?.flag > 0) {
+
+
+                <app-profile [template_type]="template_type" (dataEvent)="openpopup($event)"
+                    [pcard_url_template]="temp_details_data?.pcard_url_template"
+                    [social_data]="temp_details_data?.social_data" [company_info]="temp_details_data?.company_info"
+                    [data]="temp_details_data?.profile_images" [data2]="temp_details_data?.template_layout_style"
+                    [company_info]="temp_details_data?.company_info" [other_link]="temp_details_data?.other_link"
+                    [product_list]="temp_details_data?.product_list" [services]="temp_details_data?.services"
+                    [about_me]="temp_details_data?.about_me" [payment]="temp_details_data?.payment"
+                    [user_template]="temp_details_data?.user_template_layout_style"
+                    [education]="temp_details_data?.education" [skills]="temp_details_data?.skills"
+                    [experience]="temp_details_data?.experience" [latest_update]="temp_details_data?.latest_update"
+                    [other_business]="temp_details_data?.other_business"
+                    [contact_details]="temp_details_data?.contact_details"
+                    [google_review]="temp_details_data?.google_review"
+                    [photo_gallery]="temp_details_data?.photo_gallery"
+                    [video_gallery]="temp_details_data?.video_gallery" [datas]="temp_details_data?.contact_details"
+                    [qr_code]="temp_details_data?.qr_code" [whatsapp_enquiry]="temp_details_data?.whatsapp_enquiry"
+                    [isScrolled]="isScrolled"></app-profile>
+                }
+
+
+
+                @if( temp_details_data?.company_info?.flag > 0) {
+                <app-company-info [template_type]="template_type" [data]="temp_details_data?.company_info"
+                    (dataEvent)="openpopup($event)" [pcard_url_template]="temp_details_data?.pcard_url_template"
+                    [user_template]="temp_details_data?.user_template_layout_style"
+                    [template_url]="temp_details_data?.template_layout_style" [template_type]="template_type"
+                    [data2]="temp_details_data?.template_layout_style"></app-company-info>
+                }
+
+
+                @if( temp_details_data?.other_link?.flag > 0) {
+                <app-other-links [template_type]="template_type" id="other-link" (dataEvent)="openpopup($event)"
+                    [data2]="temp_details_data?.template_layout_style"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.other_link"></app-other-links>
+                }
+
+                @if( temp_details_data?.product_list?.flag > 0) {
+                <app-products [template_type]="template_type" (dataEvent)="receiveData7($event)" id="products"
+                    [data2]="temp_details_data?.template_layout_style" (dataEvent)="openpopup($event)"
+                    [whatup]="temp_details_data?.contact_details"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.product_list"></app-products>
+                }
+                @if( temp_details_data?.services?.flag > 0) {
+                <app-services [template_type]="template_type" (dataEvent)="receiveData6($event)"
+                    [whatup]="temp_details_data?.contact_details" id="services" (dataEvent)="openpopup($event)"
+                    [data2]="temp_details_data?.template_layout_style"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.services"></app-services>
+                }
+                @if( temp_details_data?.payment?.flag > 0) {
+                <app-payment id="Payment_Details" [template_type]="template_type" id="Payment_Details"
+                    [data2]="temp_details_data?.template_layout_style"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.payment"></app-payment>
+                }
+
+                @if( temp_details_data?.about_me?.flag > 0) {
+                <app-about-us id="About_Me" [template_type]="template_type" id="about-me"
+                    (dataEvent)="openpopup($event)" [user_template]="temp_details_data?.user_template_layout_style"
+                    [data2]="temp_details_data?.template_layout_style"
+                    [data]="temp_details_data?.about_me"></app-about-us>
+                }
+
+                @if( temp_details_data?.education?.flag > 0 || temp_details_data?.skills?.flag > 0 ||
+                temp_details_data?.experience?.flag > 0 || temp_details_data?.photo_gallery?.flag > 0 ||
+                temp_details_data?.video_gallery?.flag > 0) {
+                <app-education [template_type]="template_type" (dataEvent)="openpopup($event)"
+                    [data2]="temp_details_data?.template_layout_style" [skills]="temp_details_data?.skills"
+                    [experience]="temp_details_data?.experience" [data]="temp_details_data?.education"
+                    [photo_gallery]="temp_details_data?.photo_gallery"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [video]="temp_details_data?.video_gallery"></app-education>
+
+                }
+
+
+
+                @if( temp_details_data?.other_business?.flag > 0) {
+                <app-other-businesses id="Other_Business" [template_type]="template_type"
+                    [data2]="temp_details_data?.template_layout_style" id="other-business"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    (dataEvent)="openpopup($event)" [data]="temp_details_data?.other_business"></app-other-businesses>
+                }
+
+                @if( temp_details_data?.latest_update?.flag > 0) {
+                <app-latest-update [template_type]="template_type" id="latest-update" (dataEvent)="openpopup($event)"
+                    (modalState)="handleModalState($event)" [data2]="temp_details_data?.template_layout_style"
+                     [user_template]="temp_details_data?.user_template_layout_style"
+                    [data]="temp_details_data?.latest_update" (dataEvent)=" receiveData($event)"></app-latest-update>
+
+
+
+
+                }
+                @if( temp_details_data?.contact_details?.data?.length) {
+                <app-contact-us [template_type]="template_type" [social_data]="temp_details_data?.social_data"
+                    [data2]="temp_details_data?.template_layout_style" [datas]="temp_details_data?.profile_images"
+                    [data]="temp_details_data?.contact_details" (dataEvent)="openpopup($event)" id="contact-us"
+                    [user_template]="temp_details_data?.user_template_layout_style"
+                    [conatct_us_data]="temp_details_data?.contact_us_enquiry"></app-contact-us>
+                }
+
+
+
+
+            </div>
+            }
+
+
+            <!---------- popups for share profile btn ------------->
+            <!-- <div class="angular-modal-backdrop" *ngIf="showShareModal" (click)="onModalClick($event)"> -->
+
+            <div class="angular-modal-backdrop" *ngIf="showShareModalNew" (click)="closeShareModalNew()">
+                <div class="angular-modal-dialog login_section ionic_common_modal  pop-height new-template-popups">
+
+                    <div class="angular-modal-content">
+                        <div class="wrapper login_form">
+                            <div class="card new-temp">
+                                <div class="card-header d-flex justify-content-between ">
+                                    <h2 class="mb-0">Share profile of
+                                        {{temp_details_data.profile_images.data[0].first_name}}
+                                        {{temp_details_data.profile_images.data[0].last_name}}</h2>
+                                    <i  class="fa-solid fa-xmark close-btn" (click)="closeShareModal2()"></i>
+                                </div>
+
+                                <div class="card-body profile-share-body-new">
+                                    <div class="row">
+
+                                        <div class="col-md-3 col-sm-4 col-6  ">
+                                            <a (click)="openWhatsApp($event)" target="_blank">
+                                                <div class="outer-share-div ">
+                                                    <div class="share-icon whatsapp">
+                                                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp.png'"
+                                                            alt="pcards">
+                                                    </div>
+                                                    <h3>Whatsapp</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-md-3  col-sm-4 col-6">
+                                            <a target="_blank" (click)="openSMS($event)">
+                                                <div class="outer-share-div ">
+                                                    <div class="share-icon text-message">
+                                                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/text-messages.png'"
+                                                            alt="pcards">
+                                                    </div>
+                                                    <h3>Text Message</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-md-3 col-sm-4 col-6">
+                                            <a target="_blank" (click)="openTelegram($event)">
+                                                <div class="outer-share-div ">
+                                                    <div class="share-icon telegram">
+                                                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/telegram.png'"
+                                                            alt="pcards">
+                                                    </div>
+                                                    <h3>Telegram</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-md-3 col-sm-4 col-6">
+                                            <a href="" target="_blank" (click)="openLinkedIn($event)">
+                                                <div class="outer-share-div">
+                                                    <div class="share-icon linkedin">
+                                                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/linkedin.png'"
+                                                            alt="pcards">
+                                                    </div>
+                                                    <h3>Linkedin</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!---------- popups for product  ------------->
+            <!-- <div class="angular-modal-backdrop" *ngIf="showProductModal" (click)="onModalClick($event)"> -->
+            <div class="angular-modal-backdrop" *ngIf="showProductModalNew" (click)="closeProductModalNew()">
+                <div class="angular-modal-dialog login_section ionic_common_modal  pop-height new-template-popups">
+
+                    <div class="angular-modal-content">
+                        <div class="wrapper login_form">
+                            <div class="card new-temp">
+                                <div class="card-header d-flex justify-content-between">
+                                    <h2 class="mb-0">Product Description</h2>
+                                    <i  class="fa-solid fa-xmark close-btn" (click)="closeProductModal2()"></i>
+                                </div>
+                                <div class="card-body product-card-body">
+                                    <div class="d-flex flex-column gap-3">
+
+
+
+                                        <div class="d-flex justify-content-center gap-3" [ngClass]="{
+       'single-img-wrapper': childMessage?.product_image1 && childMessage.product_image1 !== 'null'
+                            && (!childMessage?.product_image2 || childMessage.product_image2 === 'null')
+     }">
+
+
+
+
+                                            <!-- Image 1 -->
+                                            <div class="img-product" [ngClass]="{
+          'single-img': childMessage?.product_image1 && childMessage.product_image1 !== 'null'
+                        && (!childMessage?.product_image2 || childMessage.product_image2 === 'null')
+        }" *ngIf="childMessage?.product_image1 && childMessage.product_image1 !== 'null'">
+
+                                                <img [src]="globalObject.getImageSrc(childMessage?.product_image1)"
+                                                    alt="product_image">
+                                            </div>
+
+                                            <!-- Image 2 -->
+                                            <div class="img-product"
+                                                *ngIf="childMessage?.product_image2 && childMessage.product_image2 !== 'null'">
+
+                                                <img [src]="globalObject.getImageSrc(childMessage?.product_image2)"
+                                                    alt="product_image">
+                                            </div>
+
+
+
+                                        </div>
+
+
+
+                                        <div class="product-details">
+                                            <h3>{{childMessage?.product_name}}</h3>
+                                            <div [innerHTML]="childMessage?.desc_html"
+                                                class="template-popup-description-table"></div>
+                                            <div class="w-100 price-div"
+                                                *ngIf="childMessage?.regular_price > 0 || childMessage?.selling_price > 0">
+                                                <b> Price: </b>
+
+                                                <!-- Case: selling price > 0 -->
+                                                <span class="price-color"
+                                                    *ngIf="childMessage?.selling_price > 0; else showRegular">
+
+                                                    <span class="cut-price" *ngIf="childMessage?.regular_price > 0">
+                                                        {{ childMessage?.regular_price }}
+                                                    </span>
+                                                    {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }}{{
+                                                    childMessage?.selling_price }}
+
+                                                </span>
+
+                                                <!-- Case: selling = 0 -->
+                                                <ng-template #showRegular>
+
+                                                    <!-- regular > 0 & selling = 0 -->
+                                                    <span class="price-color"
+                                                        *ngIf="childMessage?.regular_price > 0 && childMessage.selling_price && childMessage?.selling_price == 0">
+                                                        <span class="cut-price">
+                                                            {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                            globalObject.getLocallData("cur_symbol_sign") : '₹' }}{{
+                                                            childMessage?.regular_price }}
+                                                        </span>
+                                                        {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                        globalObject.getLocallData("cur_symbol_sign") : '₹' }}0
+                                                    </span>
+
+                                                </ng-template>
+
+
+                                                <!-- Case: regular > 0 & selling !=0  -->
+                                                <span class="price-color"
+                                                    *ngIf="childMessage.regular_price > 0 && (childMessage.selling_price === 'null' || childMessage.selling_price === null || childMessage.selling_price === undefined || childMessage.selling_price === '')">
+                                                    {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                    childMessage.regular_price }}
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer product-details">
+                                    <a class="enquiry-btn" target="_blank" type="button"
+                                        [ngStyle]="isHover ? { background: card1textcolour, color: card1bgcolour, border: '1px solid ' + card1bgcolour } : { color: card1textcolour, background: card1bgcolour, border: '1px solid ' + card1bgcolour }"
+                                        (mouseenter)="isHover = true" (mouseleave)="isHover = false"
+                                        [href]="getWhatsappLink_product(childMessage.wp_number, childMessage.product_name)">
+                                        Enquiry
+                                    </a>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <!-- </ng-template> -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!---------- popups for service  ------------->
+            <!-- <div class="angular-modal-backdrop" *ngIf="showServiceModal" (click)="onModalClick($event)"> -->
+            <div class="angular-modal-backdrop" *ngIf="showServiceModalNew" (click)="closeServiceModalNew()">
+                <div class="angular-modal-dialog login_section ionic_common_modal  pop-height new-template-popups">
+
+                    <div class="angular-modal-content">
+                        <div class="wrapper login_form">
+                            <div class="card new-temp">
+                                <div class="card-header d-flex justify-content-between ">
+                                    <h2 class="mb-0">Service Description</h2>
+                                    <i  class="fa-solid fa-xmark close-btn" (click)="closeServiceModal2()"></i>
+                                </div>
+
+                                <div class="card-body service-card-body">
+                                    <div class="d-flex flex-column gap-3">
+                                        <div class="d-flex justify-content-center gap-3" [ngClass]="{
+        'single-img-wrapper': childMessage?.service_image1 && childMessage.service_image1 !== 'null'
+                              && (!childMessage?.service_image2 || childMessage.service_image2 === 'null')
+     }">
+
+                                            <!-- Service Image 1 -->
+                                            <div class="img-product" [ngClass]="{
+            'single-img': childMessage?.service_image1 && childMessage.service_image1 !== 'null'
+                          && (!childMessage?.service_image2 || childMessage.service_image2 === 'null')
+         }" *ngIf="childMessage?.service_image1 && childMessage.service_image1 !== 'null'">
+
+                                                <img [src]="globalObject.getImageSrc(childMessage?.service_image1)"
+                                                    alt="service_image">
+                                            </div>
+
+                                            <!-- Service Image 2 -->
+                                            <div class="img-product"
+                                                *ngIf="childMessage?.service_image2 && childMessage.service_image2 !== 'null'">
+
+                                                <img [src]="globalObject.getImageSrc(childMessage?.service_image2)"
+                                                    alt="service_image">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="service-details">
+                                            <h3 *ngIf="childMessage?.service_name">{{childMessage?.service_name}}</h3>
+                                            <div *ngIf="childMessage?.service_desc"
+                                                [innerHTML]="decodeHtml(childMessage?.service_desc)"
+                                                class="template-popup-description-table"></div>
+                                            <div class="w-100 price-div" *ngIf="childMessage?.service_price 
+           && childMessage?.service_price !== 'null' 
+           && childMessage?.service_price != 0"> <b> Price: </b>
+
+                                                <span class="price-color">
+                                                    {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }}{{
+                                                    childMessage?.service_price }}
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="card-footer">
+                                    <a class="enquiry-btn" target="_blank"
+                                        [ngStyle]="isHover ? { background: card1textcolour, color: card1bgcolour, border: '1px solid ' + card1bgcolour } : { color: card1textcolour, background: card1bgcolour, border: '1px solid ' + card1bgcolour }"
+                                        (mouseenter)="isHover = true" (mouseleave)="isHover = false"
+                                        [href]="getWhatsappLink_services(childMessage.wp_number,childMessage?.service_name)">
+                                        Enquiry
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!---------- popups for latest update  ------------->
+            <!-- <div class="angular-modal-backdrop" *ngIf="showLatestModal" (click)="onModalClick($event)"> -->
+            <div class="angular-modal-backdrop" *ngIf="showLatestModalNew" (click)="closeLatestModalNew()">
+                <div class="angular-modal-dialog login_section ionic_common_modal  pop-height new-template-popups">
+
+
+                    <div class="angular-modal-content">
+                        <div class="wrapper login_form">
+                            <div class="card new-temp">
+                                <div class="card-header d-flex justify-content-between ">
+                                    <h2 class="mb-0">Blog</h2>
+                                    <i  class="fa-solid fa-xmark close-btn" (click)="closelatestModal2()"></i>
+                                </div>
+
+                                <div class="card-body latest-update-body">
+
+                                    <div class="latest-update-div">
+
+
+
+
+                                        <div class="image-div" *ngIf="modal_latest_update?.latest_update_image">
+                                            <img [src]="globalObject.getImageSrc(modal_latest_update?.latest_update_image)"
+                                                alt="blog image">
+                                        </div>
+
+
+                                        <h3>{{modal_latest_update?.title}}</h3>
+                                        <p>{{modal_latest_update.description}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                
+                                    <a class="enquiry-btn" [href]="modal_latest_update?.latest_update_link"
+                                        target="_blank"
+                                        [ngStyle]="isHover ? { background: card1textcolour, color: card1bgcolour, border: '1px solid ' + card1bgcolour } : { color: card1textcolour, background: card1bgcolour, border: '1px solid ' + card1bgcolour }"
+                                        (mouseenter)="isHover = true" (mouseleave)="isHover = false">
+                                        {{modal_latest_update?.latest_update_button_title}}
+                                    </a>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+            <!-------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
+
+        </div>
+    </main>
+
+    <div class="template-menu-toggle" *ngIf="template_type != 'layout7' && template_type != 'layout8' && template_type != 'layout9'">
+        <button type="button" class="template-menu-button" (click)="toggleMenu()" [ngStyle]="{
+										'color': isHover ? card1textcolour : card2textcolour,
+										'background': card2bgcolour,
+										'--color': isHover ? card1textcolour : card2textcolour,
+										'--background': card2bgcolour
+									}" (mouseenter)="isHover = true" (mouseleave)="isHover = false">
+            <i class="fa-solid fa-bars" [ngStyle]="{
+										'color': isHover ? card1textcolour : card2textcolour,
+										'--color': isHover ? card1textcolour : card2textcolour
+										}"></i>
+        </button>
+    </div>
+
+</div>
+
+<!----- common offcanvas  yyyy-->
+<!-- add class on ion-menu based on templates (condition) (template-1-outer-div , template-2-outer-div , template-3-outer-div)-->
+<aside class="template-menu-drawer" *ngIf="menuOpen">
+    <header [ngStyle]="{
+															 '--background': card2bgcolour,
+															'background': card2bgcolour
+                                                          }">
+        <div class="template-menu-toggle">
+            <button type="button" (click)="closeMenu()" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour
+                                                          }"><i class="fa-solid fa-xmark" [ngStyle]="{
+                                                            'color': card2textcolour
+                                                          }"></i></button>
+        </div>
+    </header>
+
+    <div class="template-content-inner ion-padding" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            '--background': card2bgcolour,
+															'background': card2bgcolour
+                                                          }">
+
+        <div class="offcanvas-body" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'background': card2bgcolour
+                                                          }">
+
+            <a (click)="scrollToSection('Home')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 1 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                            'background': hoveredIndex === 1 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 1"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>Home</h3>
+                    </div>
+                </div>
+            </a>
+
+            <a *ngIf="temp_details_data?.qr_code?.flag > 0" (click)="scrollToSection('scan_qr')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 2 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 2 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 2"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>Scan QR Code</h3>
+                    </div>
+                </div>
+            </a>
+
+
+            <a *ngIf="temp_details_data?.google_review?.flag > 0" (click)="scrollToSection('review-us')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 3 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 3 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 3"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3> {{temp_details_data?.google_review?.title}}</h3>
+                    </div>
+                </div>
+            </a>
+
+
+            <a *ngIf="temp_details_data?.company_info?.flag > 0 " (click)="scrollToSection('company-info')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 4 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 4 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 4"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-regular fa-building"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.company_info.title}}</h3>
+                    </div>
+                </div>
+            </a>
+
+
+
+            <a *ngIf="temp_details_data?.other_link?.flag > 0 " (click)="scrollToSection('other-link')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 5 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 5 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 5"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.other_link.title}}</h3>
+                    </div>
+                </div>
+            </a>
+
+
+
+
+
+            <a *ngIf="temp_details_data?.product_list?.flag > 0" (click)="scrollToSection('IT_Products')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 6 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 6 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 6"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.product_list.title}}</h3>
+                    </div>
+                </div>
+            </a>
+
+            <a *ngIf="temp_details_data?.services?.flag > 0 &&  temp_details_data?.services?.data[0].service_name"
+                (click)="scrollToSection('Our_Services')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 7 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 7 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 7"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.services.title}}</h3>
+                    </div>
+                </div>
+            </a>
+            <!-- in payment section {{temp_details_data.payment?.data[0]?.google_pay}} -->
+            <!-- <ng-container *ngIf="temp_details_data.payment.data[0].google_pay ||
+  temp_details_data.payment.data[0].phonepay ||  temp_details_data.payment.data[0].paytm ||  (    temp_details_data.payment.data[0].ifsc_code && temp_details_data.payment.data[0].account_number  )
+"> -->
+            <a *ngIf="
+    temp_details_data?.payment?.flag &&
+    (
+      temp_details_data?.payment?.data?.[0]?.google_pay ||
+      temp_details_data?.payment?.data?.[0]?.phonepay ||
+      temp_details_data?.payment?.data?.[0]?.paytm ||
+      temp_details_data?.payment?.data?.[0]?.upi ||
+      (
+        temp_details_data?.payment?.data?.[0]?.ifsc_code &&
+        temp_details_data?.payment?.data?.[0]?.account_number
+      )
+    )
+  " (click)="scrollToSection('Payment_Details')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 8 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 8 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 8"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-regular fa-credit-card"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.payment.title}}</h3>
+                    </div>
+                </div>
+            </a>
+            <!-- </ng-container> -->
+
+            <a *ngIf="temp_details_data?.about_me?.flag > 0 " (click)="scrollToSection('About_Me')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 9 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 9 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 9"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.about_me.title}}</h3>
+                    </div>
+                </div>
+            </a>
+            <a *ngIf="temp_details_data?.education?.flag > 0 " (click)="scrollToSection('Education')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 10 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 10 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 10"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.education.title}}</h3>
+                    </div>
+                </div>
+            </a>
+            <a *ngIf="temp_details_data?.skills?.flag > 0 " (click)="scrollToSection('Skills')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 11 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 11 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 11"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-list"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.skills.title}}</h3>
+                    </div>
+                </div>
+            </a>
+            <a *ngIf="temp_details_data?.experience?.flag > 0 " (click)="scrollToSection('Work_Experience')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 12 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 12 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 12"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.experience.title}}</h3>
+                    </div>
+                </div>
+            </a>
+            <a *ngIf="temp_details_data?.photo_gallery?.flag > 0 " (click)="scrollToSection('Gallery')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 13 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 13 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 13"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.photo_gallery.title}}</h3>
+                    </div>
+                </div>
+            </a>
+            <a *ngIf="temp_details_data?.video_gallery?.flag > 0 " (click)="scrollToSection('Videos')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 14 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 14 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 14"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.video_gallery.title}}</h3>
+                    </div>
+                </div>
+            </a>
+            <a *ngIf="temp_details_data?.latest_update?.flag > 0 " (click)="scrollToSection('latest_update')" [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 15 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 15 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 15"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.latest_update.title}}</h3>
+                    </div>
+                </div>
+            </a>
+
+
+
+
+
+
+            <a *ngIf="temp_details_data?.other_business?.flag > 0 " (click)="scrollToSection('Other_Business')"
+                [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 16 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 16 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 16"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-regular fa-building"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.other_business.title}}</h3>
+                    </div>
+                </div>
+            </a>
+            <a *ngIf=" temp_details_data?.contact_details?.data?.length " (click)="scrollToSection('Contact_Us')"
+                [ngStyle]="{
+                                                            'color': card2textcolour,
+															'--color': card2textcolour,
+                                                            'border-left': hoveredIndex === 17 ? `5px solid ${card2textcolour}` : `5px solid transparent`,
+                                                             'background': hoveredIndex === 17 ? 'color-mix(in srgb, ' + card2textcolour + ' 20%, transparent)'  : `transparent`
+                                                          }" (mouseenter)="hoveredIndex = 17"
+                (mouseleave)="hoveredIndex = null">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="h-100" style="min-width: 25px;">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="h-100">
+                        <h3>{{temp_details_data.contact_details.title}}</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</aside>
+
+
+<div class="common_loader" *ngIf="loader || globalObject.loader">
+    <span class="angular-spinner" aria-label="Loading"></span>
+</div>

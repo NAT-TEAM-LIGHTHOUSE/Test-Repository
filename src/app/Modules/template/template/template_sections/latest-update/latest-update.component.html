@@ -1,0 +1,714 @@
+<!---------- template 1------------>
+
+<!-- Latest Update section -->
+@if(template_type == 'layout1') {
+<section class="latest-update">
+  <div class="card-headings-div">
+    <h3 class="card-headings" [ngStyle]="{'color': card1textcolour}">
+      {{data.title}}
+    </h3>
+    <p class="heading-border" [ngStyle]="{'border':  '1px  solid ' + card1textcolour}"></p>
+  </div>
+  <div class="card-divs">
+    <div id="carousel1" class="carousel slide common-carousel" data-bs-ride="carousel" data-bs-interval="6000">
+
+      <div class="carousel-indicators">
+        <button *ngFor="let item of data?.data; let i = index" type="button" data-bs-target="#carousel1"
+          [attr.data-bs-slide-to]="i" [class.active]="i === 0" [attr.aria-current]="i === 0 ? 'true' : null"
+          [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+
+      <div class="carousel-inner">
+
+
+
+        <div *ngFor="let a of data?.data; let i = index" (click)="latest_popup(a)" class="carousel-item update-card"
+          [class.active]="i === 0">
+
+          <div class="inner-div w-100 text-center">
+
+            <div class="quotes-div" *ngIf="!a.latest_update_image" [ngStyle]="
+                    {'background': card2bgcolour, 'color': card2textcolour}">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+
+            <div class="image-div" *ngIf="a.latest_update_image">
+              <img [src]="globalObject.getImageSrc(a.latest_update_image)" alt="blog image">
+            </div>
+
+
+
+            <h2>{{ a.title }}</h2>
+
+            <div class="climp-text-div">
+              <p #descRef class="clamped">{{ a.description }}</p>
+              <div class="read-more-div" *ngIf="showReadMore[i]">
+                <button class="read-more-btn" (click)="latest_popup(a)">Read
+                  More</button>
+              </div>
+            </div>
+
+            <a [href]="a.latest_update_link" (click)="$event.stopPropagation()" target="_blank" class="dark-btn"
+[ngStyle]="{
+      color: hoveredIndex === i ?  card2bgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : card2bgcolour,
+      border:  `2px solid ${card2bgcolour}`
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+    >{{a.latest_update_button_title}}</a>
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+}
+
+
+<!---------- template 2------------>
+
+<!-- Latest Update section -->
+@else if(template_type == 'layout2') {
+<section class="latest-update w-100">
+  <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+  <div class="card-divs">
+    <div id="carousel2" class="carousel slide common-carousel" data-bs-ride="carousel" data-bs-interval="6000">
+
+      <div class="carousel-indicators">
+        <button *ngFor="let item of data?.data; let i = index" type="button" data-bs-target="#carousel2"
+          [attr.data-bs-slide-to]="i" [class.active]="i === 0" [attr.aria-current]="i === 0 ? 'true' : null"
+          [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+
+      <div class="carousel-inner">
+
+        <div *ngFor="let a of data?.data; let i = index" (click)="latest_popup(a)" class="carousel-item update-card"
+          [class.active]="i === 0">
+
+          <div class="inner-div w-100 text-center">
+
+            <div class="quotes-div" *ngIf="!a.latest_update_image" [ngStyle]="
+                    {'background': card2bgcolour, 'color': card2textcolour}">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+
+            <div class="image-div" *ngIf="a.latest_update_image">
+              <img [src]="globalObject.getImageSrc(a.latest_update_image)" alt="blog image">
+            </div>
+
+
+            <h2>{{ a.title }}</h2>
+
+            <div class="climp-text-div">
+              <p #descRef class="clamped">{{ a.description }}</p>
+              <div class="read-more-div" *ngIf="showReadMore[i]">
+                <button class="read-more-btn" (click)="latest_popup(a)">Read
+                  More</button>
+              </div>
+            </div>
+
+            <a [href]="a.latest_update_link" (click)="$event.stopPropagation()" target="_blank" class="link-btn"
+              [ngStyle]="{
+										'color': isHover ? card1textcolour : card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }"><i class="fa fa-angle-right"></i>
+              {{a.latest_update_button_title}}</a>
+
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+}
+
+<!---------- template 3------------>
+
+<!-- Latest Update section -->
+@else if(template_type == 'layout3') {
+<section class="latest-update w-100">
+  <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' + card2textcolour}">
+    {{data.title}}</h2>
+  <div class="card-divs">
+    <div id="carousel3" class="carousel slide common-carousel" data-bs-ride="carousel" data-bs-interval="6000">
+
+      <div class="carousel-indicators">
+        <button *ngFor="let item of data?.data; let i = index" type="button" data-bs-target="#carousel3"
+          [attr.data-bs-slide-to]="i" [class.active]="i === 0" [attr.aria-current]="i === 0 ? 'true' : null"
+          [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+
+      <div class="carousel-inner">
+
+        <div *ngFor="let a of data?.data; let i = index" (click)="latest_popup(a)" class="carousel-item update-card"
+          [class.active]="i === 0">
+
+          <div class="inner-div w-100 text-center">
+
+            <div class="quotes-div" *ngIf="!a.latest_update_image" [ngStyle]="
+                    {'background': card2bgcolour, 'color': card2textcolour}">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+
+            <div class="image-div" *ngIf="a.latest_update_image">
+              <img [src]="globalObject.getImageSrc(a.latest_update_image)" alt="blog image">
+            </div>
+
+            <h2>{{ a.title }}</h2>
+
+            <div class="climp-text-div">
+              <p #descRef class="clamped">{{ a.description }}</p>
+              <div class="read-more-div" *ngIf="showReadMore[i]">
+                <button class="read-more-btn" (click)="latest_popup(a)">Read
+                  More</button>
+              </div>
+            </div>
+
+            <a [href]="a.latest_update_link" (click)="$event.stopPropagation()" target="_blank" class="link-btn"
+         
+                                                          [ngStyle]="{
+      color: hoveredIndex === i ?  card2bgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : card2bgcolour,
+      border:  `2px solid ${card2bgcolour}`
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+    >{{a.latest_update_button_title}}</a>
+
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel3" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel3" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+}
+
+<!---------- template 4------------>
+
+<!-- Latest Update section -->
+@else if(template_type == 'layout4') {
+<section class="latest-update w-100">
+  <h3 *ngIf="styletype != 'style4'" class="card-headings"
+    [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+    {{data.title}}</h3>
+
+  <!------- for t4  ------>
+  <div class="card-headings-div" *ngIf="styletype == 'style4'">
+    <h3 class="card-headings"
+      [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+      {{data.title}}</h3>
+  </div>
+
+
+
+  <div class="card-divs" [ngStyle]="{'background-color': card2bgcolour}">
+
+    <div id="carousel4" class="carousel slide common-carousel" data-bs-ride="carousel" data-bs-interval="6000">
+
+
+      <div class="carousel-indicators">
+        <button *ngFor="let item of data?.data; let i = index" type="button" data-bs-target="#carousel4"
+          [attr.data-bs-slide-to]="i" [class.active]="i === 0" [attr.aria-current]="i === 0 ? 'true' : null"
+          [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+
+
+      <div class="carousel-inner">
+
+        <div *ngFor="let a of data?.data; let i = index" (click)="latest_popup(a)" class="carousel-item update-card"
+          [class.active]="i === 0">
+
+          <div class="inner-div w-100 text-center">
+
+            <div class="quotes-div" *ngIf="!a.latest_update_image" [ngStyle]="other_business_h2?other_business_h2:
+                    {'background-color': card1bgcolour, 'color': card1textcolour}">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+
+            <div class="image-div" *ngIf="a.latest_update_image">
+              <img [src]="globalObject.getImageSrc(a.latest_update_image)" alt="blog image">
+            </div>
+
+            <h2>{{ a.title }}</h2>
+
+            <div class="climp-text-div">
+              <p #descRef class="clamped">{{ a.description }}</p>
+              <div class="read-more-div" *ngIf="showReadMore[i]">
+                <button class="read-more-btn" (click)="latest_popup(a)">
+                  Read More
+                </button>
+              </div>
+            </div>
+
+            <a [href]="a.latest_update_link" (click)="$event.stopPropagation()" target="_blank" class="link-btn"
+            [ngStyle]="
+  hoveredIndex === i
+    ? (link_btn_latest_other_business_hover || { 
+       'color':  card2textcolour,
+        'background-color': card2bgcolour ,
+       'border': `2px solid ${card2bgcolour}`
+    })
+    : (other_business_h2 || {
+        'color': card1textcolour,
+        'background-color': card1bgcolour,
+        'border': `2px solid ${card1bgcolour}`
+        
+      })
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null">{{a.latest_update_button_title}}</a>
+
+
+          </div>
+
+        </div>
+
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel4" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel4" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+
+
+
+  </div>
+</section>
+
+
+}
+
+<!---------- template 5------------>
+
+@else if(template_type == 'layout5') {
+<section class="latest-update w-100">
+  <h3 class="card-headings"
+    [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+    {{data.title}}</h3>
+  <div class="card-divs"
+    [ngStyle]="latest_update_card_divs ?latest_update_card_divs : {'background-color': card2bgcolour}">
+    <div id="carousel5" class="carousel slide common-carousel" data-bs-ride="carousel" data-bs-interval="6000">
+
+      <div class="carousel-indicators">
+        <button *ngFor="let item of data?.data; let i = index" type="button" data-bs-target="#carousel5"
+          [attr.data-bs-slide-to]="i" [class.active]="i === 0" [attr.aria-current]="i === 0 ? 'true' : null"
+          [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+
+      <div class="carousel-inner">
+
+
+        <div *ngFor="let a of data?.data; let i = index" (click)="latest_popup(a)" class="carousel-item update-card"
+          [class.active]="i === 0">
+
+          <div class="inner-div w-100 text-center">
+
+
+            <div class="quotes-div" *ngIf="!a.latest_update_image" [ngStyle]="other_business_h2?other_business_h2:
+                    {'background-color': card1bgcolour, 'color': card1textcolour}">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+
+            <div class="image-div" *ngIf="a.latest_update_image">
+              <img [src]="globalObject.getImageSrc(a.latest_update_image)" alt="blog image">
+            </div>
+
+            <h2>{{ a.title }}</h2>
+
+            <div class="climp-text-div">
+              <p #descRef class="clamped">{{ a.description }}</p>
+
+
+              <div class="read-more-div" *ngIf="showReadMore[i]">
+                <button class="read-more-btn" (click)="latest_popup(a)">
+                  Read More
+                </button>
+
+              </div>
+            </div>
+
+            <a [href]="a.latest_update_link" (click)="$event.stopPropagation()" target="_blank" class="link-btn"
+            [ngStyle]="
+  hoveredIndex === i
+    ? (link_btn_latest_other_business_hover || { 
+       'color':  card2textcolour,
+        'background-color': card2bgcolour ,
+       'border': `2px solid ${card2bgcolour}`
+    })
+    : (other_business_h2 || {
+        'color': card1textcolour,
+        'background-color': card1bgcolour,
+        'border': `2px solid ${card1bgcolour}`
+        
+      })
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null">{{a.latest_update_button_title}}</a>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel5" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel5" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+}
+
+<!---------- template 6------------>
+
+@else if(template_type == 'layout6') {
+
+
+<section class="latest-update w-100">
+  <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h3>
+  <div class="card-divs">
+    <div id="carousel6" class="carousel slide common-carousel" data-bs-ride="carousel" data-bs-interval="6000">
+
+      <div class="carousel-indicators">
+        <button *ngFor="let item of data?.data; let i = index" type="button" data-bs-target="#carousel6"
+          [attr.data-bs-slide-to]="i" [class.active]="i === 0" [attr.aria-current]="i === 0 ? 'true' : null"
+          [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+
+      <div class="carousel-inner">
+
+
+        <div *ngFor="let a of data?.data; let i = index" (click)="latest_popup(a)" class="carousel-item update-card"
+          [class.active]="i === 0">
+
+          <div class="inner-div w-100 text-center">
+
+
+            <div class="quotes-div" *ngIf="!a.latest_update_image" [ngStyle]="latest_update_quotes ? latest_update_quotes :
+                    {'background-color': card2bgcolour, 'color': card2textcolour}">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+
+            <div class="image-div" *ngIf="a.latest_update_image">
+              <img [src]="globalObject.getImageSrc(a.latest_update_image)" alt="blog image">
+            </div>
+
+            <h2>{{ a.title }}</h2>
+
+            <div class="climp-text-div">
+              <p #descRef class="clamped">{{ a.description }}</p>
+              <div class="read-more-div" *ngIf="showReadMore[i]">
+                <button class="read-more-btn" (click)="latest_popup(a)">Read
+                  More</button>
+              </div>
+            </div>
+
+            <a [href]="a.latest_update_link" target="_blank" class="link-btn" (click)="$event.stopPropagation()"
+           
+                                                                      [ngStyle]="
+  hoveredIndex === i
+    ? (link_btn_latest_other_business_hover || { 
+       'color':  card1textcolour,
+        'background-color': card1bgcolour 
+    })
+    : (latest_update_quotes || {
+        'color': card2textcolour,
+        'background-color': card2bgcolour
+        
+      })
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null">{{a.latest_update_button_title}}</a>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel6" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel6" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+
+
+
+
+
+  </div>
+</section>
+}
+
+
+<!---------- template 7------------>
+
+@else if(template_type == 'layout7') {
+<div class="latest-update">
+
+  <div class="section-headings">
+    <h2 [ngStyle]="{'color':  bodytextcolour}">{{data.title}}</h2>
+    <span [ngStyle]="{'background': card1bgcolour}"></span>
+  </div>
+
+  <div class="swiper  latest-update-swiper-new" [class.single-slide]="data?.data?.length === 1">
+
+
+    <div class="swiper-wrapper">
+
+      <ng-container *ngFor="let a of data.data;let i =index">
+
+        <div class="swiper-slide" (click)="latest_popup_new(a)">
+          <div class="card">
+            <div class="icon-div" [ngStyle]="{
+          'color': card1textcolour,
+          'background':  card1bgcolour
+  
+            }">
+              <i *ngIf="!a.latest_update_image" class="fa-regular fa-newspaper"></i>
+              <img *ngIf="a.latest_update_image" [src]="globalObject.getImageSrc(a.latest_update_image)"
+                alt="blog image">
+            </div>
+            <div class="title-text-div">
+              <h4>{{ a.title }}</h4>
+              <div class="climp-text-div">
+                <p #descRef class="clamped">{{ a.description }}</p>
+                <div class="read-more-div" *ngIf="showReadMore[i]">
+                  <button class="read-more-btn" (click)="latest_popup_new(a)">Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+            <a [href]="a.latest_update_link" target="_blank" class="link-btn" (click)="$event.stopPropagation()"
+              [ngStyle]="isHovered[i]
+     ? {   border: '1px solid ' + card1bgcolour , color:  card1bgcolour, background: card1textcolour }
+     : { color: card1textcolour, background: card1bgcolour, border: '1px solid ' + card1bgcolour  }" (mouseenter)="isHovered[i] = true"
+              (mouseleave)="isHovered[i] = false">{{a.latest_update_button_title}}</a>
+
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+
+
+    <div class="swiper-button-next swiper-navBtn"
+      [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 37%, transparent)'}"><i
+        class="fa-solid fa-caret-right"></i></div>
+    <div class="swiper-button-prev swiper-navBtn"
+      [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 37%, transparent)'}"><i
+        class="fa-solid fa-caret-left"></i></div>
+    <div class="swiper-pagination"></div>
+
+  </div>
+
+</div>
+}
+
+
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+       <section class="latest-update-section padding">
+              <h2 class="card-heading " [ngStyle]="{ border: '0.5px dashed ' + card1bgcolour , color: card1bgcolour }"><i class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i
+                    class="fa-solid fa-right-long"></i></h2>
+
+            <div class="swiper latest-update-swiper-new" [class.single-slide]="data?.data?.length === 1">
+                <!-- SWIPER WRAPPER -->
+                <div class="swiper-wrapper">
+
+                    <ng-container *ngFor="let a of data.data;let i =index">
+                    <!-- card 1 -->
+                    <div class="swiper-slide" (click)="latest_popup_new(a)">
+                        <div class="card"  [ngStyle]="{'border': `1px solid color-mix(in srgb, ${bodybgcolour } 90%, ${bodytextcolour } 9%)`,color: bodytextcolour}">
+
+                            <!-- -----if no image  -->
+                            <div class="icon-div" [ngStyle]="{ color: card1textcolour ,  background: card1bgcolour }" *ngIf="!a.latest_update_image">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                  </div>
+
+
+                            <!-- ---- if image is present -->
+                            <div class="image-div" *ngIf="a.latest_update_image">
+                                <img [src]="globalObject.getImageSrc(a.latest_update_image)" alt="blog image">
+                            </div>
+
+                            <div class="title-text-div">
+                                <h4>{{ a.title }}</h4>
+                                <div class="climp-text-div">
+                                    <p class="clamped" #descRef>{{ a.description }}</p>
+                                    <div class="read-more-div" *ngIf="showReadMore[i]">
+                                        <button type="button" (click)="latest_popup_new(a)" class="read-more-btn">Read More
+                                        </button>
+                                    </div>
+                                </div>
+                               
+                            </div>
+               
+                      <div class="outer-btn-div" [ngStyle]="{
+      background:  card1bgcolour
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"><a class="visit-btn"  [ngStyle]="{
+      color: hoveredIndex === i ?  card1bgcolour : card1textcolour,
+      background: hoveredIndex === i ? card1textcolour : 'transparent',
+     border: hoveredIndex === i ? `1px dashed color-mix(in srgb, ${card1bgcolour} 44%, transparent 2%)` : `1px dashed color-mix(in srgb, ${card1textcolour} 44%, transparent 2%)`
+    }" [href]="a.latest_update_link" (click)="$event.stopPropagation()" target="_blank"><span>{{a.latest_update_button_title}}</span> <i
+                                        class="fa-solid fa-arrow-right-long"></i></a>
+                                      
+                                      
+                                   
+                                      </div>
+
+                        </div>
+                    </div>
+
+</ng-container>
+                  
+
+                </div>
+
+                <!-- NAVIGATION & PAGINATION -->
+                 <div class="swiper-button-next swiper-navBtn"
+     [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 41%, transparent)',  color: bodybgcolour}"><i
+        class="fa-solid fa-caret-right"></i></div>
+    <div class="swiper-button-prev swiper-navBtn"
+   [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 41%, transparent)',  color: bodybgcolour}"><i
+        class="fa-solid fa-caret-left"></i></div>
+    <div class="swiper-pagination"></div>
+
+            </div>
+
+        </section>
+ }
+
+
+ <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+ <section class="latest-update-section">
+            <h2 class="card-heading " [ngStyle]="{ color: bodytextcolour }"><span [ngStyle]="{ background: card1bgcolour }"></span>{{data.title}}</h2>
+
+            <div class="swiper latest-update-swiper-new" [class.single-slide]="data?.data?.length === 1">
+
+                <!-- SWIPER WRAPPER -->
+                <div class="swiper-wrapper">
+
+                     <ng-container *ngFor="let a of data.data;let i =index">
+                    <div class="swiper-slide" (click)="latest_popup_new(a)">
+                        <div class="card"  [ngStyle]="{background: bodybgcolour , color: bodytextcolour  , 'border': `1px solid color-mix(in srgb, ${bodybgcolour } 90%, ${bodytextcolour } 9%)`}"
+>
+
+                            <!-- -----if no image  -->
+                            <div class="icon-div"  [ngStyle]="{ color: card1textcolour ,  background: card1bgcolour }" *ngIf="!a.latest_update_image">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                  </div>
+
+
+                            <!-- ---- if image is present -->
+                            <div class="image-div" *ngIf="a.latest_update_image">
+                                  <img [src]="globalObject.getImageSrc(a.latest_update_image)" alt="blog image">
+                            </div>
+
+                            <div class="title-text-div">
+                                <h4>{{ a.title }}</h4>
+                                <div class="climp-text-div">
+                                    <p class="clamped"  #descRef>{{ a.description }}
+                                       </p>
+                                    <div class="read-more-div" *ngIf="showReadMore[i]">
+                                        <button type="button"  (click)="latest_popup_new(a)" class="read-more-btn">Read More
+                                        </button>
+                                    </div>
+                                </div>
+                                <a class="link-btn" [ngStyle]="{ color: card1textcolour ,  background: card1bgcolour }" [href]="a.latest_update_link" (click)="$event.stopPropagation()" target="_blank">{{a.latest_update_button_title}} <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    </ng-container>
+
+                </div>
+
+                <!-- NAVIGATION & PAGINATION -->
+                <div class="swiper-button-next swiper-navBtn"  [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 41%, transparent)', color: bodybgcolour}"><i
+        class="fa-solid fa-caret-right"></i></div>
+                <div class="swiper-button-prev swiper-navBtn" [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 41%, transparent)', color: bodybgcolour}"><i
+        class="fa-solid fa-caret-left"></i></div>
+                <div class="swiper-pagination"></div>
+
+            </div>
+
+        </section>
+    }
+
+
+ 

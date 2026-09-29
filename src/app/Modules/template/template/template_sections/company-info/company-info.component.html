@@ -1,0 +1,595 @@
+<!---------- template 1------------>
+
+<!-- About Company section -->
+ 
+@if(template_type == 'layout1') {
+    
+<section class="about-company light-card" [ngStyle]="{'color': card1textcolour}" *ngIf="hasAnyField()">
+
+    <div class="card-headings-div" *ngIf="data.flag">
+        <h3 class="card-headings" [ngStyle]="{'color': card1textcolour}">
+            {{data.title}}
+        </h3>
+        <p class="heading-border" [ngStyle]="{'border':  '1px  solid ' + card1textcolour}"></p>
+    </div>
+    
+    <div class="company-data" *ngFor="let a of data.data">
+        
+        <div class="row" *ngIf="a.company_name">
+            <div class="col-6 sub-heading s1" [ngStyle]="{'color': card1textcolour }">
+                <p> {{a.company_name_title}}</p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="{'color': card1textcolour }">
+                {{a.company_name}}
+            </div>
+
+        </div>
+        <div class="row" *ngIf="a.company_category">
+            <div class="col-6 sub-heading s1" [ngStyle]="{'color': card1textcolour }">
+                <p> {{a.company_category_title}}</p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="{'color': card1textcolour }">
+                {{a.company_category}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.comp_nature_of_buss">
+            <div class="col-6 sub-heading s1" [ngStyle]="{'color': card1textcolour }">
+                <p> {{a.comp_nature_of_buss_title}}</p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="{'color': card1textcolour }">
+                {{a.comp_nature_of_buss}}
+            </div>
+        </div>
+
+
+        <div class="row flex-column gap-2" *ngIf="a.specialities && a.specialities.length>0">
+            
+            <div class="col sub-heading" [ngStyle]="{'color': card1textcolour }">
+                {{a.title}} :
+            </div>
+            <div class="col data">
+                <ul>
+                    <li *ngFor="let sp of a.specialities" [ngStyle]="{'color': card1textcolour }">{{ sp.specialities }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <h4 class="sub-heading" [ngStyle]="{'color': card1textcolour }" *ngIf="a.company_description">Company Details :
+        </h4>
+        <!-- <p [ngStyle]="{'color': card1textcolour }" [innerHtml]="a.company_description"> -->
+                          <div class="about-company-description" [ngStyle]="{'color': card1textcolour }" [innerHtml]="a.company_description"></div>
+
+
+            
+        <!-- </p> -->
+    </div>
+</section>
+}
+
+<!---------- template 2------------>
+
+
+<!-- About company section -->
+@else if(template_type == 'layout2') {
+<section class="about-company w-100 d-flex align-items-center flex-column" *ngIf="hasAnyField()">
+    <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+    <div class="company-data light-card" *ngFor="let a of data.data" [ngStyle]="{
+                                                            'color': card1textcolour }">
+        <div class="row" *ngIf="a.company_name">
+            <div class="col-6 sub-heading s1" [ngStyle]="{
+                                                            'color': card1textcolour }">
+                <p>{{a.company_name_title}}</p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="{
+                                                            'color': card1textcolour }"> {{a.company_name}}</div>
+        </div>
+        <div class="row" *ngIf="a.company_category">
+            <div class="col-6 sub-heading s1" [ngStyle]="{
+                                                            'color': card1textcolour }">
+                <p>{{a.company_category_title}}</p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="{
+                                                            'color': card1textcolour }"> {{a.company_category}}</div>
+        </div>
+        <div class="row" *ngIf="a.comp_nature_of_buss">
+            <div class="col-6 sub-heading s1" [ngStyle]="{
+                                                            'color': card1textcolour }">
+                <p>{{a.comp_nature_of_buss_title}}</p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="{
+                                                            'color': card1textcolour }"> {{a.comp_nature_of_buss}}
+            </div>
+        </div>
+        <div class="row flex-column gap-2" *ngIf="a.specialities && a.specialities.length>0 ">
+            <div class="col sub-heading" [ngStyle]="{
+                                                            'color': card1textcolour }">
+                {{a.title}} :
+            </div>
+            <div class="col data">
+                <ul>
+                    <li *ngFor="let sp of a.specialities" [ngStyle]="{
+                                                            'color': card1textcolour }">{{ sp.specialities }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row flex-column gap-3" *ngIf="a.specialities.length>0">
+            <div class="col sub-heading" [ngStyle]="{
+                                                            'color': card1textcolour }">
+                Company Detail :
+            </div>
+            <div class="col data" [ngStyle]="{
+                                                            'color': card1textcolour }"
+                [innerHTML]="a.company_description">
+                
+
+            </div>
+        </div>
+   </div>
+</section>
+
+}
+<!---------- template 3------------>
+
+<!-- About company section -->
+@else if(template_type == 'layout3') {
+<section class="about-company w-100" *ngIf="hasAnyField()">
+    <h1 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' +  card2textcolour}">
+        {{data.title}}</h1>
+    <div class="company-data" *ngFor="let a of data.data" [ngStyle]="{'background-color': bodybgcolour }">
+        <div class="row" *ngIf="a.company_name">
+            <div class="col-6 sub-heading s1">
+                <p>{{a.company_name_title}} </p> <span>:</span>
+            </div>
+            <div class="col-6 data"> {{a.company_name}}</div>
+        </div>
+        <div class="row" *ngIf="a.company_category">
+            <div class="col-6 sub-heading s1">
+                <p>{{a.company_category_title}} </p> <span>:</span>
+            </div>
+            <div class="col-6 data"> {{a.company_category}}</div>
+        </div>
+        <div class="row" *ngIf="a.comp_nature_of_buss">
+            <div class="col-6 sub-heading s1">
+                <p>{{a.comp_nature_of_buss_title}} </p> <span>:</span>
+            </div>
+            <div class="col-6 data"> {{a.comp_nature_of_buss}}</div>
+        </div>
+
+        <div class="row flex-column gap-2" *ngIf="a.specialities && a.specialities.length>0">
+            <div class="col sub-heading">
+                {{a.title}} :
+            </div>
+            <div class="col data">
+                <ul>
+                    <li *ngFor="let sp of a.specialities">{{ sp.specialities }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row flex-column gap-3" *ngIf="a.company_description">
+            <div class="col sub-heading">
+                Company Detail :
+            </div>
+            <div class="col data" [innerHTML]="a.company_description">
+
+            </div>
+        </div>
+    </div>
+</section>
+}
+
+
+<!---------- template 4------------>
+@else if(template_type == 'layout4') {
+<section class="about-company" *ngIf="hasAnyField()">
+    <h3 *ngIf="styletype != 'style4' " class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}} </h3>
+
+    <!-- ------ for t4   --- -->
+    <div class="card-headings-div" *ngIf="styletype == 'style4'" >
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}} </h3>
+    </div>
+
+    <div class="company-data" *ngFor="let a of data.data" [ngStyle]="{'background-color': card2bgcolour}">
+        <div class="row" *ngIf="a.company_name">
+            <div class="col-6 sub-heading s1" [ngStyle]="{'color': card2textcolour }">
+                <p>{{a.company_name_title}} </p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="{'color': card2textcolour }"> {{a.company_name}}</div>
+        </div>
+        <div class="row" *ngIf="a.company_category">
+            <div class="col-6 sub-heading s1" [ngStyle]="{'color': card2textcolour }">
+                <p>{{a.company_category_title}} </p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="{'color': card2textcolour }"> {{a.company_category}}</div>
+        </div>
+        <div class="row" *ngIf="a.comp_nature_of_buss">
+            <div class="col-6 sub-heading s1" [ngStyle]="{'color': card2textcolour }">
+                <p>{{a.comp_nature_of_buss_title}} </p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="{'color': card2textcolour }"> {{a.comp_nature_of_buss}}</div>
+        </div>
+        <div class="row flex-column gap-2" *ngIf="a.specialities && a.specialities.length>0">
+            <div class="col sub-heading" [ngStyle]="{'color': card2textcolour }">
+                {{a.title}} :
+            </div>
+            <div class="col data" [ngStyle]="{'color': card2textcolour }">
+                <ul *ngFor="let sp of a.specialities">
+                    <li [ngStyle]="{'color': card2textcolour }">{{ sp.specialities }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row flex-column gap-3" *ngIf="a.company_description">
+            <div class="col sub-heading" [ngStyle]="{'color': card2textcolour }">
+                Company Detail :
+            </div>
+                <div     class="col data c1 " [innerHTML]="a.company_description" [ngStyle]="{'color': card2textcolour }">
+
+                </div>
+        </div>
+    </div>
+</section>
+
+
+
+}
+
+<!---------- template 5------------>
+@else if(template_type == 'layout5') {
+<section class="about-company" *ngIf="hasAnyField()">
+    <h3 class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}} </h3>
+    <div class="company-data" *ngFor="let a of data.data"
+        [ngStyle]="about_company_data ?about_company_data : {'background-color': card2bgcolour}">
+        <div class="row" *ngIf="a.company_name">
+            <div class="col-6 sub-heading s1"
+                [ngStyle]="about_company_sub_heading ?about_company_sub_heading : {'color': card2textcolour }">
+                <p>{{a.company_name_title}}</p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="about_company_data ?about_company_data : {'color': card2textcolour }">
+                {{a.company_name}}</div>
+        </div>
+        <div class="row" *ngIf="a.company_category">
+            <div class="col-6 sub-heading s1"
+                [ngStyle]="about_company_sub_heading ?about_company_sub_heading : {'color': card2textcolour }">
+                <p>{{a.company_category_title}}</p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="about_company_data ?about_company_data : {'color': card2textcolour }">
+                {{a.company_category}}</div>
+        </div>
+        <div class="row" *ngIf="a.comp_nature_of_buss">
+            <div class="col-6 sub-heading s1"
+                [ngStyle]="about_company_sub_heading ?about_company_sub_heading : {'color': card2textcolour }">
+                <p> {{a.comp_nature_of_buss_title}} </p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="about_company_data ?about_company_data : {'color': card2textcolour }">
+                {{a.comp_nature_of_buss}}</div>
+        </div>
+        <div class="row flex-column gap-2" *ngIf="a.specialities && a.specialities.length>0">
+            <div class="col sub-heading"
+                [ngStyle]="about_company_sub_heading ?about_company_sub_heading : {'color': card2textcolour }">
+                {{a.title}} :
+            </div>
+            <div class="col data" [ngStyle]="about_company_data ?about_company_data : {'color': card2textcolour }"
+                *ngFor="let sp of a.specialities">
+                <ul>
+                    <li [ngStyle]="about_company_data ?about_company_data :  {'color': card2textcolour }">{{
+                        sp.specialities }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row flex-column gap-3" *ngIf="a.company_description">
+            <div class="col sub-heading"
+                [ngStyle]="about_company_sub_heading ?about_company_sub_heading : {'color': card2textcolour }">
+                Company Detail :
+            </div>
+            <div class="col data c1" [innerHTML]="a.company_description"
+                [ngStyle]="about_company_data ?about_company_data : {'color': card2textcolour }">
+            </div>
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 6------------>
+@else if(template_type == 'layout6') {
+<section class="about-company" *ngIf="hasAnyField()">
+    <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}
+    </h3>
+    <div class="company-data" *ngFor="let a of data.data">
+        <div class="row" *ngIf="a.company_name">
+            <div class="col-6 sub-heading s1"
+                [ngStyle]="about_company_sub_heading ?about_company_sub_heading :{'color': card2textcolour }">
+                <p> {{a.company_name_title}} </p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="about_company_data ?about_company_data :  {'color': card2textcolour }">
+                {{a.company_name}}</div>
+        </div>
+        <div class="row" *ngIf="a.company_category">
+            <div class="col-6 sub-heading s1"
+                [ngStyle]="about_company_sub_heading ?about_company_sub_heading : {'color': card2textcolour }">
+                <p> {{a.company_category_title}} </p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="about_company_data ?about_company_data :  {'color': card2textcolour }">
+                {{a.company_category}}</div>
+        </div>
+        <div class="row" *ngIf="a.comp_nature_of_buss">
+            <div class="col-6 sub-heading  s1"
+                [ngStyle]="about_company_sub_heading ?about_company_sub_heading : {'color': card2textcolour }">
+                <p> {{a.comp_nature_of_buss_title}} </p> <span>:</span>
+            </div>
+            <div class="col-6 data" [ngStyle]="about_company_data ?about_company_data :  {'color': card2textcolour }">
+                {{a.comp_nature_of_buss}}</div>
+        </div>
+        <div class="row flex-column gap-2" *ngIf="a.specialities.length>0">
+            <div class="col sub-heading"
+                [ngStyle]="about_company_sub_heading ?about_company_sub_heading : {'color': card2textcolour }">
+                {{a.title}} :
+            </div>
+            <div class="col data" [ngStyle]="about_company_data ?about_company_data :  {'color': card2textcolour }"
+                *ngFor="let sp of a.specialities">
+                <ul>
+                    <li [ngStyle]="about_company_data ?about_company_data : {'color': card2textcolour }">{{
+                        sp.specialities }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row flex-column gap-3"  *ngIf="a.company_description">
+            <div class="col sub-heading"
+                [ngStyle]="about_company_sub_heading ?about_company_sub_heading :{'color': card2textcolour }">
+                Company Detail :
+            </div>
+            <div class="col data c1" [innerHTML]="a.company_description"
+                [ngStyle]="about_company_data ?about_company_data :  {'color': card2textcolour }">
+            </div>
+        </div>
+    </div>
+</section>
+}
+
+
+
+<!---------- template 7------------>
+
+@else if(template_type == 'layout7') {
+<section class="company-info-section" >
+    <div class="about-company" id="about-company-margin" >
+        
+
+        <!------ whatsapp and scan QR section  ------>
+            @if(whatsapp_enquiry?.flag > 0 || qr_code?.flag > 0){
+                    <app-whatsapp-settings [template_type]="template_type" [pcard_url_template]="pcard_url_template" [data2]="data2" 
+               [company_info]="google_review"    [user_template]="user_template"  
+    [template_url]="template_url"  [profileImage]="profileImage" [google_review]="google_review"  [whatsapp_enquiry]="whatsapp_enquiry"  [qr_code]="qr_code"
+    [whatsapp_enquiry]="whatsapp_enquiry"></app-whatsapp-settings>
+}
+
+     
+        @if(data?.flag > 0){
+
+  
+        <div class="company-div"  id="company-info"  *ngIf="hasAnyField()">
+            <div class="row">
+                <div class="col-md-8 data-col"  *ngFor="let a of data?.data">
+                    <div class="section-headings">
+                        <h2 [ngStyle]="{'color':  bodytextcolour}">{{data.title}}</h2>
+                        <span [ngStyle]="{'background': card1bgcolour}"></span>
+                    </div>
+
+                    <div class="main-div">
+                        <div class="single-div" *ngIf="a.company_name" [ngStyle]="{'background': 'color-mix(in srgb, ' + bodybgcolour + ' 95%, ' + bodytextcolour + ' 5%)'}">
+                            <p class="sub-head" [ngStyle]="{'color': bodytextcolour}">{{a.company_name_title}}</p>
+                            <p class="data" [ngStyle]="{'color': bodytextcolour}"> {{a.company_name}}</p>
+                        </div>
+                        <div class="single-div" *ngIf="a.company_category" [ngStyle]="{'background': 'color-mix(in srgb, ' + bodybgcolour + ' 95%, ' + bodytextcolour + ' 5%)'}">
+                            <p class="sub-head" [ngStyle]="{'color': bodytextcolour}">{{a.company_category_title}}</p>
+                            <p class="data" [ngStyle]="{'color': bodytextcolour}"> {{a.company_category}}</p>
+                        </div>
+                        <div class="single-div" *ngIf="a.comp_nature_of_buss" [ngStyle]="{'background': 'color-mix(in srgb, ' + bodybgcolour + ' 95%, ' + bodytextcolour + ' 5%)'}">
+                            <p class="sub-head" [ngStyle]="{'color': bodytextcolour}">{{a.comp_nature_of_buss_title}}</p>
+                            <p class="data" [ngStyle]="{'color': bodytextcolour}"> {{a.comp_nature_of_buss}}</p>
+                        </div>
+                    </div>
+
+                    <div class="info-para" *ngIf="a.company_description">
+                        <h4 [ngStyle]="{'color': bodytextcolour}">Company Detail</h4>
+                            <!-- <p [innerHTML]="a.company_description" [ngStyle]="{'color': bodytextcolour}"></p> -->
+                             <div class="about-company-description" [ngStyle]="{'color': bodytextcolour }" [innerHtml]="a.company_description"></div>
+                    </div>
+
+
+                 
+
+
+
+
+                     <div class="list-para" *ngIf="a.specialities.length>0">
+                        <h4 [ngStyle]="{'color': bodytextcolour}">{{a.title}}:</h4>
+                    <ng-container *ngFor="let sp of a.specialities">
+                        <ul>
+                            <li [ngStyle]="{'color': bodytextcolour}">{{sp.specialities}}</li>
+                        </ul>
+                        </ng-container>
+                    </div>
+
+                </div>
+                <div class="col-md-4 data-col-2 " *ngIf="user_template?.data[0]?.company_details_image;else defaultCompanyImage">
+                  
+                        <img [src]="user_template.data[0].company_details_image" alt="company image">
+                       
+                </div>
+
+
+                <ng-template #defaultCompanyImage>
+                    <div class="col-md-4 data-col-2" *ngIf="about_company_image">
+                    
+                        <img [src]="about_company_image" alt="company image">
+                       
+                </div>
+                </ng-template>    
+ 
+            </div>
+        </div>
+      }
+    </div>
+</section>
+}
+
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+
+
+     <section class="about-company padding" id="company-info" [ngStyle]="{ color: bodytextcolour }"  *ngIf="hasAnyField()">
+            <div class="row">
+                <div class="col-md-4 col-12 image-col"  *ngIf="user_template?.data[0]?.company_details_image;else defaultCompanyImage1">
+                    <div class="inside-image-div">
+                        <div class="left-color-div" [ngStyle]="{border: '2px dashed ' + card1bgcolour }"></div>
+                            <img [src]="user_template.data[0].company_details_image" alt="company image">
+
+                    </div>
+                </div>
+
+
+                  <ng-template #defaultCompanyImage1>
+                <div class="col-md-4 col-12 image-col"  *ngIf="about_company_image">
+                    <div class="inside-image-div" >
+                        <div class="left-color-div" [ngStyle]="{border: '2px dashed ' + card1bgcolour }" ></div>
+                            <img [src]="about_company_image" alt="company image">
+
+                    </div>
+                </div>
+            </ng-template>
+
+
+                <div class="col-md-8 col-12 data-col" *ngFor="let a of data?.data">
+                    <h2 class="card-heading" [ngStyle]="{ border: '0.5px dashed ' + card1bgcolour , color: card1bgcolour }"><i class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i
+                            class="fa-solid fa-right-long"></i></h2>
+
+                    <div class="main-flex">
+
+                        <div class="single-flex"  *ngIf="a.company_name"  [ngStyle]="{ border: `1px dashed color-mix(in srgb, ${bodytextcolour } 34%, ${bodybgcolour} 46%)`}">
+                            <div class="head">{{a.company_name_title}}</div>
+                            <div class="data"> {{a.company_name}}</div>
+                        </div>
+
+
+                        <div class="single-flex" *ngIf="a.company_category"  [ngStyle]="{ border: `1px dashed color-mix(in srgb, ${bodytextcolour } 34%, ${bodybgcolour} 46%)`}">
+                            <div class="head">{{a.company_category_title}}</div>
+                            <div class="data"> {{a.company_category}}</div>
+                        </div>
+
+
+                        <div class="single-flex" *ngIf="a.comp_nature_of_buss"  [ngStyle]="{ border: `1px dashed color-mix(in srgb, ${bodytextcolour } 34%, ${bodybgcolour} 46%)`}">
+                            <div class="head">{{a.comp_nature_of_buss_title}}</div>
+                            <div class="data"> {{a.comp_nature_of_buss}}</div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="details-div">
+                        <div class="data">Company Detail</div>
+                        <!-- <p [innerHTML]="a.company_description"></p> -->
+                         <div class="about-company-description"  [innerHtml]="a.company_description"></div>
+                    </div>
+
+                    <div class="specialities" *ngIf="a.specialities.length>0">
+                        <div class="data">{{a.title}}:</div>
+                          
+                        <div class="flex-class">
+                            <ng-container *ngFor="let sp of a.specialities">
+                            <div class="head"  [ngStyle]="{'background': `color-mix(in srgb, ${bodytextcolour} 7%, ${bodybgcolour} 61%)`}">{{sp.specialities}}</div>   
+                        </ng-container>
+                        </div>
+                 
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+    
+ }
+
+ 
+  <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+<section class="about-company" id="company-info" [ngStyle]="{ color: bodytextcolour }">
+            <div class="row">
+                <div class="col-md-8 col-12 data-col" *ngFor="let a of data?.data">
+                    <h2 class="card-heading" [ngStyle]="{ color: bodytextcolour }"><span [ngStyle]="{ background: card1bgcolour }"></span>{{data.title}}</h2>
+
+                   <div class="main-flex">
+
+                        <div class="single-flex"  *ngIf="a.company_name"  >
+                            <div class="head">{{a.company_name_title}}</div>
+                            <div class="data"> {{a.company_name}}</div>
+                        </div>
+
+
+                        <div class="single-flex" *ngIf="a.company_category" >
+                            <div class="head">{{a.company_category_title}}</div>
+                            <div class="data"> {{a.company_category}}</div>
+                        </div>
+
+
+                        <div class="single-flex" *ngIf="a.comp_nature_of_buss"  >
+                            <div class="head">{{a.comp_nature_of_buss_title}}</div>
+                            <div class="data"> {{a.comp_nature_of_buss}}</div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="details-div">
+                        <div class="data">Company Detail</div>
+                         <!-- <p [innerHTML]="a.company_description"></p> -->
+                           <div class="about-company-description"  [innerHtml]="a.company_description"></div>
+                         
+                    </div>
+
+                    <div class="specialities" *ngIf="a.specialities.length>0">
+                        <div class="data">{{a.title}}:</div>
+                        <div class="flex-class">
+                              <ng-container *ngFor="let sp of a.specialities">
+                            <div class="head"><i class="fa-regular fa-paper-plane"></i>{{sp.specialities}}</div>
+                         </ng-container>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-4 col-12 image-col" *ngIf="user_template?.data[0]?.company_details_image;else defaultCompanyImage2">
+                    <div class="inside-image-div">
+                        <div class="left-color-div" [ngStyle]="{ background: card1bgcolour }"></div>
+                        <img [src]="user_template.data[0].company_details_image" alt="company image">
+                        <div class="right-color-div" [ngStyle]="{ background: card1bgcolour }"></div>
+                    </div>
+                </div>
+
+                  <ng-template #defaultCompanyImage2>
+                     <div class="col-md-4 col-12 image-col"  *ngIf="about_company_image">
+                    <div class="inside-image-div">
+                        <div class="left-color-div" [ngStyle]="{ background: card1bgcolour }"></div>
+                        <img [src]="about_company_image" alt="company image">
+                        <div class="right-color-div" [ngStyle]="{ background: card1bgcolour }"></div>
+                    </div>
+                </div>
+                  </ng-template>
+            </div>
+        </section>
+    }
+

@@ -1,0 +1,56 @@
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg p-0">
+    <div  class="container-fluid">
+      <a class="navbar-brand" routerLink="/" aria-label="PCARDS home" (click)="closeNavbar()">
+        <img src="/assets/website-images/cropped-logo-dark.webp" class="img-fluid" alt="Pcard" width="140" height="48" loading="eager" fetchpriority="high" decoding="async">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" (click)="closeNavbar()">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}" 
+             >Home</a>
+              <!-- [queryParams]="useContainer ? { fromActiveTemplate: '1' } : null" -->
+          </li>
+          <!-- Dynamic items from DB -->
+          <li class="nav-item" *ngFor="let pc of pageCategories">
+            <a class="nav-link" [routerLink]="pc.route" routerLinkActive="active"
+             >
+              <!-- [queryParams]="useContainer ? { fromActiveTemplate: '1' } : null" -->
+              {{ pc.name }}
+            </a>
+          </li>
+
+          <!-- Buttons that always show (or also driven by DB if you want) -->
+          <!-- <li class="nav-item">
+            <a class="nav-link outline_btn" routerLink="/login" routerLinkActive="active">
+              Create Your Card
+            </a>
+          </li> -->
+            <li class="nav-item">
+            <a class="nav-link outline_btn" [href]="globalObject.urlNew + '/login'" routerLinkActive="active">
+              Create Your Card
+            </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link outline_btn" [href]="globalObject.urlNew + '/login'" routerLinkActive="active">
+              Login
+            </a>
+          </li>
+          
+        
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,773 @@
+<!---------- template 1------------>
+
+<!-- Other Business section -->
+@if(template_type == 'layout1') {
+<section class="other-business" id="Other_Business">
+    <div class="card-headings-div">
+        <h3 class="card-headings">
+            {{data.title}}
+        </h3>
+        <p class="heading-border"></p>
+    </div>
+    <div class="card-divs">
+        <div class="business-card" *ngFor="let data of data.data;let i =index" [ngStyle]="{
+                                                            'border':  '2px  solid ' + card2textcolour
+                                                           
+                                                          }">
+            <ng-container *ngIf="i%2==0">
+                <h2 [ngStyle]="{
+                                                            'border-bottom':  '2px  solid ' + card1textcolour,
+                                                           'color': card1textcolour,
+                                                          }">{{data.business_name}}</h2>
+                <ul>
+                    <li [ngStyle]="{
+                                                    
+                                                           'color': card1textcolour,
+                                                          }">
+                        <a [href]="'tel:' + data.business_mobile" style="text-decoration:none; color:inherit;">
+                            <div class="row">
+                                <div class="col col-2">
+                                    <i [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                           'background-color': card2textcolour,
+                                                          }" class="fa fa-phone"></i>
+                                </div>
+
+                                <div class="col col-10">
+                                    <span>{{data.business_mobile}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li [ngStyle]="{
+                                                    
+                                                           'color': card1textcolour,
+                                                          }">
+                        <div class="row">
+                            <div class="col col-2">
+                                <i [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                           'background-color': card2textcolour,
+                                                          }" class="fa-solid fa-location-dot"></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{data.business_address}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li [ngStyle]="{
+                                                    
+                                                           'color': card1textcolour,
+                                                          }">
+                        <div class="row">
+                            <div class="col col-2">
+                                <i [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                           'background-color': card2textcolour,
+                                                          }" class="fa fa-file"></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{data.business_desc}}
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="btn-div">
+                    <a class="dark-btn" target="_blank" [href]="data.button_link" type="button" [ngStyle]="{
+      color: hoveredIndex === i ?  card2bgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : card2bgcolour,
+      border:  `2px solid ${card2bgcolour}`
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+                        Visit Website
+                    </a>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="i%2!=0" class="business-card b2" [ngStyle]="{
+                                                            'border':  '2px  solid ' + card2textcolour,
+                                                     
+                                                          }">
+                <h2 [ngStyle]="{
+                                                            'border-bottom':  '2px  solid ' + card1textcolour,
+                                                           'color': card1textcolour,
+                                                          }">{{data.business_name}}</h2>
+                <ul>
+                    <!-- <img class="line-bg"  [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/line.png'"> -->
+                    <li [ngStyle]="{
+                                                    
+                                                           'color': card1textcolour,
+                                                          }">
+                        <a [href]="'tel:' + data.business_mobile" style="text-decoration:none; color:inherit;">
+                            <div class="row">
+                                <div class="col col-10">
+                                    <span>{{data.business_mobile}}</span>
+                                </div>
+                                <div class="col col-2 end-col">
+                                    <i [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                           'background-color': card2textcolour,
+                                                          }" class="fa fa-phone"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li [ngStyle]="{
+                                                    
+                                                           'color': card1textcolour,
+                                                          }">
+                        <div class="row">
+
+                            <div class="col col-10">
+                                <span>{{data.business_address}}</span>
+                            </div>
+                            <div class="col col-2 end-col">
+                                <i [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                           'background-color': card2textcolour,
+                                                          }" class="fa-solid fa-location-dot"></i>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li [ngStyle]="{
+                                                    
+                                                           'color': card1textcolour,
+                                                          }">
+                        <div class="row">
+                            <div class="col col-10">
+                                <span>{{data.business_desc}}</span>
+                            </div>
+                            <div class="col col-2 end-col">
+                                <i [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                           'background-color': card2textcolour,
+                                                          }" class="fa fa-file"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="btn-div">
+                    <a class="dark-btn dark-card" target="_blank" [href]="data.button_link" type="button" [ngStyle]="{
+      color: hoveredIndex === i ?  card2bgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : card2bgcolour,
+    border:  `2px solid ${card2bgcolour}`
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+                        {{data.button_title}}
+                    </a>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 2------------>
+
+<!-- Other Business section -->
+@else if(template_type == 'layout2') {
+<section class="other-business w-100">
+    <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+    <div class="card-divs">
+        <ng-container *ngFor="let datas of data.data;let i =index">
+
+
+            <div class="business-card light-card" [ngStyle]="{
+                                                            'color': card1textcolour }">
+                <h2 [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{datas.business_name}}</h2>
+                <ul>
+                    <a [href]="'tel:' + data.business_mobile" style="text-decoration:none; color:inherit;">
+                        <li [ngStyle]="{
+                                                            'color': card1textcolour }">
+                            <div class="row">
+                                <div class="col col-2">
+                                    <i class="fa fa-phone" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }"></i>
+                                </div>
+
+                                <div class="col col-10">
+                                    <span>{{datas.business_mobile}}</span>
+                                </div>
+                            </div>
+                        </li>
+                    </a>
+                    <li [ngStyle]="{
+                                                            'color': card1textcolour }">
+                        <div class="row">
+                            <div class="col col-2">
+                                <i class="fa-solid fa-location-dot" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }"></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{datas.business_address}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li [ngStyle]="{
+                                                            'color': card1textcolour }">
+                        <div class="row">
+                            <div class="col col-2">
+                                <i class="fa fa-file" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }"></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{datas.business_desc}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <a *ngIf="datas.button_link" href="datas.button_link" target="_blank" [href]="datas.button_link"
+                    target="_blank" class="visit-btn"
+                    [ngStyle]="{ border: '1px solid ' + card1bgcolour , color: card2textcolour, background: card2bgcolour }"
+                    >
+                    <i class="fa fa-angle-right"></i> {{datas.button_title}}
+                </a>
+            </div>
+        </ng-container>
+
+    </div>
+</section>
+}
+
+<!---------- template 3------------>
+
+<!-- Other Business section -->
+@else if(template_type == 'layout3') {
+<section class="other-business w-100">
+    <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' + card2textcolour}">
+        {{data.title}}</h2>
+    <div class="card-divs">
+        <ng-container *ngFor="let datas of data.data;let i =index">
+            <div class="business-card " [ngStyle]="{'background-color': bodybgcolour }">
+                <h2 [ngStyle]="{'color': card2textcolour}">{{datas.business_name}}</h2>
+                <ul>
+                    <li [ngStyle]="{'color': card2textcolour}">
+                        <a [href]="'tel:' + data.business_mobile" style="text-decoration:none; color:inherit;">
+                            <div class="row">
+                                <div class="col col-2">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+
+                                <div class="col col-10">
+                                    <span>{{datas.business_mobile}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li [ngStyle]="{'color': card2textcolour}">
+                        <div class="row">
+                            <div class="col col-2">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{datas.business_address}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li [ngStyle]="{'color': card2textcolour}">
+                        <div class="row">
+                            <div class="col col-2">
+                                <i class="fa fa-file"></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{datas.business_desc}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <a [href]="datas.button_link" class="visit-btn" target="_blank" type="button" [ngStyle]="{
+                                                            'background-color': card1bgcolour
+                                                          }">
+                    <i class="fa fa-angle-right"></i>{{datas.button_title}}
+                </a>
+            </div>
+        </ng-container>
+
+    </div>
+</section>
+}
+
+<!---------- template 4------------>
+
+<!-- Latest Update section -->
+@else if(template_type == 'layout4') {
+<section class="other-business w-100">
+    <h3 *ngIf="styletype != 'style4'" class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+
+    <!------------ for t4  ------->
+    <div class="card-headings-div" *ngIf="styletype == 'style4'">
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}}</h3>
+    </div>
+
+    <div class="card-divs" [ngStyle]="{'background-color': card2bgcolour}">
+        <ng-container *ngFor="let datas of data.data;let i =index">
+            <div class="business-card">
+
+                <h2
+                    [ngStyle]="other_business_h2 ?other_business_h2 : {'background-color': card1bgcolour,'color': card1textcolour }">
+                    {{datas.business_name}}</h2>
+                <ul>
+                    <li>
+                        <a href="tel:{{datas.business_mobile}}">
+                            <div class="row">
+                                <div class="col col-2">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+
+                                <div class="col col-10">
+                                    <span>{{datas.business_mobile}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col col-2">
+                                <i class="fa-solid fa-location-dot "></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{datas.business_address}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col col-2">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{datas.business_desc}}</span>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                <div class="d-flex justify-content-center ">
+                    <a [href]="datas.button_link" class="visit-btn" target="_blank"
+                     [ngStyle]="
+  hoveredIndex === i
+    ? (link_btn_latest_other_business_hover || { 
+       'color':  card2textcolour,
+        'background-color': card2bgcolour ,
+       'border': `2px solid ${card2bgcolour}`
+    })
+    : (other_business_visit_btn || {
+'background-color': card1bgcolour,'color': card1textcolour,
+        'border': `2px solid ${card1bgcolour}`
+        
+      })
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+
+                       >{{datas.button_title}}</a>
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+</section>
+
+
+}
+
+
+<!---------- template 5------------>
+
+@else if(template_type == 'layout5') {
+<section class="other-business w-100">
+    <h3 class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+    <div class="card-divs"
+        [ngStyle]="otherbusiness_card_divs ?otherbusiness_card_divs : {'background-color': card2bgcolour}">
+        <ng-container *ngFor="let datas of data.data;let i =index">
+
+            <div class="business-card">
+                <h2
+                    [ngStyle]="other_business_h2?other_business_h2:{'background-color': card1bgcolour,'color': card1textcolour }">
+                    {{datas.business_name}}</h2>
+                <ul>
+                    <li>
+                        <a href="tel:{{datas.business_mobile}}">
+                            <div class="row">
+                                <div class="col col-2">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+
+                                <div class="col col-10">
+                                    <span>{{datas.business_mobile}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col col-2">
+                                <i class="fa-solid fa-location-dot "></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{datas.business_address}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col col-2">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{datas.business_desc}}</span>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                <div class="d-flex justify-content-center ">
+                    <a [href]="datas.button_link" class="visit-btn" target="_blank"
+ [ngStyle]="
+  hoveredIndex === i
+    ? (link_btn_latest_other_business_hover || { 
+       'color':  card2textcolour,
+        'background-color': card2bgcolour ,
+       'border': `2px solid ${card2bgcolour}`
+    })
+    : (other_business_visit_btn || {
+'background-color': card1bgcolour,'color': card1textcolour,
+        'border': `2px solid ${card1bgcolour}`
+        
+      })
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null">{{datas.button_title}}</a>
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+</section>
+}
+
+<!---------- template 6------------>
+
+@else if(template_type == 'layout6') {
+<section class="other-business w-100">
+    <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h3>
+    <div class="card-divs">
+        <ng-container *ngFor="let datas of data.data;let i =index">
+
+            <div class="business-card">
+                <h2
+                    [ngStyle]="other_business_h2?other_business_h2:{'background-color': card2bgcolour,'color': card2textcolour }">
+                    {{datas.business_name}}</h2>
+                <ul>
+                    <li>
+                        <a href="tel:{{datas.business_mobile}}">
+                            <div class="row">
+                                <div class="col col-2">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+
+                                <div class="col col-10">
+                                    <span>{{datas.business_mobile}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col col-2">
+                                <i class="fa-solid fa-location-dot "></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{datas.business_address}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col col-2">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </div>
+
+                            <div class="col col-10">
+                                <span>{{datas.business_desc}}</span>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                <div class="d-flex justify-content-center ">
+                    <a [href]="datas.button_link" class="visit-btn" target="_blank"
+                         [ngStyle]="
+  hoveredIndex === i
+    ? (link_btn_latest_other_business_hover || { 
+       'color':  card1textcolour,
+        'background-color': card1bgcolour 
+    })
+    : (other_business_visit_btn || {
+        'color': card2textcolour,
+        'background-color': card2bgcolour
+        
+      })
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+>{{datas.button_title}}</a>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</section>
+}
+
+<!---------- template 7------------>
+
+@else if(template_type == 'layout7') {
+<div class="other-business" [ngStyle]="{
+  'background-color': 'color-mix(in srgb, ' + card1bgcolour + ' 80%, transparent)'
+}">
+
+    <div class="section-headings">
+        <h2 [ngStyle]="{'color': card1textcolour}">{{data.title}}</h2>
+        <span [ngStyle]="{'background': card1textcolour}"></span>
+    </div>
+
+    <div class="swiper slide-container other-business-swiper">
+
+        <!-- SWIPER WRAPPER -->
+        <div class="swiper-wrapper">
+            <ng-container *ngFor="let datas of data.data;let i =index">
+
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="icon-div" [ngStyle]="{
+          'color': card1textcolour,
+          'background':  card1bgcolour
+  
+        }"><i class="fa-solid fa-bag-shopping"></i></div>
+
+                        <div class="title-text-div">
+                            <h4>{{datas.business_name}}</h4>
+                            <p>
+                                {{datas.business_desc}}
+                            </p>
+                        </div>
+
+
+
+
+
+                        <a href="tel:{{datas.business_mobile}}">
+                            <div class="phone-div">
+                                <span class="icon-span" [ngStyle]="{
+          'color': card1textcolour,
+          'background':  card1bgcolour
+  
+        }"><i class="fa-solid fa-phone"></i></span>
+                                <span class="data">{{datas.business_mobile}}</span>
+                            </div>
+                        </a>
+
+
+
+
+                        <div class="location-div">
+                            <span class="icon-span" [ngStyle]="{
+          'color': card1textcolour,
+          'background':  card1bgcolour
+  
+        }"><i class="fa-solid fa-location-dot"></i></span>
+                            <span class="data">{{datas.business_address}}</span>
+                        </div>
+
+                        <a [href]="datas.button_link" class="visit-btn" target="_blank"
+                        [ngStyle]="isHovered[i]
+     ? {  border: '1px solid ' + card1bgcolour , color:  card1bgcolour, background: card1textcolour  }
+     : { color: card1textcolour, background: card1bgcolour, border: '1px solid ' + card1bgcolour}"
+   (mouseenter)="isHovered[i] = true"
+   (mouseleave)="isHovered[i] = false"  
+                        >{{datas.button_title}}</a>
+                    </div>
+                </div>
+            </ng-container>
+
+        </div>
+
+        <!-- NAVIGATION & PAGINATION -->
+        <div class="swiper-button-next swiper-navBtn" [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 37%, transparent)'}"><i class="fa-solid fa-caret-right"></i></div>
+        <div class="swiper-button-prev swiper-navBtn" [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 37%, transparent)'}"><i class="fa-solid fa-caret-left"></i></div>
+
+
+
+
+    </div>
+
+</div>
+
+
+}
+
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+    
+        <section class="other-business-section padding" [ngStyle]="{
+  'background-image': `
+    linear-gradient(
+      color-mix(in srgb, ${card2bgcolour} 80%, transparent),
+      color-mix(in srgb, ${card2bgcolour} 80%, transparent)
+    ),
+    url('${globalObject.assetsUrl}/templates_pcard/template_8/bg-img3.png')`}">
+
+            <h2 class="card-heading dark" [ngStyle]="{ border: '1px dashed ' + card2textcolour , color: card2textcolour}"><i class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i
+                    class="fa-solid fa-right-long"></i></h2>
+
+            <div class="swiper other-business-swiper">
+
+                <!-- SWIPER WRAPPER -->
+                <div class="swiper-wrapper">
+
+                        <ng-container *ngFor="let datas of data.data;let i =index">
+                    <div class="swiper-slide">
+                        <div class="card"  [ngStyle]="{ border: `0.5px dashed color-mix(in srgb, ${card2bgcolour } 25%, ${card2textcolour} 42%)`, color: card2textcolour}">
+                            <div class="icon-div" [ngStyle]="{ color: card1bgcolour  ,  background: card1textcolour}"><i class="fa-solid fa-bag-shopping"></i></div>
+
+                            <div class="title-text-div">
+                                <h4>{{datas.business_name}}</h4>
+                                <p>
+                                    {{datas.business_desc}}
+                                </p>
+                            </div>
+                            <div>
+                                 <a href="tel:{{datas.business_mobile}}">
+                                <div class="phone-div mb-3">
+                                    <span class="icon-span"  [ngStyle]="{ background: `color-mix(in srgb, ${card2bgcolour} 20%, ${card2textcolour } 11%)`, color: card2textcolour }"><i class="fa-solid fa-phone"></i></span>
+                                    <span class="data">+91 {{datas.business_mobile}}</span>
+                                </div></a>
+
+                                <div class="location-div">
+                                    <span class="icon-span"  [ngStyle]="{ background: `color-mix(in srgb, ${card2bgcolour} 20%, ${card2textcolour } 11%)`, color: card2textcolour }"><i class="fa-solid fa-location-dot"></i></span>
+                                    <span class="data">{{datas.business_address}}</span>
+                                </div>
+                            </div>
+
+                            <div class="outer-btn-div" [ngStyle]="{
+      background:  card1bgcolour
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"><a  [ngStyle]="{
+      color: hoveredIndex === i ?  card1bgcolour : card1textcolour,
+      background: hoveredIndex === i ? card1textcolour : 'transparent',
+     border: hoveredIndex === i ? `1px dashed color-mix(in srgb, ${card1bgcolour} 44%, transparent 2%)` : `1px dashed color-mix(in srgb, ${card1textcolour} 44%, transparent 2%)`
+    }" class="visit-btn" [href]="datas.button_link"  target="_blank"><span>{{datas.button_title}}</span> <i
+                                        class="fa-solid fa-arrow-right-long"></i></a></div>
+                        </div>
+                    </div>
+
+                  
+
+                   
+                        </ng-container>
+                </div>
+
+                <!-- NAVIGATION & PAGINATION -->
+        <div class="swiper-button-next swiper-navBtn" [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 27%, transparent)',  color: bodybgcolour}"><i class="fa-solid fa-caret-right"></i></div>
+        <div class="swiper-button-prev swiper-navBtn" [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 27%, transparent)',  color: bodybgcolour}"><i class="fa-solid fa-caret-left"></i></div>
+
+
+            </div>
+        </section>
+ }
+
+
+ <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+<section class="other-business-section"  [ngStyle]="{
+  background: `linear-gradient(
+      to bottom,
+     ${card1bgcolour} 0%,
+      ${card2bgcolour} 163%) `  }">
+            <h2 class="card-heading dark" [ngStyle]="{ color: card1textcolour }"><span [ngStyle]="{ color: card1textcolour }"></span>{{data.title}}</h2>
+
+            <div class="swiper other-business-swiper">
+
+                <!-- SWIPER WRAPPER -->
+                <div class="swiper-wrapper">
+
+                    <ng-container *ngFor="let datas of data.data;let i =index">
+                    <div class="swiper-slide" >
+                        <div class="card" [ngStyle]="{ border: '1px solid ' + card1textcolour ,color: card1textcolour }">
+                            <div class="icon-div" [ngStyle]="{ color: card1textcolour }"><i class="fa-solid fa-bag-shopping"></i></div>
+
+                            <div class="title-text-div">
+                                <h4>{{datas.business_name}}</h4>
+                                <p>
+                                    {{datas.business_desc}}
+                                </p>
+                            </div>
+                            <div>
+                                 <a href="tel:{{datas.business_mobile}}">
+                                <div class="phone-div mb-3">
+                                    <span class="icon-span"  [ngStyle]="{ background: `color-mix(in srgb, ${card2textcolour} 10%, transparent)`, color: card2textcolour }"><i class="fa-solid fa-phone"></i></span>
+                                    <span class="data">+91 {{datas.business_mobile}}</span>
+                                </div>
+                            </a>
+
+                                <div class="location-div">
+                                    <span class="icon-span" [ngStyle]="{ background: `color-mix(in srgb, ${card2textcolour} 10%, transparent)`, color: card2textcolour }"><i class="fa-solid fa-location-dot"></i></span>
+                                    <span class="data">{{datas.business_address}}</span>
+                                </div>
+                            </div>
+
+                            <a class="visit-btn"  [ngStyle]="{ color: card2textcolour ,border: '1px solid ' + card1textcolour , background:`color-mix(in srgb, ${card2textcolour} 10%, transparent)`}" [href]="datas.button_link"  target="_blank">{{datas.button_title}} <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                  </ng-container>
+
+                </div>
+
+                <!-- NAVIGATION & PAGINATION -->
+        <div class="swiper-button-next swiper-navBtn" [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 27%, transparent)', color: bodybgcolour}"><i class="fa-solid fa-caret-right"></i></div>
+        <div class="swiper-button-prev swiper-navBtn" [ngStyle]="{'background-color': 'color-mix(in srgb, ' + bodytextcolour + ' 27%, transparent)', color: bodybgcolour}"><i class="fa-solid fa-caret-left"></i></div>
+
+
+            </div>
+        </section>
+    }
+
+ 
+

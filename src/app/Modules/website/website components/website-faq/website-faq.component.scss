@@ -1,0 +1,162 @@
+
+
+.faq-section{
+  background-color: #050e1d;
+}
+.faq-section h1 {
+  font-size: 35px;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  line-height: 45px;
+
+}
+
+
+h2.accordion-header {
+     margin: 0 0 0px !important;
+    color: #555;
+    font-weight: 700;
+    font-size: 20px !important;
+    line-height: 34px !important;
+}
+
+.accordion-item {
+  border: none;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+
+  h4 
+  {
+    margin-bottom: 0 !important;
+  }
+}
+
+#faq-page .accordion-button {
+  background-color: #e6bb55;
+  /* yellow tab */
+     box-shadow: none !important;
+    padding: 4px 15px !important;
+    background: #e5be5c;
+    border-radius: 3px !important;
+    font-size: 18px;
+    font-weight: bold;
+    color: #050e1d;
+    line-height: 34px;
+        font-family: 'Montserrat', sans-serif;
+            align-items: baseline;
+}
+
+.accordion-item {
+  border-radius: 3px;
+  overflow: hidden;
+  /* so header + body corners match */
+}
+
+
+.accordion-button::after {
+  display: none;
+  /* remove bootstrap arrow */
+}
+
+.accordion-body {
+  background: #fff;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.accordion-button .toggle-icon::before {
+  content: "+";
+}
+
+/* Custom plus/minus */
+.accordion-button .toggle-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  border-radius: 35px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  font-style: normal;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+ height: 20px;
+    min-width: 20px;
+}
+.accordion-body ul
+{
+      list-style-type: decimal;
+}
+
+
+   #faq-page 
+   
+   { h1
+{
+   font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+    color: #FFF;
+    font-size: 50px;
+    margin: 0;
+    padding: 0px 0px 35px 0px;
+    text-align: center;
+    line-height: 60px;
+    margin-bottom: 0 !important;
+}
+   }
+
+.accordion-button:not(.collapsed) .toggle-icon::before {
+  content: "–";
+}
+
+
+@media only screen and (max-width: 991px){
+
+  #faq-page .accordion-button {
+            line-height: 25px;
+                    padding: 7px 15px !important;
+                    
+}
+
+}
+
+@media only screen and (max-width: 768px){
+
+    #faq-page 
+
+  {
+ .accordion-body {
+           
+            line-height: 20px;
+        font-size: 10px;
+}
+.accordion-button
+{
+          line-height: 20px;
+        font-size: 12px;
+}
+  .container 
+  {
+        margin: 0  !important;
+    max-width: 100% !important;
+  }
+
+  h1 
+  {
+    font-size: 22px;
+            line-height: 30px;
+  
+  }
+  }
+
+}
+

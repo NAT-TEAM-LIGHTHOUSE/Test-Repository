@@ -1,0 +1,276 @@
+ 
+<div class="job-form-box">
+  <h1>Submit your application</h1>
+  <p>We’re committed to our employees health and happiness</p>
+
+  <div class="career-form">
+    <!-- Call uploadResume on submit -->
+    <form (ngSubmit)="uploadResume()" #careerForm="ngForm">
+       <!-- <button (click)="clarFile()">Clear File</button> -->
+        <h4 class="submit_msg" *ngIf="success_message">{{uploadMsg}}</h4>
+       <h3>Personal Information</h3>
+     <div>
+      </div>
+
+      <!-- <div class="mb-3">
+        <input type="text"
+               name="fullname"
+               class="form-control"
+               placeholder="Enter Your Full Name"
+               required
+               [(ngModel)]="form.fullname">
+      </div> -->
+
+      <div class="mb-3">
+  <input type="text"
+         name="fullname"
+         class="form-control"
+         placeholder="Enter Your Full Name"
+         required
+         #fullname="ngModel"
+         [(ngModel)]="form.fullname">
+
+  <small class="text-danger"
+         *ngIf="(fullname.touched || submitted) && fullname.invalid">
+    Name is required
+  </small>
+</div>
+<!-- full name  -->
+
+
+      <!-- <div class="mb-3">
+        <input type="email"
+               name="email"
+               class="form-control"
+               placeholder="Enter your Email Address"
+               required
+               [(ngModel)]="form.email">
+      </div> -->
+      <div class="mb-3">
+  <input type="email"
+         name="email"
+         class="form-control"
+         placeholder="Enter your Email Address"
+         required
+         email
+         #email="ngModel"
+         [(ngModel)]="form.email">
+
+  <small class="text-danger"
+         *ngIf="(email.touched || submitted) && email.errors?.['required']">
+    Email is required
+  </small>
+  <small
+    class="text-danger"
+    *ngIf="emailDomainError">
+    {{ emailDomainError }}
+  </small>
+  <small class="text-danger"
+         *ngIf="(email.touched || submitted) && email.errors?.['email']">
+    Please enter a valid email address
+  </small>
+</div>
+
+<!-- email id -->
+
+      <!-- <div class="mb-3">
+        <input type="tel"
+               name="contact"
+               class="form-control"
+               placeholder="Enter Contact No."
+               required
+               [(ngModel)]="form.contact">
+      </div> -->
+      <div class="mb-3">
+  <input type="tel"
+         name="contact"
+         class="form-control"
+         placeholder="Enter Contact No."
+         required
+         pattern="^[0-9]{10}$"
+         maxlength="10"
+         #contact="ngModel"
+         [(ngModel)]="form.contact">
+
+  <small class="text-danger"
+         *ngIf="(contact.touched || submitted) && contact.errors?.['required']">
+    Mobile number is required
+  </small>
+
+  <small class="text-danger"
+         *ngIf="(contact.touched || submitted) && contact.errors?.['pattern']">
+    Mobile number must be 10 digits
+  </small>
+ 
+</div>
+
+<!-- mobile -->
+
+      <!-- <div class="mb-3" *ngIf="designation_flag">
+        <input type="text"
+               name="pageurl"
+               class="form-control"
+               placeholder="Enter Your Job Profile"
+               required
+               [(ngModel)]="form.job_profile">
+      </div> -->
+
+      <div class="mb-3" *ngIf="designation_flag">
+  <input type="text"
+         name="pageurl"
+         class="form-control"
+         placeholder="Enter Your Job Profile"
+         required
+         #jobprofile="ngModel"
+         [(ngModel)]="form.job_profile">
+
+  <small class="text-danger"
+         *ngIf="(jobprofile.touched || submitted) && jobprofile.invalid">
+    Job Profile is required
+  </small>
+</div>
+
+<!-- job profile -->
+
+
+
+      <h3>Upload CV / Resume</h3>
+      <!-- <div class="mb-3 input-group">
+        <input type="file"
+              #fileInput
+               name="uploadcv"
+               accept=".pdf,.doc,.docx"
+               class="form-control"
+               (change)="onFileSelected($event)"
+               required>
+      </div> -->
+      <div class="mb-3 input-group">
+  <input type="file"
+         #fileInput
+         name="uploadcv"
+         accept=".pdf,.doc,.docx"
+         class="form-control"
+         (change)="onFileSelected($event)"
+         required>
+
+  <small class="text-danger"
+         *ngIf="submitted && !selectedFile">
+    Please upload your resume
+  </small>
+</div>
+
+<!-- resume -->
+
+      <h3>Other Questions</h3>
+
+      <label>How did you hear about PCARDS</label>
+      <!-- <div class="mb-3">
+        <select class="form-select"
+                name="hearname"
+                required
+                [(ngModel)]="form.here_about">
+          <option value="" disabled selected>Select an option</option>
+          <option value="Google">Google</option>
+          <option value="Linkedin">Linkedin</option>
+          <option value="Friends">Friends</option>
+          <option value="Others">Others</option>
+        </select>
+      </div> -->
+
+      <div class="mb-3">
+  <select class="form-select"
+          name="hearname"
+          required
+          #hearabout="ngModel"
+          [(ngModel)]="form.here_about">
+
+    <option value="" disabled selected>Select an option</option>
+    <option value="Google">Google</option>
+    <option value="Linkedin">Linkedin</option>
+    <option value="Friends">Friends</option>
+    <option value="Others">Others</option>
+
+  </select>
+
+  <small class="text-danger"
+         *ngIf="(hearabout.touched || submitted) && hearabout.invalid">
+    Please select an option
+  </small>
+</div>
+
+<!-- hear about -->
+
+      <label>If hired how soon can you join</label>
+      <!-- <div class="mb-3">
+        <select class="form-select"
+                name="joinname"
+                required
+                [(ngModel)]="form.join_u">
+          <option value="" disabled selected>Select joining time</option>
+          <option value="Immediate Joining">Immediate Joining</option>
+          <option value="15 Days">15 Days</option>
+          <option value="1 Month">1 Month</option>
+          <option value="2 Month">2 Month</option>
+          <option value="3 Month">3 Month</option>
+        </select>
+      </div> -->
+
+      <div class="mb-3">
+  <select class="form-select"
+          name="joinname"
+          required
+          #joinu="ngModel"
+          [(ngModel)]="form.join_u">
+
+    <option value="" disabled selected>Select joining time</option>
+    <option value="Immediate Joining">Immediate Joining</option>
+    <option value="15 Days">15 Days</option>
+    <option value="1 Month">1 Month</option>
+    <option value="2 Month">2 Month</option>
+    <option value="3 Month">3 Month</option>
+
+  </select>
+
+  <small class="text-danger"
+         *ngIf="(joinu.touched || submitted) && joinu.invalid">
+    Please select joining time
+  </small>
+</div>
+
+<!-- joining time -->
+
+      <!-- <div class="mb-3">
+        <textarea class="form-control"
+                  placeholder="Message"
+                  name="message"
+                  required
+                  [(ngModel)]="form.message"></textarea>
+      </div> -->
+
+      <div class="mb-3">
+  <textarea class="form-control"
+            placeholder="Message"
+            name="message"
+            required
+            #message="ngModel"
+            [(ngModel)]="form.message"></textarea>
+
+  <small class="text-danger"
+         *ngIf="(message.touched || submitted) && message.invalid">
+    Message is required
+  </small>
+</div>
+    <re-captcha [siteKey]="siteKey" (resolved)="resolved($event)">
+                </re-captcha>
+<!-- message -->
+      <div class="mb-3 mt-2">
+        <button class="btn-career"
+                type="submit"
+                [disabled]="isUploading">
+          {{ isUploading ? 'Uploading...' : 'Submit' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

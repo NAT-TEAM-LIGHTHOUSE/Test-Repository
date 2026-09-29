@@ -1,0 +1,524 @@
+<!---------- template 1------------>
+
+<!-- whatsapp share section -->
+@if(template_type == 'layout1') {
+<section class="whatsapp-share ">
+      <form>
+         <div class="w-100 main-error-input-div">
+                <input type="text" name="name" [(ngModel)]="whastup.name"  placeholder="Enter Name" class="whatsapp-name-input" />
+
+                <div class="error-text" *ngIf="showErrors && !whastup.name">
+                 Name is required
+                </div>
+                </div>
+          <div class="w-100 main-error-input-div">  
+        <div class="group-input">
+        <!-- <input type="text" value="+91" class="code-input">
+        <input type="tel" placeholder="Enter Whatsapp No" class="whatsapp-share-input" name="mobile"
+            pattern="^[0-9]{10}$" maxlength="10" minlength="10" [(ngModel)]="whastup.mobile" /> -->
+
+ <intl-tel-input
+  [formControl]="phoneControl"
+  [initialCountry]="in"
+  [usePreciseValidation]="true"
+  [inputAttributes]="{
+    placeholder: 'Enter Whatsapp No'
+  }"
+  [loadUtils]="loadUtils"
+  (validityChange)="onPhoneValidityChange($event)"
+  (errorCodeChange)="onPhoneErrorChange($event)">
+</intl-tel-input>
+
+             <!-- <intl-tel-input
+    initialCountry="in"
+    [(ngModel)]="whastup.mobile"
+      [inputAttributes]="{ placeholder: 'Mobile Number' }"
+    name="mobile">
+  </intl-tel-input> -->
+
+        <button type="submit" (click)="Submit()" class="whatsapp-share-btn">Whatsapp Share</button>
+        </div>
+         <!-- <div class="error-text" *ngIf="showErrors ">
+                   {{ phoneError }}
+                </div> -->
+                <div
+  class="error-text"
+  *ngIf="showValidation && !phoneValid"
+>
+  {{ phoneError || 'Please enter a valid phone number' }}
+</div>  
+              </div>
+    </form>
+
+</section>
+}
+
+<!---------- template 2------------>
+
+<!-- whatsapp share section -->
+@else if(template_type == 'layout2') {
+<section class="whatsapp-share w-100">
+       <form>
+         <div class="w-100 main-error-input-div">
+                <input type="text" name="name" [(ngModel)]="whastup.name"  placeholder="Enter Name" class="whatsapp-name-input" />
+
+                <div class="error-text" *ngIf="showErrors && !whastup.name">
+                 Name is required
+                </div>
+                </div>
+             <div class="w-100 main-error-input-div">
+        <div class="group-input">
+        <!-- <input type="text" value="+91" class="code-input">
+        <input type="telephone" placeholder="Enter Whatsapp No" class="whatsapp-share-input" name="mobile"
+            pattern="^[0-9]{10}$" maxlength="10" minlength="10" [(ngModel)]="whastup.mobile"
+            [ngStyle]="{'color': card1textcolour }" /> -->
+
+<intl-tel-input
+  [formControl]="phoneControl"
+  [initialCountry]="in"
+  [usePreciseValidation]="true"
+  [inputAttributes]="{
+    placeholder: 'Enter Whatsapp No'
+  }"
+  [loadUtils]="loadUtils"
+  (validityChange)="onPhoneValidityChange($event)"
+  (errorCodeChange)="onPhoneErrorChange($event)">
+</intl-tel-input>
+
+
+        <button type="submit" (click)="Submit()" class="whatsapp-share-btn">Whatsapp Share</button>
+        </div>
+         <!-- <div class="error-text" *ngIf="showErrors ">
+                 Please enter a valid 10 digit WhatsApp number
+                </div> -->
+                <div
+  class="error-text"
+  *ngIf="showValidation && !phoneValid"
+>
+  {{ phoneError || 'Please enter a valid phone number' }}
+</div>  
+              </div>
+    </form>
+</section>
+
+}
+<!---------- template 3------------>
+
+@else if(template_type == 'layout3') {
+<section class="whatsapp-share w-100">
+       <form>
+ <div class="w-100 main-error-input-div">
+                <input type="text" name="name" [(ngModel)]="whastup.name"  placeholder="Enter Name" class="whatsapp-name-input" />
+
+                <div class="error-text" *ngIf="showErrors && !whastup.name">
+                 Name is required
+                </div>
+                </div>
+           <div class="w-100 main-error-input-div"> 
+        <div class="group-input">
+        <!-- <input type="text" value="+91" class="code-input">
+        <input type="telephone" [(ngModel)]="whastup.mobile" name="mobile" pattern="^[0-9]{10}$" maxlength="10"
+            minlength="10" placeholder="Enter Whatsapp No" class="whatsapp-share-input" /> -->
+
+         <intl-tel-input
+  [formControl]="phoneControl"
+  [initialCountry]="in"
+  [usePreciseValidation]="true"
+  [inputAttributes]="{
+    placeholder: 'Enter Whatsapp No'
+  }"
+  [loadUtils]="loadUtils"
+  (validityChange)="onPhoneValidityChange($event)"
+  (errorCodeChange)="onPhoneErrorChange($event)">
+</intl-tel-input>
+  
+        <button type="submit" (click)="Submit()" class="whatsapp-share-btn">Whatsapp Share</button>
+        </div>
+         <!-- <div class="error-text" *ngIf="showErrors ">
+                 Please enter a valid 10 digit WhatsApp number
+                </div> -->
+                <div
+  class="error-text"
+  *ngIf="showValidation && !phoneValid"
+>
+  {{ phoneError || 'Please enter a valid phone number' }}
+</div>  
+              </div>
+    </form>
+</section>
+}
+
+
+<!---------- template 4------------>
+
+@else if(template_type == 'layout4') {
+<section class="whatsapp-share w-100">
+    <form>
+       <div class="w-100 main-error-input-div">
+                <input type="text" name="name" [(ngModel)]="whastup.name"  placeholder="Enter Name" class="whatsapp-name-input" />
+
+                <div class="error-text" *ngIf="showErrors && !whastup.name">
+                 Name is required
+                </div>
+                </div>
+            <div class="w-100 main-error-input-div">
+        <div class="group-input">
+        <!-- <label> -->
+          <!-- +<input type="text" value="91" class="code-input"></label>
+        <input type="telephone" name="mobile" [(ngModel)]="whastup.mobile" pattern="^[0-9]{10}$" maxlength="10"
+            minlength="10" placeholder="Enter Mobile Number" class="whatsapp-share-input" /> -->
+
+             <!-- <intl-tel-input
+  initialCountry="in"
+  [(ngModel)]="whastup.mobile"
+  name="mobile"
+  [inputAttributes]="{
+    placeholder: 'Enter Whatsapp No'
+  }"
+  [loadUtils]="loadUtils"
+  (validityChange)="onPhoneValidityChange($event)"
+  (errorCodeChange)="onPhoneErrorChange($event)"
+>
+</intl-tel-input>
+     -->
+<intl-tel-input
+  [formControl]="phoneControl"
+  [initialCountry]="in"
+  [usePreciseValidation]="true"
+  [inputAttributes]="{
+    placeholder: 'Enter Whatsapp No'
+  }"
+  [loadUtils]="loadUtils"
+  (validityChange)="onPhoneValidityChange($event)"
+  (errorCodeChange)="onPhoneErrorChange($event)">
+</intl-tel-input>
+
+
+
+        <button type="submit" (click)="Submit()" class="whatsapp-share-btn"><i class="fa-brands fa-whatsapp"></i> Whatsapp Share</button>
+        </div>
+ <!-- <div class="error-text" *ngIf="showErrors ">
+                 Please enter a valid 10 digit WhatsApp number
+                </div> -->
+                <!-- <div
+  class="error-text"
+  *ngIf="showValidation && invalidMsg"
+>
+  {{ invalidMsg }}
+</div> -->
+<div
+  class="error-text"
+  *ngIf="showValidation && !phoneValid"
+>
+  {{ phoneError || 'Please enter a valid phone number' }}
+</div>              </div>
+    </form>
+    <!-- <form (click)="whatsappShare()" novalidate>
+  <button type="submit">
+    <i class="fa-brands fa-whatsapp"></i> Whatsapp Share
+  </button>
+</form> -->
+</section>
+
+
+}
+
+<!---------- template 5------------>
+
+@else if(template_type == 'layout5') {
+<section class="whatsapp-share w-100">
+  <form>
+    <div class="w-100 main-error-input-div">
+                <input type="text" name="name" [(ngModel)]="whastup.name"  placeholder="Enter Name" class="whatsapp-name-input" />
+
+                <div class="error-text" *ngIf="showErrors && !whastup.name">
+                 Name is required
+                </div>
+                </div>
+             <div class="w-100 main-error-input-div">
+        <div class="group-input">
+        <!-- <label>+<input type="text" value="91" class="code-input"></label>
+        <input type="telephone" name="mobile" [(ngModel)]="whastup.mobile" pattern="^[0-9]{10}$" maxlength="10"
+            minlength="10" placeholder="Enter Mobile Number" class="whatsapp-share-input" /> -->
+  <intl-tel-input
+  [formControl]="phoneControl"
+  [initialCountry]="in"
+  [usePreciseValidation]="true"
+  [inputAttributes]="{
+    placeholder: 'Enter Whatsapp No'
+  }"
+  [loadUtils]="loadUtils"
+  (validityChange)="onPhoneValidityChange($event)"
+  (errorCodeChange)="onPhoneErrorChange($event)">
+</intl-tel-input>
+        <button type="submit" (click)="Submit()"  class="whatsapp-share-btn"><i class="fa-brands fa-whatsapp"></i> Whatsapp Share</button>
+        </div>
+
+        <div class="error-text" *ngIf="showErrors ">
+                 Please enter a valid 10 digit WhatsApp number
+                </div></div>
+
+    </form>
+</section>
+}
+
+<!---------- template 6------------>
+
+@else if(template_type == 'layout6') {
+<section class="whatsapp-share w-100">
+  <form>
+       
+
+        <div class="w-100 main-error-input-div">
+                <input type="text" name="name" [(ngModel)]="whastup.name"  placeholder="Enter Name" class="whatsapp-name-input" />
+
+                <div class="error-text" *ngIf="showErrors && !whastup.name">
+                 Name is required
+                </div>
+                </div>
+            
+                 <div class="w-100 main-error-input-div">
+        <div class="group-input">
+        <!-- <label>+<input type="text" value="91" class="code-input"></label>
+        <input type="telephone" name="mobile" [(ngModel)]="whastup.mobile" pattern="^[0-9]{10}$" maxlength="10"
+            minlength="10" placeholder="Enter Mobile Number" class="whatsapp-share-input" /> -->
+<intl-tel-input
+  [formControl]="phoneControl"
+  [initialCountry]="in"
+  [usePreciseValidation]="true"
+  [inputAttributes]="{
+    placeholder: 'Enter Whatsapp No'
+  }"
+  [loadUtils]="loadUtils"
+  (validityChange)="onPhoneValidityChange($event)"
+  (errorCodeChange)="onPhoneErrorChange($event)">
+</intl-tel-input>
+
+        <button type="submit" (click)="Submit()"  class="whatsapp-share-btn"><i class="fa-brands fa-whatsapp"></i> Whatsapp Share</button>
+        </div>
+        <div class="error-text" *ngIf="showErrors ">
+                 Please enter a valid 10 digit WhatsApp number
+                </div></div>
+    </form>
+</section>
+}
+
+
+<!---------- template 7------------>
+
+@else if(template_type == 'layout7') {
+
+<div class="whatsapp-qr-div" [ngStyle]="{'background-color': card1bgcolour}">
+
+
+    <div class="d-flex justify-content-between align-items-center center-div">
+
+        <div class="whatsapp-div" *ngIf="whatsapp_enquiry?.flag > 0" [ngStyle]="{'margin': qr_code?.flag > 0 ? '0' : '0 auto'
+  }">
+            <h4 [ngStyle]="{'color': card1textcolour}">Connect With Us</h4>
+            <form>
+                <div class="w-100 main-error-input-div">
+                <input type="text" placeholder="Full Name" name="name" [(ngModel)]="whastup.name">
+
+                <div class="error-text" *ngIf="showErrors && !whastup.name">
+                 Name is required
+                </div>
+                </div>
+
+                  <div class="w-100 main-error-input-div">
+                <div class="d-flex gap-1 align-items-center number-input-div">
+                    <!-- <label>+<input type="text" value="91" class="code-input"></label>
+                    <input class="mobile-input" type="telephone" name="mobile" [(ngModel)]="whastup.mobile"
+                        pattern="^[0-9]{10}$" maxlength="10" minlength="10" placeholder="Mobile Number"> -->
+
+                      <intl-tel-input
+  [formControl]="phoneControl"
+  [initialCountry]="in"
+  [usePreciseValidation]="true"
+  [inputAttributes]="{
+    placeholder: 'Enter Whatsapp No'
+  }"
+  [loadUtils]="loadUtils"
+  (validityChange)="onPhoneValidityChange($event)"
+  (errorCodeChange)="onPhoneErrorChange($event)">
+</intl-tel-input>
+
+                </div>
+                <!-- <div class="error-text" *ngIf="showErrors ">
+                 Please enter a valid 10 digit WhatsApp number
+                </div> -->
+                <div
+  class="error-text"
+  *ngIf="showValidation && !phoneValid"
+>
+  {{ phoneError || 'Please enter a valid phone number' }}
+</div>  
+              </div>
+
+                <button type="button" class="whatsapp-share-btn" (click)="Submit('template7')"><img
+                         [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/whats-fill-image.png'" alt="WhatsApp Share">WhatsApp
+                    Share</button>
+            </form>
+        </div>
+
+        <!------ qr section  ---- -->
+        <app-qrcode [ngStyle]="{'margin': whatsapp_enquiry?.flag > 0 ? '0' : '0 auto'
+  }" [template_type]="template_type" [qr_code]="qr_code" [data2]="data2" *ngIf="qr_code?.flag > 0"></app-qrcode>
+
+
+
+
+            
+
+
+    </div>
+</div>
+
+   <a [href]="links" target="_blank" class="google-btn-whatsapp" *ngIf="company_info?.flag > 0">
+              <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/google-review-ai-logo.png'"
+                                            alt="google-review-logo">
+                                        <span>{{company_info?.title}}</span>
+            </a>
+
+}
+
+
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+    <section class="contact_details padding "  [ngStyle]="{ 'background-color' : `color-mix(in srgb, ${bodytextcolour} 4%, ${bodybgcolour} 56%)`}">
+
+            <div class="whatsapp-share"*ngIf="whatsapp_enquiry?.flag > 0" [ngStyle]="{'margin': qr_code?.flag > 0 ? '0' : '0 auto'}" >
+                <h5 [ngStyle]="{ color: card1bgcolour  }">Exchange Contact Details</h5>
+                <form class="share-form">
+                    <div class=" main-error-input-div">
+                    <div class="input-div">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" placeholder="Your Full Name" name="fullname" [(ngModel)]="whastup.name">
+                    </div>
+                     <div class="error-text" *ngIf="showErrors && !whastup.name">
+                 Name is required
+                </div>
+                </div>
+                   <div class=" main-error-input-div">
+                    <div class="input-div">
+                        <!-- <i class="fa-brands fa-whatsapp"></i>
+                        <input type="tel" placeholder="What’s App Number" name="whatsappNumber"  [(ngModel)]="whastup.mobile"
+                        pattern="^[0-9]{10}$" maxlength="10" minlength="10"> -->
+
+                      <intl-tel-input
+  [formControl]="phoneControl"
+  [initialCountry]="in"
+  [usePreciseValidation]="true"
+  [inputAttributes]="{
+    placeholder: 'Enter Whatsapp No'
+  }"
+  [loadUtils]="loadUtils"
+  (validityChange)="onPhoneValidityChange($event)"
+  (errorCodeChange)="onPhoneErrorChange($event)">
+</intl-tel-input>
+                    </div>
+                    <!-- <div class="error-text" *ngIf="showErrors ">
+                 Please enter a valid 10 digit WhatsApp number
+                </div> -->
+                <div
+  class="error-text"
+  *ngIf="showValidation && !phoneValid"
+>
+  {{ phoneError || 'Please enter a valid phone number' }}
+</div>  
+              </div>
+
+                    <button type="button" class="whatsapp-share-btn" [ngStyle]="{ color: card1textcolour ,  background: card1bgcolour }" (click)="Submit('template8')">WhatsApp Share <i class="fa-brands fa-whatsapp"></i></button>
+                </form>
+            </div>
+
+
+            
+ <!------ qr section  ---- -->
+        <app-qrcode [ngStyle]="{'margin': whatsapp_enquiry?.flag > 0 ? '0' : '0 auto'
+  }" [template_type]="template_type" [qr_code]="qr_code" [data2]="data2" *ngIf="qr_code?.flag > 0"></app-qrcode>
+
+        
+
+        </section>
+
+        
+  <a   [href]="links" target="_blank"
+                *ngIf="company_info?.flag > 0" class="google-btn-whatsapp ">
+          <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/google-review-ai-logo.png'"
+                                            alt="google-review-logo">
+          <span>{{company_info?.title}}</span>
+        </a>
+
+         
+ }
+
+
+ <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+ <section class="scan-qr-whatsapp-share" [ngStyle]="{ color: screenWidth > 767 ? card2textcolour : bodytextcolour, background: screenWidth > 767 ? `color-mix(in srgb, ${card2textcolour } 15%, transparent)` :  `color-mix(in srgb, ${bodybgcolour } 87%, ${bodytextcolour } 4%)`,}">
+                <div class="whatsapp-share" *ngIf="whatsapp_enquiry?.flag > 0" [ngStyle]="{'margin': qr_code?.flag > 0 ? '0' : '0 auto'}">
+                    <h3 [ngStyle]="{ color: screenWidth > 991 ? card2textcolour : bodytextcolour}">Exchange Contact Details</h3>
+                    <form class="share-form">
+                        <div class=" main-error-input-div">
+                    <div class="input-div">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" placeholder="Your Full Name" name="fullname" [(ngModel)]="whastup.name">
+                    </div>
+                     <div class="error-text" *ngIf="showErrors && !whastup.name">
+                 Name is required
+                </div>
+                </div>
+                   <div class=" main-error-input-div">
+                        <div class="input-div">
+                        <!-- <i class="fa-brands fa-whatsapp"></i>
+                        <input type="tel" placeholder="What’s App Number" name="whatsappNumber"  [(ngModel)]="whastup.mobile"
+                        pattern="^[0-9]{10}$" maxlength="10" minlength="10"> -->
+                   <intl-tel-input
+  [formControl]="phoneControl"
+  [initialCountry]="in"
+  [usePreciseValidation]="true"
+  [inputAttributes]="{
+    placeholder: 'Enter Whatsapp No'
+  }"
+  [loadUtils]="loadUtils"
+  (validityChange)="onPhoneValidityChange($event)"
+  (errorCodeChange)="onPhoneErrorChange($event)">
+</intl-tel-input>
+                    </div>
+                    <div class="error-text" *ngIf="showErrors ">
+                 Please enter a valid 10 digit WhatsApp number
+                </div></div>
+
+                        <button type="button" class="whatsapp-share-btn" [ngStyle]="{ color: card1textcolour ,  background: card1bgcolour }"  (click)="Submit('template9')">WhatsApp Share <i class="fa-brands fa-whatsapp"></i></button>
+                    </form>
+                </div>
+            
+
+ <!------ qr section  ---- -->
+        <app-qrcode [ngStyle]="{'margin': whatsapp_enquiry?.flag > 0 ? '0' : '0 auto'
+  }" [template_type]="template_type" [qr_code]="qr_code" [data2]="data2" *ngIf="qr_code?.flag > 0"></app-qrcode>
+
+
+  
+
+
+            </section>
+ 
+
+ 
+
+         <a  [href]="links" target="_blank" class="google-btn-whatsapp"
+                *ngIf="company_info?.flag > 0">
+          <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/google-review-ai-logo.png'"
+                                            alt="google-review-logo">
+          <span>{{company_info?.title}}</span>
+        </a>
+
+}
+
+
+
+ 

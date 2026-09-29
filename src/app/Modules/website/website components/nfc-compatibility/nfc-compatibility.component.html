@@ -1,0 +1,79 @@
+<div class="container-fluid pageLayout">
+  <div class="pageVerBorder">
+    <img src="/assets/website-images/community/line-61.svg" alt="pcard images"/>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-title">
+        <h1>NFC Compatible Devices</h1>
+      </div>
+    </div>
+
+ 
+ <div class="col-md-12">
+<div class="accordion nfcaccordion" id="accordion">
+
+  @for (brand of brands; track brand.name; let i = $index) {
+
+    <div class="accordion-item">
+
+      <h4
+        class="accordion-header panel-heading-bg"
+        [id]="'heading-' + (i + 1)"
+      >
+        <button
+          class="accordion-button custom-btn"
+          [class.collapsed]="openedBrand !== brand.name"
+          type="button"
+          [attr.aria-expanded]="openedBrand === brand.name"
+          [attr.aria-controls]="'collapse-' + (i + 1)"
+          (click)="toggleBrand(brand.name)"
+        >
+          {{ brand.name }}
+
+          <span class="dropIcon ms-auto">
+            <i class="fa fa-chevron-circle-down"></i>
+          </span>
+        </button>
+      </h4>
+
+      <div
+        [id]="'collapse-' + (i + 1)"
+        class="accordion-collapse collapse"
+        [class.show]="openedBrand === brand.name"
+        [attr.aria-labelledby]="'heading-' + (i + 1)"
+      >
+
+        @if (openedBrand === brand.name) {
+
+          <div class="accordion-body panel-body">
+
+            <table id="myTable">
+              <tbody>
+                <tr class="row" id="box-head">
+
+                  @for (device of brand.devices; track device) {
+
+                    <td class="col-md-3">
+                      {{ device }}
+                    </td>
+
+                  }
+
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  }
+
+</div></div>
+</div>
+</div>

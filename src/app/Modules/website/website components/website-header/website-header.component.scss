@@ -1,0 +1,143 @@
+@font-face {
+    font-family: gilroy-bold;
+    src: url(../../../../../assets/fonts/Gilroy-Bold.woff2);
+}
+
+header {
+    position: relative;
+    z-index: 999;
+    width: 100%;
+    background: #050e1d;
+    color: var(--white);
+
+
+
+    .navbar {
+        .navbar-brand {
+            width: 124px;
+        }
+
+        .nav-link {
+            color: var(--white);
+            font-size: 20px;
+            margin: 0 5px;
+            font-family: gilroy-bold;
+            font-style: normal;
+            font-weight: 400;
+            text-transform: capitalize;
+
+
+            &.active {
+                color: #003cc4;
+            }
+
+            &.outline_btn {
+                border: 2px solid var(--white);
+                border-radius: 25px;
+                padding: 5px 15px;
+            }
+        }
+
+        .container-fluid {
+            padding: 0 65px;
+        }
+        .container{
+            .nav-link{
+                font-size: 17px;
+                font-weight: 500;
+                font-family: "Montserrat", sans-serif;
+            }
+        }
+    }
+
+}
+
+
+
+.container-fluid {
+    padding: 0 65px;
+}
+
+.navbar-toggler {
+    border-color: #ddd;
+    font-size: 15px;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+@media screen and (max-width:768px) {
+    header {
+        .navbar {
+            .navbar-brand {
+                width: 95px;
+            }
+        }
+
+        #navbarSupportedContent {
+            background: #ffcf3f;
+
+
+
+
+            ul {
+                text-align: center;
+                padding: 10px 0;
+
+                li {
+                    a {
+                        color: #050e1d;
+
+                        &.nav-link {
+                            &.active {
+                                color: #003cc4;
+                            }
+
+                            font-size: 16px;
+
+                            &.outline_btn {
+                                border: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+        }
+    }
+
+
+
+
+
+}
+
+@media screen and (max-width:991px) and (min-width: 576px)
+{
+.navbar-collapse .navbar-nav
+{
+    display: flex ;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+header  .navbar .nav-link
+{
+        font-size: 16px;
+        padding: 0;
+
+}
+header  .navbar .nav-link.outline_btn
+{
+               padding: 0px;
+        width: 300px;
+        text-align: center;
+}
+}
+

@@ -1,0 +1,338 @@
+<!---------- template 1------------>
+
+<!-- Videos section -->
+@if(template_type == 'layout1') {
+<section class="videos light-card" id="Videos" [ngStyle]="{
+                                                            'color': card1textcolour
+                                                        
+                                                          }">
+
+    <div class="card-headings-div">
+        <h3 class="card-headings">
+            {{data.title}}
+        </h3>
+        <p class="heading-border"></p>
+    </div>
+    <div class="video-outer-div">
+        <div class="video-div" *ngFor="let video_datas of data.data" style="width: 100%;">
+            <iframe style="width: 100%;" [src]="video_datas.safeUrl" title="YouTube video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+</section>
+}
+
+<!---------- template 2------------>
+
+<!-- Videos section -->
+@else if(template_type == 'layout2') {
+<section class="videos w-100">
+    <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+    <div class="video-outer-div light-card" [ngStyle]="{
+                                                            'color': card1textcolour }">
+        <div class="video-div" *ngFor="let video_datas of data.data">
+            <iframe [src]="video_datas.safeUrl" title="YouTube video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
+                allowfullscreen>>
+            </iframe>
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 3------------>
+
+<!-- Videos section -->
+@else if(template_type == 'layout3') {
+<section class="videos w-100">
+    <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' + card2textcolour}">
+        {{data.title}}</h2>
+    <div class="video-outer-div">
+        <div class="video-div" *ngFor="let video_datas of data.data">
+            <iframe [src]="video_datas.safeUrl" title="YouTube video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
+                allowfullscreen>>
+            </iframe>
+        </div>
+    </div>
+</section>
+}
+
+
+<!---------- template 4------------>
+
+@else if(template_type == 'layout4') {
+<section class="videos w-100">
+    <h3 *ngIf="styletype != 'style4'" class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+
+    <!-- ------  for t4 ----- -->
+    <div class="card-headings-div" *ngIf="styletype == 'style4'">
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}}</h3>
+    </div>
+
+
+    <div class="video-outer-div" [ngStyle]="{'background-color': card2bgcolour}">
+        <div class="video-div" *ngFor="let video_datas of data.data">
+            <iframe [src]="video_datas.safeUrl" title="YouTube video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
+                allowfullscreen>>
+            </iframe>
+        </div>
+
+    </div>
+</section>
+
+
+
+}
+
+
+<!---------- template 5------------>
+
+@else if(template_type == 'layout5') {
+<section class="videos w-100">
+    <h3 class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+    <div class="video-outer-div" [ngStyle]="videos_outer_div ?videos_outer_div : {'background-color': card2bgcolour}">
+        <div class="video-div" *ngFor="let video_datas of data.data">
+            <iframe [src]="video_datas.safeUrl" title="YouTube video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
+                allowfullscreen>>
+            </iframe>
+        </div>
+
+
+    </div>
+</section>
+}
+
+<!---------- template 6------------>
+
+@else if(template_type == 'layout6') {
+<section class="videos w-100">
+    <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h3>
+    <div class="video-outer-div">
+        <div class="video-div" *ngFor="let video_datas of data.data">
+            <iframe [src]="video_datas.safeUrl" title="YouTube video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
+                allowfullscreen>>
+            </iframe>
+        </div>
+
+
+    </div>
+</section>
+}
+
+
+<!---------- template 7------------>
+
+@else if(template_type == 'layout7') {
+<div class="video-div-inner ">
+    <div class="section-headings">
+        <h2 [ngStyle]="{'color':  bodytextcolour}">{{data.title}}</h2>
+        <span [ngStyle]="{'background': card1bgcolour}"></span>
+    </div>
+    <!-- ------------------desktop view --------- -->
+    <div class="desktop-video-div">
+<div class="iframe-container">
+    <iframe
+        class="main-video"
+        [src]="mainVideoUrl"
+         frameborder="0"
+  allowfullscreen="true"
+  allow="autoplay; encrypted-media; picture-in-picture; web-share; compute-pressure"
+  scrolling="no">
+    </iframe>
+</div>
+
+    <div class="video-thumbnails"  #thumbnailContainer
+     [class.expanded]="showAllThumbnails">
+
+      <img
+  class="thumb"
+  *ngFor="
+      let video of (
+        showAllThumbnails
+          ? allThumbnails
+          : allThumbnails.slice(0, visibleThumbs)
+      );
+      let i = index
+    "
+    [src]="video.thumbnail"
+    [class.active]="activeIndex === i"
+    (click)="changeMainVideo(video, i)"
+  [ngStyle]="activeIndex === i ? {
+    'border': '4px solid ' + card1bgcolour
+  } : {}"
+/>
+
+  <button
+  *ngIf="isOverflowing"
+    class="see-more-btn"
+    (click)="showAllThumbnails = !showAllThumbnails"
+>
+  {{ showAllThumbnails ? 'See Less' : 'See More' }}  <i class="fa-solid fa-angles-right"></i>
+</button>
+
+    </div> 
+
+</div>
+
+
+    <!-- MOBILE VIEW -->
+    <div class="mobile-videos">
+        <ng-container *ngFor="let video_datas of data.data">
+            <iframe [src]="video_datas.safeUrl" allowfullscreen title="YouTube video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"></iframe>
+        </ng-container>
+    </div>
+
+</div>
+}
+
+
+
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+
+       <div class="video-div col-div">
+      <h2 class="card-heading" [ngStyle]="{ border: '0.5px dashed ' + card1bgcolour , color: card1bgcolour }"><i class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i
+                            class="fa-solid fa-right-long"></i></h2>
+
+                                <!-- ------------------desktop view --------- -->
+    <div class="desktop-video-div">
+<div class="iframe-container">
+    <iframe
+        class="main-video"
+        [src]="mainVideoUrl"
+         frameborder="0"
+  allowfullscreen="true"
+  allow="autoplay; encrypted-media; picture-in-picture; web-share; compute-pressure"
+  scrolling="no">
+    </iframe>
+</div>
+
+  <div class="video-thumbnails"  #thumbnailContainer
+     [class.expanded]="showAllThumbnails">
+
+      <img
+  class="thumb"
+  *ngFor="
+      let video of (
+        showAllThumbnails
+          ? allThumbnails
+          : allThumbnails.slice(0, visibleThumbs)
+      );
+      let i = index
+    "
+    [src]="video.thumbnail"
+    [class.active]="activeIndex === i"
+    (click)="changeMainVideo(video, i)"
+  [ngStyle]="activeIndex === i ? {
+    'border': '4px solid ' + card1bgcolour
+  } : {}"
+/>
+
+  <button
+  *ngIf="isOverflowing"
+    class="see-more-btn"
+    (click)="showAllThumbnails = !showAllThumbnails"
+>
+  {{ showAllThumbnails ? 'See Less' : 'See More' }}  <i class="fa-solid fa-angles-right"></i>
+</button>
+
+    </div> 
+
+</div>
+
+
+    <!-- MOBILE VIEW -->
+    <div class="mobile-videos">
+        <ng-container *ngFor="let video_datas of data.data">
+            <iframe [src]="video_datas.safeUrl" allowfullscreen title="YouTube video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"></iframe>
+        </ng-container>
+    </div>
+
+    </div>
+ }
+ 
+
+  <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+  <div class=" video-div col-div pe-0">
+                    <h2 class="card-heading" [ngStyle]="{ color: bodytextcolour }"><span [ngStyle]="{ background: card1bgcolour }"></span>{{data.title}}</h2>
+
+                    <!-- ------------------desktop view --------- -->
+  <div class="desktop-video-div">
+<div class="iframe-container">
+    <iframe
+        class="main-video"
+        [src]="mainVideoUrl"
+         frameborder="0"
+  allowfullscreen="true"
+  allow="autoplay; encrypted-media; picture-in-picture; web-share; compute-pressure"
+  scrolling="no">
+    </iframe>
+</div>
+
+  <div class="video-thumbnails"  #thumbnailContainer
+     [class.expanded]="showAllThumbnails">
+
+      <img
+  class="thumb"
+  *ngFor="
+      let video of (
+        showAllThumbnails
+          ? allThumbnails
+          : allThumbnails.slice(0, visibleThumbs)
+      );
+      let i = index
+    "
+    [src]="video.thumbnail"
+    [class.active]="activeIndex === i"
+    (click)="changeMainVideo(video, i)"
+  [ngStyle]="activeIndex === i ? {
+    'border': '4px solid ' + card1bgcolour
+  } : {}"
+/>
+
+  <button
+  *ngIf="isOverflowing"
+    class="see-more-btn"
+    (click)="showAllThumbnails = !showAllThumbnails"
+>
+  {{ showAllThumbnails ? 'See Less' : 'See More' }}  <i class="fa-solid fa-angles-right"></i>
+</button>
+
+    </div> 
+
+</div>
+
+
+    <!-- MOBILE VIEW -->
+    <div class="mobile-videos">
+        <ng-container *ngFor="let video_datas of data.data">
+            <iframe [src]="video_datas.safeUrl" allowfullscreen title="YouTube video" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"></iframe>
+        </ng-container>
+    </div>
+
+
+
+                </div>
+    }

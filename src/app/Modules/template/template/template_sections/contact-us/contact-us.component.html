@@ -1,0 +1,2052 @@
+<!---------- template 1------------>
+
+<!-- Contact Us section -->
+@if(template_type == 'layout1') {
+
+<section id="Contact_Us" class="contact-us light-card" [ngStyle]="{
+                                                            'color': card1textcolour
+                                                          }">
+    <div class="card-headings-div">
+        <h3 class="card-headings" [ngStyle]="{
+                                                            'color': card1textcolour
+                                                          }">
+            {{data.title}}</h3>
+    </div>
+    <form #contactForm="ngForm">
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" [(ngModel)]="Contact.name"
+                placeholder="Enter Your Name">
+
+            <div class="text-danger" *ngIf="showErrors && !Contact.name">
+                Name is required.
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Your Contact No"
+                [(ngModel)]="Contact.mobile" pattern="^[0-9]{10}$" maxlength="10" minlength="10" />
+
+            <div class="text-danger" *ngIf="showErrors && !Contact.mobile">
+                Contact number is required.
+            </div>
+
+            <div class="text-danger" *ngIf="showErrors && Contact.mobile && !isValidMobile(Contact.mobile)">
+                Please enter a valid 10-digit mobile number.
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Enter Your Email" [(ngModel)]="Contact.emailid"
+                name="email">
+
+
+        </div>
+
+
+        <div class="form-group">
+            <textarea class="form-control" name="message" [(ngModel)]="Contact.message"
+                placeholder="Enter Your Message..."></textarea>
+
+            <div class="text-danger" *ngIf="showErrors && !Contact.message">
+                Message is required.
+            </div>
+        </div>
+
+        <ng-container *ngFor="let data of conatct_us_data.data">
+            <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+                <label for="" [ngStyle]=" {'color': card1textcolour }">{{data.field_key}}</label>
+                <input type="date" id="" name="date_contact" [(ngModel)]="data.insert_value">
+            </div> -->
+
+            <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                <label [ngStyle]=" {'color': card1textcolour}">
+                    {{data.field_key}} :
+                </label>
+
+                <div class="custom-date-wrapper">
+
+                    <input type="date" name="date_contact" class="custom-date-input" [(ngModel)]="data.insert_value">
+
+                    <span class="placeholder" *ngIf="!data.insert_value">
+                        dd-mm-yyyy
+                    </span>
+
+                    <span class="date-text" *ngIf="data.insert_value">
+                        {{ data.insert_value | date:'dd-MM-yyyy' }}
+                    </span>
+
+                    <i class="fa-solid fa-calendar calendar-icon"></i>
+
+                </div>
+
+            </div>
+
+
+
+
+            <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label for=""
+                        [ngStyle]=" {'color': card1textcolour }">{{data.field_key}}</label>
+
+                  
+                    <ion-item class="date-item" (click)="toggleDatePicker(data)">
+                        <ion-input [value]="data.insert_value ? (data.insert_value | date:'dd-MM-yyyy') : ''"
+                            placeholder="Select Date">
+                        </ion-input>
+
+                        <ion-icon name="calendar-outline" slot="end"></ion-icon>
+                    </ion-item>
+
+
+                    <ng-container *ngIf="showDatePicker">
+                        <div class="custom_date_modal">
+                            <ion-datetime presentation="date" [max]="maxDate" (ionChange)="setDate($event)"
+                                (ionCancel)="cancelDatePicker()" [showDefaultButtons]="true"></ion-datetime>
+                        </div>
+                    </ng-container>
+
+
+
+                </div> -->
+
+
+
+            <div class="form-group"
+                *ngIf="data.field_value.includes('dropdown_col') && data.status=='T' && data?.field_data">
+
+                <label [ngStyle]="{'color': card1textcolour}">
+                    {{data.field_key}} :
+                </label>
+
+                <div class="custom-select" (click)="$event.stopPropagation()">
+                    <div class="select-box" (click)="toggleSelect(data.entry_rowid_seq)">
+                        <span class="value" [class.placeholder]="!selectedDropdownValues[data.entry_rowid_seq]">
+                            {{ selectedDropdownValues[data.entry_rowid_seq] || data.field_key }}
+                        </span>
+
+                        <span class="arrow" [class.open]="selectOpenKey === data.entry_rowid_seq">
+                            <i class="fa-solid fa-caret-down"></i>
+                            
+                        </span>
+                    </div>
+
+                    <div class="options" *ngIf="selectOpenKey === data.entry_rowid_seq">
+                        <ng-container *ngFor="let drop of getDropdownOptions(data.field_data)">
+                            <div class="option" (click)="selectOption(data.entry_rowid_seq, drop, data)">
+                                {{ drop }}
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group"
+                *ngIf="data.field_value.includes('checkbox_col') && data.status=='T' && data?.field_data">
+
+                <label [ngStyle]="{'color': card1textcolour}">
+                    {{data.field_key}} :
+                </label>
+
+                <div class="multi-select" (click)="$event.stopPropagation()">
+
+                    <div class="select-box" (click)="toggleCheckbox(data.field_key)">
+                        <span class="value" [class.placeholder]="!checkboxValues[data.field_key]?.length">
+                            {{checkboxValues[data.field_key]?.length? checkboxValues[data.field_key].join(', '):
+                            data.field_key}}
+                        </span>
+
+                        <span class="arrow">
+                            <i class="fa-solid fa-caret-down"></i>
+                        </span>
+                    </div>
+
+
+                    <div class="options" *ngIf="checkboxOpen[data.field_key]">
+                        <label *ngFor="let check of data.field_data.split('#')">
+                            <input type="checkbox" [checked]="checkboxValues[data.field_key]?.includes(check)"
+                                (click)="$event.stopPropagation()" (change)="onChange($event, check, data)" />
+                            {{ check }}
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- <div class="form-group" *ngIf="data.field_value=='textbox1_col' && data.status=='T'">
+                    <label for="" [ngStyle]=" {'color': card1textcolour }">{{data.field_key}} :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="Contact.text1">
+                </div> -->
+            <div class="form-group" *ngIf="data.field_value.includes('textbox1_col') && data.status=='T'">
+                <label for="" [ngStyle]=" {'color': card1textcolour }">{{data.field_key}} :</label>
+                <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                    [(ngModel)]="data.insert_value">
+            </div>
+        </ng-container>
+
+
+
+
+        <div class="form-group">
+            <button class="dark-btn " type="submit" (click)="Submit(contactForm)" [ngStyle]="{
+      color: isHover ?  card2bgcolour : card2textcolour,
+      background: isHover ? card2textcolour : card2bgcolour,
+      border:  `2px solid ${card2bgcolour}`
+    }" (mouseenter)="isHover = true" (mouseleave)="isHover = false" >Submit</button>
+        </div>
+
+    </form>
+
+</section>
+
+
+}
+<!---------- template 2------------>
+
+<!-- Contact Us section -->
+@else if(template_type == 'layout2') {
+
+<section class="contact-us w-100">
+
+    <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+
+
+    <form #contactForm="ngForm">
+        <div class="light-card" [ngStyle]="{
+                                                            'color': card1textcolour }">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" [(ngModel)]="Contact.name"
+                    placeholder="Enter Your Name">
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.name">
+                    Name is required.
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Your Contact No"
+                    [(ngModel)]="Contact.mobile" pattern="^[0-9]{10}$" maxlength="10" minlength="10" />
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.mobile">
+                    Contact number is required.
+                </div>
+
+                <div class="text-danger" *ngIf="showErrors && Contact.mobile && !isValidMobile(Contact.mobile)">
+                    Please enter a valid 10-digit mobile number.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="email" class="form-control" id="name" placeholder="Enter Your Email"
+                    [(ngModel)]="Contact.emailid" name="emailid">
+
+
+
+            </div>
+
+            <div class="form-group">
+                <textarea class="form-control" name="message" [(ngModel)]="Contact.message"
+                    placeholder="Enter Your Message..."></textarea>
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.message">
+                    Message is required.
+                </div>
+            </div>
+
+            <ng-container *ngFor="let data of conatct_us_data.data">
+                <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+                    <label for="" [ngStyle]=" {'color': card1textcolour }">{{data.field_key}}</label>
+                    <input type="date" id="" name="date_contact" [(ngModel)]="data.insert_value">
+                </div> -->
+
+
+                <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label [ngStyle]=" {'color': card1textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-date-wrapper">
+
+                        <input type="date" name="date_contact" class="custom-date-input"
+                            [(ngModel)]="data.insert_value">
+
+                        <span class="placeholder" *ngIf="!data.insert_value">
+                            dd-mm-yyyy
+                        </span>
+
+                        <span class="date-text" *ngIf="data.insert_value">
+                            {{ data.insert_value | date:'dd-MM-yyyy' }}
+                        </span>
+
+                        <i class="fa-solid fa-calendar calendar-icon"></i>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label for="" [ngStyle]=" {'color': card1textcolour }">{{data.field_key}}</label>
+
+                 
+                    <ion-item class="date-item" (click)="toggleDatePicker(data)">
+                        <ion-input [value]="data.insert_value ? (data.insert_value | date:'dd-MM-yyyy') : ''"
+                            placeholder="Select Date">
+                        </ion-input>
+
+                        <ion-icon name="calendar-outline" slot="end"></ion-icon>
+                    </ion-item>
+
+
+                    <ng-container *ngIf="showDatePicker">
+                        <div class="custom_date_modal">
+                            <ion-datetime presentation="date" [max]="maxDate" (ionChange)="setDate($event)"
+                                (ionCancel)="cancelDatePicker()" [showDefaultButtons]="true"></ion-datetime>
+                        </div>
+                    </ng-container>
+
+
+
+                </div> -->
+
+
+                <div class="form-group"
+                    *ngIf="data.field_value.includes('dropdown_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]="{'color': card1textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-select" (click)="$event.stopPropagation()">
+                        <div class="select-box" (click)="toggleSelect(data.entry_rowid_seq)">
+                            <span class="value" [class.placeholder]="!selectedDropdownValues[data.entry_rowid_seq]">
+                                {{ selectedDropdownValues[data.entry_rowid_seq] || data.field_key }}
+                            </span>
+
+                            <span class="arrow" [class.open]="selectOpenKey === data.entry_rowid_seq">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+                        <div class="options" *ngIf="selectOpenKey === data.entry_rowid_seq">
+                            <ng-container *ngFor="let drop of getDropdownOptions(data.field_data)">
+                                <div class="option" (click)="selectOption(data.entry_rowid_seq, drop, data)">
+                                    {{ drop }}
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group"
+                    *ngIf="data.field_value.includes('checkbox_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]="{'color': card1textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="multi-select" (click)="$event.stopPropagation()">
+
+                        <div class="select-box" (click)="toggleCheckbox(data.field_key)">
+                            <span class="value" [class.placeholder]="!checkboxValues[data.field_key]?.length">
+                                {{checkboxValues[data.field_key]?.length? checkboxValues[data.field_key].join(', '):
+                                data.field_key}}
+                            </span>
+
+                            <span class="arrow">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+
+                        <div class="options" *ngIf="checkboxOpen[data.field_key]">
+                            <label *ngFor="let check of data.field_data.split('#')">
+                                <input type="checkbox" [checked]="checkboxValues[data.field_key]?.includes(check)"
+                                    (click)="$event.stopPropagation()" (change)="onChange($event, check, data)" />
+                                {{ check }}
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- <div class="form-group" *ngIf="data.field_value=='textbox1_col' && data.status=='T'">
+                    <label for="" [ngStyle]=" {'color': card1textcolour }">{{data.field_key}} :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="Contact.text1">
+                </div> -->
+                <div class="form-group" *ngIf="data.field_value.includes('textbox1_col') && data.status=='T'">
+                    <label for="" [ngStyle]=" {'color': card1textcolour }">{{data.field_key}} :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="data.insert_value">
+                </div>
+            </ng-container>
+
+
+
+            <div class="form-group m-auto">
+                <button class="dark-btn" type="submit" (click)="Submit(contactForm)"
+                            [ngStyle]="{
+      color:  card2textcolour,
+      background:  card2bgcolour
+    }" 
+    ><i class="fa fa-angle-right"></i>Submit</button>
+            </div>
+
+
+
+
+
+
+        </div>
+
+    </form>
+
+</section>
+}
+
+
+<!---------- template 3------------>
+
+<!-- Contact Us section -->
+@else if(template_type == 'layout3') {
+
+<section class="contact-us w-100">
+
+    <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' +  card2textcolour}">
+        {{data?.title}}</h2>
+
+
+    <form #contactForm="ngForm">
+        <div class="form-div" [ngStyle]="{'background-color': bodybgcolour }">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" [(ngModel)]="Contact.name"
+                    placeholder="Enter Your Name">
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.name">
+                    Name is required.
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Your Contact No"
+                    [(ngModel)]="Contact.mobile" pattern="^[0-9]{10}$" maxlength="10" minlength="10" />
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.mobile">
+                    Contact number is required.
+                </div>
+
+                <div class="text-danger" *ngIf="showErrors && Contact.mobile && !isValidMobile(Contact.mobile)">
+                    Please enter a valid 10-digit mobile number.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="email" class="form-control" id="name" placeholder="Enter Your Email"
+                    [(ngModel)]="Contact.emailid" name="emailid">
+
+
+            </div>
+
+            <div class="form-group">
+                <textarea class="form-control" name="message" [(ngModel)]="Contact.message"
+                    placeholder="Enter Your Message..."></textarea>
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.message">
+                    Message is required.
+                </div>
+            </div>
+
+
+
+            <ng-container *ngFor="let data of conatct_us_data.data">
+                <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+                    <label for="" [ngStyle]=" {'color': card2textcolour }">{{data.field_key}}</label>
+                    <input type="date" id="" name="date_contact" [(ngModel)]="data.insert_value">
+                </div> -->
+
+
+                <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label [ngStyle]=" {'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-date-wrapper">
+
+                        <input type="date" name="date_contact" class="custom-date-input"
+                            [(ngModel)]="data.insert_value">
+
+                        <span class="placeholder" *ngIf="!data.insert_value">
+                            dd-mm-yyyy
+                        </span>
+
+                        <span class="date-text" *ngIf="data.insert_value">
+                            {{ data.insert_value | date:'dd-MM-yyyy' }}
+                        </span>
+
+                        <i class="fa-solid fa-calendar calendar-icon"></i>
+
+                    </div>
+
+                </div>
+
+
+                <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label for="" [ngStyle]=" {'color': card2textcolour }">{{data.field_key}}</label>
+
+                 
+                    <ion-item class="date-item" (click)="toggleDatePicker(data)">
+                        <ion-input [value]="data.insert_value ? (data.insert_value | date:'dd-MM-yyyy') : ''"
+                            placeholder="Select Date">
+                        </ion-input>
+
+                        <ion-icon name="calendar-outline" slot="end"></ion-icon>
+                    </ion-item>
+
+
+                    <ng-container *ngIf="showDatePicker">
+                        <div class="custom_date_modal">
+                            <ion-datetime presentation="date" [max]="maxDate" (ionChange)="setDate($event)"
+                                (ionCancel)="cancelDatePicker()" [showDefaultButtons]="true"></ion-datetime>
+                        </div>
+                    </ng-container>
+
+
+
+                </div> -->
+
+                <div class="form-group"
+                    *ngIf="data.field_value.includes('dropdown_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]="{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-select" (click)="$event.stopPropagation()">
+                        <div class="select-box" (click)="toggleSelect(data.entry_rowid_seq)">
+                            <span class="value" [class.placeholder]="!selectedDropdownValues[data.entry_rowid_seq]">
+                                {{ selectedDropdownValues[data.entry_rowid_seq] || data.field_key }}
+                            </span>
+
+                            <span class="arrow" [class.open]="selectOpenKey === data.entry_rowid_seq">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+                        <div class="options" *ngIf="selectOpenKey === data.entry_rowid_seq">
+                            <ng-container *ngFor="let drop of getDropdownOptions(data.field_data)">
+                                <div class="option" (click)="selectOption(data.entry_rowid_seq, drop, data)">
+                                    {{ drop }}
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group"
+                    *ngIf="data.field_value.includes('checkbox_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]="{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="multi-select" (click)="$event.stopPropagation()">
+
+                        <div class="select-box" (click)="toggleCheckbox(data.field_key)">
+                            <span class="value" [class.placeholder]="!checkboxValues[data.field_key]?.length">
+                                {{checkboxValues[data.field_key]?.length? checkboxValues[data.field_key].join(', '):
+                                data.field_key}}
+                            </span>
+
+                            <span class="arrow">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+
+                        <div class="options" *ngIf="checkboxOpen[data.field_key]">
+                            <label *ngFor="let check of data.field_data.split('#')">
+                                <input type="checkbox" [checked]="checkboxValues[data.field_key]?.includes(check)"
+                                    (click)="$event.stopPropagation()" (change)="onChange($event, check, data)" />
+                                {{ check }}
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- <div class="form-group" *ngIf="data.field_value=='textbox1_col' && data.status=='T'">
+                    <label for="" [ngStyle]=" {'color': card2textcolour }">{{data.field_key}} :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="Contact.text1">
+                </div> -->
+                <div class="form-group" *ngIf="data.field_value.includes('textbox1_col') && data.status=='T'">
+                    <label for="" [ngStyle]=" {'color': card2textcolour }">{{data.field_key}} :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="data.insert_value">
+                </div>
+            </ng-container>
+
+
+
+        </div>
+        <div class="form-group ">
+            <button class="visit-btn" type="submit" (click)="Submit(contactForm)" [ngStyle]="{
+                                                        
+                                                            'background': card1bgcolour
+                                                          }"><i class="fa fa-angle-right"></i> Submit</button>
+        </div>
+
+    </form>
+
+
+</section>
+}
+
+
+
+<!---------- template 4------------>
+
+@else if(template_type == 'layout4') {
+
+<section class="contact-us w-100" [ngStyle]="{'background-color': card2bgcolour}">
+    <h3 *ngIf="styletype != 'style4'" class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+
+    <!-- ---------- for t4 ----------- -->
+    <div class="card-headings-div" *ngIf="styletype == 'style4'">
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}}</h3>
+    </div>
+
+    <form #contactForm="ngForm">
+
+        <div class="form-div">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" [(ngModel)]="Contact.name"
+                    placeholder="Enter Your Name">
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.name">
+                    Name is required.
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Your Contact No"
+                    [(ngModel)]="Contact.mobile" pattern="^[0-9]{10}$" maxlength="10" minlength="10" />
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.mobile">
+                    Contact number is required.
+                </div>
+
+                <div class="text-danger" *ngIf="showErrors && Contact.mobile && !isValidMobile(Contact.mobile)">
+                    Please enter a valid 10-digit mobile number.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="email" class="form-control" id="name" placeholder="Enter Your Email"
+                    [(ngModel)]="Contact.emailid" name="emailid">
+
+
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="message" [(ngModel)]="Contact.message"
+                    placeholder="Enter Your Message..."></textarea>
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.message">
+                    Message is required.
+                </div>
+            </div>
+            <!--  -->
+            <!-- Single checkbox  -->
+            <ng-container *ngFor="let data of conatct_us_data.data">
+                <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+                    <label for="" [ngStyle]=" {'color': card2textcolour }">{{data.field_key}}</label>
+                    <input type="date" id="" name="date_contact" [(ngModel)]="data.insert_value">
+                </div> -->
+
+                <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label [ngStyle]=" {'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-date-wrapper">
+
+                        <input type="date" name="date_contact" class="custom-date-input"
+                            [(ngModel)]="data.insert_value">
+
+                        <span class="placeholder" *ngIf="!data.insert_value">
+                            dd-mm-yyyy
+                        </span>
+
+                        <span class="date-text" *ngIf="data.insert_value">
+                            {{ data.insert_value | date:'dd-MM-yyyy' }}
+                        </span>
+
+                        <i class="fa-solid fa-calendar calendar-icon"></i>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label for="" [ngStyle]=" {'color': card2textcolour }">{{data.field_key}}</label>
+
+                
+                    <ion-item class="date-item" (click)="toggleDatePicker(data)">
+                        <ion-input [value]="data.insert_value ? (data.insert_value | date:'dd-MM-yyyy') : ''"
+                            placeholder="Select Date">
+                        </ion-input>
+
+                        <ion-icon name="calendar-outline" slot="end"></ion-icon>
+                    </ion-item>
+
+
+
+
+
+
+
+                    <ng-container *ngIf="showDatePicker">
+                        <div class="custom_date_modal">
+                            <ion-datetime presentation="date" [max]="maxDate" (ionChange)="setDate($event)"
+                                (ionCancel)="cancelDatePicker()" [showDefaultButtons]="true"></ion-datetime>
+                        </div>
+                    </ng-container>
+
+
+
+                </div> -->
+
+                <div class="form-group"
+                    *ngIf="data.field_value.includes('dropdown_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]="{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-select" (click)="$event.stopPropagation()">
+                        <div class="select-box" (click)="toggleSelect(data.entry_rowid_seq)">
+                            <span class="value" [class.placeholder]="!selectedDropdownValues[data.entry_rowid_seq]">
+                                {{ selectedDropdownValues[data.entry_rowid_seq] || data.field_key }}
+                            </span>
+
+                            <span class="arrow" [class.open]="selectOpenKey === data.entry_rowid_seq">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+                        <div class="options" *ngIf="selectOpenKey === data.entry_rowid_seq">
+                            <ng-container *ngFor="let drop of getDropdownOptions(data.field_data)">
+                                <div class="option" (click)="selectOption(data.entry_rowid_seq, drop, data)">
+                                    {{ drop }}
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group"
+                    *ngIf="data.field_value.includes('checkbox_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]="{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="multi-select" (click)="$event.stopPropagation()">
+
+                        <div class="select-box" (click)="toggleCheckbox(data.field_key)">
+                            <span class="value" [class.placeholder]="!checkboxValues[data.field_key]?.length">
+                                {{checkboxValues[data.field_key]?.length? checkboxValues[data.field_key].join(', '):
+                                data.field_key}}
+                            </span>
+
+                            <span class="arrow">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+
+                        <div class="options" *ngIf="checkboxOpen[data.field_key]">
+                            <label *ngFor="let check of data.field_data.split('#')">
+                                <input type="checkbox" [checked]="checkboxValues[data.field_key]?.includes(check)"
+                                    (click)="$event.stopPropagation()" (change)="onChange($event, check, data)" />
+                                {{ check }}
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- <div class="form-group" *ngIf="data.field_value=='textbox1_col' && data.status=='T'">
+                    <label for="" [ngStyle]=" {'color': card2textcolour }">{{data.field_key}} :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="Contact.text1">
+                </div> -->
+                <div class="form-group" *ngIf="data.field_value.includes('textbox1_col') && data.status=='T'">
+                    <label for="" [ngStyle]=" {'color': card2textcolour }">{{data.field_key}} :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="data.insert_value">
+                </div>
+            </ng-container>
+
+
+            <div class="form-group ">
+                <button class="visit-btn" type="submit" (click)="Submit(contactForm)"
+                  
+      [ngStyle]="
+  isHover
+    ? (contact_btn_hover || {
+        'color': card1bgcolour,
+        'background': card1textcolour,
+        'border': '1px solid ' + card1bgcolour
+      })
+    : (contact_visit_btn || {
+        'color': card1textcolour,
+        'background': card1bgcolour,
+        'border': '1px solid ' + card1bgcolour
+      })
+"(mouseenter)="isHover = true" (mouseleave)="isHover = false" >Submit</button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <a target="_blank" class="footer-link" [href]="globalObject.urlNew + '/login'">Create your Digital
+        Card</a>
+
+</section>
+
+
+
+}
+
+
+<!---------- template 5------------>
+
+@else if(template_type == 'layout5') {
+
+<section class="contact-us w-100" [ngStyle]="contact_us ?contact_us : {'background-color': card2bgcolour}">
+    <div class="card-headings-div">
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}}</h3>
+    </div>
+
+    <form #contactForm="ngForm">
+        <div class="form-div">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" [(ngModel)]="Contact.name"
+                    placeholder="Enter Your Name">
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.name">
+                    Name is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Your Contact No"
+                    [(ngModel)]="Contact.mobile" pattern="^[0-9]{10}$" maxlength="10" minlength="10" />
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.mobile">
+                    Contact number is required.
+                </div>
+
+                <div class="text-danger" *ngIf="showErrors && Contact.mobile && !isValidMobile(Contact.mobile)">
+                    Please enter a valid 10-digit mobile number.
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <input type="email" class="form-control" id="name" placeholder="Enter Your Email" name="emailid"
+                    [(ngModel)]="Contact.emailid">
+
+
+            </div>
+
+            <div class="form-group">
+                <textarea class="form-control" name="message" [(ngModel)]="Contact.message"
+                    placeholder="Enter Your Message..."></textarea>
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.message">
+                    Message is required.
+                </div>
+            </div>
+            <ng-container *ngFor="let data of conatct_us_data.data">
+                <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+                    <label for=""
+                        [ngStyle]="payment_data_div ?payment_data_div : {'color': card2textcolour }">{{data.field_key}}</label>
+                  
+                    <input type="date" id="" name="date_contact" [(ngModel)]="data.insert_value">
+                </div> -->
+
+
+                <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label [ngStyle]=" payment_data_div ?payment_data_div :{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-date-wrapper">
+
+                        <input type="date" name="date_contact" class="custom-date-input"
+                            [(ngModel)]="data.insert_value">
+
+                        <span class="placeholder" *ngIf="!data.insert_value">
+                            dd-mm-yyyy
+                        </span>
+
+                        <span class="date-text" *ngIf="data.insert_value">
+                            {{ data.insert_value | date:'dd-MM-yyyy' }}
+                        </span>
+
+                        <i class="fa-solid fa-calendar calendar-icon"></i>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label for=""
+                        [ngStyle]=" payment_data_div ?payment_data_div : {'color': card2textcolour }">{{data.field_key}}</label>
+
+                 
+                    <ion-item class="date-item" (click)="toggleDatePicker(data)">
+                        <ion-input [value]="data.insert_value ? (data.insert_value | date:'dd-MM-yyyy') : ''"
+                            placeholder="Select Date">
+                        </ion-input>
+
+                        <ion-icon name="calendar-outline" slot="end"></ion-icon>
+                    </ion-item>
+
+
+
+
+
+
+
+                    <ng-container *ngIf="showDatePicker">
+                        <div class="custom_date_modal">
+                            <ion-datetime presentation="date" [max]="maxDate" (ionChange)="setDate($event)"
+                                (ionCancel)="cancelDatePicker()" [showDefaultButtons]="true"></ion-datetime>
+                        </div>
+                    </ng-container>
+
+
+
+                </div> -->
+
+                <div class="form-group"
+                    *ngIf="data.field_value.includes('dropdown_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]="payment_data_div ?payment_data_div :{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-select" (click)="$event.stopPropagation()">
+                        <div class="select-box" (click)="toggleSelect(data.entry_rowid_seq)">
+                            <span class="value" [class.placeholder]="!selectedDropdownValues[data.entry_rowid_seq]">
+                                {{ selectedDropdownValues[data.entry_rowid_seq] || data.field_key }}
+                            </span>
+
+                            <span class="arrow" [class.open]="selectOpenKey === data.entry_rowid_seq">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+                        <div class="options" *ngIf="selectOpenKey === data.entry_rowid_seq">
+                            <ng-container *ngFor="let drop of getDropdownOptions(data.field_data)">
+                                <div class="option" (click)="selectOption(data.entry_rowid_seq, drop, data)">
+                                    {{ drop }}
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group"
+                    *ngIf="data.field_value.includes('checkbox_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]="payment_data_div ?payment_data_div :{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="multi-select" (click)="$event.stopPropagation()">
+
+                        <div class="select-box" (click)="toggleCheckbox(data.field_key)">
+                            <span class="value" [class.placeholder]="!checkboxValues[data.field_key]?.length">
+                                {{checkboxValues[data.field_key]?.length? checkboxValues[data.field_key].join(', '):
+                                data.field_key}}
+                            </span>
+
+                            <span class="arrow">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+
+                        <div class="options" *ngIf="checkboxOpen[data.field_key]">
+                            <label *ngFor="let check of data.field_data.split('#')">
+                                <input type="checkbox" [checked]="checkboxValues[data.field_key]?.includes(check)"
+                                    (click)="$event.stopPropagation()" (change)="onChange($event, check, data)" />
+                                {{ check }}
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- <div class="form-group" *ngIf="data.field_value=='textbox1_col' && data.status=='T'">
+                    <label for="" [ngStyle]=" payment_data_div ?payment_data_div :{'color': card2textcolour }">{{data.field_key}} :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="Contact.text1">
+                </div> -->
+                <div class="form-group" *ngIf="data.field_value.includes('textbox1_col') && data.status=='T'">
+                    <label for=""
+                        [ngStyle]="payment_data_div ?payment_data_div : {'color': card2textcolour }">{{data.field_key}}
+                        :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="data.insert_value">
+                </div>
+            </ng-container>
+
+
+            <div class="form-group ">
+                <button class="visit-btn" type="submit"
+                   
+
+                     [ngStyle]="
+  isHover
+    ? (contact_btn_hover || {
+        'color': card1bgcolour,
+        'background': card1textcolour,
+        'border': '1px solid ' + card1bgcolour
+      })
+    : (contact_visit_btn || {
+        'color': card1textcolour,
+        'background': card1bgcolour,
+        'border': '1px solid ' + card1bgcolour
+      })
+"(mouseenter)="isHover = true" (mouseleave)="isHover = false"
+
+                    (click)="Submit(contactForm)">
+                    Submit</button>
+            </div>
+
+        </div>
+    </form>
+
+    <a target="_blank" class="footer-link" [href]="globalObject.urlNew + '/login'">Create your Digital
+        Card</a>
+
+</section>
+}
+
+
+<!---------- template 6------------>
+
+@else if(template_type == 'layout6') {
+
+<section class="contact-us w-100">
+    <div class="card-headings-div">
+        <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}"> {{data.title}}
+        </h3>
+    </div>
+
+    <form #contactForm="ngForm">
+        <div class="form-div">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" [(ngModel)]="Contact.name"
+                    placeholder="Enter Your Name">
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.name">
+                    Name is required.
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Your Contact No"
+                    [(ngModel)]="Contact.mobile" pattern="^[0-9]{10}$" maxlength="10" minlength="10" />
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.mobile">
+                    Contact number is required.
+                </div>
+
+                <div class="text-danger" *ngIf="showErrors && Contact.mobile && !isValidMobile(Contact.mobile)">
+                    Please enter a valid 10-digit mobile number.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="email" class="form-control" id="name" placeholder="Enter Your Email" name="emailid"
+                    [(ngModel)]="Contact.emailid">
+
+
+            </div>
+
+            <div class="form-group">
+                <textarea class="form-control" name="message" [(ngModel)]="Contact.message"
+                    placeholder="Enter Your Message..."></textarea>
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.message">
+                    Message is required.
+                </div>
+            </div>
+
+            <ng-container *ngFor="let data of conatct_us_data.data">
+                <!-- <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+                    <label for=""
+                        [ngStyle]=" payment_data_div ?payment_data_div : {'color': card2textcolour }">{{data.field_key}}</label>
+                    <input type="date" id="" name="date_contact" [(ngModel)]="data.insert_value">
+                </div> -->
+
+
+                <div class="form-group" *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label [ngStyle]=" payment_data_div ?payment_data_div :{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-date-wrapper">
+
+                        <input type="date" name="date_contact" class="custom-date-input"
+                            [(ngModel)]="data.insert_value">
+
+                        <span class="placeholder" *ngIf="!data.insert_value">
+                            dd-mm-yyyy
+                        </span>
+
+                        <span class="date-text" *ngIf="data.insert_value">
+                            {{ data.insert_value | date:'dd-MM-yyyy' }}
+                        </span>
+
+                        <i class="fa-solid fa-calendar calendar-icon"></i>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+                <div class="form-group"
+                    *ngIf="data.field_value.includes('dropdown_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]=" payment_data_div ?payment_data_div :{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-select" (click)="$event.stopPropagation()">
+                        <div class="select-box" (click)="toggleSelect(data.entry_rowid_seq)">
+                            <span class="value" [class.placeholder]="!selectedDropdownValues[data.entry_rowid_seq]">
+                                {{ selectedDropdownValues[data.entry_rowid_seq] || data.field_key }}
+                            </span>
+
+                            <span class="arrow" [class.open]="selectOpenKey === data.entry_rowid_seq">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+                        <div class="options" *ngIf="selectOpenKey === data.entry_rowid_seq">
+                            <ng-container *ngFor="let drop of getDropdownOptions(data.field_data)">
+                                <div class="option" (click)="selectOption(data.entry_rowid_seq, drop, data)">
+                                    {{ drop }}
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group"
+                    *ngIf="data.field_value.includes('checkbox_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]=" payment_data_div ?payment_data_div :{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="multi-select" (click)="$event.stopPropagation()">
+
+                        <div class="select-box" (click)="toggleCheckbox(data.field_key)">
+                            <span class="value" [class.placeholder]="!checkboxValues[data.field_key]?.length">
+                                {{checkboxValues[data.field_key]?.length? checkboxValues[data.field_key].join(', '):
+                                data.field_key}}
+                            </span>
+
+                            <span class="arrow">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+
+                        <div class="options" *ngIf="checkboxOpen[data.field_key]">
+                            <label *ngFor="let check of data.field_data.split('#')">
+                                <input type="checkbox" [checked]="checkboxValues[data.field_key]?.includes(check)"
+                                    (click)="$event.stopPropagation()" (change)="onChange($event, check, data)" />
+                                {{ check }}
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- <div class="form-group" *ngIf="data.field_value=='textbox1_col' && data.status=='T'">
+                    <label for="" [ngStyle]=" payment_data_div ?payment_data_div : {'color': card2textcolour }">{{data.field_key}} :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="Contact.text1">
+                </div> -->
+                <div class="form-group" *ngIf="data.field_value.includes('textbox1_col') && data.status=='T'">
+                    <label for=""
+                        [ngStyle]=" payment_data_div ?payment_data_div : {'color': card2textcolour }">{{data.field_key}}
+                        :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="data.insert_value">
+                </div>
+            </ng-container>
+
+
+            <div class="form-group ">
+                <button class="visit-btn"
+                                         [ngStyle]="
+  isHover
+    ? (contact_btn_hover || {
+        'color': card2bgcolour,
+        'background': card2textcolour,
+        'border': '1px solid ' + card2bgcolour
+      })
+    : (contact_visit_btn || {
+        'color': card1textcolour,
+        'background': card1bgcolour,
+        'border': '1px solid ' + card1bgcolour
+      })
+"(mouseenter)="isHover = true" (mouseleave)="isHover = false"
+                    type="submit" (click)="Submit(contactForm)"> Submit</button>
+
+            </div>
+
+        </div>
+    </form>
+
+    <a target="_blank" class="footer-link" [href]="globalObject.urlNew + '/login'">Create your Digital
+        Card</a>
+
+</section>
+
+}
+
+
+<!---------- template 7------------>
+
+@else if(template_type == 'layout7') {
+
+<div class="contact-us">
+    <div class="row">
+        <div class="col-6 c1">
+            <div class="section-headings">
+                <h2 [ngStyle]=" {'color': bodybgcolour }">{{data.title}}</h2>
+                <span [ngStyle]="{'background': bodybgcolour}"></span>
+            </div>
+            <form #contactForm="ngForm">
+
+                <div class="form-group">
+
+                    <div class="input-div">
+                        <input type="text" name="name" [(ngModel)]="Contact.name" placeholder="Enter Your Name">
+                        <span><i class="fa-solid fa-user"></i></span>
+                    </div>
+                    <div class="text-danger" *ngIf="showErrors && !Contact.name">
+                        Name is required.
+                    </div>
+
+                </div>
+
+                <div class="outer-input-div">
+                    <div class="form-group">
+                        <div class="input-div">
+                            <input type="tel" id="mobile" name="mobile" placeholder="Enter Your Contact No"
+                                [(ngModel)]="Contact.mobile" pattern="^[0-9]{10}$" maxlength="10" minlength="10">
+                            <span><i class="fa-solid fa-phone" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="text-danger" *ngIf="showErrors && !Contact.mobile">
+                            Contact number is required.
+                        </div>
+
+                        <div class="text-danger" *ngIf="showErrors && Contact.mobile && !isValidMobile(Contact.mobile)">
+                            Please enter a valid 10-digit mobile number.
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="form-group">
+                        <div class="input-div">
+                            <input type="email" id="name" placeholder="Enter Your Email" name="emailid"
+                                [(ngModel)]="Contact.emailid">
+                            <span><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <textarea name="message" [(ngModel)]="Contact.message"
+                        placeholder="Enter Your Message..."></textarea>
+
+                    <div class="text-danger" *ngIf="showErrors && !Contact.message">
+                        Message is required.
+                    </div>
+                </div>
+
+
+
+
+
+                <ng-container *ngFor="let data of conatct_us_data.data">
+
+
+
+                    <div class="form-group " *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                        <label
+                            [ngStyle]="{'color': 'color-mix(in srgb, ' + bodybgcolour + ' 65%, ' + bodytextcolour + ' 35%)'}">
+                            {{data.field_key}} :
+                        </label>
+
+                        <div class="custom-date-wrapper">
+
+                            <input type="date" name="date_contact" class="custom-date-input"
+                                [(ngModel)]="data.insert_value">
+
+                            <span class="placeholder" *ngIf="!data.insert_value">
+                                dd-mm-yyyy
+                            </span>
+
+                            <span class="date-text" *ngIf="data.insert_value">
+                                {{ data.insert_value | date:'dd-MM-yyyy' }}
+                            </span>
+
+                            <i class="fa-solid fa-calendar calendar-icon"></i>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                    <div class="form-group "
+                        *ngIf="data.field_value.includes('dropdown_col') && data.status=='T' && data?.field_data">
+
+                        <label
+                            [ngStyle]="{'color': 'color-mix(in srgb, ' + bodybgcolour + ' 65%, ' + bodytextcolour + ' 35%)'}">
+                            {{data.field_key}} :
+                        </label>
+
+                        <div class="custom-select" (click)="$event.stopPropagation()">
+                            <div class="select-box" (click)="toggleSelect(data.entry_rowid_seq)">
+                                <span class="value" [class.placeholder]="!selectedDropdownValues[data.entry_rowid_seq]">
+                                    {{ selectedDropdownValues[data.entry_rowid_seq] || data.field_key }}
+                                </span>
+
+                                <span class="arrow" [class.open]="selectOpenKey === data.entry_rowid_seq">
+                                    <i class="fa-solid fa-caret-down"></i>
+                                </span>
+                            </div>
+
+                            <div class="options" *ngIf="selectOpenKey === data.entry_rowid_seq">
+                                <ng-container *ngFor="let drop of getDropdownOptions(data.field_data)">
+                                    <div class="option" (click)="selectOption(data.entry_rowid_seq, drop, data)">
+                                        {{ drop }}
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group "
+                        *ngIf="data.field_value.includes('checkbox_col') && data.status=='T' && data?.field_data">
+
+                        <label
+                            [ngStyle]="{'color': 'color-mix(in srgb, ' + bodybgcolour + ' 65%, ' + bodytextcolour + ' 35%)'}">
+                            {{data.field_key}} :
+                        </label>
+
+                        <div class="multi-select" (click)="$event.stopPropagation()">
+
+                            <div class="select-box" (click)="toggleCheckbox(data.field_key)">
+                                <span class="value" [class.placeholder]="!checkboxValues[data.field_key]?.length">
+                                    {{checkboxValues[data.field_key]?.length? checkboxValues[data.field_key].join(', '):
+                                    data.field_key}}
+                                </span>
+
+                                <span class="arrow">
+                                    <i class="fa-solid fa-caret-down"></i>
+                                </span>
+                            </div>
+
+
+                            <div class="options" *ngIf="checkboxOpen[data.field_key]">
+                                <label *ngFor="let check of data.field_data.split('#')">
+                                    <input type="checkbox" [checked]="checkboxValues[data.field_key]?.includes(check)"
+                                        (click)="$event.stopPropagation()" (change)="onChange($event, check, data)" />
+                                    {{ check }}
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group extra-fields"
+                        *ngIf="data.field_value.includes('textbox1_col') && data.status=='T'">
+                        <label for=""
+                            [ngStyle]="{'color': 'color-mix(in srgb, ' + bodybgcolour + ' 65%, ' + bodytextcolour + ' 35%)'}">{{data.field_key}}
+                            :</label>
+                        <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                            [(ngModel)]="data.insert_value">
+                    </div>
+                </ng-container>
+
+
+                <button type="button" type="submit" (click)="Submit(contactForm)"
+                    [ngStyle]="isHover ? { background: card1textcolour, color: card1bgcolour, border: '1px solid ' + card1bgcolour } : { color: card1textcolour, background: card1bgcolour }"
+                    (mouseenter)="isHover = true" (mouseleave)="isHover = false">Send</button>
+            </form>
+        </div>
+        <div class="col-6 c2">
+            <div class="contact-profile-card" *ngFor="let d of datas?.data">
+                <div class="p1">
+                    <h2 [ngStyle]=" {'color': card2textcolour }">{{ d.first_name }} {{ d.last_name }}</h2>
+                    <p [ngStyle]=" {'color': card1textcolour }" class="designation">{{d.designation }}</p>
+                    <p
+                        [ngStyle]="{'color': 'color-mix(in srgb, ' + bodybgcolour + ' 65%, ' + bodytextcolour + ' 35%)'}">
+                        {{d.company_name }}</p>
+                </div>
+                <!-- <app-social-contact [template_type]="template_type"  [data2]="data2"  [data]="data"
+                    ></app-social-contact> -->
+
+
+                <ng-container *ngFor="let datas of data?.data; let i = index">
+               <div class="social-contact-div"  >
+
+	
+    <!-- CALL -->
+    <a target="_blank" 
+			*ngIf="datas.mobile_no"
+        [href]="'tel:' + datas.mobile_no"
+       [ngStyle]="getHoverStyle(i, 'call')"
+       (mouseenter)="setHover(i, 'call')"
+       (mouseleave)="clearHover()">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i>
+    </a>
+
+    <!-- EMAIL -->
+    <a target="_blank" *ngIf="datas.email_id"
+       [href]="'mailto:' + datas.email_id"
+       [ngStyle]="getHoverStyle(i, 'email')"
+       (mouseenter)="setHover(i, 'email')"
+       (mouseleave)="clearHover()">
+      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+    </a>
+
+    <!-- WHATSAPP -->
+    <a target="_blank" *ngIf="datas.wp_number  && datas.wp_number_flag"
+       [href]="'https://wa.me/' + datas.wp_number"
+       [ngStyle]="getHoverStyle(i, 'whatsapp')"
+       (mouseenter)="setHover(i, 'whatsapp')"
+       (mouseleave)="clearHover()">
+      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    </a>
+
+    <!-- LOCATION -->
+    <a target="_blank" *ngIf="datas.user_address && isValid(datas.user_address)"
+       [href]="datas.google_map_url"
+       [ngStyle]="getHoverStyle(i, 'location')"
+       (mouseenter)="setHover(i, 'location')"
+       (mouseleave)="clearHover()"
+	   data-bs-toggle="collapse"
+	   data-bs-target="#location-address4"
+	   aria-expanded="false" aria-controls="collapseOne" class="collapsed"
+	   (click)="open()"
+	   [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}"
+	   >
+      <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+    </a>
+
+</div>
+
+                    <div id="location-address4" class="panel-collapse collapse location-address" role="tabpanel"
+                        aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body">
+                            <p
+                                [ngStyle]="{'color': 'color-mix(in srgb, ' + bodybgcolour + ' 67%, ' + bodytextcolour + ' 33%)'}">
+                                {{datas.user_address}}</p>
+                        </div>
+                    </div>
+                </ng-container>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+
+<!-- --------------template 8 ------- -->
+@else if(template_type == 'layout8') {
+
+<section class="contact-us-section padding">
+    <div class="row center-div"    [ngStyle]="{ 'background-color': `color-mix(in srgb, ${card2bgcolour} 96%, ${card2textcolour} 9%)`}">
+    <div class="center-div-col col-md-6 "
+     >
+        <h2 class="card-heading dark " [ngStyle]="{ border: '1px dashed ' + card2textcolour , color: card2textcolour}">
+            <i class="fa-solid fa-left-long"></i><span> {{data.title}}</span><i class="fa-solid fa-right-long"></i></h2>
+        <form #contactForm="ngForm">
+
+            <div class="form-group">
+
+                <div class="input-div">
+                    <input type="text" name="name" [(ngModel)]="Contact.name" placeholder="Enter Your Name">
+                    <span><i class="fa-solid fa-user"></i></span>
+                </div>
+                <div class="text-danger" *ngIf="showErrors && !Contact.name">
+                    Name is required.
+                </div>
+
+            </div>
+
+            <div class="outer-input-div">
+                <div class="form-group">
+                    <div class="input-div">
+                        <input type="tel" id="mobile" name="mobile" placeholder="Enter Your Contact No"
+                            [(ngModel)]="Contact.mobile" pattern="^[0-9]{10}$" maxlength="10" minlength="10">
+                        <span><i class="fa-solid fa-phone"></i></span>
+                    </div>
+                    <div class="text-danger" *ngIf="showErrors && !Contact.mobile">
+                        Contact number is required.
+                    </div>
+
+                    <div class="text-danger" *ngIf="showErrors && Contact.mobile && !isValidMobile(Contact.mobile)">
+                        Please enter a valid 10-digit mobile number.
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="form-group">
+                    <div class="input-div">
+                        <input type="email" id="name" placeholder="Enter Your Email" name="emailid"
+                            [(ngModel)]="Contact.emailid">
+                        <span><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <textarea name="message" [(ngModel)]="Contact.message" placeholder="Enter Your Message..."></textarea>
+
+                <div class="text-danger" *ngIf="showErrors && !Contact.message">
+                    Message is required.
+                </div>
+            </div>
+
+
+
+
+
+            <ng-container *ngFor="let data of conatct_us_data.data">
+
+
+
+                <div class="form-group " *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                    <label [ngStyle]="{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-date-wrapper">
+
+                        <input type="date" name="date_contact" class="custom-date-input"
+                            [(ngModel)]="data.insert_value">
+
+                        <span class="placeholder" *ngIf="!data.insert_value">
+                            dd-mm-yyyy
+                        </span>
+
+                        <span class="date-text" *ngIf="data.insert_value">
+                            {{ data.insert_value | date:'dd-MM-yyyy' }}
+                        </span>
+
+                        <i class="fa-solid fa-calendar calendar-icon"></i>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+                <div class="form-group "
+                    *ngIf="data.field_value.includes('dropdown_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]="{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="custom-select" (click)="$event.stopPropagation()">
+                        <div class="select-box" (click)="toggleSelect(data.entry_rowid_seq)">
+                            <span class="value" [class.placeholder]="!selectedDropdownValues[data.entry_rowid_seq]">
+                                {{ selectedDropdownValues[data.entry_rowid_seq] || data.field_key }}
+                            </span>
+
+                            <span class="arrow" [class.open]="selectOpenKey === data.entry_rowid_seq">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+                        <div class="options" *ngIf="selectOpenKey === data.entry_rowid_seq">
+                            <ng-container *ngFor="let drop of getDropdownOptions(data.field_data)">
+                                <div class="option" (click)="selectOption(data.entry_rowid_seq, drop, data)">
+                                    {{ drop }}
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group "
+                    *ngIf="data.field_value.includes('checkbox_col') && data.status=='T' && data?.field_data">
+
+                    <label [ngStyle]="{'color': card2textcolour}">
+                        {{data.field_key}} :
+                    </label>
+
+                    <div class="multi-select" (click)="$event.stopPropagation()">
+
+                        <div class="select-box" (click)="toggleCheckbox(data.field_key)">
+                            <span class="value" [class.placeholder]="!checkboxValues[data.field_key]?.length">
+                                {{checkboxValues[data.field_key]?.length? checkboxValues[data.field_key].join(', '):
+                                data.field_key}}
+                            </span>
+
+                            <span class="arrow">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </span>
+                        </div>
+
+
+                        <div class="options" *ngIf="checkboxOpen[data.field_key]">
+                            <label *ngFor="let check of data.field_data.split('#')">
+                                <input type="checkbox" [checked]="checkboxValues[data.field_key]?.includes(check)"
+                                    (click)="$event.stopPropagation()" (change)="onChange($event, check, data)" />
+                                {{ check }}
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group extra-fields"
+                    *ngIf="data.field_value.includes('textbox1_col') && data.status=='T'">
+                    <label for="" [ngStyle]="{'color': card2textcolour}">{{data.field_key}}
+                        :</label>
+                    <input type="text" id="text1" class="form-control" name="text1" placeholder={{data.field_key}}
+                        [(ngModel)]="data.insert_value">
+                </div>
+            </ng-container>
+
+
+            <button type="submit" (click)="Submit(contactForm)"
+                [ngStyle]="isHover ? { background: card1textcolour, color: card1bgcolour, border: '1px solid ' + card1bgcolour } : { color: card1textcolour, background: card1bgcolour }"
+                (mouseenter)="isHover = true" (mouseleave)="isHover = false">Send</button>
+        </form>
+
+       
+    </div>
+    <div class="col-md-6 hide-mobile d-flex flex-column gap-3  justify-content-center align-items-center">
+ <ng-container *ngFor="let d of profile_data?.data">
+      <!------ profile data div ----->
+     <div class="profile-data-div "
+       [ngStyle]="{background: 'color-mix(in srgb, ' + card2bgcolour + ' 81%, transparent)'}">
+       <div class="inner-profile-div">
+         <div class="profile-img" *ngIf="data?.flag > 0 && d?.image; else noImage"
+           [ngStyle]="{'background': card1textcolour}">
+           <img [src]="globalObject.getImageSrc(d?.image)" alt="profile image">
+         </div>
+
+         <ng-template #noImage>
+           <div class="profile-img" [ngStyle]="{'background': card1textcolour}">
+             <img src="assets/header/PROFILE.png" alt="default profile image">
+           </div>
+         </ng-template>
+
+         <h2 [ngStyle]="{'color': card2textcolour}"> {{d.first_name }} {{ d.last_name }}</h2>
+         <p [ngStyle]="{'color': card1textcolour}" class="designation">{{d.designation }}</p>
+         <p [ngStyle]="{'color': 'color-mix(in srgb, ' + bodybgcolour + ' 67%, ' + bodytextcolour + ' 33%)'}">
+           {{d.company_name }}</p>
+
+         <!------ profile btns  ( for mobile view only ) ---->
+         <div class="profile-btns-div">
+           <button class="profile-btn" type="button" (click)="share('Profile2')"
+              [ngStyle]="
+    hoveredIndex === 1
+      ?  {
+              'background-color': card1bgcolour,
+          'color': card1textcolour
+        
+        }
+      : {
+          background: bodybgcolour,  color: bodytextcolour
+        }
+  "
+  (mouseenter)="hoveredIndex = 1"
+  (mouseleave)="hoveredIndex = -1">
+            <i class="fa-solid fa-share-nodes"></i> Share Profile
+           </button>
+           <button class="profile-btn" type="button" (click)="onFileSelected($event)"
+  [ngStyle]="
+    hoveredIndex === 2
+      ?  {
+              'background-color': card1bgcolour,
+          'color': card1textcolour
+        
+        }
+      : {
+          background: bodybgcolour,  color: bodytextcolour
+        }
+  "
+  (mouseenter)="hoveredIndex = 2"
+  (mouseleave)="hoveredIndex = -1">
+            <i class="fa-regular fa-bookmark"></i> Save Contact
+           </button>
+         </div>
+
+
+         <!------ social contact section ------>
+
+         <app-social-contact [template_type]="template_type" [user_template]="user_template" [data2]="data2" [data]="data"></app-social-contact>
+
+       </div>
+     </div>
+    </ng-container>
+
+     <app-social-links [template_type]="template_type" [user_template]="user_template" [data]="social_data" style="max-width: 415px;  width: 100%;"></app-social-links>
+</div>
+</div>
+
+</section>
+}
+
+
+<!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+<section class="contact-us-section"  [ngStyle]="{
+  background: `linear-gradient(
+      to bottom,
+     ${card1bgcolour} 0%,
+      ${card2bgcolour} 163%) ` ,  color: card1textcolour }">
+    <div class="row">
+        <div class="col-md-6 col-12 c1">
+
+ <ng-container *ngFor="let d of datas?.data">
+  
+                 <!-- -----------------if business logo ------- -->
+           
+              <img   class="business-logo"
+              *ngIf="user_template.data[0]?.business_logo_image; else noLogo3"
+                [src]="user_template.data[0].business_logo_image"
+                alt="business logo"
+              />
+            
+          
+
+             <!-- -----------------if business name ------- -->
+            <ng-template #noLogo3>
+        
+        <h3    *ngIf="user_template.data[0]?.business_name; else fallbackName3" [ngStyle]="{ color: card1textcolour }"> {{ user_template.data[0].business_name }}</h3>
+   
+
+              <ng-template #fallbackName3>
+               
+        <h3  *ngIf="d?.company_name" [ngStyle]="{ color: card1textcolour }"> {{ d.company_name }}</h3>
+   
+              </ng-template>
+            </ng-template>
+
+</ng-container>
+           
+            <ng-container *ngFor="let datas of data?.data; let i = index">
+                <a class="single-div" target="_blank" *ngIf="datas.mobile_no" [href]="'tel:' + datas.mobile_no"> <i
+                        class="fa-solid fa-phone-volume"></i><span>{{datas.mobile_no}}</span></a>
+                <a class="single-div" target="_blank" *ngIf="datas.email_id" [href]="'mailto:' + datas.email_id"> <i
+                        class="fa-solid fa-envelope"></i><span>{{datas.email_id}}</span></a>
+                <a class="single-div" target="_blank" *ngIf="datas.wp_number"
+                    [href]="'https://wa.me/' + datas.wp_number"> <i
+                        class="fa-brands fa-whatsapp"></i><span>{{datas.wp_number}}</span></a>
+                <a class="single-div" target="_blank" *ngIf="datas.user_address && isValid(datas.user_address)"  (click)="open()" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}">
+                    <i class="fa-solid fa-location-dot"></i><span>{{datas.user_address}}</span></a>
+            </ng-container>
+            <app-social-links [template_type]="template_type" [user_template]="user_template" [data]="social_data" [data2]="data2"></app-social-links>
+        </div>
+        <div class="col-md-6 col-12 c2">
+            <div class="w-100">
+
+                <h2 class="card-heading dark" [ngStyle]="{ color: card1textcolour }"><span></span>{{data.title}}</h2>
+                <form #contactForm="ngForm">
+                    <div class="form-group">
+
+                        <div class="input-div">
+                            <input type="text" name="name"  [(ngModel)]="Contact.name" placeholder="Enter Your Name">
+                            <span><i class="fa-solid fa-user"></i></span>
+                        </div>
+                        <div class="text-danger" *ngIf="showErrors && !Contact.name">
+                            Name is required.
+                        </div>
+
+                    </div>
+
+                    <div class="outer-input-div">
+                        <div class="form-group">
+                            <div class="input-div">
+                                <input type="tel" id="mobile" name="mobile" placeholder="Enter Your Contact No"
+                                    [(ngModel)]="Contact.mobile" pattern="^[0-9]{10}$" maxlength="10" minlength="10">
+                                <span><i class="fa-solid fa-phone"></i></span>
+                            </div>
+                            <div class="text-danger" *ngIf="showErrors && !Contact.mobile">
+                                Contact number is required.
+                            </div>
+
+                            <div class="text-danger"
+                                *ngIf="showErrors && Contact.mobile && !isValidMobile(Contact.mobile)">
+                                Please enter a valid 10-digit mobile number.
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="form-group">
+                            <div class="input-div">
+                                <input type="email" id="name" placeholder="Enter Your Email" name="emailid"
+                                    [(ngModel)]="Contact.emailid">
+                                <span><i class="fa-solid fa-envelope"></i></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <textarea name="message" [(ngModel)]="Contact.message"
+                            placeholder="Enter Your Message..."></textarea>
+
+                        <div class="text-danger" *ngIf="showErrors && !Contact.message">
+                            Message is required.
+                        </div>
+                    </div>
+
+
+
+
+
+                    <ng-container *ngFor="let data of conatct_us_data.data">
+
+
+
+                        <div class="form-group " *ngIf="data.field_value.includes('date_col') && data.status=='T'">
+
+                            <label [ngStyle]="{'color': card1textcolour}">
+                                {{data.field_key}} :
+                            </label>
+
+                            <div class="custom-date-wrapper">
+
+                                <input type="date" name="date_contact" class="custom-date-input"
+                                    [(ngModel)]="data.insert_value">
+
+                                <span class="placeholder" *ngIf="!data.insert_value">
+                                    dd-mm-yyyy
+                                </span>
+
+                                <span class="date-text" *ngIf="data.insert_value">
+                                    {{ data.insert_value | date:'dd-MM-yyyy' }}
+                                </span>
+
+                                <i class="fa-solid fa-calendar calendar-icon"></i>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                        <div class="form-group "
+                            *ngIf="data.field_value.includes('dropdown_col') && data.status=='T' && data?.field_data">
+
+                            <label [ngStyle]="{'color': card1textcolour}">
+                                {{data.field_key}} :
+                            </label>
+
+                            <div class="custom-select" (click)="$event.stopPropagation()">
+                                <div class="select-box" (click)="toggleSelect(data.entry_rowid_seq)">
+                                    <span class="value"
+                                        [class.placeholder]="!selectedDropdownValues[data.entry_rowid_seq]">
+                                        {{ selectedDropdownValues[data.entry_rowid_seq] || data.field_key }}
+                                    </span>
+
+                                    <span class="arrow" [class.open]="selectOpenKey === data.entry_rowid_seq">
+                                        <i class="fa-solid fa-caret-down"></i>
+                                    </span>
+                                </div>
+
+                                <div class="options" *ngIf="selectOpenKey === data.entry_rowid_seq">
+                                    <ng-container *ngFor="let drop of getDropdownOptions(data.field_data)">
+                                        <div class="option" (click)="selectOption(data.entry_rowid_seq, drop, data)">
+                                            {{ drop }}
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group "
+                            *ngIf="data.field_value.includes('checkbox_col') && data.status=='T' && data?.field_data">
+
+                            <label [ngStyle]="{'color': card1textcolour}">
+                                {{data.field_key}} :
+                            </label>
+
+                            <div class="multi-select" (click)="$event.stopPropagation()">
+
+                                <div class="select-box" (click)="toggleCheckbox(data.field_key)">
+                                    <span class="value" [class.placeholder]="!checkboxValues[data.field_key]?.length">
+                                        {{checkboxValues[data.field_key]?.length? checkboxValues[data.field_key].join(',
+                                        '):
+                                        data.field_key}}
+                                    </span>
+
+                                    <span class="arrow">
+                                        <i class="fa-solid fa-caret-down"></i>
+                                    </span>
+                                </div>
+
+
+                                <div class="options" *ngIf="checkboxOpen[data.field_key]">
+                                    <label *ngFor="let check of data.field_data.split('#')">
+                                        <input type="checkbox"
+                                            [checked]="checkboxValues[data.field_key]?.includes(check)"
+                                            (click)="$event.stopPropagation()"
+                                            (change)="onChange($event, check, data)" />
+                                        {{ check }}
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group extra-fields"
+                            *ngIf="data.field_value.includes('textbox1_col') && data.status=='T'">
+                            <label for="" [ngStyle]="{'color': card1textcolour}">{{data.field_key}}
+                                :</label>
+                            <input type="text" id="text1" class="form-control" name="text1"
+                                placeholder={{data.field_key}} [(ngModel)]="data.insert_value">
+                        </div>
+                    </ng-container>
+
+                    <button type="submit"
+                     [ngStyle]="
+    hoveredIndex === 1
+      ?  {
+              'background': card1bgcolour,
+          'color': card1textcolour,
+          'border': `1px solid ${card1textcolour}`
+        
+        }
+      : {
+         color:  card1bgcolour, background:card1textcolour , 'border': `1px solid ${card1textcolour}`
+        }
+  "
+  (mouseenter)="hoveredIndex = 1"
+  (mouseleave)="hoveredIndex = -1"
+  (click)="Submit(contactForm)">Send</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+}
+
+

@@ -1,0 +1,498 @@
+<!---------- template 1------------>
+<!-- Education section -->
+@if(template_type == 'layout1') {
+<section class="education light-card" id="Education" [ngStyle]="{
+                                                            'color': card1textcolour
+                                                          }">
+    <div class="card-headings-div">
+        <h3 class="card-headings" [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                         
+                                                          }">
+            {{data.title}}
+        </h3>
+        <p class="heading-border" [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                         
+                                                          }"></p>
+    </div>
+    <div class="education-table-div">
+        <table>
+            <tr>
+                <th>Course Name</th>
+                <th>Year</th>
+                <th>Description</th>
+            </tr>
+            <tr *ngFor="let data of data.data">
+                <td>{{ data.course_name }}</td>
+                <td>{{ data.duration }}</td>
+                <td>{{ data.description }}</td>
+            </tr>
+        </table>
+    </div>
+</section>
+}
+
+<!---------- template 2------------>
+
+<!-- Education section -->
+@else if(template_type == 'layout2') {
+<section class="education w-100">
+    <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+    <div class="education-table-div">
+        <table>
+            <tr>
+                <th [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">Course Name</th>
+                <th [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">Year</th>
+                <th [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">Description</th>
+            </tr>
+            <tr *ngFor="let data of data.data">
+                <td [ngStyle]="{
+                                                            'color': card1textcolour }">{{ data.course_name }}</td>
+                <td [ngStyle]="{
+                                                            'color': card1textcolour }">{{ data.duration }}</td>
+                <td [ngStyle]="{
+                                                            'color': card1textcolour }">{{ data.description }}</td>
+            </tr>
+        </table>
+    </div>
+</section>
+}
+<!---------- template 3------------>
+
+<!-- Education section -->
+@else if(template_type == 'layout3') {
+<section class="education w-100">
+    <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' + card2textcolour}">
+        {{data.title}}</h2>
+    <div class="edu-card" [ngStyle]="{'background-color': bodybgcolour }">
+        <div class="education-table-div">
+            <table>
+                <tr>
+                    <th [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                            'background-color': card1bgcolour
+                                                          }">Course Name</th>
+                    <th [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                            'background-color': card1bgcolour
+                                                          }">Year</th>
+                    <th [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                            'background-color': card1bgcolour
+                                                          }">Description</th>
+                </tr>
+                <tr *ngFor="let data of data.data">
+                    <td [ngStyle]="{'color': card2textcolour}">{{ data.course_name }}</td>
+                    <td [ngStyle]="{'color': card2textcolour}">{{ data.duration }}</td>
+                    <td [ngStyle]="{'color': card2textcolour}">{{ data.description }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+}
+
+
+<!---------- template 4------------>
+
+<!-- Education section -->
+@else if(template_type == 'layout4') {
+<section class="education w-100">
+    <h3 *ngIf="styletype != 'style4'" class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+
+    <!-- ------------ for t4 -------- -->
+    <div class="card-headings-div" *ngIf="styletype == 'style4'">
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}}</h3>
+    </div>
+
+    <div class="edu-card" [ngStyle]="{'background-color': card2bgcolour}">
+        <div class="education-table-div" [ngStyle]="{'--scroll-thumb-color': card1bgcolour}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Year</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of data.data">
+                        <td>{{ data.course_name }}</td>
+                        <td>{{ data.duration }}</td>
+                        <td>{{ data.description }}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</section>
+
+
+
+}
+
+
+<!---------- template 5------------>
+
+<!-- Education section -->
+@else if(template_type == 'layout5') {
+<section class="education w-100">
+    <h3 class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+    <div class="edu-card" [ngStyle]="{'background-color': card2bgcolour}">
+        <div class="education-table-div" [ngStyle]="{'--scroll-thumb-color': card1bgcolour}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Year</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of data.data">
+                        <td>{{ data.course_name }}</td>
+                        <td>{{ data.duration }}</td>
+                        <td>{{ data.description }}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 6------------>
+
+<!-- Education section -->
+@else if(template_type == 'layout6') {
+<section class="education w-100">
+    <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h3>
+    <div class="edu-card">
+        <div class="education-table-div">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Year</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of data.data">
+                        <td>{{ data.course_name }}</td>
+                        <td>{{ data.duration }}</td>
+                        <td>{{ data.description }}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</section>
+}
+
+
+<!---------- template 7------------>
+@else if(template_type == 'layout7') {
+
+<div class="edu-exp-skill-div" [ngStyle]="{
+  'background-color': 'color-mix(in srgb, ' + card1bgcolour + ' 80%, transparent)'
+}">
+    <div class="inner-div">
+
+        <div *ngIf="!isMobile" class="tabs-div">
+            <button type="button" *ngIf="data?.flag > 0" [class.active]="activeTab === 'education'"
+                [ngStyle]="activeTab === 'education' ? {
+            'background': card1textcolour,
+            'color': card1bgcolour,
+             'border': '1px solid' + card1textcolour
+          } : { 'background': 'transparent' ,
+     'color': card1textcolour ,
+        'border': '1px solid' + card1textcolour}" (click)="setTab('education')">
+                {{data.title}}
+            </button>
+
+            <button type="button" *ngIf="skills?.flag > 0" [class.active]="activeTab === 'skills'"
+                [ngStyle]="activeTab === 'skills' ? {
+            'background': card1textcolour,
+            'color': card1bgcolour,
+             'border': '1px solid' + card1textcolour
+          } : { 'background': 'transparent' ,
+            'color': card1textcolour ,
+     'border': '1px solid' + card1textcolour}" (click)="setTab('skills')">
+                {{skills.title}}
+            </button>
+
+            <button type="button" *ngIf="experience?.flag > 0"
+                [class.active]="activeTab === 'experience'" [ngStyle]="activeTab === 'experience' ? {
+            'background': card1textcolour,
+            'color': card1bgcolour,
+             'border': '1px solid' + card1textcolour
+          } : { 'background': 'transparent' ,
+        'color': card1textcolour ,
+    'border': '1px solid' + card1textcolour}" (click)="setTab('experience')">
+                {{experience.title}} </button>
+        </div>
+
+        <!-- Tab Contents -->
+        <!------- education div ------>
+        @if( data?.flag > 0 && data.title) {
+        <div *ngIf="isMobile || activeTab === 'education'" class="tab-data education" id="education">
+
+            <div class="section-headings">
+                <h2 [ngStyle]="{'color':  bodytextcolour}"> {{data.title}}</h2>
+                <span [ngStyle]="{'background': card1bgcolour}"></span>
+            </div>
+
+            <div class="single"    *ngFor="let data of (showAllEducation ? data.data : (data.data | slice:0:5));let i = index"
+                [ngStyle]="{'background': 'color-mix(in srgb, ' + bodybgcolour + ' 94%, ' + bodytextcolour + ' 4%)'}">
+                <div class="s1">
+                    <span class="title" [ngStyle]="{'color':  bodytextcolour}">{{ data.course_name }}</span>
+                    <span class="data"
+                        [ngStyle]="{'color': 'color-mix(in srgb, ' +  bodytextcolour + ' 60%, ' + bodybgcolour + ' 40%)'}">{{
+                        data.description }}</span>
+                </div>
+                <span class="year" [ngStyle]="{
+          'color': card1textcolour,
+          'background':  card1bgcolour
+  
+        }">{{ data.duration }}</span>
+            </div>
+
+              <div class="text-start ps-2" *ngIf="data?.data?.length > 5">
+                <button type="button" class="see-more-btn" (click)="showAllEducation = !showAllEducation">
+                    {{ showAllEducation ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+                </button>
+            </div>
+
+
+
+        </div>
+        }
+
+        <!------- skills section  ------->
+        @if( skills?.flag > 0 ) {
+        <app-skills id="skills" *ngIf="isMobile || activeTab === 'skills'" [template_type]="template_type"
+            [data2]="data2" [data]="skills" [user_template]="user_template" class="w-100">
+        </app-skills>
+        }
+
+        <!------ experience section ----->
+        @if( experience?.flag > 0 ) {
+
+        <app-experience id="experience" *ngIf="isMobile || activeTab === 'experience'" [user_template]="user_template" [template_type]="template_type"
+            [data]="experience" [data2]="data2" class="w-100">
+        </app-experience>
+
+
+        }
+
+    </div>
+</div>
+
+}
+
+
+
+<!-- --------------template 8 ------- -->
+@else if(template_type == 'layout8') {
+<section class="edu-exp-skill-section padding" [ngStyle]="{ color: bodytextcolour }">
+    <div class="edu-exp-skill-div row">
+        <div id="education" [ngClass]="
+    (
+      (data?.flag > 0 ? 1 : 0) +
+      (experience?.flag > 0 ? 1 : 0) +
+      (skills?.flag > 0 ? 1 : 0)
+    ) === 3
+      ? 'col-xl-4 col-lg-6 col-12 col-div'
+      : (
+          (data?.flag > 0 ? 1 : 0) +
+          (experience?.flag > 0 ? 1 : 0) +
+          (skills?.flag > 0 ? 1 : 0)
+        ) === 2
+          ? 'col-xl-6 col-lg-6 col-12 col-div'
+          : 'col-lg-6 col-12 col-div'
+  " *ngIf="data?.flag > 0">
+            <h2 class="card-heading" [ngStyle]="{ border: '0.5px dashed ' + card1bgcolour , color: card1bgcolour }"><i
+                    class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i class="fa-solid fa-right-long"></i>
+            </h2>
+            <div class="parent-div">
+                <div class="single-div"
+                    [ngStyle]="{
+                        'background-color': i % 2 === 0
+      ? 'color-mix(in srgb, ' + card1bgcolour + ' 8%, ' + card1textcolour + ' 79%)'
+      : 'color-mix(in srgb, ' + bodytextcolour + ' 4%, ' + bodybgcolour + ' 56%)'
+                    }"
+                    *ngFor="let data of (showAllEducation ? data.data : (data.data | slice:0:5));let i = index">
+
+
+                    <div class="d-flex flex-column gap-2">
+                        <span class="head">{{ data.course_name }}</span>
+                        <span class="light-text"
+                            [ngStyle]="{ color: `color-mix(in srgb, ${bodybgcolour } 83%, ${bodytextcolour } 91%)`}">{{data.description
+                            }}</span>
+                    </div>
+                    <div class="chip-div"
+                        [ngStyle]="{'background-color': bodybgcolour}">
+                        {{ data.duration }}</div>
+                </div>
+
+                 <div class="text-start ps-2" *ngIf="data?.data?.length > 5">
+                <button type="button" class="see-more-btn" (click)="showAllEducation = !showAllEducation">
+                    {{ showAllEducation ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+                </button>
+            </div>
+            </div>
+           
+        </div>
+        <div id="experience" [ngClass]="
+    (
+      (data?.flag > 0 ? 1 : 0) +
+      (experience?.flag > 0 ? 1 : 0) +
+      (skills?.flag > 0 ? 1 : 0)
+    ) === 3
+      ? 'col-xl-4 col-lg-6 col-12 col-div'
+      : (
+          (data?.flag > 0 ? 1 : 0) +
+          (experience?.flag > 0 ? 1 : 0) +
+          (skills?.flag > 0 ? 1 : 0)
+        ) === 2
+          ? 'col-xl-6 col-lg-6 col-12 col-div'
+          : 'col-lg-6 col-12 col-div'
+  " *ngIf="experience?.flag > 0">
+            <app-experience [template_type]="template_type" [user_template]="user_template" [data]="experience" [data2]="data2"></app-experience>
+        </div>
+        <div class=" skill-col" id="skills" [ngClass]="
+    (
+      (data?.flag > 0 ? 1 : 0) +
+      (experience?.flag > 0 ? 1 : 0) +
+      (skills?.flag > 0 ? 1 : 0)
+    ) === 3
+      ? 'col-xl-4 col-lg-6 col-12 col-div'
+      : (
+          (data?.flag > 0 ? 1 : 0) +
+          (experience?.flag > 0 ? 1 : 0) +
+          (skills?.flag > 0 ? 1 : 0)
+        ) === 2
+          ? 'col-xl-6 col-lg-6 col-12 col-div'
+          : 'col-lg-6 col-12 col-div'
+  " *ngIf="skills?.flag > 0">
+            <app-skills [template_type]="template_type" [user_template]="user_template" [data]="skills" [data2]="data2"></app-skills>
+        </div>
+
+    </div>
+</section>
+}
+
+<!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+<section class="edu-exp-gal-video-section" [ngStyle]="{ color: bodytextcolour }">
+    <div class="edu-exp-skill-div row">
+        <div id="education" [ngClass]="
+    (
+      (data?.flag > 0 ? 1 : 0) +
+      (experience?.flag > 0 ? 1 : 0) +
+      (skills?.flag > 0 ? 1 : 0)
+    ) === 3
+      ? 'col-xl-4 col-lg-6 col-12 col-div'
+      : (
+          (data?.flag > 0 ? 1 : 0) +
+          (experience?.flag > 0 ? 1 : 0) +
+          (skills?.flag > 0 ? 1 : 0)
+        ) === 2
+          ? 'col-xl-6 col-lg-6 col-12 col-div'
+          : 'col-lg-6 col-12 col-div'
+  " *ngIf="data?.flag > 0">
+            <h2 class="card-heading" [ngStyle]="{ color: bodytextcolour }"><span [ngStyle]="{ background: card1bgcolour }"></span>{{data.title}}</h2>
+            <div class="parent-div">
+                <div class="single-div"  [ngStyle]="{
+                        'background-color': i % 2 === 0
+      ? 'color-mix(in srgb, ' + card1bgcolour + ' 8%, ' + card1textcolour + ' 79%)'
+      : 'color-mix(in srgb, ' + bodytextcolour + ' 4%, ' + bodybgcolour + ' 56%)'
+                    }"
+                 *ngFor="let data of (showAllEducation ? data.data : (data.data | slice:0:5));let i = index">
+                    <div class="d-flex flex-column gap-2">
+                        <span class="head">{{ data.course_name }}</span>
+                        <span class="light-text" [ngStyle]="{ color: `color-mix(in srgb, ${bodybgcolour } 83%, ${bodytextcolour } 91%)`}">{{data.description }}</span>
+                    </div>
+                    <div class="chip-div"  [ngStyle]="{'background-color': bodybgcolour}">{{ data.duration }}</div>
+                </div>
+
+                 <div class="text-start ps-2" *ngIf="data?.data?.length > 5">
+                <button type="button" class="see-more-btn" (click)="showAllEducation = !showAllEducation">
+                    {{ showAllEducation ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+                </button>
+            </div>
+               
+            </div>
+        </div>
+         <div id="experience" [ngClass]="
+    (
+      (data?.flag > 0 ? 1 : 0) +
+      (experience?.flag > 0 ? 1 : 0) +
+      (skills?.flag > 0 ? 1 : 0)
+    ) === 3
+      ? 'col-xl-4 col-lg-6 col-12 col-div'
+      : (
+          (data?.flag > 0 ? 1 : 0) +
+          (experience?.flag > 0 ? 1 : 0) +
+          (skills?.flag > 0 ? 1 : 0)
+        ) === 2
+          ? 'col-xl-6 col-lg-6 col-12 col-div'
+          : 'col-lg-6 col-12 col-div'
+  " *ngIf="experience?.flag > 0">
+            <app-experience [template_type]="template_type" [user_template]="user_template" [data]="experience" [data2]="data2"></app-experience>
+        </div>
+        <div class=" skill-col" id="skills" [ngClass]="
+    (
+      (data?.flag > 0 ? 1 : 0) +
+      (experience?.flag > 0 ? 1 : 0) +
+      (skills?.flag > 0 ? 1 : 0)
+    ) === 3
+      ? 'col-xl-4 col-lg-6 col-12 col-div'
+      : (
+          (data?.flag > 0 ? 1 : 0) +
+          (experience?.flag > 0 ? 1 : 0) +
+          (skills?.flag > 0 ? 1 : 0)
+        ) === 2
+          ? 'col-xl-6 col-lg-6 col-12 col-div'
+          : 'col-lg-6 col-12 col-div'
+  " *ngIf="skills?.flag > 0">
+            <app-skills [template_type]="template_type" [user_template]="user_template" [data]="skills" [data2]="data2"></app-skills>
+        </div>
+    </div>
+    <div class="video-gallary-div row">
+
+         <div  [ngClass]="video?.flag > 0 ? 'col-lg-6 col-12 col-div ps-0' : 'col-12 col-div ps-0'" *ngIf="photo_gallery?.flag > 0"  id="photo-gallery">
+        <app-gallary [template_type]="template_type" [data2]="data2"  [user_template]="user_template" [data]="photo_gallery" [video]="video"></app-gallary>
+        </div>
+          <div class="video-div " [ngClass]="photo_gallery?.flag > 0 ? 'col-lg-6 col-12 col-div pe-0' : 'col-12 col-div pe-0'" *ngIf="video?.flag > 0" id="video-gallery">
+        <app-video [template_type]="template_type" [data2]="data2" [user_template]="user_template" [data]="video"></app-video>
+    </div>
+
+    </div>
+</section>
+
+}

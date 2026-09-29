@@ -1,0 +1,245 @@
+<!---------- template 1------------>
+
+<!-- Gallary section -->
+@if(template_type == 'layout1') {
+
+<section class="gallery dark-card" id="Gallery" [ngStyle]="{'color': card2textcolour,'background': card2bgcolour}">
+    <div class="card-headings-div">
+        <h3 class="card-headings"  [ngStyle]="{'color': card2textcolour}">
+            {{data.title}}
+        </h3>
+        <p class="heading-border" [ngStyle]="{'border':  '1px  solid ' + card2textcolour}"></p>
+    </div>
+
+    <div class="gallary-div">
+        <div class="row">
+            <div class="col-4 p-1" *ngFor="let ph_img of data.data">
+                  <a [href]="globalObject.getImageSrc(ph_img.image)" data-fancybox="gallery">
+                    <img  alt="gallary images" [src]="globalObject.getImageSrc(ph_img.image)" loading="lazy"/>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</section>
+}
+
+
+<!---------- template 2------------>
+
+<!-- Gallery section -->
+@else if(template_type == 'layout2') {
+<section class="gallery w-100">
+    <h1 class="card-headings" [ngStyle]="{'color': card2textcolour,'background': card2bgcolour}">{{data.title}}</h1>
+    <div class="gallary-div">
+        <div class="row">
+            <div class="col-4 p-1" *ngFor="let ph_img of data.data">
+                <a [href]="globalObject.getImageSrc(ph_img.image)" data-fancybox="gallery">
+                    <img  alt="gallary images" [src]="globalObject.getImageSrc(ph_img.image)" loading="lazy"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 3------------>
+ 
+<!-- Gallery section -->
+@else if(template_type == 'layout3') {
+<section class="gallery w-100">
+    <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' +  card2textcolour}">
+        {{data.title}}</h2>
+    <div class="gallary-div">
+        <div class="row">
+            <div class="col-4 p-1" *ngFor="let ph_img of data.data">
+                <a [href]="globalObject.getImageSrc(ph_img.image)" data-fancybox="gallery">
+                    <img  alt="gallary images" [src]="globalObject.getImageSrc(ph_img.image)" loading="lazy"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+}
+
+
+
+<!---------- template 4------------>
+ 
+<!-- Gallery section -->
+@else if(template_type == 'layout4') {
+ <section class="gallery w-100">
+    <h1 *ngIf="styletype != 'style4'" class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">{{data.title}}</h1>
+    
+    <!-- ---- for t4 ----->
+  <div class="card-headings-div"  *ngIf="styletype == 'style4'" >
+    <h1 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">{{data.title}}</h1>
+    </div> 
+    
+    <div class="gallary-div" [ngStyle]="{'background-color': card2bgcolour}">
+        <div class="row">
+             <div class="col-sm-4 col-6 p-1 gallary-col" *ngFor="let ph_img of data.data">
+                <a [href]="globalObject.getImageSrc(ph_img.image)" data-fancybox="gallery">
+                    <img  alt="gallary images" [src]="globalObject.getImageSrc(ph_img.image)" loading="lazy"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+}
+
+
+<!---------- template 5------------>
+ 
+@else if(template_type == 'layout5') {
+
+
+<section class="gallery w-100">
+    <h1 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">{{data.title}}</h1>
+    <div class="gallary-div" [ngStyle]="gallary_div ?gallary_div : {'background-color': card2bgcolour}" >
+        <div class="row">
+           <div class="col-sm-4 col-6 p-1 gallary-col"  *ngFor="let ph_img of data.data">
+                <a [href]="globalObject.getImageSrc(ph_img.image)" data-fancybox="gallery">
+                    <img  alt="gallary images" [src]="globalObject.getImageSrc(ph_img.image)" loading="lazy"/>
+                </a>
+            </div>   
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 6------------>
+@else if(template_type == 'layout6') {
+<section class="gallery w-100">
+    <h1 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h1>
+    <div class="gallary-div">
+        <div class="row">
+            <div class="col-sm-4 col-6 p-1 gallary-col" *ngFor="let ph_img of data.data">
+                <a [href]="globalObject.getImageSrc(ph_img.image)" data-fancybox="gallery">
+                    <img  alt="gallary images" [src]="globalObject.getImageSrc(ph_img.image)" loading="lazy"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 7------------>
+@else if(template_type == 'layout7') { 
+    <div class="gallary">
+        <div class="row inner-div">
+           <div class="photo-div" [ngClass]="video?.flag > 0 ? 'col-md-6 col-12' : 'col-12'" *ngIf="data?.flag > 0" id="photo-gallery">
+            <div class="section-headings">
+                        <h2 [ngStyle]="{'color':  bodytextcolour}">{{data.title}}</h2>
+                        <span [ngStyle]="{'background': card1bgcolour}"></span>
+                    </div>
+
+                     <div class="w-100 d-flex gap-3 flex-column">
+                    <div class="main-photos-div row">
+                        <div [ngClass]="video?.flag > 0 ? 'col-md-3  col-sm-4  col-6' : 'col-lg-2 col-md-3  col-sm-4  col-6'"   *ngFor="let ph_img of (showAllGallery
+      ? data.data
+      : (data.data | slice:0:getGalleryLimit()))">
+                          <a class="img-div" data-fancybox="gallery"  [href]="globalObject.getImageSrc(ph_img.image)">
+                              <img  alt="gallary images" [src]="globalObject.getImageSrc(ph_img.image)" loading="lazy"/>
+                          </a>
+                          </div>
+                    </div>
+
+                     <div  class="text-start ps-2" *ngIf="data?.data?.length > getGalleryLimit()">
+  <button
+   class="see-more-btn"
+    (click)="showAllGallery = !showAllGallery">
+    {{ showAllGallery ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+  </button>
+</div>
+</div>
+
+           </div>
+           <div class="video-div " [ngClass]="data?.flag > 0 ? 'col-md-6 col-12' : 'col-12'" *ngIf="video?.flag > 0" id="video-gallery">
+         <app-video [template_type]="template_type" [user_template]="user_template" [data]="video" [gallery]='data' [data2]="data2" ></app-video>
+         </div>
+        </div>
+    </div>
+}
+
+
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+   
+        <section class="gal-video-section padding"  [ngStyle]="{'background-color' : `color-mix(in srgb, ${bodytextcolour} 2%, ${bodybgcolour} 90%)`}">
+            <div class="video-gallary-div row">
+                <div  [ngClass]="video?.flag > 0 ? 'col-lg-6 col-12 col-div ps-0' : 'col-12 col-div ps-0'" *ngIf="data?.flag > 0"  id="photo-gallery">
+                    <h2 class="card-heading" [ngStyle]="{ border: '0.5px dashed ' + card1bgcolour , color: card1bgcolour }"><i class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i
+                            class="fa-solid fa-right-long"></i></h2>
+
+                            <div class="w-100 d-flex gap-3 flex-column">
+                    <div class="gallary-div row">
+                        <div class="  image-col "  [ngClass]="video?.flag > 0 ? 'col-md-3  col-sm-4  col-6' : 'col-lg-2 col-md-3  col-sm-4  col-6'" 
+                             *ngFor="let ph_img of (showAllGallery
+      ? data.data
+      : (data.data | slice:0:getGalleryLimit()))">
+                             <a class="img-div" data-fancybox="gallery"  [href]="globalObject.getImageSrc(ph_img.image)">
+                             <img  alt="gallary images" [src]="globalObject.getImageSrc(ph_img.image)" loading="lazy"/>
+                        </a>
+                        </div>
+                       
+                    </div>
+
+                    <div class="text-start ps-2"  *ngIf="data?.data?.length > getGalleryLimit()">
+  <button
+   class="see-more-btn"
+    (click)="showAllGallery = !showAllGallery">
+    {{ showAllGallery ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+  </button>
+</div>
+</div>
+
+                </div>
+               
+
+                  <div class="video-div " [ngClass]="data?.flag > 0 ? 'col-lg-6 col-12 col-div pe-0' : 'col-12 col-div pe-0'" *ngIf="video?.flag > 0" id="video-gallery">
+         <app-video [template_type]="template_type" [user_template]="user_template" [data]="video" [gallery]='data' [data2]="data2" ></app-video>
+         </div>
+            </div>
+        </section> 
+ }
+
+<!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+  <div class=" col-div ps-0">
+                    <h2 class="card-heading" [ngStyle]="{ color: bodytextcolour }"><span [ngStyle]="{ background: card1bgcolour }"></span>{{data.title}}</h2>
+                     <div class="w-100 d-flex gap-3 flex-column">
+                    <div class="gallary-div row">
+                        <div class=" image-col " [ngClass]="video?.flag > 0 ? 'col-md-3  col-sm-4  col-6' : 'col-lg-2 col-md-3  col-sm-4  col-6'"  
+                             *ngFor="let ph_img of (showAllGallery
+      ? data.data
+      : (data.data | slice:0:getGalleryLimit()))">
+                            <a class="img-div" data-fancybox="gallery"  [href]="globalObject.getImageSrc(ph_img.image)">
+                             <img  alt="gallary images" [src]="globalObject.getImageSrc(ph_img.image)" loading="lazy"/>
+                        </a>
+                        </div>
+                       
+                    </div>
+
+                    
+                    <div class="text-start ps-2"  *ngIf="data?.data?.length > getGalleryLimit()">
+  <button
+   class="see-more-btn"
+    (click)="showAllGallery = !showAllGallery">
+    {{ showAllGallery ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+  </button>
+</div>
+</div>
+                </div>
+
+    }
+
+
+ 

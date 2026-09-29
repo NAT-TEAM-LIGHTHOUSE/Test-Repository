@@ -1,0 +1,130 @@
+<div class="website_main">
+  <section id="contact-us">
+    <div class="container-fluid pageLayout2" style="background:#f3f4f6">
+      <div class="pageVerBorder">
+        <img src="/assets/website-images/community/line-61.svg" alt="pcard images">
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="page-title">
+            <h1>Contact</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="contact-form shadow-radius">
+            <div class="contact-form2">
+              <h2 class="font-semibold">Provide your information and the PCARDS support team will contact you.</h2>
+
+
+              <form (ngSubmit)="onSubmit()" #enqueryForm="ngForm">
+                <div class="form-group">
+                  <input type="text" name="name" id="name" class="form-control" placeholder="Your Name"
+                    [(ngModel)]="enquiry.name" required>
+                </div>
+                <div class="form-group">
+                  <input type="email" name="email" id="email" class="form-control" placeholder="Email Address"
+                    [(ngModel)]="enquiry.email" required>
+                </div>
+                <div class="form-group">
+                  <input type="tel" name="mobile" id="mobile" class="form-control" placeholder="Contact No."   minlength="10"
+  maxlength="10"   pattern="[6-9][0-9]{9}" [(ngModel)]="enquiry.mobile" required>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="message" id="message" placeholder="Message"
+                    [(ngModel)]="enquiry.message" required></textarea>
+                </div>
+                <!-- <div class="captcha-sect">
+                  <div class="captcha-container">
+
+                    <canvas #captchaCanvas width="180" height="60" class="captcha-canvas">
+                    </canvas>
+
+                    <button type="button" (click)="generateCaptcha()">
+                      Refresh
+                    </button>
+
+                  </div>
+
+                  <input type="text" name="captcha" (input)="captchaError=''" [(ngModel)]="userCaptcha"
+                    placeholder="Enter Captcha">
+
+                 
+                
+                </div>  -->
+
+                <re-captcha [siteKey]="siteKey" (resolved)="resolved($event)">
+                </re-captcha>
+                <!-- <div *ngIf="captchaError" class="text-danger mt-1">
+                    {{ captchaError }}
+                  </div> -->
+                <div class="form-group">
+                  <button class="btn-career" id="btn-joinsubmit" type="submit" [disabled]="isSubmitting">
+                    {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+                  </button>
+                </div>
+                <div *ngIf="submitMsg" class="mt-2">
+                  {{ submitMsg }}
+                </div>
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="row contact-card-row">
+            <div class="col-lg-6 col-12">
+              <div class="contact-box bg-white  shadow-radius flex flex-col justify-center items-center">
+                <h3 class="relative text-center text-lg font-semibold text-orange-600">Sales Enquiry</h3>
+                <p class=" text-center secondary-text-color">Want to Join the PCARDS community ? Talk to our experts
+                  today.</p>
+                <div>
+                  <a class="block text-center font-bold"
+                    href="mailto:sales&commat;pcards.org">sales&commat;pcards.org</a>
+                  <br>
+                  <a class="block text-center font-bold" href="tel:+91-8788583676">+91-8788583676</a>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="contact-box bg-white  shadow-radius flex flex-col justify-center items-center">
+                <h3 class="relative  text-center text-lg font-semibold text-orange-600">Support Enquiry</h3>
+                <p class=" text-center secondary-text-color">Using PCARDS and need help? Get in touch with customer
+                  support.</p>
+                <div>
+                  <a class="block text-center font-bold"
+                    href="mailto:support&commat;pcards.org">support&commat;pcards.org</a>
+                  <br>
+                  <a class="block text-center font-bold" href="tel:+91-9158883141">+91-9158883141</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="contact-box bg-white  shadow-radius flex flex-col justify-center items-center">
+                <h3 class="relative  text-center text-lg font-semibold text-orange-600">Customer Care</h3>
+                <p class=" text-center secondary-text-color">For any other assistance contact our customer care.</p>
+                <div>
+                  <a class="block text-center font-bold"
+                    href="mailto:contact&commat;pcards.org">contact&commat;pcards.org</a>
+                  <br>
+                  <a class="block text-center font-bold" href="tel:+91-7720050066">+91-7720050066</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="contact-box bg-white  shadow-radius flex flex-col justify-center items-center">
+                <h3 class="relative  text-center text-lg font-semibold text-orange-600">Registered Office</h3>
+                <p class=" text-center secondary-text-color">PL. NO. G-40, FL. NO. 03,ARMAAN ORBIT APPT, NAGPUR,
+                  Trimurti Nagar, Nagpur, Nagpur-440022, Maharashtra</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

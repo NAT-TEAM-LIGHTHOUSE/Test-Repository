@@ -1,0 +1,6 @@
+<div id="website-container" #containerDiv (scroll)="onContainerScroll($event)" [class.scrolled]="isScrolled">
+   <app-website-header [wideMode]="headerWidth"></app-website-header>
+  <router-outlet ></router-outlet>
+  <app-website-footer  [ngClass]="{ 'special-footer': footerStyleA }"></app-website-footer>
+  <app-website-footer2 *ngIf="showFooter2"></app-website-footer2>
+</div>

@@ -1,0 +1,224 @@
+<!---------- template 1------------>
+<!-- About Us section -->
+@if(template_type == 'layout1') {
+<section class="about-us light-card" *ngIf="data.data[0].description" id="About_Me" [ngStyle]="{
+                                                            'color': card1textcolour
+                                                          }">
+    <div class="card-headings-div">
+        <h3 class="card-headings" [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                         
+                                                          }">
+            {{data.title}}
+        </h3>
+        <p class="heading-border" [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                         
+                                                          }"></p>
+    </div>
+    <div class="w-100">
+        <!-- <p [innerHtml]="data.data[0].description"></p> -->
+          <div class="about-us-description" 
+                    [innerHTML]="data.data[0].description" ></div>
+    </div>
+</section>
+}
+
+<!---------- template 2------------>
+
+<!-- About Us section -->
+@else if(template_type == 'layout2') {
+<section class="about-us" *ngIf="data.data[0].description">
+    <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+    <div class="light-card" [ngStyle]="{
+                                                            'color': card1textcolour }">
+        <!-- <p [innerHTML]="data.data[0].description"></p> -->
+          <div class="about-us-description" 
+                    [innerHTML]="data.data[0].description" ></div>
+    </div>
+</section>
+}
+<!---------- template 3------------>
+
+<!-- About Us section -->
+@else if(template_type == 'layout3') {
+<section class="about-us" *ngIf="data.data[0].description">
+    <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid'+ card2textcolour}">
+        {{data.title}}</h2>
+    <div class="about-us-card" [ngStyle]="{'background-color': bodybgcolour,'color': card2textcolour }">
+        <!-- <p [innerHTML]="data.data[0].description"></p> -->
+        <div class="about-us-description" 
+                    [innerHTML]="data.data[0].description" ></div>
+    </div>
+</section>
+}
+
+<!---------- template 4------------>
+
+@else if(template_type == 'layout4') {
+<section class="about-us w-100" *ngIf="data.data[0].description">
+    <h3 *ngIf="styletype != 'style4'" class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+
+    <!------------- for t4  ------------ -->
+    <div *ngIf="styletype == 'style4'" class="card-headings-div">
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}}</h3>
+    </div>
+
+    <div class="card-divs" [ngStyle]="{'background-color': card2bgcolour}">
+        <!-- <p [innerHTML]="data.data[0].description" [ngStyle]="{'color': card2textcolour }"></p> -->
+        <div class="about-us-description" 
+                    [innerHTML]="data.data[0].description" [ngStyle]="{'color': card2textcolour }"></div>
+    </div>
+</section>
+
+}
+
+<!---------- template 5------------>
+
+
+@else if(template_type == 'layout5') {
+<section class="about-us w-100" *ngIf="data.data[0].description">
+    <h3 class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+    <div class="card-divs" [ngStyle]="about_us_card_divs ?about_us_card_divs :{'background-color': card2bgcolour}">
+        <!-- <p [innerHTML]="data.data[0].description" [ngStyle]="about_us_p ?about_us_p : {'color': card2textcolour }"></p> -->
+        <div class="about-us-description" 
+                    [innerHTML]="data.data[0].description" [ngStyle]="about_us_p ?about_us_p : {'color': card2textcolour }"></div>
+    </div>
+</section>
+}
+
+
+<!---------- template 6------------>
+
+
+@else if(template_type == 'layout6') {
+<section class="about-us w-100" *ngIf="data.data[0].description">
+    <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h3>
+    <div class="card-divs">
+        <!-- <p [innerHTML]="data.data[0].description" [ngStyle]="about_us_p ?about_us_p : {'color': card2textcolour }"></p> -->
+         <div class="about-us-description" 
+                    [innerHTML]="data.data[0].description" [ngStyle]="about_us_p ?about_us_p : {'color': card2textcolour }"></div>
+    </div>
+</section>
+}
+
+<!---------- template 7------------>
+@else if(template_type == 'layout7') {
+<div class="about-us-div" *ngIf="data?.data[0]?.description">
+    <div class="row">
+         <div class="col-md-4 about-us-img " *ngIf="user_template?.data[0]?.about_us_image;else defaultAboutUsImage">
+           
+            <img [src]="user_template.data[0]?.about_us_image" alt="about us image">
+          
+        </div>
+
+        <ng-template #defaultAboutUsImage>
+         <div class="col-md-4 about-us-img " *ngIf="about_us_image">
+            <img [src]="about_us_image" alt="about us image">
+        </div>
+        </ng-template>
+
+
+        <div class="col-md-8  second-col">
+            <div class="about-us-data">
+                <div class="section-headings">
+                    <h2 [ngStyle]="{'color':  bodytextcolour}">{{data.title}}</h2>
+                    <span [ngStyle]="{'background': card1bgcolour}"></span>
+                </div>
+                <div class="about-us-description" [ngStyle]="{'color': bodytextcolour}"
+                    [innerHTML]="data.data[0].description"></div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+      <section class="about-us-section padding" *ngIf="data?.data[0]?.description" [ngStyle]="{
+  'background-image': `
+    linear-gradient(
+      color-mix(in srgb, ${card2bgcolour} 80%, transparent),
+      color-mix(in srgb, ${card2bgcolour} 80%, transparent)
+    ),
+    url('${globalObject.assetsUrl}/templates_pcard/template_8/bg-img3.png')`, color: card2textcolour}">
+            <div class="row">
+
+                <div class="col-md-7 col-12 data-col">
+                    <h2 class="card-heading dark" [ngStyle]="{ border: '1px dashed ' + card2textcolour , color: card2textcolour}"><i class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i
+                            class="fa-solid fa-right-long"></i></h2>
+
+                    <!-- <p  [innerHTML]="data.data[0].description"></p> -->
+                      <div class="about-us-description" 
+                    [innerHTML]="data.data[0].description"></div>
+            </div>
+
+
+               
+                <div class="col-md-5 col-12 image-col" >
+                    <div class="inside-image-div" *ngIf="user_template?.data[0]?.about_us_image;else defaultAboutUsImage1">
+                        <div class="left-color-div"  [ngStyle]="{ border: '2px dashed' + card2textcolour }"></div>
+                          <img [src]="user_template.data[0]?.about_us_image" alt="about us image">
+                    </div>
+
+                     <ng-template #defaultAboutUsImage1>
+        <div class="inside-image-div" *ngIf="about_us_image">
+                        <div class="left-color-div"  [ngStyle]="{ border: '2px dashed' + card2textcolour }"></div>
+                          <img [src]="about_us_image" alt="about us image">
+                    </div>
+
+        </ng-template>
+
+                </div>
+            </div>
+        </section>
+ }
+
+
+ <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+  <section class="about-me"  [ngStyle]="{
+  background: `linear-gradient(
+      to bottom,
+     ${card1bgcolour} 0%,
+      ${card2bgcolour} 163%) ` ,color: card1textcolour }">
+            <div class="row">
+                <div class="col-md-7 col-12 data-col">
+                    <h2 class="card-heading dark" [ngStyle]="{ color: card1textcolour }"><span [ngStyle]="{ color: card1textcolour }"></span>{{data.title}}</h2>
+
+                    <!-- <p  [innerHTML]="data.data[0].description"></p> -->
+                      <div class="about-us-description" 
+                    [innerHTML]="data.data[0].description"></div>
+                </div>
+                <div class="col-md-5 col-12 image-col">
+                    <div class="inside-image-div" *ngIf="user_template?.data[0]?.about_us_image;else defaultAboutUsImage2">
+                        <div class="left-color-div" [ngStyle]="{ background: card1textcolour }"></div>
+                          <img [src]="user_template.data[0]?.about_us_image" alt="about us image">
+                        <div class="right-color-div" [ngStyle]="{ background: card1textcolour }"></div>
+                    </div>
+
+                    <ng-template #defaultAboutUsImage2>
+                         <div class="inside-image-div"*ngIf="about_us_image">
+                        <div class="left-color-div" [ngStyle]="{ background: card1textcolour }"></div>
+                              <img [src]="about_us_image" alt="about us image">
+                        <div class="right-color-div" [ngStyle]="{ background: card1textcolour }"></div>
+                    </div>
+                    </ng-template>
+                </div>
+            </div>
+        </section>
+    }
+
+
+ 
+

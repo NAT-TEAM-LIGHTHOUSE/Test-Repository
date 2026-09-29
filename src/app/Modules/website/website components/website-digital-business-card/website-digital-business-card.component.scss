@@ -1,0 +1,934 @@
+#digital-card-page {
+.swiper {
+padding: 20px 15px 30px;
+}
+
+.swiper-pagination {
+bottom: 0 !important;
+}
+
+.testiMonial-section h4,
+.testiMonial-section h6 {
+text-align: center;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+iframe {
+width: 100%;
+}
+
+a:focus {
+outline: 0px solid;
+}
+
+img {
+max-width: 100%;
+        height: auto;
+}
+
+p {
+margin: 0 0 15px;
+        color: #2b2b2b;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+
+}
+
+.download-app {
+p{
+       color: #050e1d;
+    font-weight: 600;
+    line-height: 28px;
+}
+    h2 {
+font-size: 35px;
+        line-height: 42px;
+}
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+margin: 0 0 1rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        line-height: 42px ; //1.21;
+        color: initial;
+}
+
+h1 {
+font-size: 35px;
+        line-height: 54px;
+}
+
+
+h2 {
+font-size: 30px;
+        line-height: 42px;
+}
+
+h3 {
+font-size: 25px;
+        line-height: 36px;
+}
+
+h4 {
+font-size: 20px;
+        line-height: 34px;
+}
+
+h5 {
+font-size: 18px;
+        line-height: 30px;
+}
+
+h6 {
+font-size: 16px;
+        line-height: 28px;
+}
+
+a {
+transition: all 0.3s ease 0s;
+        text-decoration: none;
+}
+
+a:active,
+a:hover {
+outline: 0 none;
+}
+
+a:hover,
+a:focus {
+color: #003cc4;
+        text-decoration: none;
+}
+
+.float-none {
+float: none;
+        margin: 0 auto;
+}
+
+.pt30 {
+padding-top: 30px;
+}
+
+.pb50 {
+padding-bottom: 50px;
+}
+
+.section-padding {
+padding: 60px 0px;
+}
+
+.section-19 {
+position: relative;
+        background: linear-gradient(106deg, rgb(255 207 63 / 84%) 92%, rgb(255 207 63 / 69%) 99%), url(../../../../../assets/website-images/price/customer-bg.png);
+}
+
+#postId1 {
+position: relative;
+        background: linear-gradient(106deg, rgb(255 207 63 / 84%) 92%, rgb(255 207 63 / 69%) 99%), url(../../../../../assets/website-images/price/customer-bg.png);
+        min-height: 730px;
+}
+
+.postidimg {
+text-align: center;
+}
+
+.postidimg img {
+margin-top: -25px;
+        width: 75%;
+}
+
+.apparel-content {
+margin-top: 50px;
+}
+
+.apparel-content h2 {
+font-size: 36px;
+        color: #000000;
+        font-weight: bold;
+        line-height: 1.21;
+}
+
+.apparel-content h1 {
+font-size: 36px;
+        color: #000000;
+        font-weight: bold;
+        line-height: 1.21;
+}
+
+.apparel-content p {
+margin-bottom: 30px;
+        font-size: 16px;
+        color: #000000;
+        text-align: justify;
+}
+
+.apparel-expert-btn {
+width: fit-content;
+        height: 53px !important;
+        border-radius: 25px;
+        line-height: 43px;
+        background: #050e1d;
+        text-align: center;
+        border: 4px solid #fff;
+}
+
+.apparel-expert-btn a {
+color: #fff;
+        font-weight: 600;
+        text-align: center;
+        font-size: 18px;
+        padding: 15px;
+}
+
+.apparel-expert-btn i {
+width: 45px;
+        height: 45px;
+        line-height: 45px;
+        float: left;
+        background: #FDC705;
+        color: #050e1d;
+        border-radius: 50px;
+}
+
+.shape-bg img {
+position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        z-index: 1;
+        width: 100%;
+        margin: 0 auto;
+}
+
+#whatWe {
+background: #fff;
+}
+
+#whatWe h2 {
+font-size: 35px;
+}
+
+.what-we-offer-text h4 {
+margin-bottom: 30px;
+}
+
+.what-we-offer-text ul {
+list-style: none;
+        padding-left: 0px;
+}
+
+.what-we-offer-text ul li {
+margin-bottom: 15px;
+        color: #4D4D4D !important;
+        font-size: 16px;
+}
+
+.what-we-offer-text ul li i {
+color: #4caf50;
+        font-size: 20px;
+        margin-right: 20px;
+}
+
+#beneficial {
+background: #050e1d;
+        background-size: cover;
+        padding: 30px 0px;
+}
+
+.benificial-text {
+margin-top: 60px;
+}
+
+.benificial-text h2 {
+color: #ffcf3f;
+        font-size: 35px;
+        line-height: 54px;
+}
+
+.benificial-text p {
+font-size: 16px;
+        color: #ffffff;
+}
+
+#branding {
+background: #fff;
+}
+
+.branding-img {
+text-align: center;
+}
+
+.branding-img img {
+width: 75%;
+}
+
+.branding-text {
+padding: 30px;
+        margin-top: 40px;
+}
+
+.branding-text h2 {
+font-size: 35px;
+}
+
+.branding-text p {
+text-align: justify;
+        font-size: 16px;
+        color: #000000;
+}
+
+#whatsapp-sticker {
+background: linear-gradient(106deg, rgb(255 207 63 / 84%) 92%, rgb(255 207 63 / 69%) 99%), url(../../../../../assets/website-images/price/customer-bg.png);
+        background-size: cover;
+}
+
+.whatsapp-sticker img {
+
+}
+
+.whatsapp-sticker-text .trus-user-btn {
+margin: unset;
+}
+
+.whatsapp-sticker-text {
+margin: 40px 0px;
+}
+
+.whatsapp-sticker-text h2 {
+font-size: 35px;
+}
+
+.whatsapp-sticker-text p {
+text-align: justify;
+        font-size: 16px;
+        color: #000000;
+}
+
+#industry-special {
+background: #fff;
+        background-size: cover;
+        padding: 30px 0px;
+}
+
+.industry-special-img {
+text-align: center;
+}
+
+.industry-special-img img {
+width: 75%;
+}
+
+.industry-special-text {
+margin-top: 60px;
+}
+
+.industry-special-text h2 {
+font-size: 35px;
+}
+
+.industry-special-text {
+padding: 30px;
+}
+
+.industry-special-text p {
+text-align: justify;
+        font-size: 16px;
+        color: #000000;
+}
+
+#industry-logo {
+background: #050e1d;
+}
+
+.industry-logo-img {
+padding: 20px 0;
+}
+
+.industry-logo-text {
+margin: 50px 30px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+}
+
+.industry-logo-text h2 {
+color: #ffcf3f;
+        font-size: 35px;
+        line-height: 54px;
+}
+
+.industry-logo-text p {
+text-align: justify;
+        font-size: 16px;
+        color: #ffffff;
+}
+
+#product-add {
+background: #fff;
+}
+
+.product-add-text {
+margin: 30px 30px;
+}
+
+.product-add-text p {
+text-align: justify;
+        font-size: 16px;
+        color: #000000;
+}
+
+#sub-industry {
+background: linear-gradient(106deg, rgb(255 207 63 / 84%) 92%, rgb(255 207 63 / 69%) 99%), url(../../../../../assets/website-images/price/customer-bg.png);
+}
+
+.sub-industry-img {
+text-align: center;
+}
+
+.sub-industry-img img {
+width: 75%;
+}
+
+.sub-industry-text h2 {
+color: #000000;
+        font-size: 35px;
+        line-height: 54px;
+}
+
+.sub-industry-text p {
+text-align: justify;
+        font-size: 16px;
+        color: #000000;
+}
+
+.sub-industry-text {
+margin: 50px 30px 0px 0px;
+}
+
+#poster-video {
+background: linear-gradient(106deg, rgb(255 207 63 / 84%) 92%, rgb(255 207 63 / 69%) 99%), url(../../../../../assets/website-images/price/customer-bg.png);
+        margin-top: 0px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+}
+
+.poster-video-text h2 {
+color: #000000;
+        font-size: 35px;
+        line-height: 54px;
+}
+
+.poster-video-text p {
+text-align: justify;
+        font-size: 13px;
+        color: #000000;
+}
+
+.dont-just-div {
+background: #FFFFFF;
+        box-shadow: 0px 11px 27px 2px rgb(0 0 0 / 6%);
+        border-radius: 15px;
+        border: 1px solid #eee;
+        margin: 0;
+        height: 100%;
+}
+
+.dont-just-top {
+padding: 20px;
+}
+
+.dont-just-bottom {
+background-color: #FFFFFA;
+        padding: 20px;
+        border-top: 1px solid rgba(0, 0, 0, .125);
+        border-radius: 0 0 15px 15px;
+}
+
+.dont-just-bottom h5 {
+color: #000;
+        margin-bottom: 0px;
+}
+
+.dont-just-bottom p {
+color: #FDAF06;
+        font-size: 16px;
+        margin-bottom: 0px;
+}
+
+.dont-just-bottom small {
+color: #B3B3B3;
+        font-size: 15px;
+}
+
+.dont-just-top i {
+font-size: 30px;
+        color: #050e1d;
+}
+
+.dont-just-top {
+height: 365px;
+        overflow-y: hidden;
+}
+
+.dont-just-top p {
+text-align: justify;
+        font-size: 16px;
+        color: #000000;
+}
+
+.desktopDisplay {
+display: block;
+}
+
+@media only screen and (max-width: 1024px) {
+.section-13 .section-title h2 {
+font-size: 26px;
+}
+
+.download-app h2 {
+font-size: 26px;
+            line-height: 31px;
+}
+
+.download-app p {
+font-size: 15px;
+}
+
+.apparel-content h2 {
+font-size: 21px;
+}
+
+.apparel-content h1 {
+font-size: 21px;
+}
+
+.apparel-content {
+margin-top: 20px;
+}
+
+.benificial-text h2 {
+font-size: 28px;
+            line-height: 41px;
+}
+
+.benificial-text {
+margin-top: 10px;
+}
+
+.branding-text h2 {
+font-size: 29px;
+}
+
+.view-all-btn3 {
+margin-top: 20px;
+}
+
+#postId1 .section-title h2 {
+font-size: 26px;
+}
+
+#postId1 .section-title h5 {
+font-size: 16px;
+}
+
+#pricing .section-title h2 {
+font-size: 26px;
+}
+
+#pricing .section-title h5 {
+font-size: 16px;
+}
+
+#whatWe h2 {
+font-size: 29px;
+}
+
+.whatsapp-sticker-text h2 {
+font-size: 29px;
+}
+
+.industry-special-text h2 {
+font-size: 29px;
+}
+
+.industry-special-text {
+margin-top: 20px;
+}
+
+.industry-logo-text h2 {
+font-size: 23px;
+            line-height: 38px;
+}
+
+.sub-industry-text h2 {
+color: #000000;
+            font-size: 26px;
+            line-height: 40px;
+}
+
+.poster-video-text h2 {
+color: #000000;
+            font-size: 29px;
+            line-height: 42px;
+}
+
+.dont-just-top p {
+font-size: 14px;
+            color: #000000;
+            line-height: 22px;
+}
+
+.dont-just-bottom {
+padding: 20px 10px;
+}
+
+.dont-just-bottom p {
+font-size: 11px;
+}
+}
+
+@media only screen and (max-width: 991px) {
+.postidimg img {
+width: 55%;
+}
+
+#postId1 {
+min-height: 590px;
+}
+}
+
+@media only screen and (max-width: 767px) {
+.desktopDisplay {
+display: none;
+}
+
+.row {
+margin-left: 0 !important;
+            margin-right: 0 !important;
+}
+
+.section-13 .section-title h2 {
+font-size: 20px;
+            line-height: 24px;
+}
+
+.download-app h2 {
+font-size: 22px;
+            line-height: 24px;
+}
+
+.download-app p {
+font-size: 15px;
+}
+
+.view-all-btn3 {
+height: 44px !important;
+            line-height: 35px;
+            float: none;
+            margin: 0 auto;
+}
+
+.view-all-btn3 i {
+width: 35px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 10px;
+}
+
+.view-all-btn3 a {
+font-size: 14px;
+}
+
+.section-padding {
+padding: 30px 0px;
+}
+
+.download-app {
+text-align: center;
+            margin-top: 0px;
+}
+
+.download-app h2 {
+font-size: 20px;
+            line-height: 24px;
+}
+
+.download-app p {
+font-size: 15px;
+}
+
+.pb50 {
+padding-bottom: 20px;
+}
+
+#postId1 {
+min-height: auto;
+}
+
+#postId1 .section-title h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+#postId1 .section-title h5 {
+font-size: 14px;
+            line-height: 24px;
+            text-align: justify;
+}
+
+.shape-bg img {
+display: none;
+}
+
+#pricing .section-title h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+#pricing .section-title h5 {
+font-size: 14px;
+            line-height: 25px;
+}
+
+.poster-video-text p {
+font-size: 14px;
+            line-height: 24px;
+}
+
+.apparel-content {
+text-align: center;
+            margin-top: 0px;
+}
+
+.apparel-content h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+.apparel-content h1 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+.apparel-content p {
+font-size: 14px;
+            text-align: justify;
+            line-height: 24px;
+            margin-bottom: 20px;
+}
+
+.apparel-expert-btn {
+height: 44px !important;
+            line-height: 35px;
+            float: none;
+            margin: 0 auto;
+}
+
+.apparel-expert-btn i {
+width: 35px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 10px;
+}
+
+.apparel-expert-btn a {
+font-size: 14px;
+}
+
+#whatWe .section-title h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+.what-we-offer-text h4 {
+font-size: 14px;
+            line-height: 26px;
+}
+
+.what-we-offer-text ul li {
+margin-bottom: 2px;
+            font-size: 14px;
+}
+
+.benificial-text h2 {
+color: #ffcf3f;
+            font-size: 20px;
+            line-height: 25px;
+}
+
+.benificial-text {
+text-align: center;
+}
+
+.benificial-text p {
+font-size: 14px;
+            color: #ffffff;
+            line-height: 24px;
+            text-align: justify;
+}
+
+.branding-text {
+text-align: center;
+}
+
+.branding-text h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+.branding-text {
+padding: 0;
+            margin-top: 30px;
+}
+
+.branding-text p {
+font-size: 14px;
+            line-height: 24px;
+}
+
+.whatsapp-sticker-text {
+text-align: center;
+}
+
+.whatsapp-sticker-text h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+.whatsapp-sticker-text p {
+font-size: 13px;
+}
+
+.industry-special-text {
+padding: 0px;
+            margin-top: 0px;
+            text-align: center;
+}
+
+.industry-special-text h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+.industry-special-text p {
+font-size: 14px;
+            line-height: 24px;
+}
+
+.industry-logo-text {
+margin: 20px 0;
+            text-align: center;
+}
+
+.industry-logo-text h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+.industry-logo-text p {
+font-size: 14px;
+            line-height: 24px;
+}
+
+.product-add-text h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+.product-add-text p {
+font-size: 14px;
+            line-height: 24px;
+}
+
+.product-add-text {
+margin: 20px 0px;
+            text-align: center;
+}
+
+.sub-industry-text h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+.sub-industry-text p {
+font-size: 14px;
+            line-height: 24px;
+}
+
+.sub-industry-text {
+margin: 20px 0px 0px 0px;
+            text-align: center;
+}
+
+.poster-video-text h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+.poster-video-text {
+text-align: center;
+}
+
+#dont-just .section-title h2 {
+font-size: 20px;
+            line-height: 25px;
+}
+
+#dont-just .section-title h5 {
+font-size: 14px;
+}
+
+.dont-just-top p {
+font-size: 12px;
+            line-height: 20px;
+}
+
+.dont-just-top {
+height: auto;
+}
+
+.dont-just-bottom h5 {
+font-size: 15px;
+}
+
+.dont-just-bottom p {
+font-size: 14px;
+            line-height: 24px;
+}
+
+.dont-just-bottom small {
+font-size: 12px;
+}
+
+.section-title {
+margin-bottom: 15px;
+}
+
+.whatsapp-sticker-text .trus-user-btn {
+margin: 0 auto;
+}
+
+#product-add {
+padding: 20px 0;
+}
+}
+
+@media only screen and (max-width: 600px) {
+.swiper {
+padding: 0 0 30px !important;
+}
+}
+}

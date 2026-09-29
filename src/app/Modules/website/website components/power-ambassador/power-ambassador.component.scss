@@ -1,0 +1,377 @@
+#power-ambassador {
+  .panel {
+    background: #fff;
+    border-radius: 9px;
+
+    h4 {
+      margin-bottom: 0;
+    }
+
+    .panel-body {
+      p {
+        font-weight: bold;
+      }
+    }
+  }
+//     .flip-box-back p
+// {
+//       height: 100%;
+// }
+.flip-card-row 
+{
+  margin-bottom: 75px;
+}
+.flip-box {
+  margin-bottom: 0;
+  height: 100%;
+  min-height: 320px;
+}
+
+// ------------- accordian css------------
+
+.accordion-item {
+  border: none;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+
+  h4 
+  {
+    margin-bottom: 0 !important;
+  }
+}
+
+.accordion-button {
+      box-shadow: none !important;
+    padding: 4px 15px !important;
+    line-height: 34px;
+    background: #050e1d;
+    border: 1px solid #eeeeee33;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    font-family: 'gilroy-medium';
+}
+
+.accordion-item {
+  border-radius: 3px;
+  overflow: hidden;
+  /* so header + body corners match */
+}
+  .container-fluid.bg-yellow-apply {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+.accordion-button::after {
+  display: none;
+  /* remove bootstrap arrow */
+}
+
+.accordion-body {
+      background: #fff;
+   
+
+    p 
+    {
+      margin-bottom: 0 !important;
+
+          font-size: 18px;
+    line-height: 27px;
+    font-family: Gilroy-Bold;
+    }
+}
+
+.accordion-button .toggle-icon::before {
+  content: "+";
+}
+
+/* Custom plus/minus */
+.accordion-button .toggle-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  border-radius: 35px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  font-style: normal;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+ height: 20px;
+    min-width: 20px;
+}
+.accordion-body ul
+{
+      list-style-type: decimal;
+}
+
+.accordion-button:not(.collapsed) .toggle-icon::before {
+  content: "–";
+}
+
+// ------------- accordian css end------------
+
+
+
+
+.campus-pro p
+  .flip-box-back p,
+  .campus-apply,
+  .about-program p {
+      font-family: Gilroy-Bold;
+  }
+
+  // .joincampus h3 {
+  //   font-weight: 500;
+  // }
+
+  .row {
+    // margin-right: 0;
+    // margin-left: 0;
+    // padding-left: 0 !important;
+    // padding-right: 0 !important;
+    // width: 100%;
+        row-gap: 20px;
+
+ 
+  }
+  .card-row {
+    row-gap: 20px;
+  }
+  .pricingTable {
+    height: 100%;
+  }
+
+  .flip-box-front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .flip-box-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about-program h2 {
+    color: #ffbf00;
+    font-size: 45px;
+    margin-bottom: 60px;
+    line-height: 54px;
+  }
+
+  .what-do .title {
+    color: #ffbf00;
+    font-size: 45px;
+    text-align: center;
+    line-height: 54px;
+    display: block;
+  }
+
+  .benifits-div h2 {
+    color: #fff;
+    font-size: 45px;
+    text-align: center;
+    margin-bottom: 50px;
+    line-height: 54px;
+  }
+
+  .fre-que h2 {
+    color: #fff;
+    font-size: 45px;
+    text-align: center;
+    margin-bottom: 50px;
+    line-height: 54px;
+  }
+
+   .col-xs-1,
+    .col-sm-1,
+    .col-md-1,
+    .col-lg-1,
+    .col-xs-2,
+    .col-sm-2,
+    .col-md-2,
+    .col-lg-2,
+    .col-xs-3,
+    .col-sm-3,
+    .col-md-3,
+    .col-lg-3,
+    .col-xs-4,
+    .col-sm-4,
+    .col-md-4,
+    .col-lg-4,
+    .col-xs-5,
+    .col-sm-5,
+    .col-md-5,
+    .col-lg-5,
+    .col-xs-6,
+    .col-sm-6,
+    .col-md-6,
+    .col-lg-6,
+    .col-xs-7,
+    .col-sm-7,
+    .col-md-7,
+    .col-lg-7,
+    .col-xs-8,
+    .col-sm-8,
+    .col-md-8,
+    .col-lg-8,
+    .col-xs-9,
+    .col-sm-9,
+    .col-md-9,
+    .col-lg-9,
+    .col-xs-10,
+    .col-sm-10,
+    .col-md-10,
+    .col-lg-10,
+    .col-xs-11,
+    .col-sm-11,
+    .col-md-11,
+    .col-lg-11,
+    .col-xs-12,
+    .col-sm-12,
+    .col-md-12,
+    .col-lg-12
+    {
+ padding-left: 10px;
+ padding-right: 10px;
+    }
+ 
+}
+
+@media only screen and (max-width: 768px) {
+  #power-ambassador {
+    .flip-box-front img {
+      margin-bottom: 10px;
+      width: 27%;
+    }
+
+
+       .col-md-11 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+.float-none 
+{
+      margin: 0;
+    width: 100%;
+}
+  .campus-pro  p ,
+    .about-program p 
+    {
+      font-family: gilroy-regular;
+    }
+
+
+    .col-md-10.float-none.upcol
+    {
+      padding: 0 !important;
+    }
+    .about-program h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .what-do .title {
+      font-size: 34px;
+    }
+    .benifits-div h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .fre-que h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+
+      .accordion-button {
+        font-size: 16px;
+        font-weight: normal;
+    }
+  }
+}
+@media only screen and (max-width: 600px) {
+  #power-ambassador {
+    .about-program h2 {
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+     .accordion-button {
+        line-height: 22px;
+        font-size: 14px !important;
+        font-weight: normal;
+     }
+
+        .accordion-body p
+        {
+          font-family: 'gilroy-regular';
+        font-size: 18px;
+        text-align: justify;
+        }
+
+
+    .what-do .title {
+      font-size: 26px;
+      margin-bottom: 0;
+    }
+
+    .benifits-div h2 {
+      font-size: 25px;
+      line-height: 34px;
+    }
+
+    .fre-que h2 {
+      font-size: 25px;
+      line-height: 34px;
+    }
+  }
+}
+@media only screen and (max-width: 480px) {
+  #power-ambassador {
+    .about-program h2 {
+      font-size: 25px;
+    }
+
+    .what-do .title {
+      font-size: 25px;
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) 
+{
+  #power-ambassador 
+
+{
+
+
+  .col-md-10.float-none.upcol
+    {
+        margin: 0 !important;
+        width: 100% !important;
+    }
+     
+.col-md-7.float-none
+{
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+
+
+
+}
+}
+
+
+

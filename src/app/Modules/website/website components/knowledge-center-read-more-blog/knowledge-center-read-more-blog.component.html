@@ -1,0 +1,34 @@
+<div class="container-fluid pageLayout">
+  <div class="pageVerBorder">
+    <img src="/assets/website-images/community/line-61.svg" alt="pcard images">
+  </div>
+  <div class="container pt50">
+    <div class="row">
+      <div class="col-md-8" *ngIf="blogDetail" >
+        <div class="blog-content">
+          <img [src]="blogDetail.ad_blogimg" width="100%" alt="pcards" />
+          <ul>
+            <li>
+              <i class="fa fa-calendar"></i>{{ blogDetail.created_date }}
+            </li>
+            <li>
+              <i class="fa fa-user"></i>{{blogDetail.created_by}}
+            </li>
+          </ul>
+          <h1>{{blogDetail.ad_blogname}}</h1>
+            <div class="point-blog">
+              <!-- <p>{{blogDetail.blog_desc}}</p> -->
+               <div [innerHTML]="blogDetail.blog_desc"></div>
+            </div>
+        </div>
+       
+
+      </div>
+     
+      <div class="col-lg-4">
+
+        <app-popular-category-knowledge-center></app-popular-category-knowledge-center>
+      </div>
+    </div>
+  </div>
+</div>

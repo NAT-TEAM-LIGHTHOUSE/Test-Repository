@@ -1,0 +1,1422 @@
+<!---------- template 1------------>
+
+<!-- Products section -->
+@if(template_type == 'layout1') {
+<section class="products" id="IT_Products">
+    <div class="card-headings-div">
+        <h3 class="card-headings" [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                         
+                                                          }">
+            {{data.title}}
+        </h3>
+        <p class="heading-border" [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                         
+                                                          }"></p>
+    </div>
+    <div class="outer-div">
+       
+            <div class="row m-0 w-100 ">
+                <ng-container *ngFor="let product of data.data; let i = index">
+                    <div  class="col-6 card-col">
+                        <div class="product-card">
+                            <div class="product-img-div" (click)="productpopup(product)">
+
+
+                                <div id="productCarousel1{{i}}" class="carousel slide w-100 h-100">
+
+
+                                    <div class="carousel-inner w-100 h-100">
+                                        <div class="carousel-item active w-100 h-100">
+                                            <img [src]="globalObject.getImageSrc(product?.product_image1)"
+                                                class="d-block w-100 img-fluid" alt="Product Image 1" loading="lazy">
+                                        </div>
+                                        <div class="carousel-item w-100 h-100" *ngIf="product?.product_image2">
+                                            <img [src]="globalObject.getImageSrc(product?.product_image2)"
+                                                class="d-block w-100 img-fluid" alt="Product Image 2" loading="lazy">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="carousel-indicators"
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''">
+                                        <button type="button" class="active"  (click)="$event.stopPropagation()"
+                                            [attr.data-bs-target]="'#productCarousel1' + i" data-bs-slide-to="0"
+                                            aria-current="true" aria-label="Slide 1"></button>
+
+                                        <button type="button" [attr.data-bs-target]="'#productCarousel1' + i"  (click)="$event.stopPropagation()"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    </div>
+
+                                    <!-- <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-prev" type="button"
+                                        [attr.data-bs-target]="'#productCarousel1' + i" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+
+                                    <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-next" type="button"
+                                        [attr.data-bs-target]="'#productCarousel1' + i" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button> -->
+
+
+                                </div>
+
+                            </div>
+                            <div class="product-details-div d-flex flex-column flex-grow-1">
+
+
+
+
+                                <!-- <div class="product-data"
+                                    (click)="productpopup(product)">
+                                    <p class="p-name">
+                                        {{product.product_name}}
+                                    </p>
+                                    <div class="d-flex align-items-center gap-2" style="padding: 5px 0;">
+                                        <p class="p-price cut_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{ product.regular_price }}
+                                        </p>
+                                        <p class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{ product.selling_price }}
+                                        </p>
+                                    </div>
+
+                                </div> -->
+                                <div class="product-data" (click)="productpopup(product)">
+                                    <p class="p-name" *ngIf="product.product_name">
+                                        {{product.product_name}}
+                                    </p>
+
+
+
+
+                                    <div class="d-flex align-items-center"
+                                        style="padding: 5px 0; flex-wrap: wrap; row-gap: 1px; column-gap: 8px;"
+                                        *ngIf="product.regular_price > 0 || product.selling_price >= 0">
+
+                                        <!-- Case: Both > 0 -->
+                                        <ng-container
+                                            *ngIf="product.regular_price > 0 && product.selling_price > 0; else otherCases">
+                                            <p class="p-price cut_price"> {{ product.regular_price }}</p>
+                                            <p class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</p>
+                                        </ng-container>
+
+                                        <ng-template #otherCases>
+
+                                            <!-- Case: regular > 0 & selling = 0 -->
+                                            <ng-container
+                                                *ngIf="product.regular_price > 0 && product.selling_price && product.selling_price == 0">
+
+                                                <p class="p-price cut_price">{{
+                                                    globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                    product.regular_price }}</p>
+                                                <p class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} 0</p>
+                                            </ng-container>
+
+                                            <!-- Case: only selling > 0 -->
+                                            <p class="p-price"
+                                                *ngIf="product.selling_price > 0 && product.regular_price == 0">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}
+                                            </p>
+
+                                            <!-- Case: regular > 0 & selling !=0  -->
+                                            <p class="p-price"
+                                                *ngIf="product.regular_price > 0 && (product.selling_price === 'null' || product.selling_price === null || product.selling_price === undefined || product.selling_price === '')">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}
+                                            </p>
+
+                                        </ng-template>
+
+                                    </div>
+
+
+                                </div>
+
+                                <ng-container *ngFor="let datas of whatup.data">
+                                    <a class="enquiry-div" target="_blank" type="button"
+                                         [href]="product.button_link ? product.button_link : getWhatsappLink(datas.wp_number, product.product_name)" 
+                                         [ngStyle]="{
+      color: hoveredIndex === i ?  card2textcolour : '#000',
+      background: hoveredIndex === i ? card2bgcolour : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+    >
+                                       {{ product.button_type === 'custom'
+      ? product.button_title
+      : 'Enquiry' }}
+                                    </a>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
+       
+    </div>
+</section>
+}
+
+<!---------- template 2------------>
+
+<!-- Products section -->
+@else if(template_type == 'layout2') {
+<section class="products">
+    <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+    <div class="outer-div">
+       
+            <div class="row m-0 w-100 ">
+                <ng-container *ngFor="let product of data.data; let i = index">
+                    <div  class="col-6 card-col">
+                        <div class="product-card">
+                            <div class="product-img-div" (click)="productpopup(product)">
+
+                                <div id="productCarousel2{{i}}" class="carousel slide w-100 h-100">
+
+
+                                    <div class="carousel-inner w-100 h-100">
+                                        <div class="carousel-item active w-100 h-100">
+                                            <img [src]="globalObject.getImageSrc(product?.product_image1)"
+                                                class="d-block w-100 img-fluid" alt="Product Image 1" loading="lazy">
+                                        </div>
+                                        <div class="carousel-item w-100 h-100" *ngIf="product?.product_image2">
+                                            <img [src]="globalObject.getImageSrc(product?.product_image2)"
+                                                class="d-block w-100 img-fluid" alt="Product Image 2" loading="lazy">
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-indicators"
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''">
+                                        <button type="button" class="active" (click)="$event.stopPropagation()"
+                                            [attr.data-bs-target]="'#productCarousel2' + i" data-bs-slide-to="0"
+                                            aria-current="true" aria-label="Slide 1"></button>
+
+                                        <button type="button" [attr.data-bs-target]="'#productCarousel2' + i" (click)="$event.stopPropagation()"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    </div>
+
+                                    <!-- <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-prev" type="button"
+                                        [attr.data-bs-target]="'#productCarousel2' + i" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+
+                                    <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-next" type="button"
+                                        [attr.data-bs-target]="'#productCarousel2' + i" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button> -->
+
+
+                                </div>
+                            </div>
+                            <div class="product-details-div d-flex flex-column flex-grow-1">
+
+
+                                <div class="product-data" (click)="productpopup(product)">
+                                    <p class="p-name">{{product.product_name}}
+                                    </p>
+                                    <!-- <div class="d-flex align-items-center"
+                                        style=" flex-wrap: wrap; row-gap: 1px; column-gap: 8px;">
+                                        <ng-container
+                                            *ngIf="product?.selling_price && product.selling_price !== 'null' && product.selling_price !== '0'; else onlyRegular">
+                                            <span class="p-price cut_price" *ngIf="product.regular_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price" *ngIf="product.selling_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+
+                                        </ng-container>
+
+                                       
+                                        <ng-template #onlyRegular>
+                                            <span class="p-price" *ngIf="product.regular_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                        </ng-template>
+                                    </div> -->
+
+                                    <div class="d-flex align-items-center"
+                                        style=" flex-wrap: wrap; row-gap: 1px; column-gap: 8px;"
+                                        *ngIf="product.regular_price > 0 || product.selling_price >= 0">
+
+                                        <!-- Case: Both > 0 -->
+                                        <ng-container
+                                            *ngIf="product.regular_price > 0 && product.selling_price > 0; else otherCases">
+                                            <span class="p-price cut_price">{{
+                                                globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+                                        </ng-container>
+
+                                        <ng-template #otherCases>
+
+                                            <!-- Case: regular > 0 & selling = 0 -->
+                                            <ng-container
+                                                *ngIf="product.regular_price > 0 && product.selling_price && product.selling_price == 0">
+
+                                                <p class="p-price cut_price">{{
+                                                    globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                    product.regular_price }}</p>
+                                                <p class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} 0</p>
+                                            </ng-container>
+
+                                            <!-- Case: only selling > 0 -->
+                                            <p class="p-price"
+                                                *ngIf="product.selling_price > 0 && product.regular_price == 0">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}
+                                            </p>
+
+
+                                            <!-- Case: regular > 0 & selling !=0  -->
+                                            <p class="p-price"
+                                                *ngIf="product.regular_price > 0 && (product.selling_price === 'null' || product.selling_price === null || product.selling_price === undefined || product.selling_price === '')">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}
+                                            </p>
+
+                                        </ng-template>
+
+                                    </div>
+
+
+
+                                </div>
+                                <ng-container *ngFor="let datas of whatup.data">
+                                    <a class="enquiry-div" target="_blank" type="button"
+                                         [href]="product.button_link ? product.button_link : getWhatsappLink(datas.wp_number, product.product_name)" 
+                                          [ngStyle]="{
+      color: hoveredIndex === i ?  card2textcolour : '#000',
+      background: hoveredIndex === i ? card2bgcolour : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+                                       {{ product.button_type === 'custom'
+      ? product.button_title
+      : 'Enquiry' }}
+                                    </a>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        
+    </div>
+</section>
+}
+
+<!---------- template 3------------>
+
+<!-- Products section -->
+@else if(template_type == 'layout3') {
+<section class="products">
+    <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' +  card2textcolour}">
+        {{data.title}}</h2>
+    <div class="outer-div">
+     
+            <div class="row m-0 w-100 ">
+                <ng-container *ngFor="let product of data.data; let i = index">
+                    <div  class="col-6 card-col">
+                        <div class="product-card">
+                            <div class="product-img-div" (click)="productpopup(product)">
+                                <div id="productCarousel3{{i}}" class="carousel slide w-100 h-100">
+
+
+                                    <div class="carousel-inner w-100 h-100">
+                                        <div class="carousel-item active w-100 h-100">
+                                            <img [src]="globalObject.getImageSrc(product?.product_image1)"
+                                                class="d-block w-100 img-fluid" alt="Product Image 1" loading="lazy">
+                                        </div>
+                                        <div class="carousel-item w-100 h-100" *ngIf="product?.product_image2">
+                                            <img [src]="globalObject.getImageSrc(product?.product_image2)"
+                                                class="d-block w-100 img-fluid" alt="Product Image 2" loading="lazy">
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-indicators"
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''">
+                                        <button type="button" class="active" (click)="$event.stopPropagation()"
+                                            [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide-to="0"
+                                            aria-current="true" aria-label="Slide 1"></button>
+
+                                        <button type="button" [attr.data-bs-target]="'#productCarousel3' + i" (click)="$event.stopPropagation()"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    </div>
+
+                                    <!-- <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-prev" type="button"
+                                        [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+
+                                    <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-next" type="button"
+                                        [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button> -->
+
+
+                                </div>
+                            </div>
+                            <div class="product-details-div d-flex flex-column flex-grow-1">
+
+
+                                <div class="product-data" (click)="productpopup(product)">
+                                    <p class="p-name" *ngIf="product.product_name">{{product.product_name}}
+                                    </p>
+
+
+                                    <!-- <div class="d-flex align-items-center"
+                                        style="padding: 5px 0; flex-wrap: wrap; row-gap: 1px; column-gap: 8px;">
+                                        <ng-container (click)="productpopup(product)"
+                                            *ngIf="product?.selling_price && product.selling_price !== 'null' && product.selling_price !== '0'; else onlyRegular">
+                                            <span class="p-price cut_price" *ngIf="product.regular_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price" *ngIf="product.selling_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+
+                                        </ng-container>
+
+                                        
+                                        <ng-template #onlyRegular>
+                                            <span class="p-price" *ngIf="product.regular_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                        </ng-template>
+                                    </div> -->
+
+                                    <div class="d-flex align-items-center"
+                                        style=" padding: 5px 0; flex-wrap: wrap; row-gap: 1px; column-gap: 8px;"
+                                        *ngIf="product.regular_price > 0 || product.selling_price >= 0">
+
+                                        <!-- Case: Both > 0 -->
+                                        <ng-container
+                                            *ngIf="product.regular_price > 0 && product.selling_price > 0; else otherCases">
+                                            <span class="p-price cut_price">{{
+                                                globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+                                        </ng-container>
+
+                                        <ng-template #otherCases>
+
+                                            <!-- Case: regular > 0 & selling = 0 -->
+                                            <ng-container
+                                                *ngIf="product.regular_price > 0 && product.selling_price && product.selling_price == 0">
+
+                                                <p class="p-price cut_price">{{
+                                                    globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                    product.regular_price }}</p>
+                                                <p class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} 0</p>
+                                            </ng-container>
+
+                                            <!-- Case: only selling > 0 -->
+                                            <p class="p-price"
+                                                *ngIf="product.selling_price > 0 && product.regular_price == 0">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}
+                                            </p>
+
+                                            <!-- Case: regular > 0 & selling !=0  -->
+                                            <p class="p-price"
+                                                *ngIf="product.regular_price > 0 && (product.selling_price === 'null' || product.selling_price === null || product.selling_price === undefined || product.selling_price === '')">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}
+                                            </p>
+
+                                        </ng-template>
+
+                                    </div>
+
+
+
+                                </div>
+                                <ng-container *ngFor="let datas of whatup.data">
+                                    <a class="enquiry-div" target="_blank" type="button"
+                                         [href]="product.button_link ? product.button_link : getWhatsappLink(datas.wp_number, product.product_name)" 
+                                          [ngStyle]="{
+      color: hoveredIndex === i ?  '#fff' : '#000',
+      background: hoveredIndex === i ? '#515556' : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+                                       {{ product.button_type === 'custom'
+      ? product.button_title
+      : 'Enquiry' }}
+                                    </a>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
+     
+    </div>
+</section>
+}
+
+
+<!---------- template 4------------>
+@else if(template_type == 'layout4') {
+<section class="products">
+    <h3 *ngIf="styletype != 'style4'" class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+
+    <!------ for t4  --- -->
+    <div class="card-headings-div" *ngIf="styletype == 'style4'">
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}}</h3>
+    </div>
+
+    <div class="outer-div" [ngStyle]="{'background-color': card2bgcolour}">
+       
+            <div class="row m-0 w-100 ">
+                <ng-container *ngFor="let product of data.data; let i = index">
+                    <div  class="col-sm-6 col-12 card-col">
+                        <div class="product-card">
+                            <div class="product-img-div" (click)="productpopup(product)">
+                                <div id="productCarousel3{{i}}" class="carousel slide w-100 h-100">
+                                    <div class="carousel-inner w-100 h-100">
+                                        <div class="carousel-item active w-100 h-100" *ngIf="product?.product_image1">
+                                            <img [src]="globalObject.getImageSrc(product?.product_image1)"
+                                                class="d-block w-100 img-fluid" alt="Product Image 1" loading="lazy">
+                                        </div>
+                                        <div class="carousel-item w-100 h-100" *ngIf="product?.product_image2">
+                                            <img [src]="globalObject.getImageSrc(product?.product_image2)"
+                                                class="d-block w-100 img-fluid" alt="Product Image 2" loading="lazy">
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-indicators"
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''">
+                                        <button type="button" class="active"
+                                            [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide-to="0" (click)="$event.stopPropagation()"
+                                            aria-current="true" aria-label="Slide 1"></button>
+
+                                        <button type="button" [attr.data-bs-target]="'#productCarousel3' + i" (click)="$event.stopPropagation()"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    </div>
+                                    <!-- 
+                                    <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-prev" type="button"
+                                        [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+
+                                    <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-next" type="button"
+                                        [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button> -->
+
+
+
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="product-details-div d-flex flex-column flex-grow-1">
+                                <div class="product-data" (click)="productpopup(product)">
+                                    <p class="p-name">{{product.product_name}}
+                                    </p>
+                                    <!-- <div class="d-flex align-items-center"
+                                        style="padding: 8px  0 0; flex-wrap: wrap; row-gap: 1px; column-gap: 8px;">
+                                        <ng-container (click)="productpopup(product)"
+                                            *ngIf="product?.selling_price && product.selling_price !== 'null' && product.selling_price !== '0'; else onlyRegular">
+                                            <span class="p-price cut_price" *ngIf="product.regular_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price" *ngIf="product.selling_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+                                        </ng-container>
+
+                                        <ng-template #onlyRegular>
+                                            <span class="p-price" *ngIf="product.regular_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                        </ng-template>
+                                    </div> -->
+
+
+
+                                    <div class="d-flex align-items-center"
+                                        style=" padding: 8px  0 0; flex-wrap: wrap; row-gap: 1px; column-gap: 8px;"
+                                        *ngIf="product.regular_price > 0 || product.selling_price >= 0">
+
+                                        <!-- Case: Both > 0 -->
+                                        <ng-container (click)="productpopup(product)"
+                                            *ngIf="product.regular_price > 0 && product.selling_price > 0; else otherCases">
+                                            <span class="p-price cut_price">{{
+                                                globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+                                        </ng-container>
+
+                                        <ng-template #otherCases>
+
+                                            <!-- Case: regular > 0 & selling = 0 -->
+                                            <ng-container
+                                                *ngIf="product.regular_price > 0 && product.selling_price && product.selling_price == 0">
+
+                                                <p class="p-price cut_price">{{
+                                                    globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                    product.regular_price }}</p>
+                                                <p class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} 0</p>
+                                            </ng-container>
+
+                                            <!-- Case: only selling > 0 -->
+                                            <p class="p-price"
+                                                *ngIf="product.selling_price > 0 && product.regular_price == 0">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}
+                                            </p>
+
+                                            <!-- Case: regular > 0 & selling !=0  -->
+                                            <p class="p-price"
+                                                *ngIf="product.regular_price > 0 && (product.selling_price === 'null' || product.selling_price === null || product.selling_price === undefined || product.selling_price === '')">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}
+                                            </p>
+
+                                        </ng-template>
+
+                                    </div>
+
+
+
+
+
+                                </div>
+                                <ng-container *ngFor="let datas of whatup.data">
+                                    <a class="enquiry-div" target="_blank" type="button"
+                                         [href]="product.button_link ? product.button_link : getWhatsappLink(datas.wp_number, product.product_name)" 
+                                         [ngStyle]="{
+      color: hoveredIndex === i ?  card1textcolour : '#147196',
+      background: hoveredIndex === i ? card1bgcolour : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+                                       {{ product.button_type === 'custom'
+      ? product.button_title
+      : 'Enquiry' }}
+                                    </a>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
+      
+    </div>
+</section>
+
+
+}
+
+
+<!---------- template 5------------>
+@else if(template_type == 'layout5') {
+<section class="products">
+    <h3 class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+    <div class="outer-div" [ngStyle]="products_outer_div ?products_outer_div :{'background-color': card2bgcolour}">
+       
+            <div class="row m-0 w-100 ">
+                <ng-container *ngFor="let product of data.data; let i = index">
+                    <div class="col-sm-6 col-12 card-col">
+                        <div class="product-card">
+                            <div class="product-img-div" (click)="productpopup(product)">
+                                <div id="productCarousel3{{i}}" class="carousel slide w-100 h-100">
+
+
+                                    <div class="carousel-inner w-100 h-100">
+                                        <div class="carousel-item active w-100 h-100">
+                                            <img class="d-block w-100 img-fluid"
+                                                [src]="globalObject.getImageSrc(product?.product_image1)"
+                                                alt="Product Image 1" loading="lazy">
+                                        </div>
+                                        <div class="carousel-item w-100 h-100" *ngIf="product?.product_image2">
+                                            <img class="d-block w-100 img-fluid"
+                                                [src]="globalObject.getImageSrc(product?.product_image2)"
+                                                alt="Product Image 2" loading="lazy ">
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-indicators"
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''">
+                                        <button type="button" class="active"
+                                            [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide-to="0" (click)="$event.stopPropagation()"
+                                            aria-current="true" aria-label="Slide 1"></button>
+
+                                        <button type="button" [attr.data-bs-target]="'#productCarousel3' + i" (click)="$event.stopPropagation()"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    </div>
+
+                                    <!-- <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-prev" type="button"
+                                        [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+
+                                    <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-next" type="button"
+                                        [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button> -->
+
+
+                                </div>
+                            </div>
+                            <div class="product-details-div d-flex flex-column flex-grow-1">
+
+
+
+                                <div class="product-data" (click)="productpopup(product)">
+                                    <p class="p-name">{{product.product_name}}
+                                    </p>
+                                    <!-- <div class="d-flex align-items-center"
+                                        style="padding: 8px  0 0; flex-wrap: wrap; row-gap: 1px; column-gap: 8px;">
+                                        <ng-container (click)="productpopup(product)"
+                                            *ngIf="product?.selling_price && product.selling_price !== 'null' && product.selling_price !== '0'; else onlyRegular">
+                                            <span class="p-price cut_price" *ngIf="product.regular_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price" *ngIf="product.selling_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+
+                                        </ng-container>
+                                        
+                                        <ng-template #onlyRegular>
+                                            <span class="p-price" *ngIf="product.regular_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                        </ng-template>
+                                    </div> -->
+
+                                    <div class="d-flex align-items-center"
+                                        style=" padding: 8px  0 0; flex-wrap: wrap; row-gap: 1px; column-gap: 8px;"
+                                        *ngIf="product.regular_price > 0 || product.selling_price >= 0">
+
+                                        <!-- Case: Both > 0 -->
+                                        <ng-container (click)="productpopup(product)"
+                                            *ngIf="product.regular_price > 0 && product.selling_price > 0; else otherCases">
+                                            <span class="p-price cut_price">{{
+                                                globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+                                        </ng-container>
+
+                                        <ng-template #otherCases>
+
+                                            <!-- Case: regular > 0 & selling = 0 -->
+                                            <ng-container
+                                                *ngIf="product.regular_price > 0 && product.selling_price && product.selling_price == 0">
+
+                                                <p class="p-price cut_price">{{
+                                                    globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                    product.regular_price }}</p>
+                                                <p class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} 0</p>
+                                            </ng-container>
+
+                                            <!-- Case: only selling > 0 -->
+                                            <p class="p-price"
+                                                *ngIf="product.selling_price > 0 && product.regular_price == 0">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}
+                                            </p>
+
+                                            <!-- Case: regular > 0 & selling !=0  -->
+                                            <p class="p-price"
+                                                *ngIf="product.regular_price > 0 && (product.selling_price === 'null' || product.selling_price === null || product.selling_price === undefined || product.selling_price === '')">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}
+                                            </p>
+
+                                        </ng-template>
+
+                                    </div>
+
+                                </div>
+                                <ng-container *ngFor="let datas of whatup.data">
+                                    <a class="enquiry-div" target="_blank" type="button"
+                                         [href]="product.button_link ? product.button_link : getWhatsappLink(datas.wp_number, product.product_name)" 
+                                          [ngStyle]="{
+      color: hoveredIndex === i ?  card1textcolour : '#147196',
+      background: hoveredIndex === i ? card1bgcolour : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+                                       {{ product.button_type === 'custom'
+      ? product.button_title
+      : 'Enquiry' }}
+                                    </a>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+    </div>
+      
+    </div>
+</section>
+}
+
+
+<!---------- template 6------------>
+@else if(template_type == 'layout6') {
+<section class="products">
+    <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h3>
+    <div class="outer-div">
+      
+            <div class="row m-0 w-100 ">
+                <ng-container *ngFor="let product of data.data; let i = index">
+                    <div class="col-sm-6 col-12 card-col">
+                        <div class="product-card">
+                            <div class="product-img-div" (click)="productpopup(product)">
+                                <div id="productCarousel3{{i}}" class="carousel slide w-100 h-100">
+
+
+                                    <div class="carousel-inner w-100 h-100">
+                                        <div class="carousel-item active w-100 h-100">
+                                            <img class="d-block w-100 img-fluid"
+                                                [src]="globalObject.getImageSrc(product?.product_image1)"
+                                                alt="Product Image 1" loading="lazy">
+                                        </div>
+                                        <div class="carousel-item w-100 h-100" *ngIf="product?.product_image2">
+                                            <img class="d-block w-100 img-fluid"
+                                                [src]="globalObject.getImageSrc(product?.product_image2)"
+                                                alt="Product Image 2" loading="lazy">
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-indicators"
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''">
+                                        <button type="button" class="active"
+                                            [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide-to="0" (click)="$event.stopPropagation()"
+                                            aria-current="true" aria-label="Slide 1"></button>
+
+                                        <button type="button" [attr.data-bs-target]="'#productCarousel3' + i" (click)="$event.stopPropagation()"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    </div>
+
+                                    <!-- <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-prev" type="button"
+                                        [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+
+                                    </button>
+
+                                    <button
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''"
+                                        class="carousel-control-next" type="button"
+                                        [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button> -->
+
+
+                                </div>
+                            </div>
+                            <div class="product-details-div d-flex flex-column flex-grow-1">
+
+
+
+
+                                <div class="product-data" (click)="productpopup(product)">
+                                    <p class="p-name">{{product.product_name}}
+                                    </p>
+                                    <!-- <div class="d-flex align-items-center"
+                                        style="padding: 8px  0 0; flex-wrap: wrap; row-gap: 1px; column-gap: 8px;">
+                                        <ng-container (click)="productpopup(product)"
+                                            *ngIf="product?.selling_price && product.selling_price !== 'null' && product.selling_price !== '0'; else onlyRegular">
+                                            <span class="p-price cut_price" *ngIf="product.regular_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price" *ngIf="product.selling_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+
+                                        </ng-container>
+                                  
+                                        <ng-template #onlyRegular>
+                                            <span class="p-price" *ngIf="product.regular_price">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                        </ng-template>
+                                    </div> -->
+
+
+                                    <div class="d-flex align-items-center"
+                                        style=" padding: 8px  0 0; flex-wrap: wrap; row-gap: 1px; column-gap: 8px;"
+                                        *ngIf="product.regular_price > 0 || product.selling_price >= 0">
+
+                                        <!-- Case: Both > 0 -->
+                                        <ng-container (click)="productpopup(product)"
+                                            *ngIf="product.regular_price > 0 && product.selling_price > 0; else otherCases">
+                                            <span class="p-price cut_price">{{
+                                                globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+                                        </ng-container>
+
+                                        <ng-template #otherCases>
+
+                                            <!-- Case: regular > 0 & selling = 0 -->
+                                            <ng-container
+                                                *ngIf="product.regular_price > 0 && product.selling_price &&product.selling_price == 0">
+
+                                                <p class="p-price cut_price">{{
+                                                    globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                    product.regular_price }}</p>
+                                                <p class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} 0</p>
+                                            </ng-container>
+
+                                            <!-- Case: only selling > 0 -->
+                                            <p class="p-price"
+                                                *ngIf="product.selling_price > 0 && product.regular_price == 0">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}
+                                            </p>
+
+                                            <!-- Case: regular > 0 & selling !=0  -->
+                                            <p class="p-price"
+                                                *ngIf="product.regular_price > 0 && (product.selling_price === 'null' || product.selling_price === null || product.selling_price === undefined || product.selling_price === '')">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}
+                                            </p>
+
+                                        </ng-template>
+
+                                    </div>
+                                </div>
+                                <ng-container *ngFor="let datas of whatup.data">
+                                    <a class="enquiry-div" target="_blank" type="button"
+                                         [href]="product.button_link ? product.button_link : getWhatsappLink(datas.wp_number, product.product_name)"
+                                           [ngStyle]="{
+      color: hoveredIndex === i ?  card1textcolour : '#147196',
+      background: hoveredIndex === i ? card1bgcolour : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+    >
+                                       {{ product.button_type === 'custom'
+      ? product.button_title
+      : 'Enquiry' }}
+                                    </a>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
+      
+    </div>
+</section>
+}
+
+
+<!---------- template 7------------>
+@else if(template_type == 'layout7') {
+<section class="products-section">
+    <div class="section-headings">
+        <h2 [ngStyle]="{'color':  bodytextcolour}">{{data.title}}</h2>
+        <span [ngStyle]="{'background': card1bgcolour}"></span>
+    </div>
+    <div class="outer-div w-100">
+     
+            <div class="row m-0 w-100 ">
+
+                <ng-container *ngFor="let product of data.data; let i = index">
+                    <div class="col-xl-3 col-md-4 col-sm-6 col-6 card-col">
+                        <div class="product-card">
+                            <div class="product-img-div" (click)="productpopup1(product)">
+                                <div id="productCarousel3{{i}}" class="carousel slide w-100 h-100">
+
+
+                                    <div class="carousel-inner w-100 h-100">
+                                        <div class="carousel-item active w-100 h-100">
+
+                                            <img class="d-block w-100 img-fluid"
+                                                [src]="globalObject.getImageSrc(product?.product_image1)"
+                                                alt="Product Image 1" loading="lazy">
+
+                                        </div>
+
+
+                                        <div class="carousel-item w-100 h-100" *ngIf="product?.product_image2">
+                                            <img class="d-block w-100 img-fluid"
+                                                [src]="globalObject.getImageSrc(product?.product_image2)"
+                                                alt="Product Image 2" loading="lazy">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="carousel-indicators"
+                                        *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''">
+                                        <button type="button" class="active"
+                                            [attr.data-bs-target]="'#productCarousel3' + i" data-bs-slide-to="0" (click)="$event.stopPropagation()"
+                                            aria-current="true" aria-label="Slide 1"></button>
+
+                                        <button type="button" [attr.data-bs-target]="'#productCarousel3' + i" (click)="$event.stopPropagation()"
+                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="product-details-div d-flex flex-column flex-grow-1">
+
+                                <div class="product-data" (click)="productpopup1(product)">
+                                    <p class="p-name">{{product.product_name}}</p>
+
+                                    <div class="w-100 price-div"
+                                        *ngIf="product.regular_price > 0 || product.selling_price >= 0">
+
+
+
+                                        <!-- Case: Both > 0 -->
+                                        <ng-container (click)="productpopup(product)"
+                                            *ngIf="product.regular_price > 0 && product.selling_price > 0; else otherCases">
+                                            <span class="cut-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+                                        </ng-container>
+
+                                        <ng-template #otherCases>
+
+                                            <!-- Case: regular > 0 & selling = 0 -->
+                                            <!-- ----{{product.selling_price}}+-------- -->
+                                            <ng-container
+                                                *ngIf="product.regular_price > 0 && product.selling_price &&product.selling_price == 0">
+
+                                                <span class="cut-price">{{
+                                                    globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                    product.regular_price }}</span>
+                                                <span class="p-price">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} 0</span>
+                                            </ng-container>
+
+                                            <!-- Case: only selling > 0 -->
+                                            <span class="p-price"
+                                                *ngIf="product.selling_price > 0 && product.regular_price == 0">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}
+                                            </span>
+
+
+                                            <!-- Case: regular > 0 & selling !=0  -->
+                                            <span class="p-price"
+                                                *ngIf="product.regular_price > 0 && (product.selling_price === 'null' || product.selling_price === null || product.selling_price === undefined || product.selling_price === '')">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}
+                                            </span>
+                                        </ng-template>
+
+
+                                    </div>
+
+                                </div>
+
+                                <ng-container *ngFor="let datas of whatup.data">
+                                    <a class="enquiry-btn" target="_blank" type="button"
+                                         [href]="product.button_link ? product.button_link : getWhatsappLink(datas.wp_number, product.product_name)">
+                                    {{ product.button_type === 'custom'
+      ? product.button_title
+      : 'Enquiry' }}
+                                    </a>
+                                </ng-container>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+
+
+
+            </div>
+  
+    </div>
+</section>
+}
+
+
+
+
+<!-- --------------template 8 ------- -->
+@else if(template_type == 'layout8') {
+<section class="products-section padding">
+    <h2 class="card-heading " [ngStyle]="{ border: '0.5px dashed ' + card1bgcolour , color: card1bgcolour }"><i
+            class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i class="fa-solid fa-right-long"></i></h2>
+
+
+   
+        <div class="row m-0 w-100 ">
+
+            <ng-container *ngFor="let product of data.data; let i = index">
+                <div class="col-xl-3 col-md-4 col-sm-6 col-6 card-col">
+                    <div class="product-card"
+                        [ngStyle]="{ border: `0.5px dashed color-mix(in srgb, ${card2bgcolour } 25%, ${card2textcolour} 42%)`}">
+                        <div class="product-img-div"  (click)="productpopup1(product)">
+                            <div id="productCarousel3{{i}}" class="carousel slide w-100 h-100">
+
+
+                                <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(product?.product_image1)"
+                                            alt="Product Image 1" loading="lazy">
+
+                                    </div>
+                                    <div class="carousel-item w-100 h-100" *ngIf="product?.product_image2">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(product?.product_image2)"
+                                            alt="Product Image 2" loading="lazy">
+
+                                    </div>
+                                </div>
+
+
+                                <div class="carousel-indicators"
+                                    *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''">
+                                    <button type="button" class="active" [attr.data-bs-target]="'#productCarousel3' + i" (click)="$event.stopPropagation()"
+                                        data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
+
+                                    <button type="button" [attr.data-bs-target]="'#productCarousel3' + i" (click)="$event.stopPropagation()"
+                                        data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="product-data" [ngStyle]="{ color: bodytextcolour }">
+                            <div class="flex-shirnk-div" (click)="productpopup1(product)">
+                                <p class="p-name">{{product.product_name}}</p>
+
+
+
+
+                                <!-- Case: Both > 0 -->
+                                <div class="price-div"
+                                    [ngStyle]="{'background': `color-mix(in srgb, ${card1bgcolour} 13%, ${card1textcolour} 55%)`}"
+                                    *ngIf="product.regular_price > 0 && product.selling_price > 0">
+
+                                    <span class="cut-price"
+                                        [ngStyle]="{'color': `color-mix(in srgb, ${bodybgcolour } 19%, ${bodytextcolour } 55%)`}">
+                                        {{ globalObject.getLocallData("cur_symbol_sign")?
+                                        globalObject.getLocallData("cur_symbol_sign") : '₹' }}
+                                        {{ product.regular_price }}
+                                    </span>
+
+                                    <span class="p-price" [ngStyle]="{ color: card1bgcolour }">
+                                        {{ globalObject.getLocallData("cur_symbol_sign")?
+                                        globalObject.getLocallData("cur_symbol_sign") : '₹' }}
+                                        {{ product.selling_price }}
+                                    </span>
+                                </div>
+
+                                <!-- Case: regular > 0 & selling = 0 -->
+                                <div class="price-div"
+                                    [ngStyle]="{'background': `color-mix(in srgb, ${card1bgcolour} 13%, ${card1textcolour} 55%)`}"
+                                    *ngIf="product.regular_price > 0 && product.selling_price &&product.selling_price == 0">
+
+                                    <span class="cut-price"
+                                        [ngStyle]="{'color': `color-mix(in srgb, ${bodybgcolour } 19%, ${bodytextcolour } 55%)`}">
+                                        {{ globalObject.getLocallData("cur_symbol_sign")?
+                                        globalObject.getLocallData("cur_symbol_sign") : '₹' }}
+                                        {{ product.regular_price }}
+                                    </span>
+
+                                    <span class="p-price" [ngStyle]="{ color: card1bgcolour }">
+                                        {{ globalObject.getLocallData("cur_symbol_sign")?
+                                        globalObject.getLocallData("cur_symbol_sign") : '₹' }}
+                                        0
+                                    </span>
+                                </div>
+
+                                <!-- Case: only selling > 0 -->
+                                <div class="price-div"
+                                    [ngStyle]="{'background': `color-mix(in srgb, ${card1bgcolour} 13%, ${card1textcolour} 55%)`}"
+                                    *ngIf="product.selling_price > 0 && product.regular_price == 0">
+
+                                    <span class="p-price" [ngStyle]="{ color: card1bgcolour }">
+                                        {{ globalObject.getLocallData("cur_symbol_sign")?
+                                        globalObject.getLocallData("cur_symbol_sign") : '₹' }}
+                                        {{ product.selling_price }}
+                                    </span>
+                                </div>
+
+                                <!-- Case: regular > 0 & selling !=0 -->
+                                <div class="price-div"
+                                    [ngStyle]="{'background': `color-mix(in srgb, ${card1bgcolour} 13%, ${card1textcolour} 55%)`}"
+                                    *ngIf="product.regular_price > 0 && (product.selling_price === 'null' || product.selling_price === null || product.selling_price === undefined || product.selling_price === '')">
+
+                                    <span class="p-price" [ngStyle]="{ color: card1bgcolour }">
+                                        {{ globalObject.getLocallData("cur_symbol_sign")?
+                                        globalObject.getLocallData("cur_symbol_sign") : '₹' }}
+                                        {{ product.regular_price }}
+                                    </span>
+                                </div>
+
+
+                            </div>
+
+
+                            <ng-container *ngFor="let datas of whatup.data">
+                                <div class="outer-btn-div" 
+                                [ngStyle]="{
+      background:  card1bgcolour
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null" ><a
+                                        class="enquiry-btn" 
+ [ngStyle]="{
+      color: hoveredIndex === i ?  card1bgcolour : card1textcolour,
+      background: hoveredIndex === i ? card1textcolour : 'transparent',
+     border: hoveredIndex === i ? `1px dashed color-mix(in srgb, ${card1bgcolour} 44%, transparent 2%)` : `1px dashed color-mix(in srgb, ${card1textcolour} 44%, transparent 2%)`
+    }"
+     [href]="product.button_link ? product.button_link : getWhatsappLink(datas.wp_number, product.product_name)"
+                                        target="_blank"><span>{{ product.button_type === 'custom'
+      ? product.button_title
+      : 'Enquiry' }}</span>
+                                        <i class="fa-solid fa-arrow-right-long"></i></a></div>
+
+                            </ng-container>
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+   
+
+</section>
+}
+
+<!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+<section class="products-section">
+    <h2 class="card-heading " [ngStyle]="{ color: bodytextcolour }"><span [ngStyle]="{ background: card1bgcolour }"></span>{{data.title}}</h2>
+
+    
+        <div class="row m-0 w-100 ">
+
+            <ng-container *ngFor="let product of data.data; let i = index">
+                <div class="col-xl-3 col-md-4 col-sm-6 col-6  card-col">
+                     <div class="product-card"  [ngStyle]="{'border': `1px solid color-mix(in srgb, ${bodybgcolour } 90%, ${bodytextcolour } 9%)`}">
+                <div class="product-img-div" (click)="productpopup1(product)">
+                            <div id="productCarousel3{{i}}" class="carousel slide w-100 h-100">
+
+
+                                <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(product?.product_image1)"
+                                            alt="Product Image 1" loading="lazy">
+
+                                    </div>
+                                    <div class="carousel-item w-100 h-100" *ngIf="product?.product_image2">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(product?.product_image2)"
+                                            alt="Product Image 2" loading="lazy">
+
+                                    </div>
+                                </div>
+
+
+                                <div class="carousel-indicators"
+                                    *ngIf="product?.product_image2 && product.product_image2 !== 'null' && product.product_image2 !== ''">
+                                    <button type="button" class="active" [attr.data-bs-target]="'#productCarousel3' + i" (click)="$event.stopPropagation()"
+                                        data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
+
+                                    <button type="button" [attr.data-bs-target]="'#productCarousel3' + i" (click)="$event.stopPropagation()"
+                                        data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                <div class="product-data" [ngStyle]="{ color: bodytextcolour }">
+                    <div class="flex-shrink-div" (click)="productpopup1(product)">
+                        <p class="p-name">{{product.product_name}}</p>
+
+
+                        <div class="price-div"
+                                        *ngIf="product.regular_price > 0 || product.selling_price >= 0">
+
+
+
+                                        <!-- Case: Both > 0 -->
+                                        <ng-container (click)="productpopup(product)"
+                                            *ngIf="product.regular_price > 0 && product.selling_price > 0; else otherCases">
+                                            <span class="cut-price"  [ngStyle]="{'color': `color-mix(in srgb, ${bodybgcolour } 19%, ${bodytextcolour } 55%)`}">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}</span>
+                                            <span class="p-price" [ngStyle]="{ color: card1bgcolour }">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}</span>
+                                        </ng-container>
+
+                                        <ng-template #otherCases>
+
+                                            <!-- Case: regular > 0 & selling = 0 -->
+                                            <!-- ----{{product.selling_price}}+-------- -->
+                                            <ng-container
+                                                *ngIf="product.regular_price > 0 && product.selling_price &&product.selling_price == 0">
+
+                                                <span class="cut-price"  [ngStyle]="{'color': `color-mix(in srgb, ${bodybgcolour } 19%, ${bodytextcolour } 55%)`}">{{
+                                                    globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                    product.regular_price }}</span>
+                                                <span class="p-price" [ngStyle]="{ color: card1bgcolour }">{{ globalObject.getLocallData("cur_symbol_sign")?
+                                                    globalObject.getLocallData("cur_symbol_sign") : '₹' }} 0</span>
+                                            </ng-container>
+
+                                            <!-- Case: only selling > 0 -->
+                                            <span class="p-price" [ngStyle]="{ color: card1bgcolour }"
+                                                *ngIf="product.selling_price > 0 && product.regular_price == 0">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.selling_price }}
+                                            </span>
+
+
+                                            <!-- Case: regular > 0 & selling !=0  -->
+                                            <span class="p-price" [ngStyle]="{ color: card1bgcolour }"
+                                                *ngIf="product.regular_price > 0 && (product.selling_price === 'null' || product.selling_price === null || product.selling_price === undefined || product.selling_price === '')">
+                                                {{ globalObject.getLocallData("cur_symbol_sign")?
+                                                globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{
+                                                product.regular_price }}
+                                            </span>
+                                        </ng-template>
+
+
+                                    </div>
+
+                    </div>
+
+                     <ng-container *ngFor="let datas of whatup.data">
+                               <a [ngStyle]="{ color: card1textcolour ,  background: card1bgcolour }"
+                                        class="enquiry-btn"   [href]="product.button_link ? product.button_link : getWhatsappLink(datas.wp_number, product.product_name)"
+                                        target="_blank"><span>{{ product.button_type === 'custom'
+      ? product.button_title
+      : 'Enquiry' }}</span>
+                                        <i class="fa-solid fa-arrow-right-long"></i></a>
+
+                            </ng-container>
+
+
+                   
+
+
+                </div>
+
+
+
+
+            </div>
+                    </div>
+                    </ng-container>
+                    </div>
+             
+
+</section>
+}
+
+
+
+
+

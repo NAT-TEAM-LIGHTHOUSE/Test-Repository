@@ -1,0 +1,1161 @@
+<!---------- template 1------------>
+
+<!-- Other links section -->
+@if (template_type == "layout1") {
+  <section class="other-links">
+    <div class="card-headings-div">
+      <h3
+        class="card-headings"
+        [ngStyle]="{
+          color: card1textcolour,
+        }"
+      >
+        {{ data.title }}
+      </h3>
+      <p
+        class="heading-border"
+        [ngStyle]="{
+          border: '1px  solid ' + card1textcolour,
+        }"
+      ></p>
+    </div>
+    <div class="w-100">
+      <div class="btns-div">
+        <ng-container *ngFor="let datas of data.data;  let i = index">
+          <div
+            class="links-btn"
+            *ngIf="datas.file_type == 'Link'"
+               [ngStyle]="{
+      color: hoveredIndex === i ? card2bgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : card2bgcolour
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+          >
+            <a target="_blank" [href]="datas.file_url" [ngStyle]="{
+        color: hoveredIndex === i ? card2bgcolour : card2textcolour
+      }">
+              <!-- <img
+                 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/link.png'"
+                alt="links images"
+              /> -->
+              
+                        <i class="fa fa-link"></i>
+                        {{ datas.file_title }}</a
+            >
+          </div>
+          <div
+            class="links-btn"
+            *ngIf="datas.file_type == 'Word File'"
+             [ngStyle]="{
+      color: hoveredIndex === i ? card2bgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : card2bgcolour
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+          >
+            <a target="_blank" [href]="datas.file_url" [ngStyle]="{
+        color: hoveredIndex === i ? card2bgcolour : card2textcolour
+      }">
+              <!-- <img
+                 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/word-file.png'"
+                alt="links images"
+              /> -->
+                <i class="fa-solid fa-file-word"></i>
+                {{ datas.file_title }}</a
+            >
+          </div>
+          <div
+            class="links-btn"
+            *ngIf="datas.file_type == 'PDF'"
+             [ngStyle]="{
+      color: hoveredIndex === i ? card2bgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : card2bgcolour
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+          >
+            <a target="_blank" [href]="datas.file_url"   [ngStyle]="{
+        color: hoveredIndex === i ? card2bgcolour : card2textcolour
+      }">
+              <!-- <img
+                 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/pdf.png'"
+                alt="links images"
+              /> -->
+              <i class="fa-solid fa-file-pdf"></i> 
+              {{ datas.file_title }}</a
+            >
+          </div>
+          <div
+            class="links-btn"
+            *ngIf="datas.file_type == 'Website'"
+              [ngStyle]="{
+      color: hoveredIndex === i ? card2bgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : card2bgcolour
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+          >
+            <a target="_blank" [href]="datas.file_url" [ngStyle]="{
+        color: hoveredIndex === i ? card2bgcolour : card2textcolour
+      }">
+              <!-- <img
+                 [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/website.png'"
+                alt="links images"
+              />  -->
+                <i class="fa-solid fa-globe"></i>
+              {{ datas.file_title }}</a
+            >
+          </div>
+          <!-- <div class="links-btn" *ngIf="datas.file_type=='Link'" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">
+            <a target="_blank" [href]="datas.file_url" >
+                <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/review.png'" alt="links images" />{{datas.file_title}}</a>
+        </div> -->
+        </ng-container>
+      </div>
+    </div>
+  </section>
+}
+
+<!---------- template 2------------>
+
+<!-- other links section -->
+@else if (template_type == "layout2") {
+  <section class="other-links w-100">
+    <h2
+      class="card-headings"
+      [ngStyle]="{
+        color: card2textcolour,
+        background: card2bgcolour,
+      }"
+    >
+      {{ data.title }}
+    </h2>
+    <div class="btns-div w-100">
+      <ng-container *ngFor="let datas of data.data;  let i = index">
+        <div class="links-btn" *ngIf="datas.file_type == 'Link'"   [ngStyle]="{
+      color: hoveredIndex === i ? card2textcolour : '#000',
+      background: hoveredIndex === i ? card2bgcolour : '#fff'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null" >
+          <a target="_blank" [href]="datas.file_url" [ngStyle]="{
+      color: hoveredIndex === i ? card2textcolour : '#000'}">
+            <!-- <img
+               [src]="globalObject.assetsUrl + '/templates_pcard/template_two/link.png'"
+              alt="links images"
+            />  -->
+            <i class="fa fa-link"></i>
+            {{ datas.file_title }}</a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'Word File'" [ngStyle]="{
+      color: hoveredIndex === i ? card2textcolour : '#000',
+      background: hoveredIndex === i ? card2bgcolour : '#fff'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null" >
+          <a target="_blank" [href]="datas.file_url" [ngStyle]="{
+      color: hoveredIndex === i ? card2textcolour : '#000'}">
+            <!-- <img
+               [src]="globalObject.assetsUrl + '/templates_pcard/template_two/word-file.png'"
+              alt="links images"
+            />  -->
+               <i class="fa-regular fa-file-word"></i>
+            {{ datas.file_title }}</a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'PDF'" [ngStyle]="{
+      color: hoveredIndex === i ? card2textcolour : '#000',
+      background: hoveredIndex === i ? card2bgcolour : '#fff'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+          <a target="_blank" [href]="datas.file_url" [ngStyle]="{
+      color: hoveredIndex === i ? card2textcolour : '#000'}">
+            <!-- <img
+               [src]="globalObject.assetsUrl + '/templates_pcard/template_two/pdf.png'"
+              alt="links images"
+            /> -->
+                <i class="fa-regular fa-file-pdf"></i> 
+            {{ datas.file_title }}</a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'Website'" [ngStyle]="{
+      color: hoveredIndex === i ? card2textcolour : '#000',
+      background: hoveredIndex === i ? card2bgcolour : '#fff'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+          <a target="_blank" [href]="datas.file_url" [ngStyle]="{
+      color: hoveredIndex === i ? card2textcolour : '#000'}">
+            <!-- <img
+               [src]="globalObject.assetsUrl + '/templates_pcard/template_two/website.png'"
+              alt="links images"
+            />  -->
+            <i class="fa-solid fa-globe"></i>
+            {{ datas.file_title }}</a
+          >
+        </div>
+        <!-- <div class="links-btn" *ngIf="datas.file_type=='Link'">
+            <a target="_blank" [href]="datas.file_url" >
+                <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/review.png'" alt="links images" />{{datas.file_title}}</a>
+        </div> -->
+      </ng-container>
+    </div>
+  </section>
+}
+
+<!---------- template 3------------>
+
+<!-- other links section -->
+@else if (template_type == "layout3") {
+  <section class="other-links w-100">
+    <h2
+      class="card-headings"
+      [ngStyle]="{
+        color: card2textcolour,
+        'border-bottom': '2px solid ' + card2textcolour,
+      }"
+    >
+      {{ data.title }}
+    </h2>
+    <div class="btns-div w-100">
+      <ng-container *ngFor="let datas of data.data;  let i = index">
+        <div
+          class="links-btn"
+          *ngIf="datas.file_type == 'Link'"
+        
+          [ngStyle]="{
+      color: hoveredIndex === i ? bodybgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : bodybgcolour}"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+
+        >
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+            [ngStyle]="{  color: hoveredIndex === i ? bodybgcolour : card2textcolour }"
+            >
+            <!-- <img
+               [src]="globalObject.assetsUrl + '/templates_pcard/template_three/link.png'"
+              alt="links images"
+            />  -->
+             <i class="fa fa-link"></i>
+            {{ datas.file_title }}</a
+          >
+        </div>
+        <div
+          class="links-btn"
+          *ngIf="datas.file_type == 'Word File'"
+         [ngStyle]="{
+      color: hoveredIndex === i ? bodybgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : bodybgcolour}"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+
+        >
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+    [ngStyle]="{  color: hoveredIndex === i ? bodybgcolour : card2textcolour }"
+            >
+            <!-- <img
+               [src]="globalObject.assetsUrl + '/templates_pcard/template_three/word-file.png'"
+              alt="links images"
+            />  -->
+
+             <i class="fa-regular fa-file-word"></i>
+
+            {{ datas.file_title }}</a
+          >
+        </div>
+        <div
+          class="links-btn"
+          *ngIf="datas.file_type == 'PDF'"
+           [ngStyle]="{
+      color: hoveredIndex === i ? bodybgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : bodybgcolour}"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+
+        >
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+              [ngStyle]="{  color: hoveredIndex === i ? bodybgcolour : card2textcolour }"
+            >
+            <!-- <img
+               [src]="globalObject.assetsUrl + '/templates_pcard/template_three/pdf.png'"
+              alt="links images"
+            /> -->
+             <i class="fa-regular fa-file-pdf"></i> 
+            {{ datas.file_title }}</a
+          >
+        </div>
+        <div
+          class="links-btn"
+          *ngIf="datas.file_type == 'Website'"
+          [ngStyle]="{
+      color: hoveredIndex === i ? bodybgcolour : card2textcolour,
+      background: hoveredIndex === i ? card2textcolour : bodybgcolour}"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+
+        >
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+               [ngStyle]="{  color: hoveredIndex === i ? bodybgcolour : card2textcolour }"
+            >
+            <!-- <img
+               [src]="globalObject.assetsUrl + '/templates_pcard/template_three/globe-tthree.png'"
+              alt="links images"
+            /> -->
+              <i class="fa-solid fa-globe"></i>
+            {{ datas.file_title }}</a
+          >
+        </div>
+        <!-- <div class="links-btn" *ngIf="datas.file_type=='Link'" [ngStyle]="{'background-color': bodybgcolour }">
+            <a target="_blank" [href]="datas.file_url" [ngStyle]="{'color': card2textcolour}"><img  [src]="globalObject.assetsUrl + '/templates_pcard/template_three/review.png'"  alt="links images" />{{datas.file_title}}</a>
+        </div> -->
+      </ng-container>
+    </div>
+  </section>
+}
+
+<!---------- template 4------------>
+@else if (template_type == "layout4") {
+  <section class="other-links w-100">
+    <h3
+      *ngIf="styletype != 'style4'"
+      class="card-headings"
+      [ngStyle]="
+        card_heading_bg
+          ? card_heading_bg
+          : { 'background-color': card1bgcolour, color: card1textcolour }
+      "
+    >
+      {{ data.title }}
+    </h3>
+
+    <!-- -----  for t4 ---- -->
+    <div *ngIf="styletype == 'style4'" class="card-headings-div">
+      <h3
+        class="card-headings"
+        [ngStyle]="
+          card_heading_bg
+            ? card_heading_bg
+            : { 'background-color': card1bgcolour, color: card1textcolour }
+        "
+      >
+        {{ data.title }}
+      </h3>
+    </div>
+
+    <div
+      class="btns-div w-100"
+      [ngStyle]="{ 'background-color': card2bgcolour }"
+    >
+      <ng-container *ngFor="let datas of data.data; let i = index">
+        <div class="links-btn" *ngIf="datas.file_type == 'Link'">
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+          
+[ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+
+            ><div
+              class="link-icon"
+             [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_icon_hover ||{
+      'border-right': `1px solid ${card1textcolour}`,
+          'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card1bgcolour,
+        'color': card1textcolour
+      })
+"
+            >
+              <i class="fa fa-link"></i>
+            </div>
+            <span
+           [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card1textcolour,
+        'color': card1bgcolour
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'Word File'">
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+                     
+[ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+             [ngStyle]="
+  hoveredIndex === i
+    ? ( other_links_icon_hover ||{
+      'border-right': `1px solid ${card1textcolour}`,
+          'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card1bgcolour,
+        'color': card1textcolour
+      })
+"
+            >
+              <i class="fa-regular fa-file-word"></i>
+            </div>
+            <span
+              [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card1textcolour,
+        'color': card1bgcolour
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'PDF'">
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+            [ngStyle]="other_links_a ? other_links_a : ''"          
+[ngStyle]="
+  hoveredIndex === i
+    ? ({})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+             [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_icon_hover ||{
+        'border-right': `1px solid ${card1textcolour}`,
+            'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card1bgcolour,
+        'color': card1textcolour
+      })
+"
+            >
+              <i class="fa-regular fa-file-pdf"></i>
+            </div>
+            <span
+              [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card1textcolour,
+        'color': card1bgcolour
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'Website'">
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+                     
+[ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+             [ngStyle]="
+  hoveredIndex === i
+    ? ( other_links_icon_hover || {
+       'border-right': `1px solid ${card1textcolour}`,
+           'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card1bgcolour,
+        'color': card1textcolour
+      })
+"
+            >
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            <span
+              [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card1textcolour,
+        'color': card1bgcolour
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+      </ng-container>
+    </div>
+  </section>
+}
+
+<!---------- template 5------------>
+@else if (template_type == "layout5") {
+  <section class="other-links w-100">
+    <h3
+      class="card-headings"
+      [ngStyle]="
+        card_heading_bg
+          ? card_heading_bg
+          : { 'background-color': card1bgcolour, color: card1textcolour }
+      "
+    >
+      {{ data.title }}
+    </h3>
+    <div
+      class="btns-div w-100"
+      [ngStyle]="
+        otherlinks_btns_div
+          ? otherlinks_btns_div
+          : { 'background-color': card2bgcolour }
+      "
+    >
+      <ng-container *ngFor="let datas of data.data; let i = index">
+        <div class="links-btn" *ngIf="datas.file_type == 'Link'">
+          <a target="_blank" [href]="datas.file_url" 
+          [ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+                          [ngStyle]="
+  hoveredIndex === i
+    ? ( other_links_icon_hover || {
+       'border-right': `1px solid ${card1textcolour}`,
+           'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card1bgcolour,
+        'color': card1textcolour
+      })
+"
+            >
+              <i class="fa fa-link"></i>
+            </div>
+            <span
+              [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card1textcolour,
+        'color': card1bgcolour
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'Word File'">
+          <a target="_blank" [href]="datas.file_url"  [ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+                                       [ngStyle]="
+  hoveredIndex === i
+    ? ( other_links_icon_hover || {
+       'border-right': `1px solid ${card1textcolour}`,
+           'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card1bgcolour,
+        'color': card1textcolour
+      })
+"
+            >
+              <i class="fa-regular fa-file-word"></i>
+            </div>
+            <span
+              [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card1textcolour,
+        'color': card1bgcolour
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'PDF'">
+          <a target="_blank" [href]="datas.file_url"  [ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+                                       [ngStyle]="
+  hoveredIndex === i
+    ? ( other_links_icon_hover || {
+       'border-right': `1px solid ${card1textcolour}`,
+           'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card1bgcolour,
+        'color': card1textcolour
+      })
+"
+            >
+              <i class="fa-regular fa-file-pdf"></i>
+            </div>
+            <span
+              [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card1textcolour,
+        'color': card1bgcolour
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'Website'">
+          <a target="_blank" [href]="datas.file_url"  [ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+                                       [ngStyle]="
+  hoveredIndex === i
+    ? ( other_links_icon_hover || {
+       'border-right': `1px solid ${card1textcolour}`,
+           'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card1bgcolour,
+        'color': card1textcolour
+      })
+"
+            >
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            <span
+              [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card1textcolour,
+        'color': card1bgcolour
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+      </ng-container>
+    </div>
+  </section>
+}
+
+<!---------- template 6------------>
+@else if (template_type == "layout6") {
+  <section class="other-links w-100">
+    <h3
+      class="card-headings"
+      [ngStyle]="card_heading_bg ? card_heading_bg : { color: card1bgcolour }"
+    >
+      {{ data.title }}
+    </h3>
+    <div class="btns-div w-100">
+      <ng-container *ngFor="let datas of data.data; let i = index">
+        <div class="links-btn" *ngIf="datas.file_type == 'Link'">
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+           [ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+                 [ngStyle]="
+  hoveredIndex === i
+    ? ( other_links_icon_hover || {
+       'border-right': `1px solid ${card1textcolour}`,
+          'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card2bgcolour,
+        'color': card2textcolour
+      })
+"
+            >
+              <i class="fa fa-link"></i>
+            </div>
+            <span
+        
+               [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card2textcolour,
+        'color': '#555'
+      })
+"
+
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'Word File'">
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+          [ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+              [ngStyle]="
+  hoveredIndex === i
+    ? ( other_links_icon_hover || {
+       'border-right': `1px solid ${card1textcolour}`,
+          'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card2bgcolour,
+        'color': card2textcolour
+      })
+"
+            >
+              <i class="fa-regular fa-file-word"></i>
+            </div>
+            <span
+                           [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card2textcolour,
+        'color': '#555'
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'PDF'">
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+[ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+              [ngStyle]="
+  hoveredIndex === i
+    ? ( other_links_icon_hover || {
+       'border-right': `1px solid ${card1textcolour}`,
+          'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card2bgcolour,
+        'color': card2textcolour
+      })
+"
+            >
+              <i class="fa-regular fa-file-pdf"></i>
+            </div>
+            <span
+                          [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card2textcolour,
+        'color': '#555'
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+        <div class="links-btn" *ngIf="datas.file_type == 'Website'">
+          <a
+            target="_blank"
+            [href]="datas.file_url"
+         [ngStyle]="
+  hoveredIndex === i
+    ? ( {})
+    : (other_links_a || {})
+"
+(mouseenter)="hoveredIndex = i"
+(mouseleave)="hoveredIndex = null"
+            ><div
+              class="link-icon"
+               [ngStyle]="
+  hoveredIndex === i
+    ? ( other_links_icon_hover || {
+       'border-right': `1px solid ${card1textcolour}`,
+          'background-color': card1bgcolour,
+        'color': card1textcolour
+    })
+    : (other_links_icon || {
+        'background-color': card2bgcolour,
+        'color': card2textcolour
+      })
+"
+            >
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            <span
+                           [ngStyle]="
+  hoveredIndex === i
+    ? (other_links_span_hover || {
+       'background-color':  card1bgcolour,
+        'color': card1textcolour
+
+    })
+    : (other_links_span || {
+        'background-color': card2textcolour,
+        'color': '#555'
+      })
+"
+              >{{ datas.file_title }}</span
+            ></a
+          >
+        </div>
+        <!-- <div class="links-btn" *ngIf="datas.file_type=='Link'" [ngStyle]="{'background-color': bodybgcolour }">
+            <a target="_blank" [href]="datas.file_url" ><div class="link-icon"><i class="fa-regular fa-circle-check"></i></div><span>{{datas.file_title}}</span></a>
+        </div> -->
+      </ng-container>
+    </div>
+  </section>
+}
+
+<!---------- template 7------------>
+
+@else if (template_type == "layout7") {
+  <div class="other-links"  [ngStyle]="{
+  'background-color': 'color-mix(in srgb, ' + card1bgcolour + ' 80%, transparent)'
+}">
+    <div class="section-headings">
+      <h2 [ngStyle]="{'color': card1textcolour}">{{ data.title }}</h2>
+      <span [ngStyle]="{'background': card1textcolour}"></span>
+    </div>
+  
+
+  
+      <div class="links-div">
+         <ng-container *ngFor="let datas of data.data">
+        <ng-container *ngIf="datas.file_type == 'Link'">
+          <a
+            class="links"
+            [ngStyle]="{
+          background: card1textcolour,
+          'border-left': '5px solid ' + card1bgcolour,
+          'border-right': '5px solid ' + card1bgcolour
+        }"
+            target="_blank"
+            [href]="datas.file_url"
+          >
+            <span class="icon" [ngStyle]="{
+          'color': card1textcolour,
+          'background':  card1bgcolour
+  
+        }"><i class="fa fa-link"></i></span>
+            <span class="text" [ngStyle]="{'color': bodytextcolour}">{{ datas.file_title }}</span>
+          </a>
+        </ng-container>
+
+        <ng-container *ngIf="datas.file_type == 'Word File'"> <a
+          class="links"
+          target="_blank"
+          [href]="datas.file_url"
+          [ngStyle]="{
+          background: card1textcolour,
+          'border-left': '5px solid ' + card1bgcolour,
+          'border-right': '5px solid ' + card1bgcolour
+        }"
+        >
+          <span class="icon" [ngStyle]="{
+          'color': card1textcolour,
+          'background':  card1bgcolour
+  
+        }"><i class="fa-regular fa-file-word"></i></span>
+          <span class="text" [ngStyle]="{'color': bodytextcolour}">{{ datas.file_title }}</span>
+        </a></ng-container>
+       
+        <ng-container *ngIf="datas.file_type == 'PDF'">
+          <a class="links" target="_blank" [href]="datas.file_url"  
+        [ngStyle]="{
+          background: card1textcolour,
+          'border-left': '5px solid ' + card1bgcolour,
+          'border-right': '5px solid ' + card1bgcolour
+        }">
+            <span class="icon" [ngStyle]="{
+          'color': card1textcolour,
+          'background':  card1bgcolour
+  
+        }"> <i class="fa-regular fa-file-pdf"></i></span>
+            <span class="text" [ngStyle]="{'color': bodytextcolour}">{{ datas.file_title }}</span>
+          </a>
+        </ng-container>
+
+        <ng-container  *ngIf="datas.file_type == 'Website'">
+            <a
+          class="links"
+          target="_blank"
+           [ngStyle]="{
+          background: card1textcolour,
+          'border-left': '5px solid ' + card1bgcolour,
+          'border-right': '5px solid ' + card1bgcolour
+        }"
+          [href]="datas.file_url"
+        >
+          <span class="icon" [ngStyle]="{
+          'color': card1textcolour,
+          'background':  card1bgcolour
+  
+        }"> <i class="fa-solid fa-globe"></i></span>
+          <span class="text"[ngStyle]="{'color': bodytextcolour}">{{ datas.file_title }}</span>
+        </a>
+        </ng-container>
+        </ng-container>
+      </div>
+
+  </div>
+}
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+      <section class="other-links padding" [ngStyle]="{
+  'background-image': `
+    linear-gradient(
+      color-mix(in srgb, ${card2bgcolour} 80%, transparent),
+      color-mix(in srgb, ${card2bgcolour} 80%, transparent)
+    ),
+    url('${globalObject.assetsUrl}/templates_pcard/template_8/bg-img3.png')`}">
+            <h2 class="card-heading dark" [ngStyle]="{ border: '1px dashed ' + card2textcolour , color: card2textcolour}"><i class="fa-solid fa-left-long"></i><span>{{ data.title }}</span><i
+                    class="fa-solid fa-right-long"></i></h2>
+
+            <div class="links-div">
+                <ng-container *ngFor="let datas of data.data">
+                  <ng-container *ngIf="datas.file_type == 'Link'">
+                     <a  target="_blank"  [ngStyle]="{ border: `0.5px dashed color-mix(in srgb, ${card2bgcolour } 25%, ${card2textcolour} 42%)`,  color: card2textcolour}"
+            [href]="datas.file_url">
+                    <i class="fa-solid fa-link"  [ngStyle]="{ border: '1px solid ' + card2textcolour  , color: card2bgcolour  ,  background: card2textcolour }"></i>
+                  {{ datas.file_title }}
+                </a>
+
+                  </ng-container>
+                   <ng-container *ngIf="datas.file_type == 'Word File'">
+                     <a  target="_blank"  [ngStyle]="{ border: `0.5px dashed color-mix(in srgb, ${card2bgcolour } 25%, ${card2textcolour} 42%)`,  color: card2textcolour}"
+            [href]="datas.file_url">
+                    <i class="fa-regular fa-file-word"  [ngStyle]="{ border: '1px solid ' + card2textcolour  , color: card2bgcolour  ,  background: card2textcolour}"></i>
+                   {{ datas.file_title }}
+                </a>
+                    
+                  </ng-container>
+
+                   <ng-container *ngIf="datas.file_type == 'PDF'">
+                      <a  target="_blank"  [ngStyle]="{ border: `0.5px dashed color-mix(in srgb, ${card2bgcolour } 25%, ${card2textcolour} 42%)`,  color: card2textcolour}"
+            [href]="datas.file_url">
+                    <i class="fa-regular fa-file-pdf"  [ngStyle]="{ border: '1px solid ' + card2textcolour , color: card2bgcolour  ,  background: card2textcolour}"></i>
+                    {{ datas.file_title }}
+                </a>
+                    
+                  </ng-container>
+
+                   <ng-container *ngIf="datas.file_type == 'Website'">
+                     <a  target="_blank"  [ngStyle]="{ border: `0.5px dashed color-mix(in srgb, ${card2bgcolour } 25%, ${card2textcolour} 42%)`,  color: card2textcolour}"
+            [href]="datas.file_url">
+                    <i class="fa-solid fa-globe"  [ngStyle]="{ border: '1px solid ' + card2textcolour , color: card2bgcolour  ,  background: card2textcolour}"></i>
+                   {{ datas.file_title }}
+                </a>
+                    
+                  </ng-container>
+               
+              
+               
+               
+              </ng-container>
+            </div>
+        </section>
+ }
+
+
+  <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+<section class="other-links"   [ngStyle]="{
+  background: `linear-gradient(
+      to bottom,
+     ${card1bgcolour} 0%,
+      ${card2bgcolour} 163%) `  }" >
+            <h2 class="card-heading dark" [ngStyle]="{ color: card1textcolour }"><span [ngStyle]="{ color: card1textcolour }"></span>{{ data.title }}</h2>
+
+            <div class="links-div">
+                   <ng-container *ngFor="let datas of data.data">
+                  <ng-container *ngIf="datas.file_type == 'Link'">
+                     <a  target="_blank"  [ngStyle]="{ 'border-bottom' : '1px dashed'  + card1textcolour ,  color: card1textcolour}"
+            [href]="datas.file_url">
+                    <i class="fa-solid fa-link"  ></i>
+                  {{ datas.file_title }}
+                </a>
+
+                  </ng-container>
+                   <ng-container *ngIf="datas.file_type == 'Word File'">
+                     <a  target="_blank"  [ngStyle]="{ 'border-bottom' : '1px dashed'  + card1textcolour ,  color: card1textcolour}"
+            [href]="datas.file_url">
+                    <i class="fa-regular fa-file-word" ></i>
+                   {{ datas.file_title }}
+                </a>
+                    
+                  </ng-container>
+
+                   <ng-container *ngIf="datas.file_type == 'PDF'">
+                      <a  target="_blank"  [ngStyle]="{ 'border-bottom' : '1px dashed'  + card1textcolour ,  color: card1textcolour}" 
+            [href]="datas.file_url">
+                    <i class="fa-regular fa-file-pdf" ></i>
+                    {{ datas.file_title }}
+                </a>
+                    
+                  </ng-container>
+
+                   <ng-container *ngIf="datas.file_type == 'Website'">
+                     <a  target="_blank"  [ngStyle]="{ 'border-bottom' : '1px dashed'  + card1textcolour ,  color: card1textcolour}" 
+            [href]="datas.file_url">
+                    <i class="fa-solid fa-globe" ></i>
+                   {{ datas.file_title }}
+                </a>
+                    
+                  </ng-container>
+               
+              
+               
+               
+              </ng-container>
+            </div>
+        </section>
+    }
+
+
+ 
+

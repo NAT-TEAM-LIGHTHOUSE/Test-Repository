@@ -1,0 +1,750 @@
+<div class="wrapper" id="powerCardpage">
+  <section class="section-1">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="swiper powerCard_Swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="slider-img">
+                  <img src="/assets/website-images/powerCard/slider-3.webp" alt="image" class="img-fluid" loading="lazy">
+                </div>
+
+                <div class="slider-text">
+                  <a routerLink="/digital/mini-website" class="text-decoration-none">Mini Website</a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="slider-img">
+                  <img src="/assets/website-images/powerCard/slider-2.webp" alt="image" class="img-fluid" loading="lazy">
+                </div>
+                <div class="slider-text">
+                  <a routerLink="/digital/social-media-post" class="text-decoration-none">Social Media
+                    Post</a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="slider-img">
+                  <img src="/assets/website-images/powerCard/slider-1.webp" alt="image" class="img-fluid" loading="lazy">
+                </div>
+                <div class="slider-text">
+                  <a routerLink="/digital/digital-business-card" class="text-decoration-none">Digital
+                    Business Card</a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="slider-img">
+                  <img src="/assets/website-images/powerCard/slider-3.webp" alt="image" class="img-fluid" loading="lazy">
+                </div>
+
+                <div class="slider-text">
+                  <a routerLink="/digital/mini-website" class="text-decoration-none">Mini Website</a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="slider-img">
+                  <img src="/assets/website-images/powerCard/slider-2.webp" alt="image" class="img-fluid" loading="lazy">
+                </div>
+                <div class="slider-text">
+                  <a routerLink="/digital/social-media-post" class="text-decoration-none">Social Media
+                    Post</a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="slider-img">
+                  <img src="/assets/website-images/powerCard/slider-1.webp" alt="image" class="img-fluid" loading="lazy">
+                </div>
+                <div class="slider-text">
+                  <a routerLink="/digital/digital-business-card" class="text-decoration-none">Digital
+                    Business Card</a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="side-slider-content">
+            <h1>Smart Digital Solution for Smart Indians!</h1>
+            <h2> Accelerate Your Business with Us and Become a Next Top Brand!!</h2>
+            <div class="slider-expert-btn">
+              <a  [href]="globalObject.urlNew + '/login'"><i class="fa fa-arrow-right"></i>Create Your Power Card </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-2">
+    <div class="container">
+      <div class="col-lg-10 float-none">
+        <div class="sec-two-box">
+          <h2>Explore a Quick Way of How <br>Our <span>PCARDS Works</span></h2>
+        </div>
+        <div class="sec-two-video">
+          <iframe allow="compute-pressure" class="videoIframe" src="https://www.youtube.com/embed/vlk5XAAx7jM"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-3 section-padding">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="section-title">
+          <h2>Business Categories</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="swiper businessC_Swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let card of businessCard; let i = index">
+                <div class="bussi-cat">
+                  <img [src]="card.image" [alt]="card.title" class="img-fluid" loading="lazy">
+                  <div class="bussi-cat-name">
+                    <h3>{{card.title}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 float-none d-flex justify-content-center">
+          <div class="view-all-btn2">
+            <a  [href]="globalObject.urlNew + '/login'"><i class="fa fa-arrow-right"></i>Create Your Power Card </a>
+            <!-- {{globalObject.urlNew + '/login'}} -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-4 section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 float-none">
+          <div class="section-title">
+            <h2>Social Media Greetings</h2>
+            <h3>Stay up to date with our social media post feature, offering both festive and non-festive post. Enjoy
+              the flexibility of customization that truly make your brand stand out.</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="swiper socialMedia_Swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let item of socialMedia; let i = index">
+                <div class="mainEvnet">
+                  <h3>{{item.title}}</h3>
+                  <div class="row">
+                    <div class="col-lg-6 col-6 mb-2" *ngFor="let img of item.images">
+                      <img [src]="img" [alt]="item.title" class="img-fluid"  loading="lazy">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 float-none d-flex justify-content-center">
+          <div class="view-all-btn2">
+            <a  [href]="globalObject.urlNew + '/login'"><i class="fa fa-arrow-right"></i>Register Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-5 section-padding">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-9 float-none">
+          <div class="section-title">
+            <h2>Voices of Satisfaction</h2>
+            <h3>Stories of growth, connections and success with PCARDS, see what our customers say about PCARDS. Real
+              stories of success and satisfaction from Professionals &amp; Business Owners just like you!</h3>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-lg-12">
+
+           <div class="swiper voicesMedia_Swiper pt-3">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor=" let item of voicesMedia1; let i = index">
+                 <div class="insta-reel">
+                      <div class="reel-img">
+                <iframe [src]="item.link" frameborder="0" height="100%"></iframe>
+                </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="swiper voicesMedia_Swiper pt-3">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let item of voicesMedia; let i = index">
+                <div class="insta-reel">
+                  <div class="reel-img">
+                    <iframe allow="compute-pressure" [src]="item.link" frameborder="0" height="100%" width="100%" allowfullscreen>
+                    </iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="section-6">
+    <div class="container-fluid p0">
+      <div class="row">
+        <div class="col-lg-12 p0">
+          <a  [href]="globalObject.urlNew + '/login'">
+            <img alt="pcards Images" class="dealer-img" src="/assets/website-images/dealership.webp" loading="lazy">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="section-7 section-padding">
+    <div class="container">
+      <div class="row pb80">
+        <div class="col-lg-6">
+          <div class="whatapptext">
+            <h2>Are You Still Networking with PAPER <span>Business Cards?</span></h2>
+            <div class="whatsappfeature">
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Replace Paper business cards and go with PCARDS digital business cards.</p>
+              </div>
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Save the environment, stay up-to-date and share unlimited times.</p>
+              </div>
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Update your card in real-time, customize as you want with multiple template option.</p>
+              </div>
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Easy linking to all social media profiles, quick add to contact, quick call &amp; WhatsApp.</p>
+              </div>
+            </div>
+            <div class="view-all-btn3">
+              <a  [href]="globalObject.urlNew + '/login'"><i class="fa fa-arrow-right"></i>Create Your Power Card </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="whtasappimg">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/1.webp" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <div class="row pb80">
+        <div class="col-lg-6 desktopDisplay">
+          <div class="whtasappimg">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/3.webp" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="whatapptext">
+            <h2>Do You Want To Create Your Own Stunning <span>Social Media Posts in Minutes?</span></h2>
+            <div class="whatsappfeature">
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Discover designs for multiple events, festivals, and business categories.</p>
+              </div>
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Get multiple designs options for each category with customization option.</p>
+              </div>
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Stay informed about upcoming events &amp; festivals, Receive notification and never miss a
+                  celebration..</p>
+              </div>
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Go to design category, choose your design, Save and share to all your connections.</p>
+              </div>
+            </div>
+            <div class="view-all-btn3">
+              <a  [href]="globalObject.urlNew + '/login'"><i class="fa fa-arrow-right"></i>Get Your Today </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mobileDisplay">
+          <div class="whtasappimg">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/3.webp" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <div class="row pb50">
+        <div class="col-lg-6">
+          <div class="whatapptext">
+            <h2>Do You Want To Boost Your Business Online With An<span> Interactive Mini Website?</span></h2>
+            <div class="whatsappfeature">
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Incorporate all your business information with full customization.</p>
+              </div>
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Add a product and service catalogue with detailed descriptions.</p>
+              </div>
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Enhance with visuals like photos and videos, and add multiple links.</p>
+              </div>
+              <div class="feature-list">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <p>Receive instant enquiries for seamless interaction.</p>
+              </div>
+            </div>
+            <div class="view-all-btn3">
+              <a  [href]="globalObject.urlNew + '/login'"><i class="fa fa-arrow-right"></i>Try it Now </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="whtasappimg">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/2.webp" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-8 pt50 pb50">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 desktopDisplay">
+          <div class="go-digital">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/4.webp"  loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="go-digital-text">
+            <h2>SMART LOGO KI, SMART PAHECHAN!!</h2>
+            <p>Go digital with custom made NFC Digital Business Card, QR code, personalized links, mini website, social
+              media post for your branding. Only at PCARDS.</p>
+            <div class="view-all-btn3">
+              <a  [href]="globalObject.urlNew + '/login'"><i class="fa fa-arrow-right"></i>Create Your Power Card </a>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-6 mobileDisplay">
+          <div class="go-digital">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/4.webp"  loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-9 section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 float-none">
+          <div class="section-title">
+            <h2>PCARDS Gallery</h2>
+            <h3>Explore the detailed features of interactive, actionable &amp; economical power tool, discover multiple
+              profile template options, mini website features, social media poster categories and much more.</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row sreen-shot-gall">
+        <div class="mobile-view"></div>
+        <div class="swiper pcardsGallery_Swiper pt-3">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor=" let item of pcardsGalley; let i = index">
+              <div class="screen-gall">
+                <img [src]="item.image" [alt]="item.title"  loading="lazy"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-10 section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 float-none">
+          <div class="section-title">
+            <h2>How It Works?</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="how-work">
+            <div class="how-img">
+              <img alt="pcards Images" src="/assets/website-images/powerCard/how-1.webp" loading="lazy">
+            </div>
+            <div class="how-work-desc">
+              <h5>Create Your Profile</h5>
+              <p>Go to <span>PCARDS</span> and Register now to set up your Profile.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="how-work">
+            <div class="how-img">
+              <img alt="pcards Images" src="/assets/website-images/powerCard/how-2.webp"  loading="lazy">
+            </div>
+            <div class="how-work-desc">
+              <h5>Customize &amp; Update</h5>
+              <p>After Registration, download the <span>app</span>and <span>update your profile</span>as required.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="how-work">
+            <div class="how-img">
+              <img alt="pcards Images" src="/assets/website-images/powerCard/how-3.webp" loading="lazy">
+            </div>
+            <div class="how-work-desc">
+              <h5>Share Instantly &amp; Engage </h5>
+              <p><span>Share your digital business card</span> effortlessly via email, messaging apps, or social media
+                platforms, connecting with clients and colleagues instantly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-11 section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 float-none">
+          <div class="section-title">
+            <h2>Stand Out From Crowd with Unique Benefits</h2>
+            <h3>Network like a pro and boost your business with our powerful tools. From personalized profiles to
+              customizable posts, transform your online presence and take it to new heights. With PCARDS, you have
+              everything you need to make a lasting impression and elevate your brand.</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-6 ">
+          <div class="qukProfea">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/NFC-Smart-Card.webp" loading="lazy">
+            <h3>NFC Smart Card</h3>
+            <p>Your business card reinvented with NFC Smart Card, Tap into Connectivity</p>
+          </div>
+          <div class="qukProfea">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/Mini-Website.webp" loading="lazy">
+            <h3>Mini Website</h3>
+            <p>Empower your business with PCARDS mini website and boost your online presence.</p>
+          </div>
+          <div class="qukProfea">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/Social-Media-Creative.webp" loading="lazy">
+            <h3>Social Media Creative</h3>
+            <p>Say goodbye to ordinary posts, get dynamic social media creatives from PCARDS.</p>
+          </div>
+          <div class="qukProfea">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/Digital-Business-Card.webp" loading="lazy">
+            <h3>Digital Business Card</h3>
+            <p>Upgrade your networking game with a digital twist &amp; easily share your details with others to Increase
+              your brand reach.</p>
+          </div>
+        </div>
+        <div class="col-lg-6  d-mobile-none">
+          <div class="mobile-cover">
+
+            <div class="swiper benefits_Swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" *ngFor="let item of benefits">
+                  <div class="ss-img">
+                    <img src="/assets/website-images/quik.webp" alt="pcards Images" loading="lazy">
+                  </div>
+                  
+                </div>
+                
+
+              </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 ">
+          <div class="qukProfea">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/Unlimited-Share.png">
+            <h3>Unlimited Share</h3>
+            <p>Get freedom from boring printed business card, use PCARDS with unlimited sharing capabilities.</p>
+          </div>
+          <div class="qukProfea">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/Instant-Business-Enquiry.png">
+            <h3>Instant Business Enquiry</h3>
+            <p>This helps you to receive instant business enquiry directly into you WhatsApp &amp; mobile app and manage
+              inquiries effortlessly.</p>
+          </div>
+          <div class="qukProfea">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/Interactive-Mobile-App.png">
+            <h3>Interactive Mobile App</h3>
+            <p>You don’t need any technical person or professional because PCARDS provide you a very user-friendly and
+              interactive mobile app for your strong digital presence. </p>
+          </div>
+          <div class="qukProfea">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/Update-in-Real-Time.png">
+            <h3>Update in Real Time</h3>
+            <p>PCARDS is always accessible via phone, helps you to keep your profiles updated in real-time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-12">
+    <div class="container">
+      <div class="col-lg-12 float-none">
+        <div class="customer-speak">
+          <h2>Hear our customers speak</h2>
+          <h5>Proud to say, "We are making every Businesses, Aatmanirbhar in their Branding Journey!"</h5>
+        </div>
+        <div class="sec-two-video">
+          <iframe allow="compute-pressure" class="videoIframe" src="https://www.youtube.com/embed/VrVC-CEZbgI"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-13 section-padding">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="section-title">
+          <h2>Because Number Speaks itself !</h2>
+        </div>
+      </div>
+      <div class="row counter-div">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2 col-4">
+          <div class="counter">
+            <div class="counter-content">
+              <h3><span class="counter-value">2</span> Lac +</h3>
+              <h4>Profile Views</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-4">
+          <div class="counter green">
+            <div class="counter-content">
+              <h3><span class="counter-value">200</span> +</h3>
+              <h4>Sub Industries</h4>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-4">
+          <div class="counter green">
+            <div class="counter-content">
+              <h3><span class="counter-value">100</span> +</h3>
+              <h4>Design Categories</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-4">
+          <div class="counter green">
+            <div class="counter-content">
+              <h3><span class="counter-value">4000</span> +</h3>
+              <h4>Creative Template</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-4">
+          <div class="counter green">
+            <div class="counter-content">
+              <h3><span class="counter-value">100</span> +</h3>
+              <h4>City Presence</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-1 col-4"></div>
+      </div>
+    </div>
+  </section>
+  <section class="section-14 section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 float-none">
+          <div class="section-title">
+            <h2>Our Happy Customers</h2>
+            <h3>Our happy customers are our greatest success story, experiencing top-notch service and unparalleled
+              satisfaction. Their positive feedback and loyalty drive our commitment to excellence every day. Explore
+              Our Happy Customers across various domains who switched to PCARDS and experience the remarkable Business
+              Growth ….!!</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="swiper testimonial_Swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let item of testiMonial1; let i = index">
+              <div class="testimonial-div">
+                <div class="testimonial-box">
+                  <div class="video-play">
+                    <img [src]="item.image" [alt]="item.title" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-16 pb50">
+ 
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 float-none">
+          <div class="section-title">
+            <h2>Blogs</h2>
+          </div>
+        </div>
+      </div>
+
+   
+      <div class="row">
+        <div class="swiper blogs_Swiper">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide" *ngFor="let item of blogs; let i = index">
+              <div class="blog-div">
+
+                <!-- Fixed image wrapper -->
+                <div class="blog-img-wrapper">
+                  <div class="img_div">
+                    <img [src]="item.image" [alt]="item.title" loading="lazy" />
+                  </div>
+                </div>
+
+                <div class="blog-desc">
+                  <h3>{{ item.title }}</h3>
+                  <p>{{ item.desc }}</p>
+                </div>
+
+                <div class="blog-detail">
+                  <div class="blog-date">
+                    {{ item.date | date:'MMM d, y' }}
+                  </div>
+
+                  <div class="blog-read-more">
+                    <a  (click)="openBlog(item.slug_name)">
+                      Read More
+                      <i class="fa fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-3 float-none">
+          <div class="view-all-btn2">
+            <a  routerLink="/digital/community" ><i class="fa fa-arrow-right"></i>Explore More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-17 section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="trusted-user">
+            <h2>AT PCARDS BUSINESS NETWORKS, <br> WE DON'T JUST EMPOWER – WE INSPIRE. </h2>
+            <h4>Join Us in This Journey of Growth, Connection, And Transformation.</h4>
+          </div>
+          <div class="trus-user-btn">
+            <a  [href]="globalObject.urlNew + '/login'"><i class="fa fa-arrow-right"></i>Join us Today</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-18 section-padding">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="call-expert">
+            <h2>WANT TO JOIN <span>PCARDS</span> COMMUNITY ? <br><br>
+              TALK TO OUR EXPERTS TODAY</h2>
+            <h4>PCARDS Team of Support experts are here for you to help. Call us now at </h4>
+          </div>
+          <div class="float-none view-all-btn2">
+            <a href="tel:+919158883141"><i class="fa fa-phone"></i>+91-9158883141 </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section class="section-19 section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="download-app">
+            <h2>Be a Part of Power Community</h2>
+            <p>Supercharge Your Business with PCARDS and Achieve a Power Growth with a Strong Digital Presence</p>
+            <div class="trus-user-btn2">
+              <a  [href]="globalObject.urlNew + '/login'"><i class="fa fa-arrow-right"></i>Join us Today</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="download-app-img">
+            <img alt="pcards Images" src="/assets/website-images/powerCard/download-app.webp" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="whatsapp-div">
+  <!-- <a href="https://wa.me/+919158883141"  rel="noopener noreferrer"  rel="noopener noreferrer" target="_blank"><img alt="pcards Images"
+      src="assets/website-images/whatsapp-call.png"></a> -->
+
+
+      <button
+  type="button"
+  
+  aria-label="Contact PCARDS on WhatsApp"
+  (click)="openWhatsApp()">
+  <img
+    src="/assets/website-images/whatsapp-call.png"
+    alt="Pcard Images"
+  >
+</button>
+</div>

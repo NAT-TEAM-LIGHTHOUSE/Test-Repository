@@ -1,0 +1,12 @@
+export const environment = {
+  production: true,
+  SECRET_KEY :'a3f1e78c3b6d4f09b9c2a8d7f60e451234567890abcdef01234567890abcdef',
+  assetUrl : "https://pcards.org",
+  // baseUrl:'https://api.pcards.org/pcards_ssw_api',
+  baseUrl: 'http://192.168.101.179:9009/lhs_pcard',
+  loginPageUrl : "https://app.pcards.org/#"
+};
+
+
+
+

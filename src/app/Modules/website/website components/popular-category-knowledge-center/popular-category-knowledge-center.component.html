@@ -1,0 +1,73 @@
+<div class="blog-asidebar">
+  <div class="">
+    <img src="/assets/website-images/community/power2.png" alt="pcard">
+  </div>
+  <div class="aside-category">
+    <h3>Popular Category</h3>
+    <ul>
+
+      <!-- <li>
+        <a [href]="`${websiteUrl}/blogs/Knowledge-Center`">Knowledge Center</a>
+      </li>
+
+      <li>
+        <a [href]="`${websiteUrl}/blogs/entrepreneur-speaks`">Entrepreneur Speaks</a>
+      </li>
+
+      <li>
+        <a [href]="`${websiteUrl}/blogs/business-and-brands`">Business and Brands</a>
+      </li>
+
+      <li>
+        <a [href]="`${websiteUrl}/blogs/startup-stories`">Startup Stories</a>
+      </li> -->
+      <li>
+  <a href="blogs/Knowledge-Center">
+    Knowledge Center
+  </a>
+</li>
+
+<li>
+  <a href="blogs/entrepreneur-speaks">
+    Entrepreneur Speaks
+  </a>
+</li>
+
+<li>
+  <a href="blogs/business-and-brands">
+    Business and Brands
+  </a>
+</li>
+
+<li>
+  <a href="/blogs/startup-stories">
+    Startup Stories
+  </a>
+</li>
+ 
+    </ul>
+  </div>
+  <div class="popular-post">
+    <h3> Popular Post </h3>
+    <div class="row">
+
+      <!-- dynamic data -->
+      <div class="aside-blog row" *ngFor="let blog of blogs">
+        <div class="col-4 ">
+          <img src="{{ blog.ad_blogimg }}" alt="pcards">
+        </div>
+        <div class="col-8">
+          <!-- <a href="javascript:void(0)" class="populer-post-desc" (click)="openBlog(blog.slug_name)"> -->
+
+
+          <a  [href]="'blogs/Knowledge-Center-Read-More-Blog/' + blog.slug_name"
+  class="populer-post-desc">
+            <p> {{ blog.ad_blogname }} </p>
+          </a>
+        </div>
+      </div>
+      <!-- dynamic data -->
+
+    </div>
+  </div>
+</div>

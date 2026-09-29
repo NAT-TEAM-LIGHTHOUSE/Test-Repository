@@ -1,0 +1,298 @@
+<!---------- template 1------------>
+
+<!-- Experience section -->
+@if(template_type == 'layout1') {
+<section class="experience light-card" id="Work_Experience" [ngStyle]="{
+                                                            'color': card1textcolour
+                                                          }">
+    <div class="card-headings-div">
+        <h3 class="card-headings" [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                         
+                                                          }">
+            {{data.title}}
+        </h3>
+        <p class="heading-border" [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                         
+                                                          }"></p>
+    </div>
+    <div class="experience-table-div">
+        <table>
+            <tr>
+                <th>Company Name</th>
+                <th>Designation</th>
+                <th>Duration Of Work</th>
+            </tr>
+            <tr *ngFor="let s of data.data">
+                <td>{{ s.company_name}}</td>
+                <td>{{ s.designation}}</td>
+                <td>{{ s.duration }}</td>
+            </tr>
+        </table>
+    </div>
+</section>
+}
+<!---------- template 2------------>
+
+<!-- Experience section -->
+@else if(template_type == 'layout2') {
+<section class="experience w-100">
+    <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+    <div class="experience-table-div">
+        <table>
+            <tr>
+                <th [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">Company Name</th>
+                <th [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">Designation</th>
+                <th [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">Duration Of Work</th>
+            </tr>
+
+            <tr *ngFor="let s of data.data">
+                <td [ngStyle]="{
+                                                            'color': card1textcolour }">{{ s.company_name}}</td>
+                <td [ngStyle]="{
+                                                            'color': card1textcolour }">{{ s.designation}}</td>
+                <td [ngStyle]="{
+                                                            'color': card1textcolour }">{{ s.duration }}</td>
+            </tr>
+
+        </table>
+    </div>
+</section>
+}
+
+<!---------- template 3------------>
+
+@else if(template_type == 'layout3') {
+<section class="experience w-100">
+    <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' +  card2textcolour}">
+        {{data.title}}</h2>
+    <div class="exp-card" [ngStyle]="{'background-color': bodybgcolour }">
+        <div class="experience-table-div">
+            <table>
+                <tr>
+                    <th [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                            'background-color': card1bgcolour
+                                                          }">Company Name</th>
+                    <th [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                            'background-color': card1bgcolour
+                                                          }">Designation</th>
+                    <th [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                            'background-color': card1bgcolour
+                                                          }">Duration Of Work</th>
+                </tr>
+                <tr *ngFor="let s of data.data">
+                    <td [ngStyle]="{'color': card2textcolour}">{{ s.company_name}}</td>
+                    <td [ngStyle]="{'color': card2textcolour}">{{ s.designation}}</td>
+                    <td [ngStyle]="{'color': card2textcolour}">{{ s.duration }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 4------------>
+
+@else if(template_type == 'layout4') {
+<section class="experience w-100">
+    <h3 *ngIf="styletype != 'style4'" class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+
+    <!-- ------------ for t4   ------>
+    <div *ngIf="styletype == 'style4'" class="card-headings-div">
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}}</h3>
+    </div>
+
+
+    <div class="exp-card" [ngStyle]="{'background-color': card2bgcolour}">
+        <div class="experience-table-div">
+            <table>
+                <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Designation</th>
+                    <th>Duration Of Work</th>
+                </tr>
+            </thead>
+                <tbody>
+                <tr *ngFor="let s of data.data">
+                    <td>{{ s.company_name}}</td>
+                    <td>{{ s.designation}}</td>
+                    <td>{{ s.duration }}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+
+
+}
+
+<!---------- template 5------------>
+
+@else if(template_type == 'layout5') {
+<section class="experience w-100">
+    <h3 class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+    <div class="exp-card" [ngStyle]="{'background-color': card2bgcolour}">
+        <div class="experience-table-div">
+            <table>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Designation</th>
+                    <th>Duration Of Work</th>
+                </tr>
+                <tr *ngFor="let s of data.data">
+                    <td>{{ s.company_name}}</td>
+                    <td>{{ s.designation}}</td>
+                    <td>{{ s.duration }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+}
+
+
+<!---------- template 6------------>
+
+@else if(template_type == 'layout6') {
+<section class="experience w-100">
+    <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h3>
+    <div class="exp-card">
+        <div class="experience-table-div">
+            <table>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Designation</th>
+                    <th>Duration Of Work</th>
+                </tr>
+                <tr *ngFor="let s of data.data">
+                    <td>{{ s.company_name}}</td>
+                    <td>{{ s.designation}}</td>
+                    <td>{{ s.duration }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 7------------>
+
+@else if(template_type == 'layout7') {
+<div class="tab-data experience">
+    <div class="section-headings">
+        <h2 [ngStyle]="{'color':  bodytextcolour}">{{data.title}}</h2>
+        <span [ngStyle]="{'background': card1bgcolour}"></span>
+    </div>
+
+    <div class="single" *ngFor="let s of (showAllExperience ? data.data : (data.data | slice:0:5));let i = index"
+        [ngStyle]="{'background': 'color-mix(in srgb, ' + bodybgcolour + ' 94%, ' + bodytextcolour + ' 4%)'}">
+        <div class="s1">
+            <span class="title" [ngStyle]="{'color':  bodytextcolour}">{{ s.company_name}}</span>
+            <span class="data"
+                [ngStyle]="{'color': 'color-mix(in srgb, ' +  bodytextcolour + ' 60%, ' + bodybgcolour + ' 40%)'}">{{
+                s.designation}}</span>
+        </div>
+        <span class="year" [ngStyle]="{
+          'color': card1textcolour,
+          'background':  card1bgcolour
+  
+        }">{{ s.duration }}</span>
+    </div>
+
+
+    <div class="text-start ps-2" *ngIf="data?.data?.length > 5">
+        <button type="button" class="see-more-btn" (click)="showAllExperience = !showAllExperience">
+            {{ showAllExperience ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+        </button>
+    </div>
+
+</div>
+}
+
+
+<!-- --------------template 8 ------- -->
+@else if(template_type == 'layout8') {
+<div class=" col-div">
+    <h2 class="card-heading" [ngStyle]="{ border: '0.5px dashed ' + card1bgcolour , color: card1bgcolour }"><i
+            class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i class="fa-solid fa-right-long"></i></h2>
+    <div class="parent-div">
+        <div class="single-div" [ngStyle]="{ 'background-color': i % 2 === 0
+      ? 'color-mix(in srgb, ' + card1bgcolour + ' 8%, ' + card1textcolour + ' 79%)'
+      : 'color-mix(in srgb, ' + bodytextcolour + ' 4%, ' + bodybgcolour + ' 56%)'}"
+            *ngFor="let s of (showAllExperience ? data.data : (data.data | slice:0:5));let i = index">
+            <div class="d-flex flex-column gap-2">
+                <span class="head">{{ s.company_name}}</span>
+                <span class="light-text"
+                    [ngStyle]="{ color: `color-mix(in srgb, ${bodybgcolour } 83%, ${bodytextcolour } 91%)`}">{{
+                    s.designation}}</span>
+            </div>
+            <div class="chip-div" [ngStyle]="{ background: bodybgcolour}">{{
+                s.duration }}</div>
+        </div>
+
+        <div class="text-start ps-2" *ngIf="data?.data?.length > 5">
+            <button type="button" class="see-more-btn" (click)="showAllExperience = !showAllExperience">
+                {{ showAllExperience ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+            </button>
+        </div>
+    </div>
+
+</div>
+}
+
+<!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+<div class=" col-div">
+    <h2 class="card-heading" [ngStyle]="{ color: bodytextcolour }"><span
+            [ngStyle]="{ background: card1bgcolour }"></span>{{data.title}}</h2>
+    <div class="parent-div">
+        <div class="single-div" [ngStyle]="{ 'background-color': i % 2 === 0
+      ? 'color-mix(in srgb, ' + card1bgcolour + ' 8%, ' + card1textcolour + ' 79%)'
+      : 'color-mix(in srgb, ' + bodytextcolour + ' 4%, ' + bodybgcolour + ' 56%)'}"
+            *ngFor="let s of (showAllExperience ? data.data : (data.data | slice:0:5));let i = index">
+            <div class="d-flex flex-column gap-2">
+                <span class="head">{{ s.company_name}}</span>
+                <span class="light-text"
+                    [ngStyle]="{ color: `color-mix(in srgb, ${bodybgcolour } 83%, ${bodytextcolour } 91%)`}">{{
+                    s.designation}}</span>
+            </div>
+            <div class="chip-div" [ngStyle]="{'background-color': bodybgcolour}">{{ s.duration }}</div>
+        </div>
+
+
+        <div class="text-start ps-2" *ngIf="data?.data?.length > 5">
+            <button type="button" class="see-more-btn" (click)="showAllExperience = !showAllExperience">
+                {{ showAllExperience ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+            </button>
+        </div>
+
+    </div>
+</div>
+}

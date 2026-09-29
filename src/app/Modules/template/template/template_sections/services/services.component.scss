@@ -1,0 +1,39 @@
+.service-grid {
+	width: 100%;
+}
+
+.service-row {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 16px;
+	width: 100%;
+}
+
+.service-row .card-col {
+	min-width: 0;
+	width: 100%;
+}
+
+@media (min-width: 576px) {
+	.service-row .card-col {
+		grid-column: span 1;
+	}
+}
+
+@media (min-width: 768px) {
+	.service-row {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1200px) {
+	.service-row {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 575px) {
+	.service-row {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}

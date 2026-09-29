@@ -1,0 +1,24 @@
+
+
+
+<div id="website-container" #containerDiv (scroll)="onContainerScroll($event)" [class.scrolled]="isScrolled">
+   <app-website-header [wideMode]="headerWidth"></app-website-header>
+ 
+<div  id="page-not-found-container" >
+  <div class="center-div">
+    <div class="container" >
+      <div class="row">
+        <div class="col-12 col-lg-5 col-md-6">
+          <h1 class="page-head">Oops, the page you requested could not be found!</h1>
+          <p class="para">You're seeing this page because either the page does not exists or moved to some other
+            location</p><a class="btn"  href="/">Take me to Home Page</a>
+        </div>
+        <div class="col-12 col-lg-7 col-md-6"><img src="assets/page-404.png" alt="404 Page Not Found"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <app-website-footer  [ngClass]="{ 'special-footer': footerStyleA }"></app-website-footer>
+ 
+</div>
+

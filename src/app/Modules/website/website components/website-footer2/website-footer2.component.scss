@@ -1,0 +1,53 @@
+.footer-2 {
+    background-color: #050e1d !important;
+}
+
+.footer-2 h4 {
+    color: #ffcf3f !important;
+   
+}
+
+.footer-2 a {
+    color: #959595;
+    font-size: 16px;
+    line-height: 32px;
+    display: block;
+
+    &:hover , &:focus{
+        color: #fdeb04 !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .footer-2 {
+        h4 {
+           
+            text-align: center;
+        }
+
+        a {
+           
+           
+            text-align: center;
+        }
+    }
+
+
+}
+
+@media only screen and (max-width: 480px) {
+    .footer-2 {
+        h4 {
+            font-size: 14px !important;
+          
+        }
+
+        a {
+            font-size: 10px;
+            line-height: 20px;
+           
+        }
+    }
+
+
+}

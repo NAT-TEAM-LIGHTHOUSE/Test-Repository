@@ -1,0 +1,169 @@
+<!-- ----------------------- template 1 ---------- -->
+
+@if(template_type == 'layout1') {
+
+<section class="qr-code dark-card" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">
+	<div class="card-headings-div">
+		<h3 class="card-headings"  [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                         
+                                                          }">Scan QR Code</h3>
+		<p class="heading-border" [ngStyle]="{
+                                                            'border':  '1px  solid ' + card2textcolour,
+                                                         
+                                                          }"></p>
+	</div>
+	<div class="qr-img-div" *ngFor="let datas of data.data">
+		<img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(datas.qr_code)">
+
+	</div>
+</section>
+
+
+
+
+}
+
+
+<!-- ----------------------- template 2 ---------- -->
+@if(template_type == 'layout2') {
+
+
+<section class="qr-code w-100 d-flex align-items-center flex-column">
+	<h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">Scan QR Code</h2>
+	<div class="qr-img-div" *ngFor="let datas of data.data">
+		<img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(datas.qr_code)">
+	</div>
+</section>
+
+
+
+}
+
+
+
+<!-- ----------------------- template 3 ---------- -->
+@if(template_type == 'layout3') {
+
+<section class="qr-code" [ngStyle]="{'background-color': bodybgcolour }">
+	<h2 class="card-headings" [ngStyle]="{'color': card2textcolour }">Scan QR Code</h2>
+	<div class="qr-img-div" *ngFor="let datas of data.data">
+		<img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(datas.qr_code)">
+	</div>
+</section>
+
+
+
+
+}
+
+<!-- ----------------------- template 4 ---------- -->
+@if(template_type == 'layout4') {
+
+
+
+<section class="qr-code">
+	<h3 *ngIf="styletype != 'style4'" class="card-headings"
+		[ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+		Scan QR Code</h3>
+
+
+
+<div *ngIf="styletype == 'style4'" class="card-headings-div">
+  <h3 class="card-headings"
+      [ngStyle]="card_heading_bg ? card_heading_bg : {'background-color': card1bgcolour, 'color': card1textcolour}">
+      Scan QR Code
+  </h3>
+</div>
+
+	<div class="card-data" [ngStyle]="{'background-color': card2bgcolour}">
+		<div class="qr-img-div" *ngFor="let datas of data.data">
+			<img  alt="qr code image" [src]="globalObject.getImageSrc(datas.qr_code)">
+		</div>
+	</div>
+</section>
+
+
+
+}
+
+
+<!-- ----------------------- template 5 ---------- -->
+
+@if(template_type == 'layout5') {
+
+<section class="qr-code">
+	<h3 class="card-headings"
+		[ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+		Scan QR Code</h3>
+	<div class="card-data" [ngStyle]="qr_code_card_data ?qr_code_card_data : {'background-color': card2bgcolour}" 
+	>
+		<div class="qr-img-div" *ngFor="let datas of data.data">
+			<img alt="qr code image" [src]="globalObject.getImageSrc(datas.qr_code)">
+		</div>
+	</div>
+</section>
+
+
+
+}
+
+<!-- ----------------------- template 6 ---------- -->
+
+@if(template_type == 'layout6') {
+
+<section class="qr-code">
+	<h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">Scan QR Code</h3>
+	<div class="card-data">
+		<div class="qr-img-div" *ngFor="let datas of data.data">
+			<img  alt="qr code image" [src]="globalObject.getImageSrc(datas.qr_code)">
+		</div>
+	</div>
+</section>
+
+
+
+}
+
+<!-- ----------------------- template 7 ---------- -->
+
+@if(template_type == 'layout7') {
+
+ <div class="scan-qr-div">
+            <h4 [ngStyle]="{'color': card1textcolour}">QR Code</h4>
+            <div class="qr-image-div" *ngFor="let datas of qr_code.data">
+                <img [src]="globalObject.getImageSrc(datas.qr_code)" alt="qr code image">
+            </div>
+        </div>
+	}
+
+
+
+	<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+        <div class="qr-div" *ngFor="let datas of qr_code.data"  [ngStyle]="{
+       border: '2px dashed ' + card1bgcolour 
+                }">
+                <img [src]="globalObject.getImageSrc(datas.qr_code)" alt="qr code image">
+
+            </div>  
+ }
+
+ 
+
+	<!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+  <div class="qr-div"  *ngFor="let datas of qr_code.data"  [ngStyle]="{
+  border: '2px solid ' + card2textcolour,
+  background: screenWidth > 991 ? 'transparent' : card1bgcolour
+}">
+                    <img [src]="globalObject.getImageSrc(datas.qr_code)" alt="qr code image">
+                </div>
+    }

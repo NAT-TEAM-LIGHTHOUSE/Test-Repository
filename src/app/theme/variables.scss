@@ -1,0 +1,228 @@
+// For information on how to create your own theme, please refer to:
+// https://ionicframework.com/docs/theming/
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+
+
+
+:root {
+
+    //--background-activated: var(--ion-color-primary-shade, #004acd);
+    // --background-focused: var(--ion-color-primary-shade, #004acd);
+    // --background-hover: var(--ion-color-primary-tint, #1a65eb);
+
+    --highlight-color-focused: none;
+    --black: #ffffff;
+    --white: #ffffff;
+    --primary_one: #5E43C3;
+    --primary_two: #F2EFFF;
+
+    --primary_onehover: #372283;
+
+    --textprimary: #363636;
+    --textsecondary: #787878;
+    --bg-gray: #F6F6F6;
+    --bg-gray2: #7C7C7C;
+
+    --border: #9E9E9E;
+    --input-border: #9E9E9E;
+    --input-border2: #ced4da;
+
+    --logo_uplodBox: #C1C1C5;
+    --error: #ff4141;
+
+    --table_head: #F1EFF8;
+    --table-col: #F0F0F0;
+
+    --title-mainfont: 20px;
+    --sub-title: 16px;
+    --sub-m-title: 15px;
+
+    --font23: 23px;
+    --font22: 22px;
+    --font21: 21px;
+    --font20: 20px;
+    --font18: 18px;
+    --font16: 16px;
+    --font15: 15px;
+    --font14: 14px;
+    --font13: 13px;
+    --font12: 12px;
+    --font11: 11px;
+    --font10: 10px;
+    --font9: 9px;
+    --font8: 8px;
+
+    --menu-colorfilter: brightness(1) contrast(100%); //black grey
+    --menufilterhover: brightness(0) saturate(200%) invert(28%) sepia(55%) saturate(1200%) hue-rotate(220deg) contrast(120%); //purple
+
+ 
+
+
+   // ---- Template 1 variables
+.template-1-outer-div {
+  --body-div-bg: #525659;
+  --template-bg-image: url(../../assets/templates_pcard/template_one/img/card-bg.png);
+  --template-bg-color: rgb(225, 227, 226);
+  --profile-card-btn-bg: #ffffff;
+  --profile-card-btn-text-color: #000000;
+  --profile-card-designation-text-color: #000000;
+  --dark-card-bg-color: #547994;
+  --dark-card-text-color: #ffffff;
+  --dark-card-heading-color: #ffffff;
+  --light-card-bg-color: #ffffff;
+  --light-card-sub-heading-color: #000000;
+  --light-card-heading-color: #292424;
+  --light-card-text-color: #474242;
+  --placeholder-text-color: #9898a3;
+  --whatsapp-share-btn-bg: #60d669;
+  --product-card-bg: #ffffff;
+  --product-card-img-div-bg: #ededed;
+  --product-card-text-color: #000000;
+  --product-card-price-color: firebrick;
+  --table-border-color: #ddd;
+  --skills-btn-bg-after-show: #eee;
+  --skills-btn-text-after-show: #676767;
+  --business-card-bg: #eeefee;
+  --business-card-heading: #555;
+}
+
+// ---- Template 2 variables
+
+.template-2-outer-div {
+  --body-div-bg: #525659;
+ --template-bg-image: url(../../assets/templates_pcard/template_one/img/profile-bg.jpg);
+  --placeholder-text-color: #9898a3;
+  --whatsapp-share-btn-bg: #60d669;
+  --product-card-bg: #ffffff;
+  --product-card-img-div-bg: #ededed;
+  --product-card-text-color: #000000;
+  --product-card-price-color: firebrick;
+  --table-border-color: #ddd;
+  --skills-btn-bg-after-show: #eee;
+  --skills-btn-text-after-show: #676767;
+  --business-card-bg: #eeefee;
+  --business-card-heading: #555;
+  --profile-card-btn-bg: #ffffff;
+  --profile-card-designation-text-color: #000000;
+  --dark-card-bg-color: #002d40; 
+  --dark-card-text-color: #ffffff;
+  --light-card-bg-color: #ebebeb; 
+  --light-card-text-color: #000; 
+  --card-bg-color: #ffffff;
+}
+
+// ---- Template 3 variables
+ .template-3-outer-div {
+  --body-div-bg: #27292a;
+  --placeholder-text-color: #afafaf;
+  --whatsapp-share-btn-bg: #60d669;
+  --product-card-bg: #ffffff;
+  --product-card-img-div-bg: #eee;
+  --product-card-text-color: #000000;
+  --product-card-price-color: firebrick;
+  --table-border-color: #fff;
+  --dark-card-bg-color: #1c1c1c;
+  --dark-card-text-color: #ffffff;
+  --light-card-bg-color: #dcdbdb;
+  --light-card-text-color: #000000;
+}
+
+// ---- Template 4 variables
+ .template-4-outer-div {
+  --body-div-bg: #fff;
+  --placeholder-text-color: #afafaf;
+  --whatsapp-share-btn-bg: #60d669;
+  --product-card-bg: #ffffff;
+  --product-card-img-div-bg: #eee;
+  --product-card-text-color: #000000;
+  --product-card-price-color: firebrick;
+  --table-border-color: #fff;
+
+  --light-card-bg-color: #000000;
+  --light-card-text-color: #ffffff;
+
+  --dark-card-bg-color: #ffeb3b;
+  --dark-card-text-color: #585757;
+
+}
+
+// ---- Template 5 variables
+ .template-5-outer-div {
+  --body-div-bg: #fff;
+  --placeholder-text-color: #afafaf;
+  --whatsapp-share-btn-bg: #60d669;
+  --product-card-bg: #ffffff;
+  --product-card-img-div-bg: #eee;
+  --product-card-text-color: #000000;
+  --product-card-price-color: firebrick;
+  --table-border-color: #fff;
+
+  --light-card-bg-color: #2b2b2a;
+  --light-card-text-color: #ffffff;
+
+  --dark-card-bg-color: #de8d56;
+  --dark-card-text-color: #ffffff;
+
+}
+
+
+// ---- Template 6 variables
+ .template-6-outer-div {
+  --body-div-bg: #fff;
+  --placeholder-text-color: #afafaf;
+  --whatsapp-share-btn-bg: #60d669;
+  --product-card-bg: #ffffff;
+  --product-card-img-div-bg: #eee;
+  --product-card-text-color: #ccc;
+  --product-card-price-color: firebrick;
+  --table-border-color: #fff;
+
+  --light-card-bg-color: #ffe500;
+  --light-card-text-color: #000000;
+
+  --dark-card-bg-color: #1260a8;
+  --dark-card-text-color: #ffffff;
+
+}
+
+
+// ---- Template 7 variables
+ .template-new-1-outer-div {
+  --body-div-bg: #fff;
+ --body-bg-text-color: #000;
+  --light-card-bg-color: #C32817;
+  --light-card-text-color: #ffffff;
+  --dark-card-bg-color: #000000;
+  --dark-card-text-color: #C32817;
+}
+
+
+
+// ---- template 8 variables
+.template-new-2-outer-div {
+  --body-div-bg: #fff;
+  --body-bg-text-color: #222222;
+  --light-card-bg-color: #1061da;
+  --light-card-text-color: #ffffff;
+  --dark-card-bg-color: #000000;
+  --dark-card-text-color: #ffffff;
+}
+// ---- template 9 variables
+.template-new-3-outer-div {
+  --body-div-bg: #fff;
+  --body-bg-text-color: #000;
+  --light-card-bg-color: #470391;
+  --light-card-text-color: #ffffff;
+  --dark-card-bg-color: #000000;
+  --dark-card-text-color: #ffffff;
+}
+
+
+}
+
+
+.multi-line-toast .toast-message {
+  white-space: pre-line; /* allows line breaks */
+}
+

@@ -1,0 +1,764 @@
+<!---------- template 1------------>
+
+<!-- Paymeny details section -->
+@if(template_type == 'layout1') {
+<section class="payment-details dark-card" *ngIf="data.flag && hasPaymentData(data)" id="Payment_Details" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }"
+                                                         
+    >
+
+    <div class="card-headings-div" *ngIf="hasPaymentData(data)">
+        <h3 class="card-headings"  [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                         
+                                                          }">
+           {{data.title}}
+        </h3>
+        <p class="heading-border" [ngStyle]="{
+                                                            'border':  '1px  solid ' + card2textcolour,
+                                                         
+                                                          }"></p>
+    </div>
+    <div class="payment-data-div" *ngFor="let a of data.data">
+
+        <div class="row" *ngIf="a.paytm">
+            <div class="col-6 c1"><p>Paytm </p> <span>:</span></div>
+            <div class="col-6 c2">{{a.paytm}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.upi">
+            <div class="col-6 c1"><p>UPI </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.upi}}
+
+            </div>
+        </div>
+        <div class="row" *ngIf="a.phonepay">
+            <div class="col-6 c1"><p>Phone Pay </p> <span>:</span></div>
+            <div class="col-6 c2">{{a.phonepay}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.google_pay">
+            <div class="col-6 c1"><p>Google Pay </p> <span>:</span></div>
+            <div class="col-6 c2">{{a.google_pay}}
+            </div>
+        </div>
+        <ng-conatiner *ngIf="a.account_number && a.ifsc_code" class="payment-data-div">
+    <div class="row" *ngIf="a.bank_name">
+            <div class="col-6 c1"><p>Bank Name </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.bank_name}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 c1"><p>Account Number </p> <span>:</span></div>
+            <div class="col-6 c2">{{a.account_number}}
+                           
+            </div>
+        </div>
+        <div class="row" *ngIf="a.account_holder">
+            <div class="col-6 c1"><p>Account Holder </p> <span>:</span></div>
+            <div class="col-6 c2">  {{a.account_holder}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.ifsc_code">
+            <div class="col-6 c1"><p>IFSC Code </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.ifsc_code}}
+            </div>
+        </div>
+        </ng-conatiner>
+    
+        <div class="qr-outer-div">
+            <div class="qr-div" *ngIf="a?.qr_image1 && a.qr_image1 !== 'null'">
+                <img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(a?.qr_image1)">
+            </div>
+            <div class="qr-div" *ngIf="a?.qr_image2 && a.qr_image2 !== 'null'">
+                <img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(a?.qr_image2)">
+            </div>
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 2------------>
+
+<!-- Payment details section -->
+ @else if(template_type == 'layout2') {
+<section class="payment-details w-100" *ngIf="data.flag && hasPaymentData(data)">
+    <ng-container *ngIf="hasPaymentData(data)">
+ <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+    </ng-container>
+   
+    <div class="payment-data-div light-card" [ngStyle]="{
+                                                            'color': card1textcolour }">
+                                                            <ng-container *ngFor="let a of data.data">
+
+                                                            
+         <div class="row" *ngIf="a.paytm">
+            <div class="col-6 c1"><p>Paytm </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.paytm}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.upi">
+            <div class="col-6 c1"><p>UPI </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.upi}}
+
+            </div>
+        </div>
+        <div class="row" *ngIf="a.phonepay">
+            <div class="col-6 c1"><p>Phone Pay </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.phonepay}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.google_pay">
+            <div class="col-6 c1"><p>Google Pay </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.google_pay}}
+            </div>
+        </div>
+        <ng-conatiner *ngIf="a.account_number && a.ifsc_code" class="payment-data-div p-0" [ngStyle]="{
+                                                            'color': card1textcolour }">
+
+            <div class="row" *ngIf="a.bank_name">
+                <div class="col-6 c1"><p>Bank Name </p> <span>:</span></div>
+                <div class="col-6 c2"> {{a.bank_name}}
+                </div>
+            </div>
+            <div class="row" *ngIf="a.account_number">
+                <div class="col-6 c1"><p>Account Number </p> <span>:</span> </div>
+                <div class="col-6 c2">
+                                 {{a.account_number}}
+                </div>
+            </div>
+            <div class="row" *ngIf="a.account_holder">
+                <div class="col-6 c1"><p>Account Holder </p> <span>:</span></div>
+                <div class="col-6 c2"> {{a.account_holder}}
+                </div>
+            </div>
+            <div class="row" *ngIf="a.ifsc_code">
+                <div class="col-6 c1"><p>IFSC Code </p> <span>:</span></div>
+                <div class="col-6 c2"> {{a.ifsc_code}}
+                </div>
+            </div>
+        </ng-conatiner>
+
+        <div class="qr-outer-div">
+            <div class="qr-div" *ngIf="a?.qr_image1 && a.qr_image1 !== 'null'">
+                <img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(a?.qr_image1)">
+            </div>
+            <div class="qr-div" *ngIf="a?.qr_image2 && a.qr_image2 !== 'null'">
+                <img class="qr-img" alt="qr code image"  [src]="globalObject.getImageSrc(a?.qr_image2)">
+            </div>
+        </div>
+        </ng-container>
+    </div>
+</section>
+}
+
+<!---------- template 3------------>
+
+<!-- Payment details section -->
+ @else if(template_type == 'layout3') {
+<section class="payment-details w-100" *ngIf="data.flag && hasPaymentData(data)">
+    <ng-container *ngIf="hasPaymentData(data)">
+
+        <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' + card2textcolour}">{{data.title}}</h2>
+    </ng-container>
+    <div class="payment-data-div light-card" [ngStyle]="{'background-color': bodybgcolour, 'color': card2textcolour }">
+        <ng-container *ngFor="let a of data.data">
+
+                                                            
+         <div class="row" *ngIf="a.paytm">
+            <div class="col-6 c1"><p>Paytm </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.paytm}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.upi">
+            <div class="col-6 c1"><p>UPI </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.upi}}
+
+            </div>
+        </div>
+        <div class="row" *ngIf="a.phonepay">
+            <div class="col-6 c1"><p>Phone Pay </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.phonepay}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.google_pay">
+            <div class="col-6 c1"><p>Google Pay </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.google_pay}}
+            </div>
+        </div>
+
+         <ng-conatiner *ngIf="a.account_number && a.ifsc_code"  class="payment-data-div p-0" [ngStyle]="{'background-color': bodybgcolour, 'color': card2textcolour }">
+
+        
+        <div class="row" *ngIf="a.bank_name">
+            <div class="col-6 c1"><p>Bank Name </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.bank_name}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.account_number">
+            <div class="col-6 c1"><p>Account Number </p> <span>:</span> </div>
+            <div class="col-6 c2">{{a.account_number}} 
+                            
+            </div>
+        </div>
+        <div class="row" *ngIf="a.account_holder">
+            <div class="col-6 c1"><p>Account Holder </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.account_holder}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.ifsc_code">
+            <div class="col-6 c1"><p>IFSC Code </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.ifsc_code}}
+            </div>
+        </div>
+         </ng-conatiner>
+        <div class="qr-outer-div">
+            <div class="qr-div" *ngIf="a?.qr_image1 && a.qr_image1 !== 'null'">
+                <img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(a?.qr_image1)">
+            </div>
+            <div class="qr-div" *ngIf="a?.qr_image2 && a.qr_image2 !== 'null'">
+                <img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(a?.qr_image2)">
+            </div>
+        </div>
+        </ng-container>
+    </div>
+</section>
+}
+
+
+<!---------- template 4------------>
+
+ @else if(template_type == 'layout4') {
+
+<section class="payment-details w-100" *ngIf="data.flag && hasPaymentData(data)">
+    <ng-container *ngIf="hasPaymentData(data)">
+
+        <h3 *ngIf="styletype != 'style4'" class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">{{data.title}}</h3>
+    </ng-container>
+    
+    <!-- ---------  for t4 ------- -->
+     <div class="card-headings-div" *ngIf="styletype == 'style4'">
+    <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">{{data.title}}</h3>
+    </div>
+
+    <div class="payment-data-div" [ngStyle]="{'background-color': card2bgcolour,'color': card2textcolour }">
+                                                          
+          <ng-container *ngFor="let a of data.data">
+
+                                                            
+        <div class="row" *ngIf="a.paytm">
+            <div class="col-6 c1"><p>Paytm </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.paytm}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.upi">
+            <div class="col-6 c1"><p>UPI </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.upi}}
+
+            </div>
+        </div>
+        <div class="row" *ngIf="a.phonepay">
+            <div class="col-6 c1"><p>Phone Pay </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.phonepay}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.google_pay">
+            <div class="col-6 c1"><p>Google Pay </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.google_pay}}
+            </div>
+        </div>
+          <ng-conatiner *ngIf="a.account_number && a.ifsc_code"  class="payment-data-div p-0" [ngStyle]="{'background-color': card2bgcolour,'color': card2textcolour }">
+              <div class="row" *ngIf="a.bank_name">
+                  <div class="col-6 c1"><p>Bank Name </p> <span>:</span></div>
+                  <div class="col-6 c2"> {{a.bank_name}}
+                </div>
+            </div>
+            <div class="row" *ngIf="a.account_number">
+                <div class="col-6 c1"><p>Account Number </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.account_number}}
+                
+            </div>
+        </div>
+        <div class="row" *ngIf="a.account_holder">
+            <div class="col-6 c1"><p>Account Holder </p> <span>:</span></div>
+            <div class="col-6 c2">  {{a.account_holder}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.ifsc_code">
+            <div class="col-6 c1"><p>IFSC Code </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.ifsc_code}}
+            </div>
+        </div>
+    </ng-conatiner>
+        
+        <div class="qr-outer-div">
+            <div class="qr-div" *ngIf="a?.qr_image1 && a.qr_image1 !== 'null'">
+                <img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(a?.qr_image1)">
+            </div>
+            <div class="qr-div" *ngIf="a?.qr_image2 && a.qr_image2 !== 'null'">
+                <img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(a?.qr_image2)">
+            </div>
+        </div>
+        </ng-container>
+    
+    </div>
+</section>
+
+
+}
+
+<!---------- template 5------------>
+
+ @else if(template_type == 'layout5') {
+    
+<section class="payment-details w-100" *ngIf="data.flag && hasPaymentData(data)">
+    <ng-container *ngIf="hasPaymentData(data)">
+
+        <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">{{data.title}}</h3>
+    </ng-container>
+    <div class="payment-data-div" [ngStyle]="payment_data_div ?payment_data_div :{'background-color': card2bgcolour,'color': card2textcolour }">
+           <ng-container *ngFor="let a of data.data">
+                                                          
+        <div class="row" *ngIf="a.paytm">
+            <div class="col-6 c1"><p>Paytm </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.paytm}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.upi">
+            <div class="col-6 c1"><p>UPI </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.upi}}
+
+            </div>
+        </div>
+        <div class="row" *ngIf="a.phonepay">
+            <div class="col-6 c1"><p>Phone Pay </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.phonepay}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.google_pay">
+            <div class="col-6 c1"><p>Google Pay </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.google_pay}}
+            </div>
+        </div>
+          <ng-conatiner *ngIf="a.account_number && a.ifsc_code"  class="payment-data-div p-0" [ngStyle]="payment_data_div ?payment_data_div :{'background-color': card2bgcolour,'color': card2textcolour }">
+              
+              <div class="row" *ngIf="a.bank_name">
+                  <div class="col-6 c1"><p>Bank Name </p> <span>:</span></div>
+                  <div class="col-6 c2"> {{a.bank_name}}
+                </div>
+            </div>
+            <div class="row" *ngIf="a.account_number">
+                <div class="col-6 c1"><p>Account Number </p> <span>:</span></div>
+                <div class="col-6 c2"> {{a.account_number}} 
+                    
+                </div>
+            </div>
+            <div class="row" *ngIf="a.account_holder">
+                <div class="col-6 c1"><p>Account Holder </p> <span>:</span></div>
+                <div class="col-6 c2"> {{a.account_holder}}
+                </div>
+            </div>
+            <div class="row" *ngIf="a.ifsc_code">
+                <div class="col-6 c1"><p>IFSC Code </p> <span>:</span></div>
+                <div class="col-6 c2"> {{a.ifsc_code}}
+                </div>
+            </div>
+        </ng-conatiner>
+       <div class="qr-outer-div">
+            <div class="qr-div" *ngIf="a?.qr_image1 && a.qr_image1 !== 'null'">
+                <img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(a?.qr_image1)">
+            </div>
+            <div class="qr-div" *ngIf="a?.qr_image2 && a.qr_image2 !== 'null'">
+                <img class="qr-img"  alt="qr code image"  [src]="globalObject.getImageSrc(a?.qr_image2)">
+            </div>
+        </div>
+    </ng-container>
+    </div>
+</section>
+}
+
+<!---------- template 6------------>
+
+ @else if(template_type == 'layout6') {
+<section class="payment-details w-100" *ngIf="data.flag && hasPaymentData(data)">
+    <ng-container *ngIf="hasPaymentData(data)">
+
+        <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h3>
+    </ng-container>
+    <div class="payment-data-div" [ngStyle]="payment_data_div ?payment_data_div : {'color': card2textcolour }">
+                                                          
+          <ng-container *ngFor="let a of data.data">
+                                                          
+       <div class="row" *ngIf="a.paytm">
+            <div class="col-6 c1"><p>Paytm </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.paytm}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.upi">
+            <div class="col-6 c1"><p>UPI </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.upi}}
+
+            </div>
+        </div>
+        <div class="row" *ngIf="a.phonepay">
+            <div class="col-6 c1"><p>Phone Pay </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.phonepay}}
+            </div>
+        </div>
+        <div class="row" *ngIf="a.google_pay">
+            <div class="col-6 c1"><p>Google Pay </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.google_pay}}
+            </div>
+        </div>
+          <ng-conatiner *ngIf="a.account_number && a.ifsc_code"  class="payment-data-div p-0"  [ngStyle]="payment_data_div ?payment_data_div : {'color': card2textcolour }">
+
+              <div class="row" *ngIf="a.bank_name">
+                  <div class="col-6 c1"><p>Bank Name </p> <span>:</span></div>
+                  <div class="col-6 c2"> {{a.bank_name}}
+                </div>
+            </div>
+            <div class="row" *ngIf="a.account_number">
+                <div class="col-6 c1"><p>Account Number </p> <span>:</span></div>
+                <div class="col-6 c2"> {{a.account_number}}
+                    
+                </div>
+            </div>
+            <div class="row" *ngIf="a.account_holder">
+                <div class="col-6 c1"><p>Account Holder </p> <span>:</span></div>
+                <div class="col-6 c2">  {{a.account_holder}}
+                </div>
+        </div>
+        <div class="row" *ngIf="a.ifsc_code">
+            <div class="col-6 c1"><p>IFSC Code </p> <span>:</span></div>
+            <div class="col-6 c2"> {{a.ifsc_code}}
+            </div>
+        </div>
+    </ng-conatiner>
+       <div class="qr-outer-div">
+            <div class="qr-div" *ngIf="a?.qr_image1 && a.qr_image1 !== 'null'">
+                <img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(a?.qr_image1)">
+            </div>
+            <div class="qr-div" *ngIf="a?.qr_image2 && a.qr_image2 !== 'null'">
+                <img class="qr-img"  alt="qr code image" [src]="globalObject.getImageSrc(a?.qr_image2)">
+            </div>
+        </div>
+    </ng-container>
+    
+    </div>
+</section>
+}
+
+
+<!---------- template 7------------>
+@else if(template_type == 'layout7') {
+<div class="payment-div" *ngIf="data.flag && hasPaymentData(data)">
+
+     <div class="section-headings" >
+                        <h2 [ngStyle]="{'color':  bodytextcolour}">{{data.title}}</h2>
+                        <span [ngStyle]="{'background': card1bgcolour}"></span>
+        </div>
+
+
+          
+
+
+
+          
+        <div class="inner-div" [ngStyle]="{'background': 'color-mix(in srgb, ' + bodybgcolour + ' 95%, ' + bodytextcolour + ' 5%)'}">
+
+            
+  <ng-container *ngFor="let a of data.data; let i = index">
+
+    
+    <div class="first-detail-div" *ngIf="(a.account_number && a.ifsc_code) || a.paytm || a.phonepay || a.google_pay || a.upi" >
+            <div class="row" *ngIf="a.paytm">
+                <div class="col-6 c1">
+                     <span  [ngStyle]="{'color':  bodytextcolour}">Paytm</span>
+                </div>
+                <div class="col-6 c2" >
+                    <span [ngStyle]="{'color':  bodytextcolour}"> {{a.paytm}}</span>
+                    <button [ngStyle]="{'color':  bodytextcolour}"   (click)="copyText(a.paytm, i, 'paytm')"  type="button" title="Copy Text"><i class="fa-regular fa-copy"></i></button>
+
+                    <!-- Copied Text -->
+  <span class="copied-payment-text"  *ngIf="copiedField?.index === i && copiedField?.key === 'paytm'">
+    Copied !
+  </span>
+  
+ 
+
+
+
+                </div>
+            </div>
+            <div class="row" *ngIf="a.phonepay">
+                <div class="col-6 c1">
+                     <span [ngStyle]="{'color':  bodytextcolour}">PhonePe</span>
+                </div>
+                <div class="col-6 c2">
+                    <span [ngStyle]="{'color':  bodytextcolour}"> {{a.phonepay}}</span>
+                    <button [ngStyle]="{'color':  bodytextcolour}" (click)="copyText(a.phonepay, i, 'phonepay')" type="button" title="Copy Text"><i class="fa-regular fa-copy"></i></button>
+
+                     <!-- Copied Text -->
+  <span class="copied-payment-text " *ngIf="copiedField?.index === i && copiedField?.key === 'phonepay'" >
+    Copied !
+  </span>
+                </div>
+            </div>
+            <div class="row" *ngIf="a.google_pay">
+                <div class="col-6 c1">
+                     <span [ngStyle]="{'color':  bodytextcolour}">Google Pay</span>
+                </div>
+                <div class="col-6 c2">
+                    <span [ngStyle]="{'color':  bodytextcolour}"> {{a.google_pay}}</span>
+                    <button [ngStyle]="{'color':  bodytextcolour}" (click)="copyText(a.google_pay, i, 'google_pay')" type="button" title="Copy Text"><i class="fa-regular fa-copy"></i></button>
+
+                    <span class="copied-payment-text "  *ngIf="copiedField?.index === i && copiedField?.key === 'google_pay'">
+    Copied !
+  </span>
+                </div>
+            </div>
+            <div class="row" *ngIf="a.upi">
+                <div class="col-6 c1">
+                     <span [ngStyle]="{'color':  bodytextcolour}">UPI</span>
+                </div>
+                <div class="col-6 c2">
+                    <span [ngStyle]="{'color':  bodytextcolour}"> {{a.upi}}</span>
+                    <button [ngStyle]="{'color':  bodytextcolour}" (click)="copyText(a.upi, i, 'upi')" type="button" title="Copy Text"><i class="fa-regular fa-copy"></i></button>
+
+                    <span class="copied-payment-text " *ngIf="copiedField?.index === i && copiedField?.key === 'upi'">
+    Copied !
+  </span>
+                </div>
+            </div>
+              <ng-container *ngIf="a.account_number && a.ifsc_code" class="first-detail-div">
+      <div class="row" *ngIf="a.bank_name">
+                <div class="col-6 c1">
+                     <span [ngStyle]="{'color':  bodytextcolour}">Bank Name</span>
+                </div>
+                <div class="col-6 c2">
+                    <span [ngStyle]="{'color':  bodytextcolour}"> {{a.bank_name}}</span>
+                </div>
+            </div>
+            <div class="row" *ngIf="a.account_number">
+                <div class="col-6 c1">
+                     <span [ngStyle]="{'color':  bodytextcolour}">Account Number</span>
+                </div>
+                <div class="col-6 c2">
+                    <span [ngStyle]="{'color':  bodytextcolour}"> {{a.account_number}}</span>
+                    <button [ngStyle]="{'color':  bodytextcolour}" (click)="copyText(a.account_number, i, 'account_number')" type="button" title="Copy Text"><i class="fa-regular fa-copy"></i></button>
+
+                    <span class="copied-payment-text " *ngIf="copiedField?.index === i && copiedField?.key === 'account_number'">
+    Copied !
+  </span>
+                </div>
+            </div>
+            <div class="row" *ngIf="a.account_holder">
+                <div class="col-6 c1">
+                     <span [ngStyle]="{'color':  bodytextcolour}">Account Holder</span>
+                </div>
+                <div class="col-6 c2">
+                    <span [ngStyle]="{'color':  bodytextcolour}"> {{a.account_holder}}</span>
+                </div>
+            </div>
+            <div class="row" *ngIf="a.ifsc_code">
+                <div class="col-6 c1">
+                     <span [ngStyle]="{'color':  bodytextcolour}">IFSC Code</span>
+                </div>
+                <div class="col-6 c2">
+                    <span [ngStyle]="{'color':  bodytextcolour}"> {{a.ifsc_code}}</span>
+                    <button [ngStyle]="{'color':  bodytextcolour}" (click)="copyText(a.ifsc_code, i, 'ifsc_code')" type="button" title="Copy Text"><i class="fa-regular fa-copy"></i></button>
+
+                    <span class="copied-payment-text " *ngIf="copiedField?.index === i && copiedField?.key === 'ifsc_code'">
+    Copied !
+  </span>
+                </div>
+            </div>
+              </ng-container>
+      
+            </div>
+            <div class="qr-div" *ngIf="a.qr_image1 && a.qr_image1 !== 'null' || a.qr_image2 && a.qr_image2 !== 'null'">
+                <div class="qr-img" *ngIf="a?.qr_image1 && a.qr_image1 !== 'null'">
+                    <img [src]="globalObject.getImageSrc(a?.qr_image1)" alt="qr code">
+                </div>
+                 <div class="qr-img" *ngIf="a?.qr_image2 && a.qr_image2 !== 'null'">
+                    <img [src]="globalObject.getImageSrc(a?.qr_image2)" alt="qr code">
+                </div>
+            </div>
+
+
+           
+
+
+
+             </ng-container>
+        </div>
+
+</div>
+}
+
+
+
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+     <section class="payment-section padding" [ngStyle]="{ color: bodytextcolour }" *ngIf="data.flag  && hasPaymentData(data)">
+<ng-container *ngIf="hasPaymentData(data)">
+ <h2 class="card-heading " [ngStyle]="{ border: '0.5px dashed ' + card1bgcolour , color: card1bgcolour }"> <i class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i
+                    class="fa-solid fa-right-long"></i></h2>
+</ng-container>
+           
+
+                     <ng-container *ngFor="let a of data.data; let i = index">
+            <div class="platforms-div">
+                <div class="single-platform"  [ngStyle]="{border: `1px dashed color-mix(in srgb, ${bodybgcolour } 54%, ${bodytextcolour } 18%)`}" *ngIf="a.paytm">
+                    <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_8/payphone.png'" alt="payment platform image">
+                   {{a.paytm}}
+                </div>
+                <div class="single-platform"  [ngStyle]="{border: `1px dashed color-mix(in srgb, ${bodybgcolour } 54%, ${bodytextcolour } 18%)`}" *ngIf="a.phonepay">
+                    <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_8/paytm.png'" alt="payment platform image">
+                    {{a.phonepay}}
+                </div>
+
+                <div class="single-platform"  [ngStyle]="{border: `1px dashed color-mix(in srgb, ${bodybgcolour } 54%, ${bodytextcolour } 18%)`}" *ngIf="a.google_pay">
+                    <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_8/googlepay.png'" alt="payment platform image">
+                    {{a.google_pay}}
+                </div>
+                <div class="single-platform"  [ngStyle]="{border: `1px dashed color-mix(in srgb, ${bodybgcolour } 54%, ${bodytextcolour } 18%)`}" *ngIf="a.upi">
+                    <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_8/upi.png'" alt="payment platform image">
+                    {{a.upi}}
+                </div>
+            </div>
+
+             
+                
+            <div class="main-flex"  *ngIf="
+         (a.account_number && a.ifsc_code) ||
+  (a.qr_image1 && a.qr_image1 !== 'null') ||
+  (a.qr_image2 && a.qr_image2 !== 'null')
+     ">
+ <ng-conatiner *ngIf="a.account_number && a.ifsc_code" class="d-flex gap-3 flex-column align-items-center w-100" >
+                <div class="single-flex" *ngIf="a.bank_name">
+                    <div class="left">Bank Name</div>
+                    <div class="right"> {{a.bank_name}}</div>
+                </div>
+                <div class="single-flex" *ngIf="a.account_number">
+                    <div class="left">Account Number</div>
+                    <div class="right"> {{a.account_number}}
+                        <button class="copy-btn" [ngStyle]="{ color: bodytextcolour }" (click)="copyText(a.account_number, i, 'account_number')" type="button" title="copy"><i class="fa-regular fa-copy"></i></button>
+                    <span class="copied-payment-text " *ngIf="copiedField?.index === i && copiedField?.key === 'account_number'">
+    Copied !
+  </span>
+                    </div>
+                </div>
+                <div class="single-flex" *ngIf="a.account_holder">
+                    <div class="left">Account Holder</div>
+                    <div class="right"> {{a.account_holder}}</div>
+                </div>
+                <div class="single-flex" *ngIf="a.ifsc_code">
+                    <div class="left">IFSC Code</div>
+                    <div class="right"> {{a.ifsc_code}}
+                        <button class="copy-btn" [ngStyle]="{ color: bodytextcolour }" (click)="copyText(a.ifsc_code, i, 'ifsc_code')" type="button" title="copy"><i class="fa-regular fa-copy"></i></button>
+                    <span class="copied-payment-text " *ngIf="copiedField?.index === i && copiedField?.key === 'ifsc_code'">
+    Copied !
+  </span>
+                    </div>
+                </div>
+      </ng-conatiner>
+                <div class="main-qr-div" *ngIf="a.qr_image1 && a.qr_image1 !== 'null' || a.qr_image2 && a.qr_image2 !== 'null'">
+                    <div class="qr-img-div"  [ngStyle]="{ border: '2px dashed' + card1bgcolour }"  *ngIf="a?.qr_image1 && a.qr_image1 !== 'null'">
+                        <img [src]="globalObject.getImageSrc(a?.qr_image1)" alt="qr code">
+                    </div>
+                    <div class="qr-img-div"  [ngStyle]="{ border: '2px dashed' + card1bgcolour }" *ngIf="a?.qr_image2 && a.qr_image2 !== 'null'">
+                          <img [src]="globalObject.getImageSrc(a?.qr_image2)" alt="qr code">
+                    </div>
+                </div>
+
+            </div>
+      
+        </ng-container>
+        </section>
+ }
+
+
+ <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+ <section class="payment-section" [ngStyle]="{ color: bodytextcolour }" *ngIf="data.flag  && hasPaymentData(data)">
+<ng-container *ngIf="hasPaymentData(data)">
+    <h2 class="card-heading " [ngStyle]="{ color: bodytextcolour }"><span [ngStyle]="{ background: card1bgcolour }"></span>{{data.title}}</h2>
+</ng-container>
+  <ng-container *ngFor="let a of data.data; let i = index">
+            <div class="platforms-div">
+                <div class="single-platform" [ngStyle]="{'border-bottom': `1px solid color-mix(in srgb, ${bodybgcolour } 90%, ${bodytextcolour } 9%)`}" *ngIf="a.phonepay">
+                    <img [src]="globalObject.assetsUrl + '/templates_pcard/template_9/phonepay.png'" alt="payment platform image">
+                     {{a.phonepay}}
+                </div>
+                <div class="single-platform" [ngStyle]="{'border-bottom': `1px solid color-mix(in srgb, ${bodybgcolour } 90%, ${bodytextcolour } 9%)`}" *ngIf="a.paytm">
+                    <img [src]="globalObject.assetsUrl + '/templates_pcard/template_9/paytm.png'" alt="payment platform image">
+                    {{a.paytm}}
+                </div>
+
+                <div class="single-platform" [ngStyle]="{'border-bottom': `1px solid color-mix(in srgb, ${bodybgcolour } 90%, ${bodytextcolour } 9%)`}" *ngIf="a.google_pay">
+                    <img [src]="globalObject.assetsUrl + '/templates_pcard/template_9/googlepay.png'" alt="payment platform image">
+                      {{a.google_pay}}
+                </div>
+                <div class="single-platform" [ngStyle]="{'border-bottom': `1px solid color-mix(in srgb, ${bodybgcolour } 90%, ${bodytextcolour } 9%)`}" *ngIf="a.upi">
+                    <img [src]="globalObject.assetsUrl + '/templates_pcard/template_9/upi.png'" alt="payment platform image">
+                       {{a.upi}}
+                </div>
+            </div>
+
+            <div class="main-flex" *ngIf="
+        (a.account_number && a.ifsc_code) ||
+  (a.qr_image1 && a.qr_image1 !== 'null') ||
+  (a.qr_image2 && a.qr_image2 !== 'null')
+     ">
+
+      <ng-conatiner *ngIf="a.account_number && a.ifsc_code"  class="d-flex gap-3 flex-column align-items-center w-100"  >
+                <div class="single-flex" *ngIf="a.bank_name">
+                    <div class="left">Bank Name</div>
+                    <div class="right">{{a.bank_name}}</div>
+                </div>
+                <div class="single-flex" *ngIf="a.account_number">
+                    <div class="left">Account Number</div>
+                    <div class="right"> {{a.account_number}}
+                        <button class="copy-btn" [ngStyle]="{ color: bodytextcolour }" (click)="copyText(a.account_number, i, 'account_number')" type="button" title="copy"><i class="fa-regular fa-copy"></i></button>
+                    <span class="copied-payment-text " *ngIf="copiedField?.index === i && copiedField?.key === 'account_number'">
+    Copied !
+  </span>
+                    </div>
+                </div>
+                <div class="single-flex" *ngIf="a.account_holder">
+                    <div class="left">Account Holder</div>
+                    <div class="right">{{a.account_holder}}</div>
+                </div>
+                <div class="single-flex"  *ngIf="a.ifsc_code">
+                    <div class="left">IFSC Code</div>
+                    <div class="right">{{a.ifsc_code}}
+                       <button class="copy-btn" [ngStyle]="{ color: bodytextcolour }" (click)="copyText(a.ifsc_code, i, 'ifsc_code')" type="button" title="copy"><i class="fa-regular fa-copy"></i></button>
+                    <span class="copied-payment-text " *ngIf="copiedField?.index === i && copiedField?.key === 'ifsc_code'">
+    Copied !
+  </span>
+                    </div>
+                </div>
+</ng-conatiner>
+                   <div class="main-qr-div" *ngIf="a.qr_image1 && a.qr_image1 !== 'null' || a.qr_image2 && a.qr_image2 !== 'null'">
+                    <div class="qr-img-div"   [ngStyle]="{ background: card1bgcolour }" *ngIf="a?.qr_image1 && a.qr_image1 !== 'null'">
+                        <img [src]="globalObject.getImageSrc(a?.qr_image1)" alt="qr code">
+                    </div>
+                    <div class="qr-img-div"  [ngStyle]="{ background: card1bgcolour }" *ngIf="a?.qr_image2 && a.qr_image2 !== 'null'">
+                          <img [src]="globalObject.getImageSrc(a?.qr_image2)" alt="qr code">
+                    </div>
+                </div>
+
+            </div>
+        </ng-container>
+        </section>
+    }
+
+

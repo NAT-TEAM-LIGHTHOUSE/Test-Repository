@@ -1,0 +1,325 @@
+
+<section id="home-page">
+
+  <section class="bgslider">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 no-padding height-slider">
+          <div class="Profile-dtail">
+            <h1>The <br> Power to Drive </h1>
+            <h2>Your Growth, Your Way.</h2>
+            <div class="profile-btn">
+              <button class="btn btn-comn" (click)="gotoWebsite()">Get Empowered</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="about" class="section-padding bg-grey">
+    <div class="container-fluid">
+      <div class="row gap-0">
+        <div class="show-for-mobile p10 set-mobile-title">
+          <h2>Five powerful ways is all you need.</h2>
+          <h3>we created just that.</h3>
+        </div>
+        <div class="col-lg-6 col-6">
+          <div class="about-detail">
+            <div class="hide-for-mobile">
+              <h2>Five powerful ways is all you need.</h2>
+              <h3>we created just that.</h3>
+            </div>
+            <ul class="service-box-list tabAuto">
+              <li *ngFor="let item of services; let i = index" [class.current-active]="i === activeIndex"
+                (mouseenter)="onHover(i)" (mouseleave)="onLeave()">
+                <a >{{ item.title }}</a>
+              </li>
+            </ul>
+            <div class="profile-btn">
+              <button (click)="gotoWebsite()" class="btn btn-comn">Get your Power card</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-6  tgh-box">
+          <div *ngFor="let item of services; let i = index" class="about-img" [class.d-none]="i !== activeIndex">
+            <!-- <img [src]="item.image" [alt]="item.title" class="img-fluid" loading="eager" fetchpriority="high" decoding="async" width="900" height="700"> -->
+          <img *ngIf="i === activeIndex"  [src]="item.image" [alt]="item.title" width="900" height="700" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="empowered" class="bg-yellow">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 pt50">
+          <div class="empowered-detail">
+            <h2>Empowering people is how we began.</h2>
+            <h3>Power you, is what we did.</h3>
+            <div class="hide-for-mobile">
+              <div class="profile-btn">
+                <a routerLink="/digital/about-us" class="btn btn-empowered">Know us more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="empowered-content">
+            <p>PCARDS Business Networks, where empowerment is not just a concept; it's our commitment.</p>
+            <p>We believe in the power of individuals and the collective strength of a community united by a common
+              vision. </p>
+            <p>As we started this journey, our focus was clear: Empower people, and the rest will follow.</p>
+            <p>In the PCARDS Business Networks, you will find a supportive environment that fosters collaboration,
+              innovation, and shared success. </p>
+            <p>Today, we proudly say, "Power you, is what we did.</p>
+          </div>
+          <div class="show-for-mobile">
+            <div class="profile-btn">
+              <a routerLink="/digital/about-us" class="btn btn-empowered">Know us more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="poweredtalk" class="pt100 bg-grey">
+    <div class="container-fluid">
+      <div class="row">
+
+
+        <div class="col-lg-7">
+          <div class="power-logo">
+            <img src="/assets/website-images/power-logo.webp" alt="pcards" width="280" height="70" loading="lazy"  decoding="async">
+          </div>
+          <div class="poweredtalk-detail">
+            <h2>Those who inspire us their life. their stories.</h2>
+            <h3>Building a community with power to inspire!</h3>
+            <div class="profile-btn">
+              <button class="btn btn-poweredtalk" (click)="gotoWebsite()">Get Inspired</button>
+            </div>
+          </div>
+        </div>
+  
+
+
+        <div class="col-lg-5">
+          <div class="notice-board-area">
+            <div class="marquee2">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="impnews-div">
+                        <img src="/assets/website-images/power2.webp" class="img-fluid" alt="power talk" loading="lazy" decoding="async">
+                        <div class="impnews-inner-div">
+                          <p>Coming Soon.</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="impnews-div">
+                        <img src="/assets/website-images/power2.webp" class="img-fluid" alt="power talk" loading="lazy" decoding="async">
+                        <div class="impnews-inner-div">
+                          <p>Coming Soon.</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="impnews-div">
+                        <img src="/assets/website-images/power2.webp" class="img-fluid" alt="power talk" loading="lazy" decoding="async">
+                        <div class="impnews-inner-div">
+                          <p>Coming Soon.</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="impnews-div">
+                        <img src="/assets/website-images/power2.webp" class="img-fluid" alt="power talk" loading="lazy" decoding="async">
+                        <div class="impnews-inner-div">
+                          <p>Coming Soon.</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+  <section id="knowledge" class="section-padding bg-grey">
+    <div class="container-fluid">
+      <div class="row ">
+        <div class="col-md-10">
+          <div class="about-detail">
+            <h2>Knowledge, they say, is more <span>powerful</span> than any other <span>creation by humans</span></h2>
+            <p>Pcard shaves the knowledge from around the world. just another way, we want the world to become one
+              through sharing of knowledge and contacts, of course !</p>
+          </div>
+        </div>
+      </div>
+      <div class="row pt50 pb30 justify-row row-gap-60">
+        <!-- <div class="col-lg-1 col-0"></div> -->
+
+        
+        <a  *ngFor="let blog of blogs; let i = index" class="col-md-2 col-3 custom_category"
+        [href]="i === 0 ? null : blog.url+'/blogs/' + blog.slug"
+        style="pointer-events: auto; cursor: pointer;">
+        
+          <div class="knowleg-box">
+            <img [src]="blog.image" alt="{{ blog.title }}" loading="lazy" decoding="async">
+            <p></p>
+          </div>
+        </a>
+
+
+
+
+        <!-- <div class="col-md-1"></div> -->
+      </div>
+
+
+
+    </div>
+
+
+  </section>
+
+
+
+
+
+
+
+  <section id="social" class="bg-yellow">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-7 pt30 social-detail-col">
+          <div class="social-detail">
+            <h2>Social</h2>
+            <h2>Initiative.</h2>
+            <h3>Pcards Cares and Loves to share!</h3>
+            <p>Society is where our heart is. When you become part of the Pcards community, you contribute and help
+              Create
+              a better world for our future generation.</p>
+            <div class="profile-btn">
+              <button (click)="gotoWebsite()" class="btn btn-social">Join the Community</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5"></div>
+      </div>
+    </div>
+  </section>
+  <section id="rating" class="bg-grey pt100 pb50">
+    <div class="container-fluid">
+      <div class="row mobilePaddingBottom">
+        <div class="col-lg-6 col-6">
+          <div class="rating-detail">
+            <a href="https://apps.apple.com/us/app/pcards/id6443616039" target="_blank">
+              <h2>5.0 <span>App Store</span>
+              </h2>
+            </a>
+            <ul class="rating-box-list">
+              <li>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+            </ul>
+            <div class="rating-btn w-100">
+
+              <a href="https://apps.apple.com/us/app/pcards/id6443616039" target="_blank" class="btn btn-rating">
+                <i class="fa-brands fa-apple"></i> Download The App </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-6">
+          <div class="rating-detail">
+            <a href="https://play.google.com/store/apps/details?id=org.pcards.app" target="_blank">
+              <h2>4.8 <span>Play Store</span>
+              </h2>
+            </a>
+            <ul class="rating-box-list">
+              <li>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li>
+                <i class="fa-solid fa-star-half" aria-hidden="true"></i>
+              </li>
+            </ul>
+            <div class="rating-btn w-100">
+              <a href=" https://play.google.com/store/apps/details?id=org.pcards.app" class="btn btn-rating">
+               <i class="fa-brands fa-android"></i> Download The App </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pt50">
+        <div class="col-md-6 floatNone">
+          <div id="testimonial-slider">
+            <div class="swiper testimonial_Swiper">
+              <div class="swiper-wrapper">
+              
+                <div class="swiper-slide" *ngFor="let t of testimonials">
+                  <div class="testimonial_sec testimonial">
+                    <div class="client_img_sec d-flex pic">
+                      <img [src]="t.image" alt="client-image" loading='lazy'>
+                      <div class="client_detail">
+                        <h3 class="testimonial-title">{{ t.title_name }}</h3>
+                        <h4 class="testi-designation">{{ t.designation }}</h4>
+                        <ul class="p-0 d-flex test-box-list">
+                          <li class="list-unstyled" *ngFor="let star of stars">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="description">
+                      <p>{{ t.description }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</section>

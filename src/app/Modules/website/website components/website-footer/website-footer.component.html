@@ -1,0 +1,147 @@
+
+
+<footer class="section pt100 pb30">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="footer_fix">
+                    <a [href]='websiteUrl' class="d-block">
+                        <img src="/assets/website-images/cropped-logo-dark.webp" class="img-fluid" alt="Pcard"
+                            loading="lazy">
+                    </a>
+                    <p class="text-white">At PCARDS Business Networks, we don't just empower – we inspire. Join us on
+                        this journey of
+                        growth, connection, and transformation.</p>
+
+                    <div class="footer-icons">
+                        <ul class="list-unstyled d-flex align-items-center gap-2">
+                            <li><a href="https://www.facebook.com/pcards.org/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/pcards.org/" target="_blank" aria-label="LinkedIn"><i
+                                        class="fa-brands fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.instagram.com/pcardsindia/" target="_blank" aria-label="Instagram"><i
+                                        class="fa-brands fa-instagram"></i></a></li>
+                            <li>
+                                <!-- <a href="https://wa.me/+919158883141" target="_blank"  rel="noopener noreferrer"><i
+                                        class="fa-brands fa-whatsapp"></i></a> -->
+                                    
+                                    
+                                       <button  type="button"  aria-label="Contact PCARDS on WhatsApp" (click)="openWhatsApp()">
+                                     <i class="fa-brands fa-whatsapp"></i>
+                                       </button>
+                                    </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="page_link">
+                    <h3>Power Card</h3>
+                    <ul class="list-unstyled">
+                        <li><a routerLink="digital/digital-business-card" routerLinkActive="active">Digital Card</a>
+                        </li>
+                        <li><a routerLink="digital/mini-website" routerLinkActive="active">Mini Website</a></li>
+                        <li><a routerLink="digital/social-media-post" routerLinkActive="active">Social Media Post</a>
+                        </li>
+                        <li><a routerLink="digital/how-it-works" routerLinkActive="active">How It Works</a></li>
+                        <li><a routerLink="digital/faq" routerLinkActive="active">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="page_link">
+                    <h3>Quick Links</h3>
+                    <ul class="list-unstyled">
+                        <li><a routerLink="digital/join-our-team" routerLinkActive="active">Join Our Team</a></li>
+                        <li><a routerLink="digital/power-ambassador" routerLinkActive="active">Power Ambassador</a></li>
+                        <li><a routerLink="digital/nfc-compatible-devices" routerLinkActive="active">NFC
+                                Compatibility</a></li>
+                        <li><a routerLink="digital/price" routerLinkActive="active">Price</a></li>
+                        <li><a routerLink="digital/contact" routerLinkActive="active">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-md-6 col-6">
+                        <div class="page_link">
+                            <h3>Policies</h3>
+                            <ul class="list-unstyled">
+                                <li><a routerLink="digital/privacy-policy" routerLinkActive="active">Privacy Policy</a>
+                                </li>
+                                <li><a routerLink="digital/terms-of-use" routerLinkActive="active">Terms of Use</a></li>
+                                <li>
+                                    <!-- <a href="#"></a> -->
+                                </li>
+                                <li>
+                                    <!-- <a href="#"></a> -->
+                                </li>
+                                <li class="mobile_none">
+                                    <input type="email" class="form-control" placeholder="Enter Your Email id"
+                                        [(ngModel)]="Subscriber.email" name="email" required>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <div class="page_link">
+                            <h3>Download app</h3>
+                            <ul class="list-unstyled">
+                                <li class="opacity-0">
+                                    <!-- <a href="#"></a> -->
+                                </li>
+                                <li>
+                                    <a aria-label="IOS APP" href="https://apps.apple.com/us/app/pcards/id6443616039" target="_blank"><i
+                                            class="fa-brands fa-apple"></i></a>
+                                    <a aria-label="Android APP" href="https://play.google.com/store/apps/details?id=org.pcards.app"
+                                        target="_blank"><i class="fa-brands fa-android"></i></a>
+
+                                </li>
+                                <li class="opacity-0">
+                                    <!-- <a href="#"></a> -->
+                                </li>
+
+                                <li class="mobile_none">
+                                    <div>
+                                        <button class="btn web_fill_btn" type="button" (click)="onSubmit()"
+                                            [disabled]="isSending">
+                                            {{ isSending ? 'Subscribing...' : 'Subscribe' }}
+                                        </button>
+                                <li *ngIf="sendMsg" style="color: red; margin-top: 8px;">
+                                    {{ sendMsg }}
+                                </li>
+
+                                   <li *ngIf="ok_sendMsg" style="color: green; margin-top: 8px;">
+                                    {{ ok_sendMsg }}
+                                </li>
+
+                                
+                        </div>
+                        </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 desktop_none">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="mobile_view page_link">
+                            <input type="email" class="form-control" placeholder="Enter Your Email id"
+                                [(ngModel)]="Subscriber.email" name="email" required>
+
+                        </div>
+
+                        <div class="mobile_view">
+                            <button class="btn web_fill_btn" type="button" (click)="onSubmit()" [disabled]="isSending">
+                                {{ isSending ? 'Subscribing...' : 'Subscribe' }}
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</footer>

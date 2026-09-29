@@ -1,0 +1,231 @@
+<!---------- template 1------------>
+
+<!-- Skills section -->
+@if(template_type == 'layout1') {
+<section class="skills dark-card" id="Skills" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background-color': card2bgcolour
+                                                          }">
+    <div class="card-headings-div">
+        <h3 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                         
+                                                          }">
+            {{data.title}}
+        </h3>
+        <p class="heading-border" [ngStyle]="{
+                                                            'border':  '1px  solid ' + card2textcolour,
+                                                         
+                                                          }"></p>
+    </div>
+    <div class="skill-data-div">
+        <!-- <div class="row">
+            <div class="col-md-12">
+                <div class="accordion panel-group" id="accordion">
+                    <div class="accordion-item panel panel-default"
+                    
+                        *ngFor="let skill of data.data; let i = index">
+                        <h2 class="accordion-header panel-heading">
+                            <button class="accordion-button collapsed panel-title" type="button"
+                                data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseskill' + i"
+                                aria-expanded="false" [attr.aria-controls]="'collapseskill' + i">
+                                Skill {{ i + 1 }}
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse" [id]="'collapseskill' + i" data-bs-parent="#accordion">
+                            <div class="accordion-body panel-body">
+                                <p>{{ skill.skill }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="skill-data" *ngFor="let skill of data.data; let i = index">
+            {{ skill.skill }}
+        </div>
+
+    </div>
+
+</section>
+}
+
+<!---------- template 2------------>
+
+<!-- Skills section -->
+@else if(template_type == 'layout2') {
+<section class="skills w-100">
+    <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+    <!-- <div class="skill-data-div">
+      
+         <div class="skill-data" [ngStyle]="{
+                                                            'color': card1textcolour
+                                                          }"  *ngFor="let skill of data.data; let i = index">
+           {{ skill.skill }}
+        </div>
+    </div> -->
+
+    <div class="final-skill">
+        <ul class="row">
+            <div class="col-md-12">
+                <li *ngFor="let skill of data.data; let i = index">
+                    <a [ngStyle]="{
+                                                            'color': card1textcolour
+                                                          }">
+                        {{ skill.skill }}
+                    </a>
+                </li>
+
+            </div>
+        </ul>
+    </div>
+
+</section>
+}
+
+<!---------- template 3------------>
+<!-- Skills section -->
+@else if(template_type == 'layout3') {
+<section class="skills w-100">
+    <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' + card2textcolour}">
+        {{data.title}}</h2>
+    <div class="skill-data-div">
+        <div class="skill-data" *ngFor="let skill of data.data; let i = index" [ngStyle]="{
+                                                            'color': card1textcolour
+                                                          }">
+            {{ skill.skill }}
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 4------------>
+@else if(template_type == 'layout4') {
+<section class="skills w-100">
+    <h3 *ngIf="styletype != 'style4'" class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+
+    <!-- ------ for t4 --- -->
+    <div *ngIf="styletype == 'style4'" class="card-headings-div">
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}}</h3>
+    </div>
+
+    <div class="skill-data-div" [ngStyle]="{'background-color': card2bgcolour}">
+        <div class="skill-data" *ngFor="let skill of data.data; let i = index">
+            {{ skill.skill }}
+        </div>
+    </div>
+</section>
+
+
+
+
+}
+
+
+<!---------- template 5------------>
+@else if(template_type == 'layout5') {
+<section class="skills w-100">
+    <h3 class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+    <div class="skill-data-div" [ngStyle]="{'background-color': card2bgcolour}">
+        <div class="skill-data" *ngFor="let skill of data.data; let i = index">
+            {{ skill.skill }}
+        </div>
+    </div>
+</section>
+}
+
+<!---------- template 6------------>
+@else if(template_type == 'layout6') {
+<section class="skills w-100">
+    <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h3>
+    <div class="skill-data-div">
+        <div class="skill-data" *ngFor="let skill of data.data; let i = index">
+            {{ skill.skill }}
+        </div>
+    </div>
+</section>
+}
+
+
+
+<!---------- template 7------------>
+
+@else if(template_type == 'layout7') {
+<div class="tab-data skills">
+    <div class="section-headings">
+        <h2 [ngStyle]="{'color':  bodytextcolour}">{{data.title}}</h2>
+        <span [ngStyle]="{'background': card1bgcolour}"></span>
+    </div>
+
+    <div class="single"   *ngFor="let skill of (showAllSkills ? data.data : (data.data | slice:0:7));let i = index"
+        [ngStyle]="{'background': 'color-mix(in srgb, ' + bodybgcolour + ' 94%, ' + bodytextcolour + ' 4%)'}">
+        <span [ngStyle]="{'color':  bodytextcolour}"> {{ skill.skill }}</span>
+    </div>
+
+     <div class="text-start ps-2" *ngIf="data?.data?.length > 7">
+        <button type="button" class="see-more-btn" (click)="showAllSkills = !showAllSkills">
+            {{ showAllSkills ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+        </button>
+    </div>
+</div>
+}
+
+
+
+<!-- --------------template 8 ------- -->
+@else if(template_type == 'layout8') {
+<div class=" col-div skill-col">
+    <h2 class="card-heading" [ngStyle]="{ border: '0.5px dashed ' + card1bgcolour , color: card1bgcolour }"><i
+            class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i class="fa-solid fa-right-long"></i></h2>
+    <div class="parent-div">
+        <div class="single-div"
+            [ngStyle]="{  'background-color': i % 2 === 0
+      ? 'color-mix(in srgb, ' + card1bgcolour + ' 8%, ' + card1textcolour + ' 79%)'
+      : 'color-mix(in srgb, ' + bodytextcolour + ' 4%, ' + bodybgcolour + ' 56%)'
+     }"
+            *ngFor="let skill of (showAllSkills ? data.data : (data.data | slice:0:6));let i = index">{{ skill.skill }}
+        </div>
+
+        <div class="text-start ps-2" *ngIf="data?.data?.length > 6">
+        <button type="button" class="see-more-btn" (click)="showAllSkills = !showAllSkills">
+            {{ showAllSkills ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+        </button>
+    </div>
+
+    </div>
+    
+</div>
+}
+
+ <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+ <div class=" col-div skill-col">
+                    <h2 class="card-heading" [ngStyle]="{ color: bodytextcolour }"><span [ngStyle]="{ background: card1bgcolour }"></span>{{data.title}}</h2>
+                    <div class="parent-div">
+                        <div class="single-div" [ngStyle]="{  'background-color': i % 2 === 0
+      ? 'color-mix(in srgb, ' + card1bgcolour + ' 8%, ' + card1textcolour + ' 79%)'
+      : 'color-mix(in srgb, ' + bodytextcolour + ' 4%, ' + bodybgcolour + ' 56%)'
+     }" 
+                          *ngFor="let skill of (showAllSkills ? data.data : (data.data | slice:0:6));let i = index">{{ skill.skill }}</div>
+
+
+                          <div class="text-start ps-2" *ngIf="data?.data?.length > 6">
+        <button type="button" class="see-more-btn" (click)="showAllSkills = !showAllSkills">
+            {{ showAllSkills ? 'See Less' : 'See More' }} <i class="fa-solid fa-angles-right"></i>
+        </button>
+    </div>
+                       
+                    </div>
+                </div>
+    }

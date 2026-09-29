@@ -1,0 +1,2769 @@
+<app-website-header></app-website-header>
+<!-- <ion-input (input)="search($event)" placeholder="Enter for Serach Operation"></ion-input> -->
+
+<div #contentRef (scroll)="onScroll($event)" class="activetemplate-page">
+
+
+  <!-- Your entire template here -->
+  <div class="container">
+    <!-- <div class="top_sec">
+      <div class="section-title2">
+        <h2>Active Cards</h2>
+      </div>
+      <div class="search_action">
+        <div class="row">
+          <div class="col-12">
+            <input class="form-control" [(ngModel)]="searchText" (input)="search()" placeholder="Enter for Serach Operation">
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="top_sec">
+      <div class="row align-items-center justify-content-end">
+
+          <!-- Heading -->
+          <div class="col-12 col-md-4 heading-col">
+            <div class="section-title2">
+              <h2>Active Cards</h2>
+            </div>
+          </div>
+
+          <!-- Search -->
+          <div class="col-12 col-md-4 search-col">
+            <div class="ion-searchbar">
+              <i class="fa-solid fa-magnifying-glass"></i> <input  [(ngModel)]="searchText" (input)="search()"
+              placeholder="Enter for Search Operation">
+            </div>
+           
+          </div>
+
+      </div>
+    </div>
+    <div class="row p-0 m-0">
+
+
+        <ng-container *ngIf="active_template_data && active_template_data.length>0">
+
+          <ng-container *ngFor="let data of active_template_data">
+
+            <!-- template-1 -->
+
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 template-1"
+              *ngIf="data?.template_type[0]?.layout_name=='Layout-4'">
+              <!-- /////////////template/////////// -->
+
+              <div class="template-div"
+                [ngStyle]="{ 'background-color': data.template_layout_style[0].card_background_color1 }">
+
+
+                <div class="profile-padd-image-div w-100"
+                  [ngStyle]="{'background-image': 'url(data:image/png;base64,' + data.template_layout_style[0].card_background_image1 + ')'}">
+                  <a [href]="data?.pcard_url_template?.[0]?.template_url || null">
+                    <section class="top-img-div">
+                      <!-- <img class="top-img" [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/top-img.png'"> -->
+                      <img class="top-img"
+                        [src]="data?.template_layout_style[0]?.profile_back_image?'data:image/png;base64,'+data.template_layout_style[0].profile_back_image:''"
+                        alt="image">
+
+                    </section>
+                  </a>
+
+                  <div class="profile-outer-div ">
+                    <!-- <section class="profile-image-div">
+                    <img class="profile-img"
+                      [src]="data?.profile_images[0]?.image?'data:image/png;base64,'+data.profile_images[0].image:''"
+                      alt="image">
+                      <img
+      class="profile-img"
+      
+      src="assets\Image.webp"
+      alt="default profile image">
+
+
+                  </section> -->
+
+                    <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank" class="profile-image-div">
+
+                      <!-- When profile image exists -->
+                      <img *ngIf="data?.profile_images[0]?.image; else defaultImg" class="profile-img"
+                        [src]="'data:image/png;base64,' + data?.profile_images[0].image" alt="profile image" />
+
+                      <!-- Default image -->
+                      <ng-template #defaultImg>
+                        <img class="profile-img" src="assets/Image.webp" alt="default profile image" />
+                      </ng-template>
+
+                    </a>
+
+
+                    <section class="profile-card  dark-card"
+                      [ngStyle]="{'color': data.template_layout_style[0].card_text_color2,'background-color': data.template_layout_style[0].card_back_color2}">
+                      <div class="w-100">
+                        <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank">
+                          <h1 [ngStyle]="{'color': data.template_layout_style[0].card_text_color2}">
+                            {{data?.profile_images[0]?.first_name?data.profile_images[0].first_name:''}}
+                            {{data?.profile_images[0]?.last_name?data.profile_images[0].last_name:''}}</h1>
+                        </a>
+                        <h2 [ngStyle]="{'color': data.template_layout_style[0].card_text_color1 }">
+                          {{data?.profile_images[0]?.designation?data.profile_images[0].designation:''}}</h2>
+
+                        <p [ngStyle]="{'color': data.template_layout_style[0].card_text_color2}"> PCards Pvt Ltd</p>
+                        <div class="profile-btn-div">
+                          <button type="button" class="light-bg-btn" (click)="onFileSelected($event,data)">
+                            <i class="fa-regular fa-bookmark"></i> Save Contact</button>
+                          <button type="button" class="light-bg-btn" (click)="openShareModal(data)">
+                            <i class="fa-solid fa-share-nodes"></i> Share Profile</button>
+                        </div>
+                      </div>
+
+                    </section>
+                  </div>
+
+                  <section class="social-icon light-card" [ngStyle]="{
+                                                            'color': data.template_layout_style[0].card_text_color1 
+                                                          }">
+                    <div class="icon-div">
+                      <div class="row">
+                        <ng-container *ngFor="let datas of data.social_data">
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.product_images_url.includes('facebook') || datas.social_portal=='facebook'">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/facebook.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='instagram' || datas.product_images_url.includes('instagram')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/instagram.png'" /></a>
+
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='youtube' || datas.product_images_url.includes('youtube')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/youtube.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='twitter' || datas.product_images_url.includes('twitter')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/twitter.png'" /></a>
+
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='linkedin' || datas.product_images_url.includes('linkedin')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/linkedin.png'" /></a>
+
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='globe' || datas.product_images_url.includes('globe')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/Globe.png'" /></a>
+
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='indiamart' || datas.product_images_url.includes('indiamart')">
+                            <a target="_blank"><img
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/fa-indiamart.png'" /></a>
+                          </div>
+
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='justdail' || datas.product_images_url.includes('justdail')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/fa-justdial.png'" /></a>
+                          </div>
+
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='pinterest' || datas.product_images_url.includes('pinterest')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/fa-pinterest.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='whatsapp' || datas.product_images_url.includes('whatsapp')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/whatsapp.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='googlemybusiness' || datas.product_images_url.includes('googlemybusiness')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/googlebusiness.png'" /></a>
+                          </div>
+                        </ng-container>
+
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="social-icon light-card" [ngStyle]="{
+                                                            'color': data.template_layout_style[0].card_text_color1 
+                                                          }">
+                    <div class="icon-div" *ngFor="let datas of data.contact_Details">
+
+
+
+                      <div class="row">
+                        <div class="col d-flex justify-content-center" *ngIf="datas.mobile_no">
+                          <a target="_blank" [href]="'tel:' +datas.mobile_no"><img alt="social icon images"
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/call.png'" /></a>
+                        </div>
+                        <div class="col d-flex justify-content-center" *ngIf="datas.email_id">
+                          <a target="_blank" [href]="'mailto:' + datas.email_id"><img alt="social icon images"
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/mail.png'" /></a>
+                        </div>
+                        <div class="col d-flex justify-content-center" *ngIf="datas.wp_number">
+                          <a target="_blank" [href]="'https://wa.me/' + datas.wp_number"><img alt="social icon images"
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/whatsapp.png'" /></a>
+                        </div>
+
+                        <div class="col d-flex justify-content-center" *ngIf="datas.user_address">
+                          <a target="_blank" data-bs-toggle="collapse" data-bs-target="#location-address"
+                            aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                            <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/location.png'"
+                              alt="social icon images" /></a>
+                        </div>
+                      </div>
+                      <div id="location-address" class="panel-collapse collapse location-address" role="tabpanel"
+                        aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body">
+                          <p [ngStyle]="{
+                                                            'color': data.template_layout_style[0].card_text_color1 
+                                                          }">{{datas.user_address}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+
+            <!-- template-2 -->
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 template-2"
+              *ngIf="data?.template_type[0]?.layout_name=='Layout-5'">
+              <div class="template-div"
+                [ngStyle]="{'background-color': data.template_layout_style[0].card_background_color1 }">
+                <div class="w-100">
+
+                  <section class="top-img-div">
+                    <!-- <img class="top-img" [src]="globalObject.assetsUrl + '/templates_pcard/template_two/profile-bg.jpg'"> -->
+                    <img class="top-img"
+                      [src]="data?.template_layout_style[0]?.profile_back_image?'data:image/png;base64,'+data.template_layout_style[0].profile_back_image:''"
+                      alt="image">
+
+                  </section>
+
+
+                  <div class="profile-outer-div ">
+                    <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank" class="profile-image-div">
+                      <!-- <img class="profile-img"  [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/img-2.jpg'"> -->
+                      <!-- <img class="profile-img"
+                        [src]="data?.profile_images[0]?.image?'data:image/png;base64,'+data.profile_images[0].image:''"
+                        alt="image"> -->
+
+
+                      <!-- When profile image exists -->
+                      <img *ngIf="data?.profile_images?.[0]?.image; else defaultImg" class="profile-img"
+                        [src]="'data:image/png;base64,' + data.profile_images[0].image" alt="profile image" />
+
+                      <!-- Default image -->
+                      <ng-template #defaultImg>
+                        <img class="profile-img" src="assets/Image.webp" alt="default profile image" />
+                      </ng-template>
+
+                    </a>
+                    <section class="profile-card ">
+                      <div>
+                        <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank">
+                          <h1 [ngStyle]="{'color': data.template_layout_style[0].card_text_color1 }">
+                            {{data?.profile_images[0]?.first_name?data.profile_images[0].first_name:''}}
+                            {{data?.profile_images[0]?.last_name?data.profile_images[0].last_name:''}}</h1>
+                        </a>
+                        <p class="designation" [ngStyle]="{'color': data.template_layout_style[0].card_text_color1 }">
+                          {{data?.profile_images[0]?.designation?data.profile_images[0].designation:''}}</p>
+                        <p [ngStyle]="{'color': data.template_layout_style[0].card_text_color1 }">
+                          {{data?.profile_images[0]?.company_name?data.profile_images[0].company_name:''}}</p>
+                        <div class="profile-btn-div">
+                          <button class="light-bg-btn" (click)="onFileSelected($event,data)" 
+                          [ngStyle]="getProfileHoverStyle(1, 'save-contact',data.template_layout_style?.[0],data , 'button')"
+                            (mouseenter)="setHover(1, 'save-contact',data)" (mouseleave)="clearHover(data)"><i
+                              class="fa-regular fa-bookmark"
+                              [ngStyle]="getProfileHoverStyle(1, 'save-contact',data.template_layout_style?.[0],data , 'icon')"></i></button>
+                          <button class="light-bg-btn" data-bs-toggle="modal" data-bs-target="#share-profile-popup1"
+                            (click)="openShareModal(data)"
+                            [ngStyle]="getProfileHoverStyle(2, 'share',data.template_layout_style?.[0],data , 'button')"
+                            (mouseenter)="setHover(2, 'share',data)" (mouseleave)="clearHover(data)"><i
+                              class="fa-solid fa-share-nodes"
+                                 [ngStyle]="getProfileHoverStyle(2, 'share',data.template_layout_style?.[0],data , 'icon')"></i></button>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <div class="with-padding">
+                  <div class="w-100 d-flex flex-column gap-3">
+                    <section class="social-icon ">
+                      <div class="icon-div">
+                        <div class="row">
+
+
+
+                          <ng-container *ngFor="let datas of data.social_data">
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.product_images_url.includes('facebook') || datas.social_portal=='facebook'">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/facebook-ttwo.png'" /></a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.social_portal=='instagram' || datas.product_images_url.includes('instagram')">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/instagram-ttwo.png'" /></a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.social_portal=='youtube' || datas.product_images_url.includes('youtube')">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/youtube-ttwo.png'" /></a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.social_portal=='twitter' || datas.product_images_url.includes('twitter')">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/twitter-ttwo.png'" /></a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.social_portal=='linkedin' || datas.product_images_url.includes('linkedin')">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/linkedin.png'" /></a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.social_portal=='globe' || datas.product_images_url.includes('globe')">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/globe-ttwo.png'" /></a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.social_portal=='indiamart' || datas.product_images_url.includes('indiamart')">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/indiamart-ttwo.png'" /></a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.social_portal=='justdail' || datas.product_images_url.includes('justdail')">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/Justdail.png'" /></a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.social_portal=='pinterest' || datas.product_images_url.includes('pinterest')">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/pinterest-ttwo.png'" /></a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.social_portal=='whatsapp' || datas.product_images_url.includes('whatsapp')">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp-ttwo.png'" /></a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center i-div"
+                              *ngIf="datas.social_portal=='googlemybusiness' || datas.product_images_url.includes('googlemybusiness')">
+                              <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                  [src]="globalObject.assetsUrl + '/templates_pcard/template_two/googlemy-ttwo.png'" /></a>
+                            </div>
+                          </ng-container>
+
+
+
+                        </div>
+                      </div>
+                    </section>
+
+                    <section class="social-icon">
+                      <div class="icon-div">
+                        <div class="row">
+
+
+                          <!-- <app-social-contact></app-social-contact> -->
+
+
+                          <ng-container *ngIf="data?.contact_Details">
+                            <!-- <div class="col d-flex justify-content-center i-div" >
+				<a target="_blank" ><img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/telephone.png'" /></a>
+
+			</div>
+			<div class="col d-flex justify-content-center i-div">
+				<a target="_blank" ><img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/mail.png'" /></a>
+			</div>
+			<div target="_blank" class="col d-flex justify-content-center i-div">
+				<a target="_blank"><img
+						 [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp-ttwo.png'" /></a>
+			</div>
+			<div class="col d-flex justify-content-center i-div">
+				<a target="_blank" data-bs-toggle="collapse" data-bs-target="#location-address1" aria-expanded="false"
+					aria-controls="collapseOne" class="collapsed">
+					<img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/location.png'" /></a>
+			</div> -->
+                            <!-- layout 2 -->
+                            <ng-container *ngFor="let datas of data.contact_Details">
+                              <div class="col d-flex justify-content-center i-div" *ngIf="datas.mobile_no_flag">
+                                <a target="_blank" [href]="'tel:' +datas.mobile_no"><img alt="social icon images"
+                                    [src]="globalObject.assetsUrl + '/templates_pcard/template_two/telephone.png'" /></a>
+                              </div>
+                              <div class="col d-flex justify-content-center i-div" *ngIf="datas.email_id_flag">
+                                <a target="_blank" [href]="'mailto:' + datas.email_id"><img alt="social icon images"
+                                    [src]="globalObject.assetsUrl + '/templates_pcard/template_two/mail.png'" /></a>
+                              </div>
+                              <div class="col d-flex justify-content-center i-div" *ngIf="datas.wp_number_flag">
+                                <a target="_blank" [href]="'https://wa.me/' + datas.wp_number"><img
+                                    alt="social icon images"
+                                    [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp-ttwo.png'" /></a>
+                              </div>
+
+                              <div class="col d-flex justify-content-center i-div" *ngIf="datas.user_address_flag">
+                                <a target="_blank" data-bs-toggle="collapse" data-bs-target="#location-address1"
+                                  aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                  <img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/location.png'"
+                                    alt="social icon images" /></a>
+                              </div>
+                            </ng-container>
+
+                          </ng-container>
+
+
+                        </div>
+                        <div id="location-address1" class="panel-collapse collapse location-address" role="tabpanel"
+                          aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                          <div class="panel-body">
+                            <p [ngStyle]="{'color': data.template_layout_style[0].card_text_color1 }">Location</p>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+            <!-- template-3 -->
+
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 template-3"
+              *ngIf="data?.template_type[0]?.layout_name=='Layout-6'">
+              <div class="template-div">
+                <div class="w-100 light-card" [ngStyle]="{
+                                                          'color': data.template_layout_style[0].card_text_color1,
+                                                            'background-color': data.template_layout_style[0].card_background_color1
+                                                          }">
+                  <div class="profile-btn-div">
+                    <button class="light-bg-btn" (click)="onFileSelected($event,data)"   [ngStyle]="getProfileHoverStyle(3, 'save-contact',data.template_layout_style?.[0],data , 'button')"
+                            (mouseenter)="setHover(3, 'save-contact',data)" (mouseleave)="clearHover(data)"><i class="fa-regular fa-bookmark"
+                           [ngStyle]="getProfileHoverStyle(3, 'save-contact',data.template_layout_style?.[0],data , 'icon')"
+                                                          ></i></button>
+                    <button class="light-bg-btn" data-bs-toggle="modal" data-bs-target="#share-profile-popup1 "   [ngStyle]="getProfileHoverStyle(4, 'share',data.template_layout_style?.[0],data , 'button')"
+                            (mouseenter)="setHover(4, 'share',data)" (mouseleave)="clearHover(data)" 
+                      (click)="openShareModal(data)"><i class="fa-solid fa-share-nodes"
+                        [ngStyle]="getProfileHoverStyle(4, 'share',data.template_layout_style?.[0],data , 'icon')"
+                      ></i></button>
+                  </div>
+
+
+                  <div class="profile-outer-div ">
+
+                    <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank" class="profile-image-div">
+                      <!-- <img class="profile-img"  [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/img-2.jpg'"> -->
+                      <!-- <img class="profile-img"
+                        [src]="data?.profile_images[0]?.image?'data:image/png;base64,'+data.profile_images[0].image:''"
+                        alt="image"> -->
+
+
+                      <!-- When profile image exists -->
+                      <img *ngIf="data?.profile_images?.[0]?.image; else defaultImg" class="profile-img"
+                        [src]="'data:image/png;base64,' + data.profile_images[0].image" alt="profile image" />
+
+                      <!-- Default image -->
+                      <ng-template #defaultImg>
+                        <img class="profile-img" src="assets/Image.webp" alt="default profile image" />
+                      </ng-template>
+
+                    </a>
+                    <section class="profile-card ">
+                      <div class="profile-data">
+                        <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank">
+                          <h1 [ngStyle]=" {'color': data.template_layout_style[0].card_text_color1 }">
+                            {{data?.profile_images[0]?.first_name?data.profile_images[0].first_name:''}}
+                            {{data?.profile_images[0]?.last_name?data.profile_images[0].last_name:''}}</h1>
+                        </a>
+                        <p class="designation" [ngStyle]=" {'color': data.template_layout_style[0].card_text_color1 }">
+                          {{data?.profile_images[0]?.designation?data.profile_images[0].designation:''}}</p>
+                        <p [ngStyle]=" {'color': data.template_layout_style[0].card_text_color1 }">
+                          {{data?.profile_images[0]?.company_name?data.profile_images[0].company_name:''}}</p>
+                      </div>
+
+
+
+                      <section class="social-icon">
+
+                        <ng-container *ngFor="let datas of data.contact_Details">
+
+
+                          <div class="icon-div">
+
+                            <a target="_blank" [href]="'tel:' +datas.mobile_no" *ngIf="datas.mobile_no"><img
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_three/phone.png'"
+                                alt="social icon images" /></a>
+
+                            <a target="_blank" [href]="'mailto:' + datas.email_id" *ngIf="datas.email_id"><img
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_three/envelope.png'"
+                                alt="social icon images" /></a>
+
+                            <a target="_blank" [href]="'https://wa.me/' + datas.wp_number" *ngIf="datas.wp_number">
+                              <img
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_three/whatsapp-tthree.png'"
+                                alt="social icon images" /></a>
+
+                            <a target="_blank" href="#location-address2" data-bs-toggle="collapse" data-bs-target="#location-address2"
+                              aria-expanded="false" aria-controls="collapseOne" class="collapsed"
+                              *ngIf="datas.user_address"><img
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_three/location.png'"
+                                alt="social icon images" /></a>
+                          </div>
+
+                          <div id="location-address2" class="panel-collapse collapse location-address" role="tabpanel"
+                            aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                              <p [ngStyle]="{
+                                                            'color': data.template_layout_style[0].card_text_color1 
+                                                          }">{{datas.user_address}}</p>
+                            </div>
+                          </div>
+                        </ng-container>
+
+                      </section>
+
+                    </section>
+
+                  </div>
+                </div>
+                <div class="with-padding"
+                  [ngStyle]="{'color': data.template_layout_style[0].card_text_color2,'background-color': data.template_layout_style[0].card_back_color2}">
+                  <section class="social-icon ">
+                    <div class="icon-div">
+                      <div class="row">
+
+                        <ng-container *ngFor="let datas of data.social_data">
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='facebook' || datas.social_portal=='facebook'">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/facebook-ttwo.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='instagram' || datas.product_images_url.includes('instagram')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/instagram-ttwo.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='youtube' || datas.product_images_url.includes('youtube')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/youtube-ttwo.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='twitter' || datas.product_images_url.includes('twitter')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/twitter-ttwo.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='linkedin' || datas.product_images_url.includes('linkedin')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/linkedin.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='globe' || datas.product_images_url.includes('globe')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/globe-ttwo.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='indiamart' || datas.product_images_url.includes('indiamart')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/indiamart-ttwo.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='justdail' || datas.product_images_url.includes('justdail')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/Justdail.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='pinterest' || datas.product_images_url.includes('pinterest')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/pinterest-ttwo.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='whatsapp' || datas.product_images_url.includes('whatsapp')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp-ttwo.png'" /></a>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center i-div"
+                            *ngIf="datas.social_portal=='googlemybusiness' || datas.product_images_url.includes('googlemybusiness')">
+                            <a target="_blank" [href]="datas.product_images_url"><img alt="social links images"
+                                [src]="globalObject.assetsUrl + '/templates_pcard/template_two/googlemy-ttwo.png'" /></a>
+                          </div>
+                        </ng-container>
+
+
+
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- template-4 -->
+
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 template-4"
+              *ngIf="data?.template_type[0]?.layout_name=='Layout-1'">
+
+              <div class="template-div {{data.styleArr[data.card_style]?.temp_div_class}}"
+                [ngStyle]="data.styleArr[data.card_style]?.temp_div_style">
+                <div class="profile-section">
+
+                  <!-- profile_bg_img_div -->
+
+                  <div class="profile-bg-img-div"
+                    [ngStyle]="data.styleArr[data.card_style]?.profile_bg_img_div? data.styleArr[data.card_style]?.profile_bg_img_div: {'background-image': 'linear-gradient(45deg, #000000ba, #00000080), url('+ 'data:image/png;base64,'+ data.template_layout_style[0].profile_back_image+')'}">
+
+                    <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank" class="profile-photo-div">
+                      <!-- <img  [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/img-2.jpg'"> -->
+                      <!-- <img
+                        [src]="data?.profile_images[0]?.image?'data:image/png;base64,'+data.profile_images[0].image:''"
+                        alt="image"> -->
+
+                      <!-- When profile image exists -->
+                      <img *ngIf="data?.profile_images?.[0]?.image; else defaultImg" class="profile-img"
+                        [src]="'data:image/png;base64,' + data.profile_images[0].image" alt="profile image" />
+
+                      <!-- Default image -->
+                      <ng-template #defaultImg>
+                        <img class="profile-img" src="assets/Image.webp" alt="default profile image" />
+                      </ng-template>
+
+                    </a>
+
+
+                    <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank">
+                      <h1 *ngIf="data.card_style!='style2'"
+                        [ngStyle]=" data.styleArr[data.card_style]?.profile_h1_h4_p ? data.styleArr[data.card_style]?.profile_h1_h4_p: {'color': data.template_layout_style[0].card_text_color1 }">
+                        {{data?.profile_images[0]?.first_name?data.profile_images[0].first_name:''}}
+                        {{data?.profile_images[0]?.last_name?data.profile_images[0].last_name:''}}</h1>
+
+
+                      <!-- for t2 -->
+                      <h1 *ngIf="data.card_style=='style2'"
+                        [ngStyle]="data.styleArr[data.card_style]?.profile_h1_p ? data.styleArr[data.card_style]?.profile_h1_p:  {'color': data.template_layout_style[0].card_text_color1 }">
+                        {{data?.profile_images[0]?.first_name?data.profile_images[0].first_name:''}}
+                        {{data?.profile_images[0]?.last_name?data.profile_images[0].last_name:''}}</h1>
+                    </a>
+
+
+                    <section class="social-icon">
+                      <ng-container *ngFor="let datas of data.social_data">
+                        <a target="_blank" [href]="datas.product_images_url"
+                          *ngIf="datas.social_portal=='facebook' || datas.product_images_url.includes('facebook')"
+                          class="i-div facebook">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div linkedin"
+                          *ngIf="datas.social_portal=='linkedin'|| datas.product_images_url.includes('linkedin')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div pinterest"
+                          *ngIf="datas.social_portal=='pinterest'  || datas.product_images_url.includes('pinterest')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div instagram"
+                          *ngIf="datas.social_portal=='instagram' || datas.product_images_url.includes('instagram')">
+                        </a>
+                        <a target="_blank" class="i-div twitter" [href]="datas.product_images_url"
+                          *ngIf="datas.social_portal=='twitter' || datas.product_images_url.includes('twitter')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div youtube"
+                          *ngIf="datas.social_portal=='youtube' || datas.product_images_url.includes('youtube')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div whatsapp"
+                          *ngIf="datas.social_portal=='whatsapp' || datas.product_images_url.includes('whatsapp')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div globe"
+                          *ngIf="datas.social_portal=='globe' || datas.product_images_url.includes('globe')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div indiamart"
+                          *ngIf="datas.social_portal=='indiamart' || datas.product_images_url.includes('indiamart')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div justdail"
+                          *ngIf="datas.social_portal=='justdail' || datas.product_images_url.includes('justdail')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div googlemy"
+                          *ngIf="datas.social_portal=='googlemybusiness' || datas.product_images_url.includes('googlemybusiness')">
+                        </a>
+                      </ng-container>
+                    </section>
+
+
+                    <h4 *ngIf="data.card_style!='style2'"
+                      [ngStyle]=" data.styleArr[data.card_style]?.profile_h1_h4_p ? data.styleArr[data.card_style]?.profile_h1_h4_p:{'color': data.template_layout_style[0].card_back_color2 }">
+                      {{data?.profile_images[0]?.designation?data.profile_images[0].designation:''}}</h4>
+                    <p *ngIf="data.card_style!='style2'"
+                      [ngStyle]="data.styleArr[data.card_style]?.profile_h1_h4_p ? data.styleArr[data.card_style]?.profile_h1_h4_p: {'color': data.template_layout_style[0].card_text_color1 }">
+                      {{data?.profile_images[0]?.company_name?data.profile_images[0].company_name:''}}</p>
+
+                    <!-- for t2 -->
+                    <h4 *ngIf="data.card_style=='style2'"
+                      [ngStyle]=" data.styleArr[data.card_style]?.profile_h4 ? data.styleArr[data.card_style]?.profile_h4:{'color': data.template_layout_style[0].card_back_color2 }">
+                      {{data?.profile_images[0]?.designation?data.profile_images[0].designation:''}}</h4>
+                    <p *ngIf="data.card_style=='style2'"
+                      [ngStyle]=" data.styleArr[data.card_style]?.profile_h1_p ? data.styleArr[data.card_style]?.profile_h1_p:{'color': data.template_layout_style[0].card_text_color1 }">
+                      {{data?.profile_images[0]?.company_name?data.profile_images[0].company_name:''}}</p>
+
+
+                  </div>
+
+                  <section class="social-contact "
+                    [ngStyle]=" data.styleArr[data.card_style]?.social_contact ? data.styleArr[data.card_style]?.social_contact:''">
+
+
+
+                    <ng-container *ngFor="let datas of data.contact_Details">
+                      <div class="links" *ngIf="datas.mobile_no_flag"
+                        [ngStyle]=" data.styleArr[data.card_style]?.social_contact_links ? data.styleArr[data.card_style]?.social_contact_links:''">
+                        <a target="_blank" [href]="'tel:' +datas.mobile_no"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a ? data.styleArr[data.card_style]?.social_contact_a:{'background-color':  data.template_layout_style[0].card_back_color2,'color':  data.template_layout_style[0].card_text_color2}">
+                          <i class="fa-solid fa-phone"></i></a>
+                        <span
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:''">{{datas.mobile_no}}</span>
+
+
+                      </div>
+                      <div class="links" *ngIf="datas.email_id_flag"
+                        [ngStyle]=" data.styleArr[data.card_style]?.social_contact_links ? data.styleArr[data.card_style]?.social_contact_links:''">
+                        <a target="_blank" [href]="'mailto:' + datas.email_id"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a ? data.styleArr[data.card_style]?.social_contact_a:{'background-color':  data.template_layout_style[0].card_back_color2,'color':  data.template_layout_style[0].card_text_color2}">
+                          <i class="fa-solid fa-envelope"></i></a>
+                        <span
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:''">{{datas.email_id}}</span>
+
+                      </div>
+                      <div class="links" *ngIf="datas.wp_number_flag"
+                        [ngStyle]=" data.styleArr[data.card_style]?.social_contact_links ? data.styleArr[data.card_style]?.social_contact_links:''">
+                        <a target="_blank" [href]="'https://wa.me/' + datas.wp_number"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a ? data.styleArr[data.card_style]?.social_contact_a:{'background-color':  data.template_layout_style[0].card_back_color2,'color':  data.template_layout_style[0].card_text_color2}">
+                          <i class="fa-brands fa-whatsapp"></i></a>
+                        <span
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:''">{{datas.wp_number}}</span>
+
+                      </div>
+
+                      <div class="links" *ngIf="datas.user_address_flag"
+                        [ngStyle]=" data.styleArr[data.card_style]?.social_contact_links ? data.styleArr[data.card_style]?.social_contact_links:''">
+                        <a target="_blank" data-bs-toggle="collapse" data-bs-target="#location-address"
+                          aria-expanded="false" aria-controls="collapseOne" class="collapsed"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a ? data.styleArr[data.card_style]?.social_contact_a:{'background-color':  data.template_layout_style[0].card_back_color2,'color':  data.template_layout_style[0].card_text_color2}">
+                          <i class="fa-solid fa-location-dot"></i></a>
+                        <span
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:''">{{datas.user_address}}</span>
+                      </div>
+                    </ng-container>
+
+
+
+
+
+                  </section>
+
+                  <div class="share-profile-btn-div"
+                    [ngStyle]="data.styleArr[data.card_style]?.share_profile_btn_div ? data.styleArr[data.card_style]?.share_profile_btn_div: {'background-color':  data.template_layout_style[0].card_back_color2}">
+                    <button type="button" (click)="onFileSelected($event,data)"
+                     [ngStyle]="
+    data.hoveredIndex === 5 && data.hoveredType === 'save-contact'
+      ? (data.styleArr[data.card_style]?.share_profile_button_hover || {
+          'background-color': data.template_layout_style[0].card_text_color1,
+          'color': data.template_layout_style[0].card_background_color1
+        })
+      : (data.styleArr[data.card_style]?.share_profile_button || {
+          'background-color': data.template_layout_style[0].card_background_color1,
+          'color': data.template_layout_style[0].card_text_color1
+        })
+  "
+  (mouseenter)="setHover(5, 'save-contact', data)"
+  (mouseleave)="clearHover(data)"
+                     ><i
+                        class="fa-solid fa-download"></i> Save to Contact</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#share-profile-popup1"
+                      (click)="openShareModal(data)"
+                      [ngStyle]="
+    data.hoveredIndex === 6 && data.hoveredType === 'share'
+      ? (data.styleArr[data.card_style]?.share_profile_button_hover || {
+          'background-color': data.template_layout_style[0].card_text_color1,
+          'color': data.template_layout_style[0].card_background_color1
+        })
+      : (data.styleArr[data.card_style]?.share_profile_button || {
+          'background-color': data.template_layout_style[0].card_background_color1,
+          'color': data.template_layout_style[0].card_text_color1
+        })
+  "
+  (mouseenter)="setHover(6, 'share', data)"
+  (mouseleave)="clearHover(data)"><i
+                        class="fa-solid fa-share-nodes"></i> Share</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- template-5 -->
+
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 template-5"
+              *ngIf="data?.template_type[0]?.layout_name=='Layout-2'">
+              <div class="template-div {{data.styleArr[data.card_style]?.temp_div_class}}"
+                [ngStyle]="data.styleArr[data.card_style]?.temp_div_style">
+
+                <div class="profile-section"
+                  [ngStyle]="data.styleArr[data.card_style]?.profile_section_bg? data.styleArr[data.card_style]?.profile_section_bg:  {'background-color':  data.template_layout_style[0].card_background_color1}">
+
+
+
+                  <div class="profile-bg-img-div"
+                    [ngStyle]="data.styleArr[data.card_style]?.profile_bg_img_div? data.styleArr[data.card_style]?.profile_bg_img_div:  {'background-image': ' url('+ 'data:image/png;base64,'+ data.template_layout_style[0].profile_back_image+')', 'background-color':  data.template_layout_style[0].card_background_color1}">
+
+                    <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank" class="profile-photo-div">
+
+                      <!-- <img
+                        [src]="data?.profile_images[0]?.image?'data:image/png;base64,'+data.profile_images[0].image:''"
+                        alt="image"> -->
+
+
+                      <!-- When profile image exists -->
+                      <img *ngIf="data?.profile_images?.[0]?.image; else defaultImg" class="profile-img"
+                        [src]="'data:image/png;base64,' + data.profile_images[0].image" alt="profile image" />
+
+                      <!-- Default image -->
+                      <ng-template #defaultImg>
+                        <img class="profile-img" src="assets/Image.webp" alt="default profile image" />
+                      </ng-template>
+
+                    </a>
+
+
+
+                    <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank">
+                      <h1
+                        [ngStyle]="data.styleArr[data.card_style]?.profile_h1_h4_p? data.styleArr[data.card_style]?.profile_h1_h4_p:  {'color': data.template_layout_style[0].card_text_color1 }">
+                        {{data?.profile_images[0]?.first_name?data.profile_images[0].first_name:''}}
+                        {{data?.profile_images[0]?.last_name?data.profile_images[0].last_name:''}}</h1>
+                    </a>
+
+                    <section class="social-icon">
+
+                      <ng-container *ngFor="let datas of data.social_data">
+                        <a target="_blank" [href]="datas.product_images_url"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='facebook' || datas.product_images_url.includes('facebook')"
+                          class="i-div facebook">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div linkedin"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='linkedin'|| datas.product_images_url.includes('linkedin')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div pinterest"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='pinterest'  || datas.product_images_url.includes('pinterest')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div instagram"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='instagram' || datas.product_images_url.includes('instagram')">
+                        </a>
+                        <a target="_blank" class="i-div twitter" [href]="datas.product_images_url"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='twitter' || datas.product_images_url.includes('twitter')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div youtube"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='youtube' || datas.product_images_url.includes('youtube')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div whatsapp"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='whatsapp' || datas.product_images_url.includes('whatsapp')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div globe"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='globe' || datas.product_images_url.includes('globe')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div indiamart"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='indiamart' || datas.product_images_url.includes('indiamart')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div justdail"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='justdail' || datas.product_images_url.includes('justdail')">
+                        </a>
+                        <a target="_blank" [href]="datas.product_images_url" class="i-div googlemy"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_links_a ? data.styleArr[data.card_style]?.social_links_a:''"
+                          *ngIf="datas.social_portal=='googlemybusiness' || datas.product_images_url.includes('googlemybusiness')">
+                        </a>
+                      </ng-container>
+                    </section>
+
+
+                    <h4
+                      [ngStyle]=" data.styleArr[data.card_style]?.profile_h1_h4_p? data.styleArr[data.card_style]?.profile_h1_h4_p: {'color': data.template_layout_style[0].card_text_color1 }">
+                      {{data?.profile_images[0]?.designation?data.profile_images[0].designation:''}}</h4>
+                    <p
+                      [ngStyle]=" data.styleArr[data.card_style]?.profile_h1_h4_p? data.styleArr[data.card_style]?.profile_h1_h4_p: {'color': data.template_layout_style[0].card_text_color1 }">
+                      {{data?.profile_images[0].company_name?data.profile_images[0].company_name:''}}</p>
+                  </div>
+
+                  <section class="social-contact  "
+                    [ngStyle]=" data.styleArr[data.card_style]?.social_contact? data.styleArr[data.card_style]?.social_contact:{'background-color':  data.template_layout_style[0].card_background_color1}">
+
+
+                    <ng-container *ngFor="let datas of data.contact_Details">
+                      <div class="links" *ngIf="datas.mobile_no_flag"
+                        [ngStyle]="data.styleArr[data.card_style]?.social_contact_links? data.styleArr[data.card_style]?.social_contact_links: {'background-color':  data.template_layout_style[0].card_back_color2,'color':  data.template_layout_style[0].card_text_color2}">
+                        <a target="_blank" [href]="'tel:' +datas.mobile_no"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a? data.styleArr[data.card_style]?.social_contact_a:{'color':  data.template_layout_style[0].card_text_color2}">
+                          <i class="fa-solid fa-phone"></i></a>
+                        <span
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:''">{{datas.mobile_no}}</span>
+
+
+                      </div>
+                      <div class="links" *ngIf="datas.email_id_flag"
+                        [ngStyle]=" data.styleArr[data.card_style]?.social_contact_links? data.styleArr[data.card_style]?.social_contact_links:{'background-color':  data.template_layout_style[0].card_back_color2,'color':  data.template_layout_style[0].card_text_color2}">
+                        <a target="_blank" [href]="'mailto:' + datas.email_id"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a? data.styleArr[data.card_style]?.social_contact_a:{'color':  data.template_layout_style[0].card_text_color2}">
+                          <i class="fa-solid fa-envelope"></i></a>
+                        <span
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:''">{{datas.email_id}}</span>
+
+                      </div>
+                      <div class="links" *ngIf="datas.wp_number_flag"
+                        [ngStyle]=" data.styleArr[data.card_style]?.social_contact_links? data.styleArr[data.card_style]?.social_contact_links:{'background-color':  data.template_layout_style[0].card_back_color2,'color':  data.template_layout_style[0].card_text_color2}">
+                        <a target="_blank" [href]="'https://wa.me/' + datas.wp_number"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a? data.styleArr[data.card_style]?.social_contact_a:{'color':  data.template_layout_style[0].card_text_color2}">
+                          <i class="fa-brands fa-whatsapp"></i></a>
+                        <span
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:''">{{datas.wp_number}}</span>
+
+                      </div>
+
+                      <div class="links" *ngIf="datas.user_address_flag"
+                        [ngStyle]="data.styleArr[data.card_style]?.social_contact_links? data.styleArr[data.card_style]?.social_contact_links: {'background-color':  data.template_layout_style[0].card_back_color2,'color':  data.template_layout_style[0].card_text_color2}">
+                        <a target="_blank" data-bs-toggle="collapse" data-bs-target="#location-address"
+                          aria-expanded="false" aria-controls="collapseOne" class="collapsed"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a? data.styleArr[data.card_style]?.social_contact_a:{'color':  data.template_layout_style[0].card_text_color2}">
+                          <i class="fa-solid fa-location-dot"></i></a>
+                        <span
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:''">{{datas.user_address}}</span>
+                      </div>
+                    </ng-container>
+                  </section>
+
+                  <div class="share-profile-btn-div"
+                    [ngStyle]=" data.styleArr[data.card_style]?.share_profile_button_div ? data.styleArr[data.card_style]?.share_profile_button_div:''">
+                    <button type="button" (click)="onFileSelected($event,data)" *ngIf="data.card_style!='style31' && data.card_style!='style32'"
+
+                      [ngStyle]="
+    data.hoveredIndex === 7 && data.hoveredType === 'save-contact'
+      ? (data.styleArr[data.card_style]?.share_profile_button_hover || {
+          'background-color': data.template_layout_style[0].card_back_color2,
+          'color': data.template_layout_style[0].card_text_color2
+        })
+      : (data.styleArr[data.card_style]?.share_profile_button || {
+          'background-color': data.template_layout_style[0].card_background_color1,
+          'color': data.template_layout_style[0].card_text_color1
+        })
+  "
+  (mouseenter)="setHover(7, 'save-contact', data)"
+  (mouseleave)="clearHover(data)"
+
+
+        ><i
+                        class="fa-solid fa-download"></i> Save to Contact</button>
+                    <button type="button" *ngIf="data.card_style!='style31' && data.card_style!='style32'"
+
+                      [ngStyle]="
+    data.hoveredIndex === 8 && data.hoveredType === 'share'
+      ? (data.styleArr[data.card_style]?.share_profile_button_hover || {
+              'background-color': data.template_layout_style[0].card_back_color2,
+          'color': data.template_layout_style[0].card_text_color2
+        })
+      : (data.styleArr[data.card_style]?.share_profile_button || {
+          'background-color': data.template_layout_style[0].card_background_color1,
+          'color': data.template_layout_style[0].card_text_color1
+        })
+  "
+  (mouseenter)="setHover(8, 'share', data)"
+  (mouseleave)="clearHover(data)"
+
+                     
+                      data-bs-toggle="modal" data-bs-target="#share-profile-popup1" (click)="openShareModal(data)"><i
+                        class="fa-solid fa-share-nodes"></i> Share</button>
+
+
+                    <!--FOR TEMPLATE 32 and 31-->
+                  
+
+                    <button type="button" (click)="onFileSelected($event,data)" *ngIf="data.card_style=='style31' ||  data.card_style=='style32'"
+                     [ngStyle]="
+    data.hoveredIndex === 7 && data.hoveredType === 'save-contact'
+      ? (data.styleArr[data.card_style]?.share_profile_button_hover || {
+          'background-color': data.template_layout_style[0].card_back_color2,
+          'color': data.template_layout_style[0].card_text_color2
+        })
+      : (data.styleArr[data.card_style]?.share_profile_button_1 || {
+          'background-color': data.template_layout_style[0].card_background_color1,
+          'color': data.template_layout_style[0].card_text_color1
+        })
+  "
+  (mouseenter)="setHover(7, 'save-contact', data)"
+  (mouseleave)="clearHover(data)" 
+                    ><i
+                        class="fa-solid fa-download"></i> Save to Contact</button>
+                    <button type="button" *ngIf="data.card_style=='style31' || data.card_style=='style32'"
+                     [ngStyle]="
+    data.hoveredIndex === 8 && data.hoveredType === 'share'
+      ? (data.styleArr[data.card_style]?.share_profile_button_hover || {
+              'background-color': data.template_layout_style[0].card_back_color2,
+          'color': data.template_layout_style[0].card_text_color2
+        })
+      : (data.styleArr[data.card_style]?.share_profile_button_2 || {
+          'background-color': data.template_layout_style[0].card_background_color1,
+          'color': data.template_layout_style[0].card_text_color1
+        })
+  "
+  (mouseenter)="setHover(8, 'share', data)"
+  (mouseleave)="clearHover(data)"
+                      data-bs-toggle="modal" data-bs-target="#share-profile-popup1" (click)="openShareModal(data)"><i
+                        class="fa-solid fa-share-nodes"></i> Share</button>
+
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- template-6 -->
+
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 template-6"
+              *ngIf="data?.template_type[0]?.layout_name=='Layout-3'">
+
+              <div class="template-div  {{data.styleArr[data.card_style]?.temp_div_class}}"
+                [ngStyle]="data.styleArr[data.card_style]?.temp_div_style? data.styleArr[data.card_style]?.temp_div_style:{'background-color': data.template_layout_style[0].card_back_color2}">
+
+                <div class="w-100 template-div-image"
+                  [ngStyle]="data.styleArr[data.card_style]?.temp_div_style_image? data.styleArr[data.card_style]?.temp_div_style_image: {'background-image': 'url(data:image/png;base64,' + data.template_layout_style[0].profile_back_image + ')'}">
+
+                  <div class="profile-section">
+
+
+                    <div class="profile-bg-img-div">
+
+
+                      <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank" class="profile-photo-div"
+                        [ngStyle]="data.styleArr[data.card_style]?.profile_section_bg? data.styleArr[data.card_style]?.profile_section_bg: {'border': '3px dashed '+ data.template_layout_style[0].card_back_color2  }">
+
+                        <!-- <img
+                        [src]="data?.profile_images[0]?.image?'data:image/png;base64,'+data.profile_images[0].image:''"
+                        alt="image"> -->
+
+
+                        <!-- When profile image exists -->
+                        <img *ngIf="data?.profile_images?.[0]?.image; else defaultImg" class="profile-img"
+                          [src]="'data:image/png;base64,' + data.profile_images[0].image" alt="profile image" />
+
+                        <!-- Default image -->
+                        <ng-template #defaultImg>
+                          <img class="profile-img" src="assets/Image.webp" alt="default profile image" />
+                        </ng-template>
+
+                      </a>
+
+                      <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank">
+
+                        <h1 *ngIf="data.card_style!='style13'"
+                          [ngStyle]="data.styleArr[data.card_style]?.profile_h1_h4_p? data.styleArr[data.card_style]?.profile_h1_h4_p:{'color':  data.template_layout_style[0].card_background_color1}">
+                          {{data?.profile_images[0]?.first_name?data.profile_images[0].first_name:''}}
+                          {{data?.profile_images[0]?.last_name?data.profile_images[0].last_name:''}}</h1>
+
+                        <!-- ---- for template style 13 -->
+                        <h1 *ngIf="data.card_style=='style13'"
+                          [ngStyle]="data.styleArr[data.card_style]?.profile_h1_p? data.styleArr[data.card_style]?.profile_h1_p:{'color':  data.template_layout_style[0].card_background_color1}">
+                          {{data?.profile_images[0]?.first_name?data.profile_images[0].first_name:''}}
+                          {{data?.profile_images[0]?.last_name?data.profile_images[0].last_name:''}}</h1>
+
+                      </a>
+
+                      <section class="social-icon">
+
+                        <ng-container *ngFor="let datas of data.social_data">
+                          <a target="_blank" [href]="datas.product_images_url" class="i-div facebook"
+                            *ngIf="datas.social_portal=='facebook'|| datas?.product_images_url?.includes('facebook')">
+                          </a>
+                          <a target="_blank" [href]="datas.product_images_url" class="i-div linkedin"
+                            *ngIf="datas.social_portal=='linkedin'|| datas?.product_images_url?.includes('linkedin')">
+                          </a>
+                          <a target="_blank" [href]="datas.product_images_url" class="i-div pinterest"
+                            *ngIf="datas.social_portal=='pinterest'  || datas?.product_images_url?.includes('pinterest')">
+                          </a>
+                          <a target="_blank" [href]="datas.product_images_url" class="i-div instagram"
+                            *ngIf="datas.social_portal=='instagram' || datas?.product_images_url?.includes('instagram')">
+                          </a>
+                          <a target="_blank" class="i-div twitter" [href]="datas.product_images_url"
+                            *ngIf="datas.social_portal=='twitter' || datas?.product_images_url?.includes('twitter')">
+                          </a>
+                          <a target="_blank" [href]="datas.product_images_url" class="i-div youtube"
+                            *ngIf="datas.social_portal=='youtube' || datas?.product_images_url?.includes('youtube')">
+                          </a>
+                          <a target="_blank" [href]="datas.product_images_url" class="i-div whatsapp"
+                            *ngIf="datas.social_portal=='whatsapp' || datas?.product_images_url?.includes('whatsapp')">
+                          </a>
+                          <a target="_blank" [href]="datas.product_images_url" class="i-div globe"
+                            *ngIf="datas.social_portal=='globe' || datas?.product_images_url?.includes('globe')">
+                          </a>
+                          <a target="_blank" [href]="datas.product_images_url" class="i-div indiamart"
+                            *ngIf="datas.social_portal=='indiamart' || datas?.product_images_url?.includes('indiamart')">
+                          </a>
+                          <a target="_blank" [href]="datas.product_images_url" class="i-div justdail"
+                            *ngIf="datas.social_portal=='justdail' || datas?.product_images_url?.includes('justdail')">
+                          </a>
+                          <a target="_blank" [href]="datas.product_images_url" class="i-div googlemy"
+                            *ngIf="datas.social_portal=='googlemybusiness' || datas?.product_images_url?.includes('googlemybusiness')">
+                          </a>
+                        </ng-container>
+                      </section>
+
+
+
+                      <h4 *ngIf="data.card_style!='style13'"
+                        [ngStyle]="data.styleArr[data.card_style]?.profile_h1_h4_p? data.styleArr[data.card_style]?.profile_h1_h4_p:{'color':  data.template_layout_style[0].card_background_color1}">
+                        {{data?.profile_images[0]?.designation?data.profile_images[0].designation:''}}</h4>
+                      <p *ngIf="data.card_style!='style13'"
+                        [ngStyle]="data.styleArr[data.card_style]?.profile_h1_h4_p? data.styleArr[data.card_style]?.profile_h1_h4_p:{'color':  data.template_layout_style[0].card_background_color1}">
+                        {{data?.profile_images[0]?.company_name?data.profile_images[0].company_name:''}}</p>
+
+                      <!-- ---- for template style 13 -->
+                      <h4 *ngIf="data.card_style=='style13'"
+                        [ngStyle]="data.styleArr[data.card_style]?.profile_h4? data.styleArr[data.card_style]?.profile_h4:{'color':  data.template_layout_style[0].card_background_color1}">
+                        {{data?.profile_images[0]?.designation?data.profile_images[0].designation:''}}</h4>
+                      <p *ngIf="data.card_style=='style13'"
+                        [ngStyle]="data.styleArr[data.card_style]?.profile_h1_p? data.styleArr[data.card_style]?.profile_h1_p:{'color':  data.template_layout_style[0].card_background_color1}">
+                        {{data?.profile_images[0]?.company_name?data.profile_images[0].company_name:''}}</p>
+
+
+                    </div>
+
+
+
+                    <section class="social-contact  ">
+
+
+                      <ng-container *ngFor="let datas of data.contact_Details">
+                        <div class="links" *ngIf="datas.mobile_no_flag"
+                          [ngStyle]=" data.styleArr[data.card_style]?.social_contact_links ? data.styleArr[data.card_style]?.social_contact_links:{'color': data.template_layout_style[0].card_text_color2 }">
+                          <a target="_blank" [href]="'tel:' +datas.mobile_no"
+                            [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a ? data.styleArr[data.card_style]?.social_contact_a:{'color': data.template_layout_style[0].card_background_color1 }">
+                            <i class="fa-solid fa-phone"
+                              [ngStyle]=" data.styleArr[data.card_style]?.social_contact_i ? data.styleArr[data.card_style]?.social_contact_i:''"></i></a>
+                          <span
+                            [ngStyle]=" data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:{'color': data.template_layout_style[0].card_text_color2 }">{{datas.mobile_no}}</span>
+
+
+                        </div>
+                        <div class="links" *ngIf="datas.email_id_flag"
+                          [ngStyle]="data.styleArr[data.card_style]?.social_contact_links ? data.styleArr[data.card_style]?.social_contact_links:{'color': data.template_layout_style[0].card_text_color2 }">
+                          <a target="_blank" [href]="'mailto:' + datas.email_id"
+                            [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a ? data.styleArr[data.card_style]?.social_contact_a:{'color': data.template_layout_style[0].card_background_color1 }">
+                            <i class="fa-solid fa-envelope"
+                              [ngStyle]=" data.styleArr[data.card_style]?.social_contact_i ? data.styleArr[data.card_style]?.social_contact_i:''"></i></a>
+                          <span
+                            [ngStyle]="data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:{'color': data.template_layout_style[0].card_text_color2 }">{{datas.email_id}}</span>
+
+                        </div>
+                        <div class="links" *ngIf="datas.wp_number_flag"
+                          [ngStyle]="data.styleArr[data.card_style]?.social_contact_links ? data.styleArr[data.card_style]?.social_contact_links:{'color': data.template_layout_style[0].card_text_color2 }">
+                          <a target="_blank" [href]="'https://wa.me/' + datas.wp_number"
+                            [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a ? data.styleArr[data.card_style]?.social_contact_a:{'color': data.template_layout_style[0].card_background_color1 }">
+                            <i class="fa-brands fa-whatsapp"
+                              [ngStyle]=" data.styleArr[data.card_style]?.social_contact_i ? data.styleArr[data.card_style]?.social_contact_i:''"></i></a>
+                          <span
+                            [ngStyle]="data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:{'color': data.template_layout_style[0].card_text_color2 }">{{datas.wp_number}}</span>
+
+                        </div>
+
+                        <div class="links" *ngIf="datas.user_address_flag"
+                          [ngStyle]="data.styleArr[data.card_style]?.social_contact_links ? data.styleArr[data.card_style]?.social_contact_links:{'color': data.template_layout_style[0].card_text_color2 }">
+                          <a target="_blank" data-bs-toggle="collapse" data-bs-target="#location-address"
+                            aria-expanded="false" aria-controls="collapseOne" class="collapsed"
+                            [ngStyle]=" data.styleArr[data.card_style]?.social_contact_a ? data.styleArr[data.card_style]?.social_contact_a:{'color': data.template_layout_style[0].card_background_color1 }">
+                            <i class="fa-solid fa-location-dot"
+                              [ngStyle]=" data.styleArr[data.card_style]?.social_contact_i ? data.styleArr[data.card_style]?.social_contact_i:''"></i></a>
+                          <span
+                            [ngStyle]="data.styleArr[data.card_style]?.social_contact_span ? data.styleArr[data.card_style]?.social_contact_span:{'color': data.template_layout_style[0].card_text_color2 }">{{datas.user_address}}</span>
+                        </div>
+                      </ng-container>
+                    </section>
+
+                    <div class="share-profile-btn-div"
+                      [ngStyle]=" data.styleArr[data.card_style]?.share_profile_button_div ? data.styleArr[data.card_style]?.share_profile_button_div:''">
+                      <button type="button" (click)="onFileSelected($event,data)"
+                        *ngIf="data.card_style!='style11' && data.card_style!='style12' && data.card_style!='style16' && data.card_style!='style17'"
+
+                           [ngStyle]="
+    data.hoveredIndex === 9 && data.hoveredType === 'save-contact'
+     ? (data.styleArr[data.card_style]?.share_profile_button_hover || {
+              'background-color': data.template_layout_style[0].card_back_color2,
+          'color': data.template_layout_style[0].card_text_color2,
+          'border': `1px solid ${data.template_layout_style[0].card_text_color2}`
+        })
+      : (data.styleArr[data.card_style]?.share_profile_button || {
+          'background-color': data.template_layout_style[0].card_background_color1,
+          'color': data.template_layout_style[0].card_text_color1 ,
+          'border' : `1px solid ${data.template_layout_style[0].card_background_color1}`
+        })
+  "
+  (mouseenter)="setHover(9, 'save-contact', data)"
+  (mouseleave)="clearHover(data)"
+
+
+><i
+                          class="fa-solid fa-download"></i> Save to Contact</button>
+                      <button type="button" data-bs-toggle="modal" data-bs-target="#share-profile-popup1"
+                        *ngIf="data.card_style!='style11' && data.card_style!='style12' && data.card_style!='style16' && data.card_style!='style17'"
+                        (click)="openShareModal(data)"
+
+                          [ngStyle]="
+    data.hoveredIndex === 10 && data.hoveredType === 'share'
+      ? (data.styleArr[data.card_style]?.share_profile_button_hover || {
+              'background-color': data.template_layout_style[0].card_back_color2,
+          'color': data.template_layout_style[0].card_text_color2,
+          'border': `1px solid ${data.template_layout_style[0].card_text_color2}`
+        })
+      : (data.styleArr[data.card_style]?.share_profile_button || {
+          'background-color': data.template_layout_style[0].card_background_color1,
+          'color': data.template_layout_style[0].card_text_color1 ,
+          'border' : `1px solid ${data.template_layout_style[0].card_background_color1}`
+        })
+  "
+  (mouseenter)="setHover(10, 'share', data)"
+  (mouseleave)="clearHover(data)"
+
+             ><i
+                          class="fa-solid fa-share-nodes"></i> Share</button>
+
+
+                      <!-- -----for  template 11 and 12 , 16, 17--- -->
+                      <button type="button" (click)="onFileSelected($event,data)"
+                        *ngIf="data.card_style=='style11' || data.card_style=='style12' || data.card_style=='style16' || data.card_style=='style17'" 
+
+                        
+                           [ngStyle]="
+    data.hoveredIndex === 9 && data.hoveredType === 'save-contact'
+     ? (data.styleArr[data.card_style]?.share_profile_button_hover || {
+              'background-color': data.template_layout_style[0].card_back_color2,
+          'color': data.template_layout_style[0].card_text_color2,
+          'border': `1px solid ${data.template_layout_style[0].card_text_color2}`
+        })
+      : (data.styleArr[data.card_style]?.share_profile_button_1 || {
+          'background-color': data.template_layout_style[0].card_background_color1,
+          'color': data.template_layout_style[0].card_text_color1 ,
+          'border' : `1px solid ${data.template_layout_style[0].card_background_color1}`
+        })
+  "
+  (mouseenter)="setHover(9, 'save-contact', data)"
+  (mouseleave)="clearHover(data)"
+
+>
+                        <i class="fa-solid fa-download"></i> Save to Contact</button>
+                      <button type="button" data-bs-toggle="modal" data-bs-target="#share-profile-popup1"
+                        *ngIf="data.card_style=='style11' || data.card_style=='style12' || data.card_style=='style16' || data.card_style=='style17'"
+                        (click)="openShareModal(data)"
+                          [ngStyle]="
+    data.hoveredIndex === 10 && data.hoveredType === 'share'
+      ? (data.styleArr[data.card_style]?.share_profile_button_hover || {
+              'background-color': data.template_layout_style[0].card_back_color2,
+          'color': data.template_layout_style[0].card_text_color2,
+          'border': `1px solid ${data.template_layout_style[0].card_text_color2}`
+        })
+      : (data.styleArr[data.card_style]?.share_profile_button_2 || {
+          'background-color': data.template_layout_style[0].card_background_color1,
+          'color': data.template_layout_style[0].card_text_color1 ,
+          'border' : `1px solid ${data.template_layout_style[0].card_background_color1}`
+        })
+  "
+  (mouseenter)="setHover(10, 'share', data)"
+  (mouseleave)="clearHover(data)"
+
+            ><i
+                          class="fa-solid fa-share-nodes"></i> Share</button>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- -------templat 7 --->
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 template-web-1"
+              *ngIf="data?.template_type[0]?.layout_name=='Layout-7'">
+              <div class="profile-section">
+
+
+                <!-- <div *ngFor="let d of data?.data"> -->
+                <nav class="top-header navbar navbar-expand-lg"
+                  [ngStyle]="{'background': data.template_layout_style?.[0]?.back_body_color}">
+                  <div class="container-fluid p-0 flex-column h-100">
+
+                    <div class="d-flex justify-content-between align-items-center w-100 top-nav">
+
+
+                      <div class="business-logo"
+                        *ngIf="data?.user_template_layout_style?.[0]?.business_logo_image; else noLogo">
+                        <img [src]="data.user_template_layout_style?.[0].business_logo_image" alt="business logo">
+
+                      </div>
+
+
+                      <ng-template #noLogo>
+
+                        <span *ngIf="data?.user_template_layout_style?.[0]?.business_name; else fallbackName"
+                          class="business-name" [ngStyle]="{'color': data.template_layout_style[0].body_text_color}">
+                          {{ data.user_template_layout_style?.[0].business_name }}
+                        </span>
+
+                        <ng-template #fallbackName>
+                          <span *ngIf="data?.profile_images[0]?.company_name" class="business-name"
+                            [ngStyle]="{'color': data.template_layout_style[0].body_text_color}">
+                            {{ data?.profile_images[0]?.company_name}}
+                          </span>
+                        </ng-template>
+                      </ng-template>
+
+
+
+                    </div>
+
+
+
+
+
+                  </div>
+                </nav>
+
+
+
+
+                <div class="banner-div">
+
+                  
+                      <!-- ================= USER SINGLE ================= -->
+    
+ <img  *ngIf="
+  data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length === 1 &&
+  data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0] &&
+  !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') &&
+  !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+"
+  [src]="data?.user_template_layout_style?.[0]?.profile_banner_images_list[0]" class="single-profile-bg-image" />
+
+
+ <!-- ================= ADMIN SINGLE ================= -->
+<img
+  *ngIf="
+    (
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length ||
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0] ||
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') ||
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+    )
+    &&
+    data?.template_layout_style?.[0]?.profile_banner_images_list?.length === 1 &&
+    data.template_layout_style[0].profile_banner_images_list?.[0] &&
+    !data?.template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') &&
+    !data?.template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+  "
+  [src]="data?.template_layout_style?.[0]?.profile_banner_images_list?.[0]"
+  class="single-profile-bg-image"
+/>
+
+ <!-- ================= USER CAROUSEL ================= -->
+     <div id="profile-banner-carousel-div" class="carousel slide" *ngIf="
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length > 1 &&
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[1] &&
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[1]?.includes('/null') &&
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[1]?.endsWith('/image/')
+    " data-bs-ride="carousel">
+
+       <div class="carousel-indicators">
+         <ng-container *ngFor="let img of data?.user_template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <button *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')" type="button"
+             data-bs-target="#profile-banner-carousel-div" [attr.data-bs-slide-to]="i" [class.active]="i === 0">
+           </button>
+         </ng-container>
+       </div>
+
+
+       <div class="carousel-inner">
+         <ng-container *ngFor="let img of data?.user_template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <div class="carousel-item" *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')"
+             [class.active]="i === 0">
+             <img class="d-block w-100" [src]="img">
+           </div>
+         </ng-container>
+       </div>
+
+
+       <!-- Controls -->
+       <button class="carousel-control-prev" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="prev">
+         <span class="carousel-control-prev-icon">
+           <i class="fa-solid fa-caret-left"></i>
+         </span>
+       </button>
+
+
+       <button class="carousel-control-next" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="next">
+         <span class="carousel-control-next-icon">
+           <i class="fa-solid fa-caret-right"></i>
+         </span>
+       </button>
+     </div>
+
+         <!-- ================= ADMIN CAROUSEL ================= -->
+ 
+     <div id="profile-banner-carousel-div" class="carousel slide" *ngIf="
+      (
+        !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length ||
+        !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0] ||
+        data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') ||
+        data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+      )
+      &&
+      data?.template_layout_style?.[0]?.profile_banner_images_list?.length > 1 &&
+      data?.template_layout_style?.[0]?.profile_banner_images_list?.[1] &&
+      !data?.template_layout_style?.[0]?.profile_banner_images_list?.[1]?.includes('/null') &&
+      !data?.template_layout_style?.[0]?.profile_banner_images_list?.[1]?.endsWith('/image/')
+    " data-bs-ride="carousel">
+
+       <div class="carousel-indicators">
+         <ng-container *ngFor="let img of data?.template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <button *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')" type="button"
+             data-bs-target="#profile-banner-carousel-div" [attr.data-bs-slide-to]="i" [class.active]="i === 0">
+           </button>
+         </ng-container>
+       </div>
+
+
+       <div class="carousel-inner">
+         <ng-container *ngFor="let img of data?.template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <div class="carousel-item" *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')"
+             [class.active]="i === 0">
+             <img class="d-block w-100" [src]="img">
+           </div>
+         </ng-container>
+       </div>
+
+
+       <!-- Controls -->
+       <button class="carousel-control-prev" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="prev">
+         <span class="carousel-control-prev-icon"
+                 
+       >
+           <i class="fa-solid fa-caret-left"></i>
+         </span>
+       </button>
+
+
+       <button class="carousel-control-next" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="next">
+         <span class="carousel-control-next-icon"
+                  
+       >
+           <i class="fa-solid fa-caret-right"></i>
+         </span>
+       </button>
+     </div>
+<!-- ================================================================================= -->
+
+   
+
+
+                  <div class="profile-data-div"
+                    [ngStyle]="{background: data.template_layout_style?.[0]?.back_body_color }">
+
+                    <div class="inner-profile-div">
+                      <a class="profile-img" [href]="data?.pcard_url_template[0]?.template_url" target="_blank"
+                        *ngIf="data?.profile_images[0]?.image; else defaultImg"
+                        [ngStyle]="{'background': data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1}">
+                        <img *ngIf="data?.profile_images[0]?.image; else defaultImg"
+                          [src]="'data:image/png;base64,' + data?.profile_images[0].image" alt="profile image">
+                      </a>
+
+                      <ng-template #defaultImg>
+                        <a class="profile-img" [href]="data?.pcard_url_template[0]?.template_url" target="_blank"
+                          [ngStyle]="{'background': data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1}">
+                          <img src="assets/Image.webp" alt="default profile image">
+                        </a>
+                      </ng-template>
+
+
+
+
+
+                      <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank">
+                        <!-- <h2 [ngStyle]="{'color': data.template_layout_style?.[0]?.card_background_color1}"> -->
+                        
+                          <h2 [ngStyle]="{
+  'color': data.user_template_layout_style?.[0]?.card_background_color1
+    ? data.user_template_layout_style[0].card_background_color1
+    : data.template_layout_style?.card_background_color1
+                          }">
+                          {{data?.profile_images[0]?.first_name }} {{ data?.profile_images[0]?.last_name }}</h2>
+                      </a>
+
+
+                      <p [ngStyle]="{'color': data.template_layout_style?.[0]?.body_text_color}" class="designation">
+                        {{data?.profile_images[0]?.designation }}</p>
+                      <p
+                        [ngStyle]="{'color': 'color-mix(in srgb, ' + data.template_layout_style?.[0]?.back_body_color + ' 33%, ' + data.template_layout_style?.[0]?.body_text_color + ' 58%)'}">
+                        {{data?.profile_images[0]?.company_name }}</p>
+
+
+
+
+                      <div class="profile-btns-div">
+                        <button class="profile-btn" type="button" (click)="openShareModalweb(data)" 
+
+                         [ngStyle]="
+      data.hoveredIndex === 11 && data.hoveredType === 'share'
+    ? {
+        'background':  data.user_template_layout_style?.[0]?.card_text_color1
+          ? data.user_template_layout_style[0].card_text_color1
+          : data.template_layout_style?.[0]?.card_text_color1,
+        'color': data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1,
+        'border': '1px solid ' + (
+          data.user_template_layout_style?.[0]?.card_background_color1
+            ? data.user_template_layout_style[0].card_background_color1
+            : data.template_layout_style?.[0]?.card_background_color1
+        )
+      }
+    : {
+        'background-color': data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1,
+        'color': data.user_template_layout_style?.[0]?.card_text_color1
+          ? data.user_template_layout_style[0].card_text_color1
+          : data.template_layout_style?.[0]?.card_text_color1,
+        'border': '1px solid ' + (data.user_template_layout_style?.[0]?.card_text_color1
+          ? data.user_template_layout_style[0].card_text_color1
+          : data.template_layout_style?.[0]?.card_text_color1)
+      }
+"
+  (mouseenter)="setHover(11, 'share', data)"
+  (mouseleave)="clearHover(data)"
+
+                        >
+                          <i class="fa-solid fa-share-nodes"></i> Share Profile
+                        </button>
+                        <button class="profile-btn" type="button" (click)="onFileSelected($event,data)" 
+                         [ngStyle]="
+    data.hoveredIndex === 12 && data.hoveredType === 'save-contact'
+    ? {
+        'background':  data.user_template_layout_style?.[0]?.card_text_color1
+          ? data.user_template_layout_style[0].card_text_color1
+          : data.template_layout_style?.[0]?.card_text_color1,
+        'color': data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1,
+        'border': '1px solid ' + (
+          data.user_template_layout_style?.[0]?.card_background_color1
+            ? data.user_template_layout_style[0].card_background_color1
+            : data.template_layout_style?.[0]?.card_background_color1
+        )
+      }
+    : {
+        'background-color': data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1,
+        'color': data.user_template_layout_style?.[0]?.card_text_color1
+          ? data.user_template_layout_style[0].card_text_color1
+          : data.template_layout_style?.[0]?.card_text_color1,
+        'border': '1px solid ' + (data.user_template_layout_style?.[0]?.card_text_color1
+          ? data.user_template_layout_style[0].card_text_color1
+          : data.template_layout_style?.[0]?.card_text_color1)
+      }
+  "
+  (mouseenter)="setHover(12, 'save-contact', data)"
+  (mouseleave)="clearHover(data)"
+                         >
+                          <i class="fa-regular fa-bookmark"></i> Save Contact
+                        </button>
+                      </div>
+
+
+
+                      <ng-container *ngFor="let datas of data.contact_Details; let i = index">
+                        <div class="social-contact-div">
+
+
+                          <a target="_blank" *ngIf="datas.mobile_no" [href]="'tel:' + datas.mobile_no"
+                            [ngStyle]="getHoverStyle(i, 'call',data.template_layout_style?.[0],data)"
+                            (mouseenter)="setHover(i, 'call',data)" (mouseleave)="clearHover(data)">
+                            <i class="fa-solid fa-phone"></i>
+                          </a>
+
+                          <a target="_blank" *ngIf="datas.email_id" [href]="'mailto:' + datas.email_id"
+                            [ngStyle]="getHoverStyle(i, 'email',data.template_layout_style?.[0],data)"
+                            (mouseenter)="setHover(i, 'email',data)" (mouseleave)="clearHover(data)">
+                            <i class="fa-solid fa-envelope"></i>
+                          </a>
+
+                          <a target="_blank" *ngIf="datas.wp_number" [href]="'https://wa.me/' + datas.wp_number"
+                            [ngStyle]="getHoverStyle(i, 'whatsapp',data.template_layout_style?.[0],data)"
+                            (mouseenter)="setHover(i, 'whatsapp',data)" (mouseleave)="clearHover(data)">
+                            <i class="fa-brands fa-whatsapp"></i>
+                          </a>
+
+
+                          <a target="_blank" *ngIf="datas.user_address && isValid(datas.user_address)"
+                            [href]="datas.google_map_url"
+                            [ngStyle]="getHoverStyle(i, 'location', data.template_layout_style?.[0],data)"
+                            (mouseenter)="setHover(i, 'location', data)" (mouseleave)="clearHover(data)"
+                            data-bs-toggle="collapse" [attr.data-bs-target]="'#location-address3' + i"
+                            aria-expanded="false" [attr.aria-controls]="'location-address3' + i" class="collapsed"
+                            (click)="open(data)" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}">
+
+                            <i class="fa-solid fa-location-dot"></i>
+                          </a>
+                        </div>
+
+                        <div [id]="'location-address3' + i" class="panel-collapse collapse location-address"
+                          role="tabpanel" [class.show]="data.address_coloapse" *ngIf="data.address_coloapse">
+
+                          <div class="panel-body">
+                            <p [ngStyle]="{
+        'color': 'color-mix(in srgb, ' + data.template_layout_style?.[0]?.back_body_color + ' 33%, ' + data.template_layout_style?.[0]?.body_text_color + ' 58%)'
+      }">
+                              {{ datas.user_address }}
+                            </p>
+                          </div>
+                        </div>
+
+
+                      </ng-container>
+
+
+                      <div class="social-links-div mobile-social-links">
+
+                       <ng-container *ngFor="let datas of data.social_data">
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='linkedin'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/linkedin.png'"
+      alt="linkedin">
+  </a>
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='facebook'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/facebook-tseven.png'"
+      alt="facebook">
+  </a>
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='instagram'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/insta.png'"
+      alt="instagram">
+  </a>
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='pinterest'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/pinterest-tseven.png'"
+      alt="pinterest">
+  </a>
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='twitter'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/twitter-tseven.png'"
+      alt="twitter">
+  </a>
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='whatsapp'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/whatsapp-tseven.png'"
+      alt="whatsapp">
+  </a>
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='youtube'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/youtube-tseven.png'"
+      alt="youtube">
+  </a>
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='indiamart'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/mart.png'"
+      alt="indiamart">
+  </a>
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='justdail'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/justdial.png'"
+      alt="justdail">
+  </a>
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='googlemybusiness'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/gbusiness.png'"
+      alt="googlemybusiness">
+  </a>
+
+  <a target="_blank" [href]="datas.product_images_url"
+    *ngIf="datas.social_portal=='globe'">
+    <img
+      [src]="globalObject.assetsUrl + '/templates_pcard/template_seven/website.png'"
+      alt="globe">
+  </a>
+
+</ng-container>
+                      </div>
+
+
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+                <!-- </div> -->
+
+              </div>
+            </div>
+
+
+            <!-- -------templat 8 --->
+
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12"
+              *ngIf="data?.template_type[0]?.layout_name=='Layout-8'">
+
+              <div class="template-web-2">
+
+                <!------ navbar ------>
+                <nav class="navbar navbar-expand-lg custom-navbar"
+                  [ngStyle]="{ background: data.template_layout_style?.[0]?.back_body_color }">
+                  <div class="container-fluid">
+                    <!-- Left: Brand -->
+
+                    <!-- -----------------if business logo ------- -->
+                    <div class="business-logo"
+                      *ngIf="data?.user_template_layout_style?.[0]?.business_logo_image; else noLogo1">
+                      <img [src]="data.user_template_layout_style?.[0].business_logo_image" alt="business logo">
+
+                    </div>
+
+
+                    <ng-template #noLogo1>
+
+                      <span *ngIf="data?.user_template_layout_style?.[0]?.business_name; else fallbackName1"
+                        class="navbar-brand d-flex align-items-center gap-2"
+                        [ngStyle]="{'color': data.template_layout_style[0].body_text_color}">
+                        {{ data.user_template_layout_style?.[0].business_name }}
+                      </span>
+
+                      <ng-template #fallbackName1>
+                        <span *ngIf="data?.profile_images[0]?.company_name"
+                          class="navbar-brand d-flex align-items-center gap-2"
+                          [ngStyle]="{'color': data.template_layout_style[0].body_text_color}">
+                          {{ data?.profile_images[0]?.company_name}}
+                        </span>
+                      </ng-template>
+                    </ng-template>
+
+                  </div>
+                </nav>
+
+                 <section class="hero " >
+             
+
+
+                           <!-- ================= USER SINGLE ================= -->
+    
+ <img  *ngIf="
+  data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length === 1 &&
+  data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0] &&
+  !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') &&
+  !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+"
+  [src]="data?.user_template_layout_style?.[0]?.profile_banner_images_list[0]" class="single-profile-bg-image" />
+
+
+ <!-- ================= ADMIN SINGLE ================= -->
+<img
+  *ngIf="
+    (
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length ||
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0] ||
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') ||
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+    )
+    &&
+    data?.template_layout_style?.[0]?.profile_banner_images_list?.length === 1 &&
+    data.template_layout_style[0].profile_banner_images_list?.[0] &&
+    !data?.template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') &&
+    !data?.template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+  "
+  [src]="data?.template_layout_style?.[0]?.profile_banner_images_list?.[0]"
+  class="single-profile-bg-image"
+/>
+
+ <!-- ================= USER CAROUSEL ================= -->
+     <div id="profile-banner-carousel-div" class="carousel slide" *ngIf="
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length > 1 &&
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[1] &&
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[1]?.includes('/null') &&
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[1]?.endsWith('/image/')
+    " data-bs-ride="carousel">
+
+       <div class="carousel-indicators">
+         <ng-container *ngFor="let img of data?.user_template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <button *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')" type="button"
+             data-bs-target="#profile-banner-carousel-div" [attr.data-bs-slide-to]="i" [class.active]="i === 0">
+           </button>
+         </ng-container>
+       </div>
+
+
+       <div class="carousel-inner">
+         <ng-container *ngFor="let img of data?.user_template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <div class="carousel-item" *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')"
+             [class.active]="i === 0">
+             <img class="d-block w-100" [src]="img">
+           </div>
+         </ng-container>
+       </div>
+
+
+       <!-- Controls -->
+       <button class="carousel-control-prev" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="prev">
+         <span class="carousel-control-prev-icon">
+           <i class="fa-solid fa-caret-left"></i>
+         </span>
+       </button>
+
+
+       <button class="carousel-control-next" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="next">
+         <span class="carousel-control-next-icon">
+           <i class="fa-solid fa-caret-right"></i>
+         </span>
+       </button>
+     </div>
+
+         <!-- ================= ADMIN CAROUSEL ================= -->
+ 
+     <div id="profile-banner-carousel-div" class="carousel slide" *ngIf="
+      (
+        !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length ||
+        !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0] ||
+        data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') ||
+        data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+      )
+      &&
+      data?.template_layout_style?.[0]?.profile_banner_images_list?.length > 1 &&
+      data?.template_layout_style?.[0]?.profile_banner_images_list?.[1] &&
+      !data?.template_layout_style?.[0]?.profile_banner_images_list?.[1]?.includes('/null') &&
+      !data?.template_layout_style?.[0]?.profile_banner_images_list?.[1]?.endsWith('/image/')
+    " data-bs-ride="carousel">
+
+       <div class="carousel-indicators">
+         <ng-container *ngFor="let img of data?.template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <button *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')" type="button"
+             data-bs-target="#profile-banner-carousel-div" [attr.data-bs-slide-to]="i" [class.active]="i === 0">
+           </button>
+         </ng-container>
+       </div>
+
+
+       <div class="carousel-inner">
+         <ng-container *ngFor="let img of data?.template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <div class="carousel-item" *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')"
+             [class.active]="i === 0">
+             <img class="d-block w-100" [src]="img">
+           </div>
+         </ng-container>
+       </div>
+
+
+       <!-- Controls -->
+       <button class="carousel-control-prev" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="prev">
+         <span class="carousel-control-prev-icon"
+                   
+       >
+           <i class="fa-solid fa-caret-left"></i>
+         </span>
+       </button>
+
+
+       <button class="carousel-control-next" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="next">
+         <span class="carousel-control-next-icon"
+                   
+       >
+           <i class="fa-solid fa-caret-right"></i>
+         </span>
+       </button>
+     </div>
+<!-- ================================================================================= -->
+
+
+                 </section>
+                <!-- this is for mobile view -->
+                <section class="profile_sec_mob " [ngStyle]="{'background-image': 'linear-gradient(' +
+    'color-mix(in srgb, ' + data.template_layout_style?.[0]?.card_back_color2 + ' 60%, transparent), ' +
+    'color-mix(in srgb, ' + data.template_layout_style?.[0]?.card_back_color2 + ' 60%, transparent)' +
+    '), url(' + globalObject.assetsUrl + '/templates_pcard/template_8/bg-mobile1.png)'}">
+
+
+                  <div class="profile_details">
+                    <a class="profile_img" [href]="data?.pcard_url_template[0]?.template_url" target="_blank" [ngStyle]="{
+                  border: '4px solid ' + data.template_layout_style?.[0]?.card_text_color2,
+                }" *ngIf="data?.profile_images[0]?.image; else noImage1">
+                      <img [src]="'data:image/png;base64,' + data?.profile_images[0].image" alt="profile image"
+                        class="img-fluid" />
+                    </a>
+
+
+                    <ng-template #noImage1>
+                      <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank" class="profile_img"
+                        [ngStyle]="{
+                  border: '4px solid ' + data.template_layout_style?.[0]?.card_text_color2,
+                }">
+                        <img src="assets/Image.webp" alt="default profile image" />
+                      </a>
+                    </ng-template>
+
+                    <div class="profile_info" [ngStyle]="{ color: data.template_layout_style?.[0]?.card_text_color2 }">
+                      <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank"
+                        [ngStyle]="{ color: data.template_layout_style?.[0]?.card_text_color2 }">
+                        <h5 class="m-0"> {{data?.profile_images[0]?.first_name }} {{ data?.profile_images[0]?.last_name
+                          }}</h5>
+                      </a>
+                      <p class="m-0 designation"> {{ data?.profile_images[0]?.designation }}</p>
+                      <p> {{ data?.profile_images[0]?.company_name }}</p>
+                    </div>
+                    <div class="share_btn">
+                      <a (click)="openShareModalweb(data)"
+                       [ngStyle]="
+    data.hoveredIndex === 13 && data.hoveredType === 'share'
+     ?  {
+              'background-color': data.user_template_layout_style[0].card_background_color1 ? data.user_template_layout_style[0].card_background_color1 : data.template_layout_style[0].card_background_color1,
+          'color': data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 : data.template_layout_style[0].card_text_color1
+        }
+      : {
+          'background':  'color-mix(in srgb, ' + data.template_layout_style?.[0]?.card_text_color2 + ' 20%, transparent)' ,
+          'color': data.template_layout_style?.[0]?.card_text_color2 
+        }
+  "
+  (mouseenter)="setHover(13, 'share', data)"
+  (mouseleave)="clearHover(data)"
+
+                        [ngStyle]="{ 'background':     'color-mix(in srgb, ' + data.template_layout_style?.[0]?.card_text_color2 + ' 20%, transparent)',  color: data.template_layout_style?.[0]?.card_text_color2}"><i
+                          class="fa-solid fa-share-nodes"></i> <span>Share profile</span></a>
+                      <a (click)="onFileSelected($event,data)"
+                       [ngStyle]="
+    data.hoveredIndex === 14 && data.hoveredType === 'save-contact'
+     ?  {
+              'background-color':  data.user_template_layout_style[0].card_background_color1 ? data.user_template_layout_style[0].card_background_color1 : data.template_layout_style[0].card_background_color1,
+          'color':data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 : data.template_layout_style[0].card_text_color1
+        }
+      : {
+          'background':  'color-mix(in srgb, ' + data.template_layout_style?.[0]?.card_text_color2 + ' 20%, transparent)' ,
+          'color': data.template_layout_style?.[0]?.card_text_color2 
+        }
+  "
+  (mouseenter)="setHover(14, 'save-contact', data)"
+  (mouseleave)="clearHover(data)"
+
+                      ><i
+                          class="fa-regular fa-bookmark"></i> <span>Save Contact</span></a>
+                    </div>
+
+
+                    <ng-container *ngFor="let datas of data.contact_Details; let i = index">
+                      <div class="location_btn">
+
+
+                        <a target="_blank" *ngIf="datas.mobile_no" [href]="'tel:' + datas.mobile_no"
+                          [ngStyle]="getHoverStyleweb2(i, 'call',data.template_layout_style?.[0],data)"
+                          (mouseenter)="setHover(i, 'call',data)" (mouseleave)="clearHover(data)">
+                          <i class="fa-solid fa-phone-volume"></i>
+                        </a>
+
+                        <a target="_blank" *ngIf="datas.email_id" [href]="'mailto:' + datas.email_id"
+                          [ngStyle]="getHoverStyleweb2(i, 'email',data.template_layout_style?.[0],data)"
+                          (mouseenter)="setHover(i, 'email',data)" (mouseleave)="clearHover(data)">
+                          <i class="fa-solid fa-envelope"></i>
+                        </a>
+
+                        <a target="_blank" *ngIf="datas.wp_number" [href]="'https://wa.me/' + datas.wp_number"
+                          [ngStyle]="getHoverStyleweb2(i, 'whatsapp',data.template_layout_style?.[0],data)"
+                          (mouseenter)="setHover(i, 'whatsapp',data)" (mouseleave)="clearHover(data)">
+                          <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+
+
+                        <a target="_blank" *ngIf="datas.user_address && isValid(datas.user_address)"
+                          [href]="datas.google_map_url"
+                          [ngStyle]="getHoverStyleweb2(i, 'location', data.template_layout_style?.[0],data)"
+                          (mouseenter)="setHover(i, 'location', data)" (mouseleave)="clearHover(data)"
+                          data-bs-toggle="collapse" [attr.data-bs-target]="'#location-address3' + i"
+                          aria-expanded="false" [attr.aria-controls]="'location-address3' + i" class="collapsed"
+                          (click)="open(data)" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}">
+
+                          <i class="fa-solid fa-location-dot"></i>
+                        </a>
+                      </div>
+
+                      <div [id]="'location-address3' + i" class="panel-collapse collapse location-address"
+                        role="tabpanel" [class.show]="data.address_coloapse" *ngIf="data.address_coloapse">
+
+                        <div class="panel-body">
+                          <p [ngStyle]="{
+        color: data.template_layout_style?.[0]?.card_text_color2
+      }">
+                            {{ datas.user_address }}
+                          </p>
+                        </div>
+                      </div>
+
+
+                    </ng-container>
+
+
+                    <div class="social_m_links">
+
+                      <ng-container *ngFor="let datas of data.social_data">
+                        <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='linkedin'"
+                          class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/linkedin 1.png'"
+                            alt="linkedin"></a>
+                        <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='facebook'"
+                          class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/facebook-tfour 1.png'"
+                            alt="facebook"></a>
+                        <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='instagram'"
+                          class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/instagram-tfour 1.png'"
+                            alt="instagram"></a>
+                        <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='pinterest'"
+                          class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/pinterest-tfour 1.png'"
+                            alt="pinterest"></a>
+                        <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='twitter'"
+                          class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/twitter-tfour 1.png'"
+                            alt="twitter"></a>
+                        <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='whatsapp'"
+                          class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/whatsapp-tfour 1.png'"
+                            alt="whatsapp"></a>
+                        <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='youtube'"
+                          class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/youtube-tfour 1.png'"
+                            alt="youtube"></a>
+                        <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='indiamart'"
+                          class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/indiamart-tfour 1.png'"
+                            alt="indiamart"></a>
+                        <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='justdail'"
+                          class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/Justdail 1.png'"
+                            alt="justdail"></a>
+                        <a target="_blank" [href]="datas.product_images_url"
+                          *ngIf="datas.social_portal=='googlemybusiness'" class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/googlemy-tfour 1.png'"
+                            alt="googlemybusiness"></a>
+                        <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='globe'"
+                          class="social_link"><img
+                            [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/globe-tfour 1.png'"
+                            alt="globe"></a>
+                      </ng-container>
+                    </div>
+
+
+                  </div>
+                </section>
+              </div>
+
+            </div>
+
+            <!-- -------templat 9 --->
+
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12"
+              *ngIf="data?.template_type[0]?.layout_name=='Layout-9'">
+
+              <div class="template-web-3">
+                <nav class="navbar navbar-expand-lg custom-navbar"
+                  [ngStyle]="{background: data.user_template_layout_style[0].card_background_color1 ? data.user_template_layout_style[0].card_background_color1 : data.template_layout_style[0].card_background_color1  }">
+                  <div class="container-fluid">
+                    <!-- Left: Brand -->
+
+                    <!-- -----------------if business logo ------- -->
+                    <div class="business-logo"
+                      *ngIf="data?.user_template_layout_style?.[0]?.business_logo_image; else noLogo2">
+                      <img [src]="data.user_template_layout_style?.[0].business_logo_image" alt="business logo">
+
+                    </div>
+
+
+                    <ng-template #noLogo2>
+
+                      <span *ngIf="data?.user_template_layout_style?.[0]?.business_name; else fallbackName2"
+                        class="navbar-brand d-flex align-items-center gap-2"
+                        [ngStyle]="{'color': data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1}">
+                        {{ data.user_template_layout_style?.[0].business_name }}
+                      </span>
+
+                      <ng-template #fallbackName2>
+                        <span *ngIf="data?.profile_images[0]?.company_name"
+                          class="navbar-brand d-flex align-items-center gap-2"
+                          [ngStyle]="{'color': data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1}">
+                          {{ data?.profile_images[0]?.company_name}}
+                        </span>
+                      </ng-template>
+                    </ng-template>
+
+
+
+
+                  </div>
+                </nav>
+
+                <section class="profile-section">
+                  <section class="hero" >
+
+<div class="hero-bg "  *ngIf="
+    (
+      !data?.user_template_layout_style?.[0]?.profile_banner_video ||
+      data?.user_template_layout_style?.[0]?.profile_banner_video.includes('/null')
+    ) &&
+    (
+      !data?.template_layout_style?.[0]?.profile_banner_video ||
+      data?.template_layout_style?.[0]?.profile_banner_video.includes('/null')
+    )
+  " >
+   
+
+        <!-- ================= USER SINGLE ================= -->
+    
+ <img  *ngIf="
+  data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length === 1 &&
+  data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0] &&
+  !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') &&
+  !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+"
+  [src]="data?.user_template_layout_style?.[0]?.profile_banner_images_list[0]" class="single-profile-bg-image" />
+
+
+   <!-- ================= ADMIN SINGLE ================= -->
+<img
+  *ngIf="
+    (
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length ||
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0] ||
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') ||
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+    )
+    &&
+    data?.template_layout_style?.[0]?.profile_banner_images_list?.length === 1 &&
+    data.template_layout_style[0].profile_banner_images_list?.[0] &&
+    !data?.template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') &&
+    !data?.template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+  "
+  [src]="data?.template_layout_style?.[0]?.profile_banner_images_list?.[0]"
+  class="single-profile-bg-image"
+/>
+
+ <!-- ================= USER CAROUSEL ================= -->
+     <div id="profile-banner-carousel-div" class="carousel slide" *ngIf="
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length > 1 &&
+      data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[1] &&
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[1]?.includes('/null') &&
+      !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[1]?.endsWith('/image/')
+    " data-bs-ride="carousel">
+
+       <div class="carousel-indicators">
+         <ng-container *ngFor="let img of data?.user_template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <button *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')" type="button"
+             data-bs-target="#profile-banner-carousel-div" [attr.data-bs-slide-to]="i" [class.active]="i === 0">
+           </button>
+         </ng-container>
+       </div>
+
+
+       <div class="carousel-inner">
+         <ng-container *ngFor="let img of data?.user_template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <div class="carousel-item" *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')"
+             [class.active]="i === 0">
+             <img class="d-block w-100" [src]="img">
+           </div>
+         </ng-container>
+       </div>
+
+
+       <!-- Controls -->
+       <button class="carousel-control-prev" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="prev">
+         <span class="carousel-control-prev-icon">
+           <i class="fa-solid fa-caret-left"></i>
+         </span>
+       </button>
+
+
+       <button class="carousel-control-next" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="next">
+         <span class="carousel-control-next-icon">
+           <i class="fa-solid fa-caret-right"></i>
+         </span>
+       </button>
+     </div>
+
+
+       <!-- ================= ADMIN CAROUSEL ================= -->
+ 
+     <div id="profile-banner-carousel-div" class="carousel slide" *ngIf="
+      (
+        !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.length ||
+        !data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0] ||
+        data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.includes('/null') ||
+        data?.user_template_layout_style?.[0]?.profile_banner_images_list?.[0]?.endsWith('/image/')
+      )
+      &&
+      data?.template_layout_style?.[0]?.profile_banner_images_list?.length > 1 &&
+      data?.template_layout_style?.[0]?.profile_banner_images_list?.[1] &&
+      !data?.template_layout_style?.[0]?.profile_banner_images_list?.[1]?.includes('/null') &&
+      !data?.template_layout_style?.[0]?.profile_banner_images_list?.[1]?.endsWith('/image/')
+    " data-bs-ride="carousel">
+
+       <div class="carousel-indicators">
+         <ng-container *ngFor="let img of data?.template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <button *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')" type="button"
+             data-bs-target="#profile-banner-carousel-div" [attr.data-bs-slide-to]="i" [class.active]="i === 0">
+           </button>
+         </ng-container>
+       </div>
+
+
+       <div class="carousel-inner">
+         <ng-container *ngFor="let img of data?.template_layout_style?.[0]?.profile_banner_images_list; let i = index">
+           <div class="carousel-item" *ngIf="img && !img.includes('/null') && !img.endsWith('/image/')"
+             [class.active]="i === 0">
+             <img class="d-block w-100" [src]="img">
+           </div>
+         </ng-container>
+       </div>
+
+
+       <!-- Controls -->
+       <button class="carousel-control-prev" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="prev">
+         <span class="carousel-control-prev-icon"
+                 
+       >
+           <i class="fa-solid fa-caret-left"></i>
+         </span>
+       </button>
+
+
+       <button class="carousel-control-next" type="button" data-bs-target="#profile-banner-carousel-div"
+         data-bs-slide="next">
+         <span class="carousel-control-next-icon"
+                  
+       >
+           <i class="fa-solid fa-caret-right"></i>
+         </span>
+       </button>
+     </div>
+
+
+</div>
+
+
+  <!-- User Video -->
+<video
+  *ngIf="
+    data?.user_template_layout_style?.[0]?.profile_banner_video &&
+    !data?.user_template_layout_style?.[0]?.profile_banner_video.includes('/null') &&
+    !data?.user_template_layout_style?.[0]?.profile_banner_video.toLowerCase().endsWith('.gif')
+  "
+ 
+  #heroVideo
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+
+
+  class="hero-video">
+   <source [src]="data?.user_template_layout_style?.[0]?.profile_banner_video" >
+</video>
+
+<!-- User GIF -->
+<img  
+  *ngIf="
+    data?.user_template_layout_style?.[0]?.profile_banner_video &&
+    !data?.user_template_layout_style?.[0]?.profile_banner_video.includes('/null') &&
+    data?.user_template_layout_style?.[0]?.profile_banner_video.toLowerCase().endsWith('.gif')
+  "
+  [src]="data?.user_template_layout_style?.[0]?.profile_banner_video"
+  class="hero-video"
+/>
+
+ <!-- Admin Video -->
+<video
+  *ngIf="
+    (
+      !data?.user_template_layout_style?.[0]?.profile_banner_video ||
+      data?.user_template_layout_style?.[0]?.profile_banner_video.includes('/null')
+    ) &&
+    data?.template_layout_style?.[0]?.profile_banner_video &&
+    !data?.template_layout_style?.[0]?.profile_banner_video.includes('/null') &&
+    !data?.template_layout_style?.[0]?.profile_banner_video.toLowerCase().endsWith('.gif')
+  "
+  
+ #heroVideo
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+
+
+  class="hero-video">
+   <source [src]="data?.template_layout_style?.[0]?.profile_banner_video" >
+</video>
+
+
+<!-- Admin GIF -->
+
+<img 
+  *ngIf="
+    (
+      !data?.user_template_layout_style?.[0]?.profile_banner_video ||
+      data?.user_template_layout_style?.[0]?.profile_banner_video.includes('/null')
+    ) &&
+    data?.template_layout_style?.[0]?.profile_banner_video &&
+    !data?.template_layout_style?.[0]?.profile_banner_video.includes('/null') &&
+    data?.template_layout_style?.[0]?.profile_banner_video.toLowerCase().endsWith('.gif')
+  "
+  [src]="data?.template_layout_style?.[0]?.profile_banner_video"
+  class="hero-video"
+/>
+
+                   
+
+                    <div class="profile-data-div" [ngStyle]="{background: data.template_layout_style?.[0]?.back_body_color }">
+
+
+
+                      <a class="profile-img-div" [href]="data?.pcard_url_template[0]?.template_url" target="_blank"
+                        [ngStyle]="{
+                  border: '5px solid ' + (data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1), background: data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1
+                }" *ngIf="data?.profile_images[0]?.image; else noImage3">
+                        <img [src]="'data:image/png;base64,' + data?.profile_images[0].image" alt="profile image"
+                          class="img-fluid" />
+                      </a>
+
+
+                      <ng-template #noImage3>
+                        <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank" class="profile-img-div"
+                          [ngStyle]="{
+                  border: '5px solid ' + (data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1), background: data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1
+                }">
+                          <img src="assets/Image.webp" alt="default profile image" />
+                        </a>
+                      </ng-template>
+
+
+
+
+                      <div class="profile-info"
+                        [ngStyle]="{ color:  data.template_layout_style?.[0]?.body_text_color }">
+                        <a [href]="data?.pcard_url_template[0]?.template_url" target="_blank"
+                          [ngStyle]="{ color: data.template_layout_style?.[0]?.body_text_color }">
+                          <h1> {{data?.profile_images[0]?.first_name }} {{ data?.profile_images[0]?.last_name }}</h1>
+                        </a>
+                        <p class="designation"> {{ data?.profile_images[0]?.designation }}</p>
+                        <p>{{ data?.profile_images[0]?.company_name }}</p>
+                      </div>
+
+                      <div class="share_btn">
+                        <a (click)="openShareModalweb(data)"
+                         [ngStyle]="
+    data.hoveredIndex === 15 && data.hoveredType === 'share'
+     ?  {
+           'background':  data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1 ,
+          'color':  data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1 ,
+          'border' : `1px solid ${ data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1}`
+        }
+      : {
+          
+             'background-color':  data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1,
+          'color':data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1,
+             'border' : `1px solid ${ data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1}`
+        }
+  "
+  (mouseenter)="setHover(15, 'share', data)"
+  (mouseleave)="clearHover(data)"
+
+                ><i
+                            class="fa-solid fa-share-nodes"></i> <span>Share profile</span></a>
+                        <a (click)="onFileSelected($event,data)"
+                         [ngStyle]="
+    data.hoveredIndex === 16 && data.hoveredType === 'save-contact'
+    ?  {
+           'background':  data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1 ,
+          'color':  data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1 ,
+          'border' : `1px solid ${ data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1}`
+        }
+      : {
+          
+             'background-color':  data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1,
+          'color':data.user_template_layout_style[0].card_text_color1 ? data.user_template_layout_style[0].card_text_color1 :data.template_layout_style[0].card_text_color1,
+             'border' : `1px solid ${ data.user_template_layout_style?.[0]?.card_background_color1
+          ? data.user_template_layout_style[0].card_background_color1
+          : data.template_layout_style?.[0]?.card_background_color1}`
+        }
+  "
+  (mouseenter)="setHover(16, 'save-contact', data)"
+  (mouseleave)="clearHover(data)"
+
+  ><i
+                            class="fa-regular fa-bookmark"></i> <span>Save Contact</span></a>
+                      </div>
+
+
+
+                      <ng-container *ngFor="let datas of data.contact_Details; let i = index">
+                        <div class="social-contact-div">
+
+
+                          <a target="_blank" *ngIf="datas.mobile_no" [href]="'tel:' + datas.mobile_no"
+                            [ngStyle]="getHoverStyleweb2(i, 'call',data.template_layout_style?.[0],data,data.user_template_layout_style?.[0])"
+                            (mouseenter)="setHover(i, 'call',data)" (mouseleave)="clearHover(data)">
+                            <i class="fa-solid fa-phone-volume"></i>
+                          </a>
+
+                          <a target="_blank" *ngIf="datas.email_id" [href]="'mailto:' + datas.email_id"
+                            [ngStyle]="getHoverStyleweb2(i, 'email',data.template_layout_style?.[0],data,data.user_template_layout_style?.[0])"
+                            (mouseenter)="setHover(i, 'email',data)" (mouseleave)="clearHover(data)">
+                            <i class="fa-solid fa-envelope"></i>
+                          </a>
+
+                          <a target="_blank" *ngIf="datas.wp_number" [href]="'https://wa.me/' + datas.wp_number"
+                            [ngStyle]="getHoverStyleweb2(i, 'whatsapp',data.template_layout_style?.[0],data,data.user_template_layout_style?.[0])"
+                            (mouseenter)="setHover(i, 'whatsapp',data)" (mouseleave)="clearHover(data)">
+                            <i class="fa-brands fa-whatsapp"></i>
+                          </a>
+
+
+                          <a target="_blank" *ngIf="datas.user_address && isValid(datas.user_address)"
+                            [href]="datas.google_map_url"
+                            [ngStyle]="getHoverStyleweb2(i, 'location', data.template_layout_style?.[0],data,data.user_template_layout_style?.[0])"
+                            (mouseenter)="setHover(i, 'location', data)" (mouseleave)="clearHover(data)"
+                            data-bs-toggle="collapse" [attr.data-bs-target]="'#location-address3' + i"
+                            aria-expanded="false" [attr.aria-controls]="'location-address3' + i" class="collapsed"
+                            (click)="open(data)" [ngClass]="{'has-map': isValidUrl(datas?.google_map_url)}">
+
+                            <i class="fa-solid fa-location-dot"></i>
+                          </a>
+                        </div>
+
+                        <div [id]="'location-address3' + i" class="panel-collapse collapse location-address"
+                          role="tabpanel" [class.show]="data.address_coloapse" *ngIf="data.address_coloapse">
+
+                          <div class="panel-body">
+                            <p [ngStyle]="{
+        color: data.template_layout_style?.[0]?.body_text_color
+      }">
+                              {{ datas.user_address }}
+                            </p>
+                          </div>
+                        </div>
+
+
+                      </ng-container>
+
+
+                      <div class="social-icon-div">
+
+                        <ng-container *ngFor="let datas of data.social_data">
+                          <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='linkedin'"
+                            class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/linkedin 1.png'"
+                              alt="linkedin"></a>
+                          <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='facebook'"
+                            class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/facebook-tfour 1.png'"
+                              alt="facebook"></a>
+                          <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='instagram'"
+                            class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/instagram-tfour 1.png'"
+                              alt="instagram"></a>
+                          <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='pinterest'"
+                            class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/pinterest-tfour 1.png'"
+                              alt="pinterest"></a>
+                          <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='twitter'"
+                            class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/twitter-tfour 1.png'"
+                              alt="twitter"></a>
+                          <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='whatsapp'"
+                            class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/whatsapp-tfour 1.png'"
+                              alt="whatsapp"></a>
+                          <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='youtube'"
+                            class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/youtube-tfour 1.png'"
+                              alt="youtube"></a>
+                          <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='indiamart'"
+                            class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/indiamart-tfour 1.png'"
+                              alt="indiamart"></a>
+                          <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='justdail'"
+                            class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/Justdail 1.png'"
+                              alt="justdail"></a>
+                          <a target="_blank" [href]="datas.product_images_url"
+                            *ngIf="datas.social_portal=='googlemybusiness'" class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/googlemy-tfour 1.png'"
+                              alt="googlemybusiness"></a>
+                          <a target="_blank" [href]="datas.product_images_url" *ngIf="datas.social_portal=='globe'"
+                            class="social_link"><img
+                              [src]="globalObject.assetsUrl + '/templates_pcard/template_8/social-icon-color/globe-tfour 1.png'"
+                              alt="globe"></a>
+                        </ng-container>
+                      </div>
+
+
+
+                    </div>
+
+
+                  </section>
+
+
+
+
+
+                </section>
+              </div>
+            </div>
+
+
+          </ng-container>
+        </ng-container>
+    </div>
+
+    <!-- popup for profile share button  -->
+      <div class="angular-modal-backdrop" *ngIf="showShareModal" (click)="closeShareModal()">
+    <div  class="angular-modal-dialog login_section ionic_common_modal  pop-height" >
+
+
+<div class="angular-modal-content">
+        <div class="wrapper login_form">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between"
+              [ngStyle]="{'color': modal2?.card_text_color2, 'background-color': this.modal2.card_back_color2 }">
+              <h1 class="mb-0" [ngStyle]="{'color': modal2?.card_text_color2}">Share profile of {{modal2.name}} </h1>
+
+             
+
+                <i class="fa-solid fa-xmark close-btn" (click)="closeShareModal()"
+                                        [ngStyle]="{'color': modal2?.card_text_color2, '--color': modal2?.card_text_color2}"></i>
+            </div>
+
+            <div class="card-body profile-share-body">
+              <div class="row">
+                <div class="col-md-3 col-sm-4 col-6  ">
+                  <a (click)="openWhatsApp($event,modal2?.url)" target="_blank">
+                    <div class="outer-share-div ">
+                      <div class="share-icon">
+                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp-ttwo.png'"
+                          alt="pcards">
+                      </div>
+                      <h3>Whatsapp</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-3  col-sm-4 col-6">
+                  <a target="_blank" (click)="openSMS($event,modal2?.url)">
+                    <div class="outer-share-div ">
+                      <div class="share-icon">
+                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/text-messages.png'"
+                          alt="pcards">
+                      </div>
+                      <h3>Text Message</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-6">
+                  <a target="_blank" (click)="openTelegram($event,modal2?.url)">
+                    <div class="outer-share-div ">
+                      <div class="share-icon">
+                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/telegram.png'"
+                          alt="pcards">
+                      </div>
+                      <h3>Telegram</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-6">
+                  <a href="" target="_blank" (click)="openLinkedIn($event,modal2?.url)">
+                    <div class="outer-share-div">
+                      <div class="share-icon">
+                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/linkedin.png'" alt="pcards">
+                      </div>
+                      <h3>Linkedin</h3>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+
+    <!---------- popups for share profile btn ------------->
+      <div class="angular-modal-backdrop" *ngIf="showWebShareModal" (click)="closeShareModal()">
+    <div  class="angular-modal-dialog login_section ionic_common_modal  pop-height new-template-popups" >
+ <div class="angular-modal-content">
+      <div class="wrapper login_form">
+          <div class="card new-temp">
+            <div class="card-header d-flex justify-content-between ">
+              <h2 class="mb-0">Share profile of {{modal2.name}}</h2>
+        
+              <i  class="fa-solid fa-xmark close-btn" (click)="closeShareModal()"></i>
+            </div>
+
+            <div class="card-body profile-share-body-new">
+              <div class="row">
+
+                <div class="col-md-3 col-sm-4 col-6  ">
+                  <a (click)="openWhatsApp($event,modal2?.url)" target="_blank">
+                    <div class="outer-share-div ">
+                      <div class="share-icon whatsapp">
+                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/whatsapp.png'" alt="pcards">
+                      </div>
+                      <h3>Whatsapp</h3>
+                    </div>
+                  </a>
+                </div>
+
+
+
+                <div class="col-md-3  col-sm-4 col-6">
+                  <a target="_blank" (click)="openSMS($event,modal2?.url)">
+                    <div class="outer-share-div ">
+                      <div class="share-icon text-message">
+                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/text-messages.png'"
+                          alt="pcards">
+                      </div>
+                      <h3>Text Message</h3>
+                    </div>
+                  </a>
+                </div>
+
+
+
+
+
+                <div class="col-md-3 col-sm-4 col-6">
+                  <a target="_blank" (click)="openTelegram($event,modal2?.url)">
+                    <div class="outer-share-div ">
+                      <div class="share-icon telegram">
+                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_one/img/telegram.png'"
+                          alt="pcards">
+                      </div>
+                      <h3>Telegram</h3>
+                    </div>
+                  </a>
+                </div>
+
+
+
+
+
+                <div class="col-md-3 col-sm-4 col-6">
+                  <a href="" target="_blank" (click)="openLinkedIn($event,modal2?.url)">
+                    <div class="outer-share-div">
+                      <div class="share-icon linkedin">
+                        <img [src]="globalObject.assetsUrl + '/templates_pcard/template_two/linkedin.png'" alt="pcards">
+                      </div>
+                      <h3>Linkedin</h3>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+       
+
+
+
+  </div>
+</div>

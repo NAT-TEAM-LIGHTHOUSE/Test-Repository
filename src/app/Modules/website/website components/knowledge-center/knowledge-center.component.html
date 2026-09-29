@@ -1,0 +1,32 @@
+<div class="container-fluid pageLayout pb80">
+  <div class="pageVerBorder">
+    <img src="/assets/website-images/community/line-61.svg" alt="pcard images">
+  </div>
+  <div class="row" id="pagesetting">
+    <div class="col-sm-12">
+      <h1>Knowledge Center</h1>
+      <div class="row">
+        <div class="col-lg-4 mb30" *ngFor="let blog of blogs">
+          <div class="blogs-pcards">
+            <div class="news-img">
+              <img [src]="blog.ad_blogimg" alt="imgage" class="news-img">
+            </div>
+
+            <div class="news-review" (click)="openBlog(blog.slug_name)">
+              <h3 class="news-title main-title-three">
+                <a>{{blog.ad_blogname}}</a>
+              </h3>
+              <a class="btn btn-blogs" (click)="openBlog(blog.slug_name)">Read More</a>
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+    
+      </div>
+    </div>
+  </div>
+</div>

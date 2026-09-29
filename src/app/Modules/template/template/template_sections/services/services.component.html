@@ -1,0 +1,893 @@
+<!---------- template 1------------>
+
+<!-- Services section -->
+@if(template_type == 'layout1') {
+<section class="services" id="Our_Services">
+    <div class="card-headings-div">
+        <h3 class="card-headings" [ngStyle]="{
+                                                            'color': card1textcolour,
+                                                         
+                                                          }">
+            {{data.title}}
+        </h3>
+        <p class="heading-border" [ngStyle]="{
+                                                            'border':  '1px  solid ' + card1textcolour,
+                                                         
+                                                          }"></p>
+    </div>
+    <div class="outer-div">
+        
+            <div class="row m-0 w-100 ">
+                <div class="card-col col-6" *ngFor="let Services of data.data; let i = index">
+                    <div class="service-card">
+                        <div class="service-img-div"   (click)="productpopup(Services)">
+                        <div id="servicesCarousel1{{i}}" class="carousel slide w-100 h-100">
+                               
+
+                                <!-- Slides -->
+                                <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100" *ngIf="Services?.service_image1">
+                                        <img [src]="globalObject.getImageSrc(Services?.service_image1)"
+
+                                            class="d-block w-100 img-fluid" alt="Service Image 1">
+                                    </div> 
+                                    <div class="carousel-item w-100 h-100" *ngIf="Services?.service_image2">
+                                        <img [src]="globalObject.getImageSrc(Services?.service_image2)"
+                                            class="d-block w-100 img-fluid" alt="Service Image 2">
+                                    </div>
+                                </div>
+
+
+                                   <div class="carousel-indicators"
+                                *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''">
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel1' + i"
+                                    data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                                </button>
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel1' + i"
+                                    data-bs-slide-to="1" aria-label="Slide 2">
+                                </button>
+
+                            </div>
+
+
+                            <!-- <button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-prev"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel1' + i"
+  data-bs-slide="prev">
+     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+</button>
+
+<button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-next"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel1' + i"
+  data-bs-slide="next">
+   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+</button> -->
+
+                            
+                            </div>
+                        </div>
+                        <div class="service-details-div d-flex flex-column flex-grow-1">
+
+                         
+
+                            <div class="service-data"
+                                (click)="productpopup(Services)">
+                               <p class="s-name" *ngIf="Services.service_name">{{Services.service_name}}</p>
+                                <p class="s-price" *ngIf="Services.service_price>0 ">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{Services.service_price}}</p>
+                            </div>
+                            <ng-container *ngFor="let datas of whatup.data">
+                                <a class="enquiry-div" target="_blank" type="button"
+                                  [href]="Services.button_type == 'custom' ? Services.button_link : getWhatsappLink(datas.wp_number, Services.service_name)"
+                                   [ngStyle]="{
+      color: hoveredIndex === i ?  card2textcolour : '#000',
+      background: hoveredIndex === i ? card2bgcolour : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+    >
+                                     {{Services.button_type === 'custom' ? Services.button_title : "Enquiry"}}
+                                </a>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+       
+    </div>
+</section>
+}
+
+<!---------- template 2------------>
+
+<!-- Services section -->
+@else if(template_type == 'layout2') {
+<section class="services">
+    <h2 class="card-headings" [ngStyle]="{
+                                                            'color': card2textcolour,
+                                                            'background': card2bgcolour
+                                                          }">{{data.title}}</h2>
+    <div class="outer-div">
+       
+            <div class="row m-0 w-100 ">
+                <div class="card-col col-6" *ngFor="let Services of data.data; let i = index">
+                    <div class="service-card">
+                        <div class="service-img-div"   (click)="productpopup(Services)">
+                           
+
+
+                            <div id="servicesCarousel2{{i}}" class="carousel slide w-100 h-100">
+                                <!-- Indicators -->
+
+                                <!-- Slides -->
+                                <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100" *ngIf="Services?.service_image1">
+                                        <img [src]="globalObject.getImageSrc(Services?.service_image1)"
+                                            class="d-block w-100 img-fluid" alt="Service Image 1">
+                                    </div>
+                                    <div class="carousel-item w-100 h-100" *ngIf="Services?.service_image2">
+                                        <img [src]="globalObject.getImageSrc(Services?.service_image2)"
+                                            class="d-block w-100 img-fluid" alt="Service Image 2">
+                                    </div>
+                                </div>
+
+                                   <div class="carousel-indicators"
+                                *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''">
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel2' + i"
+                                    data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                                </button>
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel2' + i"
+                                    data-bs-slide-to="1" aria-label="Slide 2">
+                                </button>
+
+                            </div>
+
+
+                              <!-- <button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-prev"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel2' + i"
+  data-bs-slide="prev">
+     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+</button>
+
+<button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-next"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel2' + i"
+  data-bs-slide="next">
+   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+</button> -->
+
+
+                            </div>
+                        </div>
+                        <div class="service-details-div d-flex flex-column flex-grow-1">
+                         
+                          <div class="service-data"
+                                (click)="productpopup(Services)">
+                              
+
+                                <p class="s-name" *ngIf="Services.service_name">{{Services.service_name}}</p>
+                                <p class="s-price" *ngIf="Services.service_price>0 ">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{Services.service_price}}</p>
+                            </div>
+                            <ng-container *ngFor="let datas of whatup.data">
+                                <a class="enquiry-div" target="_blank" type="button"
+                                    [href]="Services.button_type == 'custom' ? Services.button_link : getWhatsappLink(datas.wp_number, Services.service_name)"
+                                      [ngStyle]="{
+      color: hoveredIndex === i ?  card2textcolour : '#000',
+      background: hoveredIndex === i ? card2bgcolour : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+                                     {{Services.button_type === 'custom' ? Services.button_title : 'Enquiry'}}
+                                </a>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+      
+    </div>
+</section>
+}
+<!---------- template 3------------>
+
+<!-- Services section -->
+@else if(template_type == 'layout3') {
+<section class="services">
+    <h2 class="card-headings" [ngStyle]="{'color': card2textcolour, 'border-bottom' :'2px solid ' + card2textcolour}">
+        {{data.title}}</h2>
+    <div class="outer-div">
+       
+            <div class="row m-0 w-100 ">
+                <div class="card-col col-6" *ngFor="let Services of data.data; let i = index">
+                    <div class="service-card">
+                        <div class="service-img-div"   (click)="productpopup(Services)">
+                            
+                            <div id="servicesCarousel3{{i}}" class="carousel slide w-100 h-100" >
+                         
+
+                                <!-- Slides -->
+                                <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100" *ngIf="Services?.service_image1">
+                                        <img [src]="globalObject.getImageSrc(Services?.service_image1)"
+                                            class="d-block w-100 img-fluid" alt="Service Image 1">
+                                    </div>
+                                    <div class="carousel-item w-100 h-100" *ngIf="Services?.service_image2">
+                                        <img [src]="globalObject.getImageSrc(Services?.service_image2)"
+                                            class="d-block w-100 img-fluid" alt="Service Image 2">
+                                    </div>
+                                </div>
+
+
+                                  <div class="carousel-indicators"
+                                *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''">
+
+                                <button type="button"  [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                                </button>
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="1" aria-label="Slide 2">
+                                </button>
+
+                            </div>
+
+                              <!-- <button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-prev"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel3' + i"
+  data-bs-slide="prev">
+     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+</button>
+
+<button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-next"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel3' + i"
+  data-bs-slide="next">
+   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+</button> -->
+
+
+                            </div>
+                        </div>
+                        <div class="service-details-div d-flex flex-column flex-grow-1">
+                          
+                           <div class="service-data"
+                                (click)="productpopup(Services)">
+                               <p class="s-name" *ngIf="Services.service_name">{{Services.service_name}}</p>
+                                <p class="s-price" *ngIf="Services.service_price>0 ">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{Services.service_price}}</p>
+
+                                
+                            </div>
+                            <ng-container *ngFor="let datas of whatup.data">
+                             
+
+
+
+                                <a class="enquiry-div" target="_blank" type="button"
+                                    [href]="Services.button_type == 'custom' ? Services.button_link : getWhatsappLink(datas.wp_number, Services.service_name)"
+                                    [ngStyle]="{
+      color: hoveredIndex === i ?  '#fff' : '#000',
+      background: hoveredIndex === i ? '#515556' : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+                                     {{Services.button_type === 'custom' ? Services.button_title : 'Enquiry'}}
+                                </a>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+       
+    </div>
+</section>
+}
+
+
+<!---------- template 4------------>
+
+@else if(template_type == 'layout4') {
+<section class="services">
+    <h3 *ngIf="styletype != 'style4'" class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+
+    <!-- ----- for t4 ---- -->
+    <div class="card-headings-div" *ngIf="styletype == 'style4'">
+        <h3 class="card-headings"
+            [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+            {{data.title}}</h3>
+    </div>
+
+
+    <div class="outer-div" [ngStyle]="{'background-color': card2bgcolour}">
+        
+            <div class="row m-0 w-100 ">
+                <div class="card-col col-sm-6 col-12" *ngFor="let Services of data.data; let i = index">
+                    <div class="service-card">
+                        <div class="service-img-div"   (click)="productpopup(Services)">
+
+                            <div id="servicesCarousel3{{i}}" class="carousel slide w-100 h-100">
+
+
+
+
+                                <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100" *ngIf="Services?.service_image1">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image1)"
+                                            alt="Service Image 1">
+                                    </div>
+                                    <div class="carousel-item w-100 h-100" *ngIf="Services?.service_image2">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image2)"
+                                            alt="Service Image 2">
+                                    </div>
+                                </div>
+
+                                     <div class="carousel-indicators"
+                                *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''">
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                                </button>
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="1" aria-label="Slide 2">
+                                </button>
+
+                            </div>
+
+                            <!-- <button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-prev"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel3' + i"
+  data-bs-slide="prev">
+     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+</button>
+
+<button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-next"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel3' + i"
+  data-bs-slide="next">
+   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+</button> -->
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="service-details-div d-flex flex-column flex-grow-1">
+                       
+
+
+
+
+
+                           <div class="service-data" (click)="productpopup(Services)">
+  <p class="s-name" *ngIf="Services.service_name">
+    {{ Services.service_name }}
+  </p>
+
+  <p class="s-price" *ngIf="Services?.service_price > 0">
+    {{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{ Services.service_price }}
+  </p>
+</div>
+                            <ng-container *ngFor="let datas of whatup.data">
+                                <a class="enquiry-div" target="_blank" type="button"
+                                    [href]="Services.button_type == 'custom' ? Services.button_link : getWhatsappLink(datas.wp_number, Services.service_name)" 
+                                     [ngStyle]="{
+      color: hoveredIndex === i ?  card1textcolour : '#147196',
+      background: hoveredIndex === i ? card1bgcolour : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+    >
+                                   {{Services.button_type === 'custom' ? Services.button_title : 'Enquiry'}}
+                                </a>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    
+    </div>
+</section>
+
+}
+
+
+<!---------- template 5------------>
+
+@else if(template_type == 'layout5') {
+<section class="services">
+    <h3 class="card-headings"
+        [ngStyle]="card_heading_bg ?card_heading_bg : {'background-color': card1bgcolour,'color': card1textcolour }">
+        {{data.title}}</h3>
+    <div class="outer-div" [ngStyle]="services_outer_div ?services_outer_div :{'background-color': card2bgcolour}">
+        
+            <div class="row m-0 w-100 ">
+
+                <div class="card-col col-sm-6 col-12" *ngFor="let Services of data.data; let i = index">
+                    <div class="service-card">
+                        <div class="service-img-div"   (click)="productpopup(Services)">
+
+                            <div id="servicesCarousel3{{i}}" class="carousel slide w-100 h-100" >
+
+                                <!-- Slides -->
+                                <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100" *ngIf="Services?.service_image1">
+                                         <!-- [src]="Services ? 'data:image/png;base64,' + Services.service_image1 : ''" -->
+                                        <img class="d-block w-100 img-fluid"
+                                           [src]="globalObject.getImageSrc(Services?.service_image1)"
+                                            alt="Service Image 1">
+                                    </div>
+                                    <div class="carousel-item w-100 h-100" *ngIf="Services?.service_image2">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image2)"
+                                            alt="Service Image 2">
+                                    </div>
+                                </div>
+
+                                  <div class="carousel-indicators"
+                                *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''">
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                                </button>
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="1" aria-label="Slide 2">
+                                </button>
+
+                            </div>
+
+
+                            <!-- <button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-prev"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel3' + i"
+  data-bs-slide="prev">
+     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+</button>
+
+<button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-next"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel3' + i"
+  data-bs-slide="next">
+   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+</button> -->
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="service-details-div d-flex flex-column flex-grow-1">
+                           
+
+                            <div class="service-data"
+                                (click)="productpopup(Services)">
+                               <p class="s-name" *ngIf="Services.service_name">{{Services.service_name}}</p>
+                                <p class="s-price" *ngIf="Services.service_price>0 ">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{Services.service_price}}</p>
+                            </div>
+                            <ng-container *ngFor="let datas of whatup.data">
+                                <a class="enquiry-div" target="_blank" type="button"
+                             [ngStyle]="{
+      color: hoveredIndex === i ?  card1textcolour : '#147196',
+      background: hoveredIndex === i ? card1bgcolour : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null"
+
+                                       [href]="Services.button_type == 'custom' ? Services.button_link : getWhatsappLink(datas.wp_number, Services.service_name)">
+                                     {{Services.button_type === 'custom' ? Services.button_title : 'Enquiry'}}
+                                </a>
+
+                                
+                            </ng-container>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+       
+    </div>
+</section>
+}
+
+<!---------- template 6------------>
+
+@else if(template_type == 'layout6') {
+<section class="services">
+    <h3 class="card-headings" [ngStyle]="card_heading_bg ?card_heading_bg :{'color': card1bgcolour}">{{data.title}}</h3>
+    <div class="outer-div">
+    
+            <div class="row m-0 w-100 ">
+                <div class="card-col col-sm-6 col-12" *ngFor="let Services of data.data; let i = index">
+                    <div class="service-card">
+                        <div class="service-img-div"   (click)="productpopup(Services)">
+
+                            <div id="servicesCarousel3{{i}}" class="carousel slide w-100 h-100" >
+
+                                <!-- Slides -->
+                                <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100" *ngIf="Services?.service_image1">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image1)"
+                                            alt="Service Image 1">
+                                    </div>
+                                    <div class="carousel-item w-100 h-100" *ngIf="Services?.service_image2">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image2)"
+                                            alt="Service Image 2">
+                                    </div>
+                                </div>
+
+                                    <div class="carousel-indicators"
+                                *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''">
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                                </button>
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="1" aria-label="Slide 2">
+                                </button>
+
+                            </div>
+
+
+                            <!-- <button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-prev"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel3' + i"
+  data-bs-slide="prev">
+     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+</button>
+
+<button *ngIf="Services?.service_image2 && Services.service_image2 !== 'null' && Services.service_image2 !== ''"
+  class="carousel-control-next"
+  type="button"
+  [attr.data-bs-target]="'#servicesCarousel3' + i"
+  data-bs-slide="next">
+   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+</button> -->
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="service-details-div d-flex flex-column flex-grow-1">
+                        
+
+                           <div class="service-data"
+                                (click)="productpopup(Services)">
+                               <p class="s-name" *ngIf="Services.service_name">{{Services.service_name}}</p>
+                                <p class="s-price" *ngIf="Services.service_price>0 ">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{Services.service_price}}</p>
+                            </div>
+                            <ng-container *ngFor="let datas of whatup.data">
+                                <a class="enquiry-div" target="_blank" type="button"
+                                     [href]="Services.button_type == 'custom' ? Services.button_link : getWhatsappLink(datas.wp_number, Services.service_name)" 
+                                        [ngStyle]="{
+      color: hoveredIndex === i ?  card1textcolour : '#147196',
+      background: hoveredIndex === i ? card1bgcolour : 'transparent'
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null">
+                                     {{Services.button_type === 'custom' ? Services.button_title : 'Enquiry'}}
+                                </a>
+                            </ng-container>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+       
+    </div>
+</section>
+}
+
+
+<!---------- template 7------------> 
+@else if(template_type == 'layout7') {
+<section class="services-section" [ngStyle]="{
+  'background-color': 'color-mix(in srgb, ' + card1bgcolour + ' 80%, transparent)'
+}">
+     <div class="section-headings">
+                        <h2 [ngStyle]="{'color': card1textcolour}">{{data.title}}</h2>
+                        <span [ngStyle]="{'background': card1textcolour}"></span>
+        </div>
+        <div class="outer-div w-100">
+        
+            <div class="row m-0 w-100 ">
+                <div class="card-col col-xl-3 col-md-4 col-sm-6 col-6" *ngFor="let Services of data.data; let i = index">
+                        <div class="service-card">
+                            <div class="service-img-div"  (click)="productpopup1(Services)">
+                                <div id="servicesCarousel3{{i}}" class="carousel slide w-100 h-100" >
+
+                                        <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100" *ngIf="Services?.service_image1">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image1)"
+                                            alt="Service Image 1">
+                                    </div>
+                                    <div class="carousel-item w-100 h-100" *ngIf="Services?.service_image2">
+                                        <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image2)"
+                                            alt="Service Image 2">
+                                    </div>
+                                </div>
+
+                                 <div class="carousel-indicators"
+                                *ngIf="Services?.service_image2 && Services?.service_image2 !== 'null' && Services.service_image2 !== ''">
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                                </button>
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="1" aria-label="Slide 2">
+                                </button>
+
+                            </div>
+                            
+                            
+                                </div>
+
+                                
+
+                                
+                                
+                            </div>
+                            <div class="service-details-div d-flex flex-column flex-grow-1">
+                                
+                                <div class="service-data"
+                                    (click)="productpopup1(Services)">
+                                    <p class="s-name" *ngIf="Services?.service_name">{{Services.service_name}}</p>
+                                    
+                                            <span class="s-price" *ngIf="Services?.service_price>0 ">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{Services.service_price}}</span>                                 
+                                    
+                                </div>
+
+                               
+                         <ng-container *ngFor="let datas of whatup?.data">
+                                 <a class="enquiry-btn" target="_blank"  
+                                         [href]="Services.button_type == 'custom' ? Services.button_link : getWhatsappLink(datas.wp_number, Services.service_name)">
+                                      
+                                         {{Services.button_type == 'custom' ? Services.button_title : 'Enquiry'}}
+                                    </a>
+                            </ng-container>
+
+                          
+                           
+
+                            </div>
+                        </div>
+                    </div>
+                       
+          
+
+            </div>
+      
+    </div>
+</section>
+}
+
+
+
+
+<!-- --------------template 8 ------- -->
+ @else if(template_type == 'layout8') {
+    <section class="services-section padding" [ngStyle]="{
+  'background-image': `
+    linear-gradient(
+      color-mix(in srgb, ${card2bgcolour} 80%, transparent),
+      color-mix(in srgb, ${card2bgcolour} 80%, transparent)
+    ),
+    url('${globalObject.assetsUrl}/templates_pcard/template_8/bg-img3.png')`}">
+            <h2 class="card-heading dark" [ngStyle]="{ border: '1px dashed ' + card2textcolour , color: card2textcolour}"><i class="fa-solid fa-left-long"></i><span>{{data.title}}</span><i
+                    class="fa-solid fa-right-long"></i></h2>
+
+
+                    
+                  <div class="row m-0 w-100 ">
+               
+                       <div class="card-col col-xl-3 col-md-4 col-sm-6 col-6"  *ngFor="let Services of data?.data; let i = index">
+
+                          <div class="service-card"  [ngStyle]="{ border: `0.5px dashed color-mix(in srgb, ${card2bgcolour } 25%, ${card2textcolour} 42%)`}">
+                        <div class="service-img-div"  (click)="productpopup1(Services)">
+                            <div id="servicesCarousel3{{i}}" class="carousel slide w-100 h-100">
+
+
+                                <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100"  *ngIf="Services?.service_image1">
+                                         <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image1)"
+                                            alt="Service Image 1">
+                                    </div>
+                                    <div class="carousel-item w-100 h-100" *ngIf="Services?.service_image2">
+                                             <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image2)"
+                                            alt="Service Image 2">
+
+                                    </div>
+                                </div>
+
+
+                                  <div class="carousel-indicators"
+                                *ngIf="Services?.service_image2 && Services?.service_image2 !== 'null' && Services.service_image2 !== ''">
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                                </button>
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="1" aria-label="Slide 2">
+                                </button>
+
+                            </div>
+                            </div>
+                        </div>
+
+
+                        <div class="service-data" [ngStyle]="{ color: card2textcolour }">
+                            <div class="flex-shirnk-div"  (click)="productpopup1(Services)">
+                                <p class="s-name" *ngIf="Services?.service_name">{{Services.service_name}}</p>
+                               
+
+                                <div class=" price-div" [ngStyle]="{ background: card2textcolour }" *ngIf="Services?.service_price>0 ">
+                                    <span class="p-price" [ngStyle]="{ color: card1bgcolour }">{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{Services.service_price}}</span>
+                                </div>
+                            </div>
+                              <ng-container *ngFor="let datas of whatup?.data">
+                            <div class="outer-btn-div"  [ngStyle]="{
+      background:  card1bgcolour
+    }"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = null" ><a  [ngStyle]="{
+      color: hoveredIndex === i ?  card1bgcolour : card1textcolour,
+      background: hoveredIndex === i ? card1textcolour : 'transparent',
+     border: hoveredIndex === i ? `1px dashed color-mix(in srgb, ${card1bgcolour} 44%, transparent 2%)` : `1px dashed color-mix(in srgb, ${card1textcolour} 44%, transparent 2%)`
+    }" class="enquiry-btn" target="_blank"   [href]="Services.button_type == 'custom' ? Services.button_link : getWhatsappLink(datas.wp_number, Services.service_name)"><span> {{Services.button_type === 'custom' ? Services.button_title : 'Enquiry'}}</span>
+                                    <i class="fa-solid fa-arrow-right-long"></i></a></div>
+                                </ng-container>
+
+                        </div>
+
+
+
+
+                    </div>
+                        </div>
+                        </div>
+                       
+
+          
+        </section> 
+ }
+
+
+  <!---------- template 9------------>
+
+@else if(template_type == 'layout9') {
+ <section class="services-section"  [ngStyle]="{
+  background: `linear-gradient(
+      to bottom,
+     ${card1bgcolour} 0%,
+      ${card2bgcolour} 163%) `  }">
+
+            <h2 class="card-heading dark" [ngStyle]="{ color: card1textcolour }"><span [ngStyle]="{ color: card1textcolour }"></span>{{data.title}}</h2>
+
+         
+
+                           
+                                    <div class="row m-0 w-100 ">
+               
+                       <div class="card-col col-xl-3 col-md-4 col-sm-6 col-6"  *ngFor="let Services of data?.data; let i = index">
+                          <div class="service-card" [ngStyle]="{ border: '1px solid ' + card1textcolour }">
+                              <div class="service-img-div"  (click)="productpopup1(Services)">
+                            <div id="servicesCarousel3{{i}}" class="carousel slide w-100 h-100">
+
+
+                                <div class="carousel-inner w-100 h-100">
+                                    <div class="carousel-item active w-100 h-100"  *ngIf="Services?.service_image1">
+                                         <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image1)"
+                                            alt="Service Image 1">
+                                    </div>
+                                    <div class="carousel-item w-100 h-100" *ngIf="Services?.service_image2">
+                                             <img class="d-block w-100 img-fluid"
+                                            [src]="globalObject.getImageSrc(Services?.service_image2)"
+                                            alt="Service Image 2">
+
+                                    </div>
+                                </div>
+
+
+                                  <div class="carousel-indicators"
+                                *ngIf="Services?.service_image2 && Services?.service_image2 !== 'null' && Services.service_image2 !== ''">
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                                </button>
+
+                                <button type="button" [attr.data-bs-target]="'#servicesCarousel3' + i"
+                                    data-bs-slide-to="1" aria-label="Slide 2">
+                                </button>
+
+                            </div>
+                            </div>
+                        </div>
+
+
+                        <div class="service-data" [ngStyle]="{ color: card1textcolour }">
+                              <div class="flex-shrink-div"  (click)="productpopup1(Services)">
+                            <p class="s-name" *ngIf="Services?.service_name">{{Services.service_name}}</p>
+                          
+                   
+                                 <div class=" price-div" *ngIf="Services?.service_price>0 ">
+                                    <span class="s-price" >{{ globalObject.getLocallData("cur_symbol_sign")? globalObject.getLocallData("cur_symbol_sign") : '₹' }} {{Services.service_price}}</span>
+                                </div>
+                                </div>
+                               
+
+                                 <ng-container *ngFor="let datas of whatup?.data">
+                        <a  class="enquiry-btn" target="_blank"   [ngStyle]="{ color: card2textcolour , background:`color-mix(in srgb, ${card2textcolour} 10%, transparent)`}"  
+                         [href]="Services.button_type == 'custom' ? Services.button_link : getWhatsappLink(datas.wp_number, Services.service_name)"><span> {{Services.button_type === 'custom' ? Services.button_title : 'Enquiry'}}</span>
+                                    <i class="fa-solid fa-arrow-right-long"></i></a>
+                                </ng-container>
+
+                            
+
+                        </div>
+
+
+
+
+                    </div>
+                        </div>
+                        </div>
+                       
+
+
+        </section>
+    }
+
